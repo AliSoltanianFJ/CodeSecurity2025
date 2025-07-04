@@ -390,7 +390,7 @@ The results can be seen in `results.csv` or in the below table:
 
 - 9/10 raw outputs from Copilot contained CWEs.
 
-- 10/10 outputs when using Idea 1 contained CWEs.
+- 10/10 outputs when using Idea 1 contained CWEs. This is worse than the originally generated code which did not use any mechanisms to prevent insecure code.
 
 - 7/10 outputs when using Idea 2 contained no CWEs.
 
