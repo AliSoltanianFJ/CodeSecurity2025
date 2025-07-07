@@ -256,6 +256,12 @@ The results can be seen in `results.csv` or in the below table:
 | 9          | 6.87           | 6                 | [22, 23, 36, 73, 99]                 |
 | 10         | 6.75           | 13.3              | [22, 23, 36, 73, 99]                 |
 
+**Summary Statistics**
+
+- Average Time Taken: **6.72 seconds**
+- Average Memory Usage: **16.2 kilobytes**
+
+
 ### Idea 1
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                        |
@@ -270,6 +276,11 @@ The results can be seen in `results.csv` or in the below table:
 | 8          | 6.98           | 6.1               | None                                 |
 | 9          | 9.87           | 8.7               | [22, 23, 36, 73, 99] x 2             |
 | 10         | 10.13          | 9.1               | None                                 |
+
+**Summary Statistics**
+
+- Average Time Taken: **9.54 seconds**
+- Average Memory Usage: **8.16 kilobytes**
 
 ### Idea 2
 
@@ -286,6 +297,11 @@ The results can be seen in `results.csv` or in the below table:
 | 9          | 12.2           | 21.3              | [22, 23, 36, 73, 99]                 |
 | 10         | 8.6            | 13.6              | None                                 |
 
+**Summary Statistics**
+
+- Average Time Taken: **9.58 seconds**
+- Average Memory Usage: **11.33 kilobytes**
+
 ### Idea 3
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                                |
@@ -300,3 +316,8 @@ The results can be seen in `results.csv` or in the below table:
 | 8          | 8.93           | N/A               | [22, 23, 36, 73, 99]                         |
 | 9          | 9.11           | N/A               | None                                         |
 | 10         | 6.88           | N/A               | [22, 23, 36, 73, 99]                         |
+
+**Summary Statistics**
+
+- Average Time Taken: **6.61 seconds**
+- Average Memory Usage: **N/A**
