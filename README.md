@@ -5,7 +5,6 @@
 Repository
 └───Scenarios
     ├───Scenario1PathTraversal
-    │   ├───.ipynb_checkpoints
     │   ├───CopilotRaw
     │   ├───Idea1
     │   ├───Idea2
