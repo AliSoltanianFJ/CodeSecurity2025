@@ -57,7 +57,9 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 1, Idea 1 performed the best with 6/10 outputs containing no security weaknesses. However, for the samples that were insecure, the AI model attempted to refactor the code to be more secure in most cases. However, the security vulnerability was not fixed. In one code sample, the AI model refactored all surrounding code, but kept the the line of code with the security vulnerability.
+For Scenario 1, the all 10/10 raw outputs from the AI model contained only path traversal vulnerabilities.
+
+Idea 1 performed the best with 6/10 outputs containing no security weaknesses. However, for the samples that were insecure, the AI model attempted to refactor the code to be more secure in most cases. However, the security vulnerability was not fixed. In one code sample, the AI model refactored all surrounding code, but kept the the line of code with the security vulnerability.
 
 Idea 2 performed second-best with 5/10 outputs containing no security weaknesses. Similar to Idea 1, for the samples that were insecure, the AI model attempted to refactor the code. However, the security vulnerability was not fixed. In two cases, the AI model used a regular expression to clean the user-defined path string. However, in the process, the model created regular expressions with inefficient computational complexities that could cause denial of service errors. Take for example the following regular expression and an example string:
 
