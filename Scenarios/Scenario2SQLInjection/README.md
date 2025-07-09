@@ -74,7 +74,7 @@ The results can be seen in `results.csv` or in the below table:
 - 7/10 outputs when using Idea 3 contained no CWEs.
 
 
-**Original**
+**Copilot Raw**
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                   |
 |------------|----------------|-------------------|---------------------------------|
