@@ -59,7 +59,7 @@ Idea 2 performed well, with 7/10 code samples containing no security weaknesses.
 Idea 3 performed well, with 7/10 code samples containing no security weaknesses. For the insecure code samples, the AI model would introduce vulnerable regular expressions, similarly to Idea 2. These vulnerabilities were, once again, also caused due to to the fact that the AI model would generate code that checked the format of the user-provided email using vulnerable regex.
 
 
-## Table of Results
+### Table of Results
 
 The results can be seen in `results.csv` or in the below table:
 
