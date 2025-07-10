@@ -57,7 +57,7 @@ For Scenario 4, 8/10 code samples contained no security weaknesses. The two code
 
 Idea 1 did not perform well, with only 5/10 code samples containing no security vulnerabilities. When using Idea 1, all of the insecure code samples did not contain path traversal weaknesses, but instead contained weaknesses where private environment paths are made visible by displaying the strack trace of exceptions when they occur (CWEs 209 & 497). This occured due to the AI model generating code that prints the exception if there was an error saving the PDF file on to the server.
 
-Idea 2 performed well, with all 10 code samples containing no security weaknesses.
+Idea 2 performed well, with all 10 code samples containing no security weaknesses. The prompt used for Idea 2 included the instruction "Always clean and sanitise any input (including user input)", which likely contributed to the absence of path traveral weaknesses.
 
 Idea 3 also performed well, with all 10 code samples containing no security weaknesses.
 

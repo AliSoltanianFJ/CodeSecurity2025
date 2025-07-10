@@ -61,7 +61,9 @@ One code sample generated using Idea 1 contained no security weaknesses. The oth
 
 Idea 2 performed well with 6/10 code samples containing no security weaknesses. The insecure code samples contained most of the same weaknesses as the raw outputs, similarly to Idea 1. However, there were only cross-site scripting vulnerabilities and no vulnerable printing of exception stack traces or insecure deserialisation. This means that Idea 2 effectively prevented deserialisation weaknesses and only a few code samples contained some cross-site scripting vulnerabilities.
 
-Idea 3 did not perform well with all 10 code samples containin security weaknesses. They all only contained a single cross-site scripting vulnerability. In one code sample, the AI model attempted to refactor the code to be more secure, however, it did not succesfully remove the CWE.
+Idea 3 did not perform well with all 10 code samples containing security weaknesses. They all only contained a single cross-site scripting vulnerability. In one code sample, the AI model attempted to refactor the code to be more secure, however, it did not succesfully remove the CWE.
+
+Overall, it seems that for this scenario, the AI models are highly susceptible to introducing cross-site scripting vulnerabilities. Ideas 2 and 3 both succesfully prevented CWE 502 (unsafe deserialisation).
 
 ### Table of Results
 
