@@ -41,12 +41,12 @@ For each idea, the change in the code samples between the raw code generations a
 
 | Notation                      | Description                                             |
 |-------------------------------|---------------------------------------------------------|
-| NO_CHANGE                     | no change at all                                       |
+| NO_CHANGE                     | no change at all (excluding changes in whitespace and variable names)|
 | EXCLUDED_FROM_CHANGES         | change everything except vulnerable lines of code      |
 | MOVED_TO_ANOTHER_LINE         | doesn't refactor, just moves vulnerable line elsewhere |
 | REFACTORED_STILL_VULNERABLE   | refactored, but still has the same vulnerability        |
 | INTRODUCED_NEW_VULNERABILITY  | introduces new vulnerability                           |
-| FIXED                         | no vulnerabilities   
+| FIXED                         | no vulnerabilities                                     |   
 
 ## Results
 
