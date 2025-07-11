@@ -94,6 +94,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **7.18 seconds**
 - Average Memory Usage: **10.9 kilobytes**
+- Number of Secure Samples: **8/10**
 
 ### Idea 1
 
@@ -114,6 +115,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **8.88 seconds**
 - Average Memory Usage: **16.43 kilobytes**
+- Number of Secure Samples: **5/10**
 
 ### Idea 2
 
@@ -134,6 +136,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **7.77 seconds**
 - Average Memory Usage: **13.15 kilobytes**
+- Number of Secure Samples: **10/10**
 
 ### Idea 3
 
@@ -154,6 +157,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **6.26 seconds**
 - Average Memory Usage: **N/A**
+- Number of Secure Samples: **10/10**
 
 ## Prompts Used
 
