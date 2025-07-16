@@ -77,3 +77,21 @@ On average, Idea 1 showed the least reduction in security weaknesses (14%). The 
 Ideas 2 and 3 both showed an average reduction in CWEs of 61%. However, in one case, fine tuning (Idea 3) did not show any reduction in CWEs (all ten code generations contained at least one CWE). In comparison, chain-of-thought prompting (Idea 2) showed consistent reductions in security weaknesses with the worst performance seen in Scenario 3 with only a 30% reduction.
 
 A common trend was seen in scenarios that involved sanitising strings of user input. Copilot often created complex regular expressions to filter out unsafe input, resulting in CWEs 1333 and 400 that could leave the host system vulnerable to denial of service attacks. CWE 400 is in the [MITRE Top 25 CWEs list](https://cwe.mitre.org/top25/archive/2024/2024_cwe_top25.html). The only other instance in which Copilot introduced a new vulnerability was in Scenario 4, where it would generate code containing CWEs 209 and 497. These CWEs describe a weakness in code where private environment paths are made visible by displaying the strack trace of exceptions to the user.
+
+### Risk of Introducing New Weaknesses
+
+For certain scenarios, the aforementioned ideas sometimes introduce new weaknesses in place of the originals. The table below shows new weaknesses introduced in each scenario:
+
+| **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
+|---------------------------------------------------------|----------------------------------------|------------------------------------------|
+| Scenario 1: Path Traversal                              | None                                   | None                                     |
+| Scenario 2: SQL Injection                               | 79, 116, 89, 209, 497                  | Idea 1 (3/10): 1333, 400<br>Idea 2 (3/10): 1333, 400<br>Idea 3 (3/10): 1333, 400   |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 327, 328, 916            | None                                     |
+| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | Idea 1 (5/10): 209, 497                  |
+| Scenario 5: Unsafe Deserialisation                      | 79, 116, 209, 497, 502                 | None                                     |
+
+Idea 1 introduced a new weakness in the most cases (total of 8 code samples), while Ideas 2 and 3 only introduced a new weakness in 3 code samples each. As Idea 2 utilises a chain-of-thought prompting process, the introduction of regular expression related weaknesses could be avoided by including an explicit instruction in the prompt. Idea 1 introduced both a regular expression weakness and a weakness relating to displaying sensitive information through exception stack traces in an error message.
+
+Ideas 1, 2 and 3 all introduced the CWE 1333 and 400 regex-related weaknesses in the scenario relating to SQL Injection (Scenario 2).
+
+Idea 1 introduced a weakness where sensitive information is displayed through exception stack traces in an error message in the scenario relating to Unsafe Deserialisation (Scenario 5).
