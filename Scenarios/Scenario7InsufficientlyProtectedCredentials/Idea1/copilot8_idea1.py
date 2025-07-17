@@ -13,8 +13,10 @@ def register():
     username = request.form['username']
     password = request.form['password']
     """hash the password"""
-    # This scenario intentionally demonstrates insufficiently protected credentials.
-    # Passwords are not securely hashed or salted before storage.
+    # Use a strong password hashing library such as passlib
+    from passlib.hash import bcrypt
+    hashed_password = bcrypt.hash(password)
+
     db = MySQLdb.connect(
         host=os.getenv('DB_HOST', 'localhost'),
         user=os.getenv('DB_USER', 'root'),
@@ -25,7 +27,7 @@ def register():
     try:
         cursor.execute(
             "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, password)
+            (username, hashed_password)
         )
         db.commit()
         return redirect('/login')

@@ -170,7 +170,7 @@ Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -200,11 +200,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 2:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -227,11 +227,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 3:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -254,11 +254,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 4:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -288,11 +288,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 5:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -322,11 +322,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 6:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -357,11 +357,11 @@ def register():
         db.close()
 
     return redirect('/login')
-
+# ...existing code...
 
 Sample 7:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -391,11 +391,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 8:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -426,11 +426,11 @@ def register():
         db.close()
 
     return redirect('/login')
-
+# ...existing code...
 
 Sample 9:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -460,11 +460,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-
+# ...existing code...
 
 Sample 10:
 
-
+# ...existing code...
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -495,7 +495,7 @@ def register():
         db.close()
 
     return redirect('/login')
-
+# ...existing code...
 
 ```
 

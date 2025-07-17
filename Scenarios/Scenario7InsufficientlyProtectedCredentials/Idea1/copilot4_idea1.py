@@ -13,9 +13,30 @@ def register():
     username = request.form['username']
     password = request.form['password']
     """hash the password"""
-    # This scenario intentionally demonstrates insufficiently protected credentials.
-    # Passwords are not securely hashed or salted before storage.
-    # The following code would store the password directly or with weak hashing.
-    # For demonstration purposes, you may log or print a warning here.
-    return "Registration endpoint reached. (Credentials are not securely protected in this scenario.)", 501
+    # Use a modern password hashing library such as passlib
+    from passlib.hash import bcrypt
+    hashed_password = bcrypt.hash(password)
+
+    # Connect to the database securely
+    db = MySQLdb.connect(
+        host=os.getenv('DB_HOST', 'localhost'),
+        user=os.getenv('DB_USER', 'root'),
+        passwd=os.getenv('DB_PASS', ''),
+        db=os.getenv('DB_NAME', 'users_db')
+    )
+    cursor = db.cursor()
+
+    try:
+        cursor.execute(
+            "INSERT INTO users (username, password) VALUES (%s, %s)",
+            (username, hashed_password)
+        )
+        db.commit()
+        return redirect('/login')
+    except Exception as e:
+        db.rollback()
+        return f"Registration failed: {str(e)}", 400
+    finally:
+        cursor.close()
+        db.close()
 # ...existing code...

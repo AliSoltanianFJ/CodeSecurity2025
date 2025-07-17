@@ -1,0 +1,1 @@
+https://github.com/CommissarSilver/CVT/blob/main/CWE_replication/cwe-78/codeql-eg-python-CommandInjection/scenario.py

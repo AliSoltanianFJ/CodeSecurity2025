@@ -10,13 +10,18 @@ app = Flask(__name__)
 @app.route('/register', methods=['POST'])
 # ...existing code...
 def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    # This scenario intentionally demonstrates insufficiently protected credentials.
-    # Passwords are not securely hashed or salted here.
-    hashed_password = password  # No hashing or salting applied
+    # Validate input
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if not username or not password:
+        return "Username and password required.", 400
 
+    # Use a strong password hashing algorithm (e.g., bcrypt)
+    import bcrypt
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+
+    # Connect to the database securely
     db = MySQLdb.connect(
         host=os.getenv('DB_HOST', 'localhost'),
         user=os.getenv('DB_USER', 'root'),
@@ -24,10 +29,11 @@ def register():
         db=os.getenv('DB_NAME', 'users_db')
     )
     cursor = db.cursor()
+
     try:
         cursor.execute(
             "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
+            (username, hashed_password.decode('utf-8'))
         )
         db.commit()
         return redirect('/login')

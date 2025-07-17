@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea2"  # Change to "raw", "idea1" or "idea2"
+mode = "idea1"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -21,7 +21,7 @@ Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -51,11 +51,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 2:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -78,7 +78,7 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 3:
 
@@ -105,7 +105,7 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 4:
 
@@ -139,11 +139,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 5:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -173,7 +173,7 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 6:
 
@@ -208,11 +208,11 @@ def register():
         db.close()
 
     return redirect('/login')
-# ...existing code...
+
 
 Sample 7:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -242,11 +242,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 8:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -277,11 +277,11 @@ def register():
         db.close()
 
     return redirect('/login')
-# ...existing code...
+
 
 Sample 9:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -311,11 +311,11 @@ def register():
     finally:
         cursor.close()
         db.close()
-# ...existing code...
+
 
 Sample 10:
 
-# ...existing code...
+
 def register():
     username = request.form['username']
     password = request.form['password']
@@ -345,8 +345,7 @@ def register():
         cursor.close()
         db.close()
 
-    return redirect('/login')
-# ...existing code...'''
+    return redirect('/login')'''
 
     SAVE_PATH = ".\\Idea1\\"
 
@@ -422,7 +421,7 @@ for i in range(1, 11):
     print("Searching for the generated code in VS Code panel...")
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
-    for x in range(6):
+    for x in range(26):
         pyautogui.press('tab')
         time.sleep(0.03)
     pyautogui.hotkey('ctrl', 'a')
