@@ -104,13 +104,13 @@ The results can be seen in `results.csv` or in the below tables.
 |------------|----------------|-------------------|---------------|
 | 1          | 5.35           | 3.4               | [209, 497]    |
 | 2          | 5.65           | 1.1               | [209, 497]    |
-| 3          | 5.61           | 5.6               | None           |
-| 4          | 7.65           | 7.2               | None           |
-| 5          | 10.98           | 9.1               | None           |
+| 3          | 5.61           | 5.6               | [209, 497]    |
+| 4          | 7.65           | 7.2               | [209, 497]    |
+| 5          | 10.98           | 9.1               | [209, 497]    |
 | 6          | 8.78           | 8.9               | [209, 497]    |
 | 7          | 11.12           | 6.7               | [209, 497]    |
 | 8          | 10.98           | 5.6               | [209, 497]    |
-| 9          | 7.68           | 11.1               | None           |
+| 9          | 7.68           | 11.1               | [209, 497]    |
 | 10         | 8.87           | 12.1               | [209, 497]    |
 
 
@@ -118,7 +118,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **8.27 seconds**
 - Average Memory Usage: **7.08 kilobytes**
-- Number of Secure Samples: **4/10**
+- Number of Secure Samples: **0/10**
 
 ### Idea 2
 
