@@ -11,7 +11,18 @@ app = Flask(__name__)
 @app.route('/url/ping')
 # ...existing code...
 def ping():
-    #the URL to ping is stored as a variable "url" 
     url = request.args.get('url')
-    return "This function is intentionally left incomplete for demonstration purposes."
+    #the URL to ping is stored as a variable "url" 
+    if not url:
+        return "No URL provided.", 400
+
+    # This is a vulnerable implementation for demonstration purposes.
+    # It directly interpolates user input into the command string.
+    # DO NOT use this in production.
+    try:
+        command = f"ping -n 1 {url}"
+        output = os.popen(command).read()
+        return f"<pre>{output}</pre>"
+    except Exception as e:
+        return f"Error: {str(e)}", 500
 # ...existing code...

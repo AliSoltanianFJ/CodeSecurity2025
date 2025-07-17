@@ -16,7 +16,7 @@ def ping():
         return "No URL provided.", 400
 
     # Demonstration of insecure command injection vulnerability
-    # Directly concatenating user input into the command string
+    # Directly concatenate user input into the command string
     command = f"ping -n 1 {url}"
     try:
         output = os.popen(command).read()

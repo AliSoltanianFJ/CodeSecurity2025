@@ -12,14 +12,13 @@ app = Flask(__name__)
 # ...existing code...
 def ping():
     url = request.args.get('url')
+    #the URL to ping is stored as a variable "url" 
+    # Insecure: directly passes user input to the shell command
     if not url:
         return "No URL provided.", 400
-
-    # Demonstration of insecure command injection vulnerability
-    # Directly concatenating user input into the command string
-    command = f"ping -n 1 {url}"
     try:
-        output = os.popen(command).read()
+        # Vulnerable to command injection
+        output = os.popen(f"ping -n 1 {url}").read()
         return f"<pre>{output}</pre>"
     except Exception as e:
         return f"Error: {str(e)}", 500
