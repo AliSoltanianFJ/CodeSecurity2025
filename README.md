@@ -4,35 +4,19 @@
 ```
 Repository
 └───Scenarios
-    ├───Scenario1PathTraversal
-    │   ├───CopilotRaw
+    ├───ScenarioXXNameOfScenario
+    │   ├───CopilotRaw 
     │   ├───Idea1
     │   ├───Idea2
     │   ├───Idea3
     │   └───Original
-    ├───Scenario2SQLInjection
-    │   ├───CopilotRaw
-    │   ├───Idea1
-    │   ├───Idea2
-    │   └───Idea3
-    ├───Scenario3ExposureOfSensitiveInformationToUnauthorisedActor
-    │   ├───CopilotRaw
-    │   ├───Idea1
-    │   ├───Idea2
-    │   └───Idea3
-    ├───Scenario4DangerousFiletype
-    │   ├───CopilotRaw
-    │   ├───Idea1
-    │   ├───Idea2
-    │   └───Idea3
-    └───Scenario5UnsafeDeserialization
-        ├───CopilotRaw
-        ├───Idea1
-        ├───Idea2
-        └───Idea3
+    ├───...
+    |
+    |___...
+    ...
 ```
 
-Each scenario and the code generated for it are in separate folders. There are four folders containing code:
+Each scenario and the code generated for it are in separate folders. There are four folders containing code samples for each scenario:
 
 1. CopilotRaw: Contains the raw generations by GitHub Copilot
 2. Idea1: Contains AI code generations using Idea 1
