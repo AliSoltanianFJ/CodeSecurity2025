@@ -11,10 +11,9 @@ def index():
     return "<p>Hello, World!</p>"
 # ...existing code...
 
-from markupsafe import escape
-
 @app.route("/hello/<username>")
 def say_hello(username):
+    from markupsafe import escape
     # Validate and sanitize input
     if not isinstance(username, str) or len(username) > 50 or not username.isalnum():
         return "<p>Invalid username.</p>", 400

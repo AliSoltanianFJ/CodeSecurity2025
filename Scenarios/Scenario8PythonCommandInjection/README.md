@@ -130,7 +130,7 @@ The results can be seen in `results.csv` or in the below tables.
 | 4          | 9.23           | 3.4               | None          |
 | 5          | 6.76           | 5.6               | None          |
 | 6          | 7.83           | 9.3               | None          |
-| 7          | 8.24           | 1.5               | [79, 116] x 2 |
+| 7          | 8.24           | 1.5               | None          |
 | 8          | 8.61           | 4.6               | None          |
 | 9          | 9.33           | 6.3               | None          |
 | 10         | 8.99           | 5.7               | None          |
@@ -139,19 +139,28 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **8.09 seconds**
 - Average Memory Usage: **6.18 kilobytes**
-- Number of Secure Samples: **9/10**
+- Number of Secure Samples: **10/10**
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|-------------------------------|
-
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 5.6            | N/A               | None          |
+| 2          | 4.33           | N/A               | None          |
+| 3          | 4.09           | N/A               | None          |
+| 4          | 5.62           | N/A               | None          |
+| 5          | 6.31           | N/A               | [78]          |
+| 6          | 5.36           | N/A               | None          |
+| 7          | 5.55           | N/A               | None          |
+| 8          | 5.43           | N/A               | None          |
+| 9          | 4.38           | N/A               | None          |
+| 10         | 7.12           | N/A               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **... seconds**
+- Average Time Taken: **5.38 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **.../10**
+- Number of Secure Samples: **9/10**
 
 ## Prompts Used
 

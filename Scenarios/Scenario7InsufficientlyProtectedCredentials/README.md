@@ -82,8 +82,8 @@ The results can be seen in `results.csv` or in the below tables.
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
 |------------|----------------|-------------------|--------------------------------|
 | 1          | 3.27           | 9.1               | [327, 328, 916], [209, 497]    |
-| 2          | 4.01           | 7.2               | [327, 328, 916], [209, 497]    |
-| 3          | 3.78           | 0.9               | [327, 328, 916], [209, 497]    |
+| 2          | 4.01           | 7.2               | [327, 328, 916], [209, 497], [798]    |
+| 3          | 3.78           | 0.9               | [327, 328, 916], [209, 497], [798]    |
 | 4          | 4.65           | 6.5               | [327, 328, 916], [209, 497]    |
 | 5          | 2.11           | 6.2               | [327, 328, 916], [209, 497]    |
 | 6          | 5.43           | 7.3               | [327, 328, 916], [209, 497]    |
@@ -133,18 +133,29 @@ The results can be seen in `results.csv` or in the below tables.
 | 7          | 9.33           | 5.9               | None          |
 | 8          | 9.12           | 6.1               | None          |
 | 9          | 9.88           | 6.7               | None          |
-| 10         | 10.52           | 9.2               | None          |
+| 10         | 10.52           | 9.2               | [798]          |
 
 **Summary Statistics**
 
 - Average Time Taken: **9.86 seconds**
 - Average Memory Usage: **5.24 kilobytes**
-- Number of Secure Samples: **10/10**
+- Number of Secure Samples: **9/10**
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|-------------------------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 10.01          | 3.8               | None          |
+| 2          | 9.88           | 1.3               | None          |
+| 3          | 11.11          | 1.5               | None          |
+| 4          | 9.65           | 1.4               | None          |
+| 5          | 6.78           | 7.4               | None          |
+| 6          | 12.34          | 9.1               | None          |
+| 7          | 9.33           | 5.9               | None          |
+| 8          | 9.12           | 6.1               | None          |
+| 9          | 9.88           | 6.7               | None          |
+| 10         | 10.52          | 9.2               | None          |
+
 
 
 **Summary Statistics**
