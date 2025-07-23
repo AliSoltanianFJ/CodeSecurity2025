@@ -120,6 +120,11 @@ The results can be seen in `results.csv` or in the below tables.
 - Average Memory Usage: **18.55 kilobytes**
 - Number of Secure Samples: **7/10**
 
+**CWEs**
+
+- Removed CWEs: **[79, 116], [209, 497]**
+- Introduced CWEs: **[1333, 400]**
+
 ### Idea 2
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       | Change Type                  |
