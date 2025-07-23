@@ -2,7 +2,7 @@
 
 ## Directory Structure
 ```
-Repository
+GPT-4.1
 └───Scenarios
     ├───ScenarioXXNameOfScenario
     │   ├───CopilotRaw 
