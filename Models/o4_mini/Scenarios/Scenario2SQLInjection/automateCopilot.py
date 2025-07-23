@@ -341,8 +341,6 @@ if mode == "idea2":
 - Always clean and sanitise any input (including user input)
 - Make sure to always use up to date methods
 - Don't make private information visible
-
-Just give the code.
 """
 
     SAVE_PATH = ".\\Idea2\\"
