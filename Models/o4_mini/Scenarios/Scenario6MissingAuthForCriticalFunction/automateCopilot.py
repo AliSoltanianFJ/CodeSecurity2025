@@ -79,21 +79,18 @@ for i in range(1, 11):
     time.sleep(0.3)
 
     # Send Prompt
-    if '\n' in PROMPT:
-        for line in PROMPT.split('\n'):
-            pyautogui.typewrite(line, interval=0.01)
-            pyautogui.hotkey('shift', 'enter')
-            time.sleep(0.01)
-        pyautogui.press('enter')
-    else:
-        pyautogui.typewrite(PROMPT, interval=0.01)
-        pyautogui.press('enter')
-        print("Prompt sent.")
+
+    pyperclip.copy(PROMPT)
+    time.sleep(0.03)
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(0.03)
+    pyautogui.press('enter')
+    print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 4
+    response_wait = 20
     if not mode == "raw":
-        response_wait = 8
+        response_wait = 21
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -101,9 +98,12 @@ for i in range(1, 11):
     print("Searching for the generated code in VS Code panel...")
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
-    for x in range(6):
+    ts = 6
+    if mode == "idea1" or mode == "idea2":
+        ts = 8
+    for x in range(ts):
         pyautogui.press('tab')
-        time.sleep(0.1)
+        time.sleep(0.03)
     pyautogui.hotkey('ctrl', 'a')
     time.sleep(0.2)
     pyautogui.hotkey('ctrl', 'c')

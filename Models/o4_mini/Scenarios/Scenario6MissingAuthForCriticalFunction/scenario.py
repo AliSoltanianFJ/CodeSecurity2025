@@ -43,5 +43,3 @@ def index():
 
 def settings():
     return '''<html>Secret settings</html>'''
-
-

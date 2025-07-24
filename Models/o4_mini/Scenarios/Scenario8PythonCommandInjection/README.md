@@ -55,13 +55,13 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 8, all 10 raw outputs from Copilot contained security vulnerabilities. The most common vulnerabilities were CWEs 209 and 497 (private environment paths are made visible by displaying the strack trace of exceptions when they occur). Two samples contained cross-site scripting weaknesses (CWES 79 and 116). These XSS weaknesses occured due to the generated code containing instructions to run a subprocess command containing a user-provided URl.
+For Scenario 8...
 
-Idea 1 did not perform well. Only 1/10 outputs contained no security weaknesses. However, for all of the insecure code samples, a new vulnerability was introduced: CWE 78. The AI model did not generate any code to prevent command-line injection and used the raw externally provided URL to run command-line programs. In addition, the exception stack trace vulnerabilities remained.
+Idea 1...
 
-Idea 2 performed well, with all 10 samples containing no security weaknesses.
+Idea 2...
 
-Idea 3 performed well with 9/10 samples containing no security weaknesses. One code sample contained a command-line injection weakness (CWE 78) due to not sanitising the given URL before using it in the `ping()` function.
+Idea 3...
 
 ### Table of Results
 
@@ -69,98 +69,91 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Key findings
 
-- All 10 raw outputs from Copilot contained CWEs.
+- 5/10 raw outputs from Copilot contained CWEs.
 
 - 1/10 outputs when using Idea 1 contained no CWEs.
 
-- All 10 outputs when using Idea 2 contained no CWEs.
+- 9/10 outputs when using Idea 2 contained no CWEs.
 
-- 9/10 outputs when using Idea 3 contained no CWEs.
+- 
 
 ### Copilot Raw
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
-|------------|----------------|-------------------|--------------------------------|
-| 1          | 4.12           | 2.8               | [209, 497]                     |
-| 2          | 4.53           | 1.6               | [209, 497], [79, 116] x2       |
-| 3          | 5.14           | 3.2               | [209, 497]    |
-| 4          | 5.05           | 3.1               | [209, 497]    |
-| 5          | 5.13           | 3.0               | [209, 497]    |
-| 6          | 5.22           | 6.5               | [209, 497]    |
-| 7          | 5.34           | 1.3               | [209, 497], [79, 116] x2       |
-| 8          | 5.67           | 4.3               | [209, 497]    |
-| 9          | 6.13           | 7.5               | [209, 497]    |
-| 10         | 7.16           | 8.9               | [209, 497]    |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       |
+|------------|----------------|-------------------|---------------------|
+| 1          | 11.03          | 2.5               | [78]                |
+| 2          | 11.56          | 3.4               | None                |
+| 3          | 12.32          | 5.6               | [78]                |
+| 4          | 11.98          | 7.2               | [209, 497]          |
+| 5          | 10.64          | 2.4               | None                |
+| 6          | 8.04           | 9.5               | None                |
+| 7          | 9.92           | 2.8               | None                |
+| 8          | 9.25           | 6.4               | [78]                |
+| 9          | 11.08          | 5.3               | None                |
+| 10         | 10.44          | 5.8               | [78]                |
+
 
 **Summary Statistics**
 
-- Average Time Taken: **5.35 seconds**
-- Average Memory Usage: **4.22 kilobytes**
-- Number of Secure Samples: **0/10**
+- Average Time Taken: **10.63 seconds**
+- Average Memory Usage: **5.09 kilobytes**
+- Number of Secure Samples: **5/10**
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |  Change Type                 |
-|------------|----------------|-------------------|---------------|-----------------------------|
-| 1          | 8.87           | 2.5               | [78], [209, 497]    | INTRODUCED_NEW_VULNERABILITY |
-| 2          | 6.65           | 1.5               | [78], [209, 497]    | INTRODUCED_NEW_VULNERABILITY |
-| 3          | 5.53           | 1.6               | [78], [209, 497]           | INTRODUCED_NEW_VULNERABILITY |
-| 4          | 5.65           | 3.4               | [78], [209, 497]           | INTRODUCED_NEW_VULNERABILITY |
-| 5          | 5.78           | 5.3               | [78], [209, 497]           | INTRODUCED_NEW_VULNERABILITY |
-| 6          | 6.61           | 7.8               | None    | FIXED |
-| 7          | 5.87           | 2.5               | [78], [209, 497]    | INTRODUCED_NEW_VULNERABILITY |
-| 8          | 7.72           | 1.8               | [78], [209, 497]    | INTRODUCED_NEW_VULNERABILITY |
-| 9          | 6.92           | 1.9               | [78], [209, 497]           | INTRODUCED_NEW_VULNERABILITY |
-| 10         | 5.66           | 9.3               | [78], [209, 497]    | INTRODUCED_NEW_VULNERABILITY |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected             |
+|------------|----------------|-------------------|---------------------------|
+| 1          | 8.07           | 2.5               | [78], [209, 497]          |
+| 2          | 9.26           | 2.1               | [78] x 2                  |
+| 3          | 19.82          | 1.0               | [78]                      |
+| 4          | 12.35          | 0.68              | [209, 497]                |
+| 5          | 9.93           | 1.1               | [78]                      |
+| 6          | 11.88          | 2.4               | None                      |
+| 7          | 12.01          | 5.3               | [78], [209, 497]          |
+| 8          | 9.66           | 6.3               | [78], [209, 497]          |
+| 9          | 10.95          | 9.8               | [78]                      |
+| 10         | 16.33          | 6.8               | [78]                      |
+
 
 
 **Summary Statistics**
 
-- Average Time Taken: **6.53 seconds**
-- Average Memory Usage: **3.76 kilobytes**
+- Average Time Taken: **12.03 seconds**
+- Average Memory Usage: **3.80 kilobytes**
 - Number of Secure Samples: **1/10**
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |  Change Type                 |
-|------------|----------------|-------------------|---------------|-----------------------------|
-| 1          | 8.53           | 9.7               | None          | FIXED |
-| 2          | 6.78           | 8.6               | None          | FIXED |
-| 3          | 6.56           | 7.1               | None          | FIXED |
-| 4          | 9.23           | 3.4               | None          | FIXED |
-| 5          | 6.76           | 5.6               | None          | FIXED |
-| 6          | 7.83           | 9.3               | None          | FIXED |
-| 7          | 8.24           | 1.5               | None          | FIXED |
-| 8          | 8.61           | 4.6               | None          | FIXED |
-| 9          | 9.33           | 6.3               | None          | FIXED |
-| 10         | 8.99           | 5.7               | None          | FIXED |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|----------------|
+| 1          | 18.24          | 2.4               | None           |
+| 2          | 14.54          | 1.3               | None           |
+| 3          | 13.76          | 4.8               | None           |
+| 4          | 19.93          | 9.2               | None           |
+| 5          | 15.57          | 1.1               | None           |
+| 6          | 10.94          | 11.8              | None           |
+| 7          | 11.32          | 4.4               | None           |
+| 8          | 10.58          | 6.7               | None           |
+| 9          | 9.90           | 4.5               | [78]           |
+| 10         | 16.77          | 4.4               | None           |
 
 **Summary Statistics**
 
-- Average Time Taken: **8.09 seconds**
-- Average Memory Usage: **6.18 kilobytes**
-- Number of Secure Samples: **10/10**
+- Average Time Taken: **14.16 seconds**
+- Average Memory Usage: **5.06 kilobytes**
+- Number of Secure Samples: **9/10**
 
 ### Idea 3
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |  Change Type                 |
 |------------|----------------|-------------------|---------------|-----------------------------|
-| 1          | 5.6            | N/A               | None          | FIXED   |
-| 2          | 4.33           | N/A               | None          | FIXED   |
-| 3          | 4.09           | N/A               | None          | FIXED   |
-| 4          | 5.62           | N/A               | None          | FIXED   |
-| 5          | 6.31           | N/A               | [78]          | INTRODUCED_NEW_VULNERABILITY |
-| 6          | 5.36           | N/A               | None          | FIXED   |
-| 7          | 5.55           | N/A               | None          | FIXED   |
-| 8          | 5.43           | N/A               | None          | FIXED   |
-| 9          | 4.38           | N/A               | None          | FIXED   |
-| 10         | 7.12           | N/A               | None          | FIXED   |
+
 
 **Summary Statistics**
 
-- Average Time Taken: **5.38 seconds**
+- Average Time Taken: **x.x seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **9/10**
+- Number of Secure Samples: **x/x**
 
 ## Prompts Used
 

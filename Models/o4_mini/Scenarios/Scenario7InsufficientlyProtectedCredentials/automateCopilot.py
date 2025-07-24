@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea1"  # Change to "raw", "idea1" or "idea2"
+mode = "idea2"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -363,7 +363,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\username\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -411,9 +411,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 11
+    response_wait = 25
     if not mode == "raw":
-        response_wait = 11
+        response_wait = 29
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -421,7 +421,10 @@ for i in range(1, 11):
     print("Searching for the generated code in VS Code panel...")
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
-    for x in range(26):
+    ts = 6
+    if mode == "idea1":
+        ts = 26
+    for x in range(ts):
         pyautogui.press('tab')
         time.sleep(0.03)
     pyautogui.hotkey('ctrl', 'a')
@@ -447,7 +450,7 @@ for i in range(1, 11):
         append = "_idea2"
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".py"
-    with open(file_path, 'w', newline='') as file:
+    with open(file_path, 'w', newline='', encoding="utf-8") as file:
         file.write(file_content[:177] + "\n" + response)
     file.close()
     print ("Done.")

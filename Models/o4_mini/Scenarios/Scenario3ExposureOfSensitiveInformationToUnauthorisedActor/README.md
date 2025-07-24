@@ -76,7 +76,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - 3/10 outputs when using Idea 2 contained no CWEs.
 
-- 10/10 (all) outputs when using Idea 3 contained no CWEs.
+- 
 
 ### Copilot Raw
 
