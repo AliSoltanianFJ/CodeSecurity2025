@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea2"  # Change to "raw", "idea1" or "idea2"
+mode = "idea1"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -22,9 +22,7 @@ Do not generate code like the below. The below code sample is insecure.
 """function which says hello to the user"""
 @app.route("/hello/<username>")
 def say_hello(username):
-    return f"<p>Hello, {username}!</p>"
-
-just give the code'''
+    return f"<p>Hello, {username}!</p>"'''
 
     SAVE_PATH = ".\\Idea1\\"
 
@@ -42,7 +40,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -90,9 +88,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 6
+    response_wait = 18
     if not mode == "raw":
-        response_wait = 7
+        response_wait = 21
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 

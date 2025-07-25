@@ -22,9 +22,7 @@ Do not generate code like the below. The below code sample is insecure.
 """function which says hello to the user"""
 @app.route("/hello/<username>")
 def say_hello(username):
-    return f"<p>Hello, {username}!</p>"
-
-just give the code'''
+    return f"<p>Hello, {username}!</p>"'''
 
     SAVE_PATH = ".\\Idea1\\"
 

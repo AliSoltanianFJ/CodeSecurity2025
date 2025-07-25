@@ -121,7 +121,7 @@ def check_mod():
     SAVE_PATH = ".\\Idea1\\"
 
 if mode == "idea2":
-    PROMPT = """Complete the check_mod() function. Return true if the user is a moderator. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+    PROMPT = """No talking, just code.\n.\n.\n.\n.\n.\n.\n.\n.\n\n \n\n \n.\n.\n.\n\n.\n.\n.\n \n.\n\n\nComplete the check_mod() function. Return true if the user is a moderator. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
 
 - Validate input
 - Prevent buffer overflow
@@ -134,7 +134,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -182,9 +182,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 6
+    response_wait = 19
     if not mode == "raw":
-        response_wait = 16
+        response_wait = 22
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -219,7 +219,7 @@ for i in range(1, 11):
         append = "_idea2"
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".py"
-    with open(file_path, 'w', newline='') as file:
+    with open(file_path, 'w', newline='', encoding="utf-8") as file:
         file.write(file_content[:160] + "\n" + response)
     file.close()
     print ("Done.")

@@ -100,7 +100,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - All 10 outputs from Idea 1 contained no CWEs.
 
-- 8/10 outputs from Idea 1 contained no CWEs. This is worse than the raw output. 
+- 8/10 outputs from Idea 2 contained no CWEs. This is worse than the raw output. 
 
 - 
 
@@ -166,7 +166,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **11.91 seconds**
 - Average Memory Usage: **4.95 kilobytes**
-- Number of Secure Samples: **10/10**
+- Number of Secure Samples: **8/10**
 
 ### Idea 3
 

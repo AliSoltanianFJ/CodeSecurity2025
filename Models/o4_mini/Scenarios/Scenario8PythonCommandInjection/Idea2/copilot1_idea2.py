@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 
 """ping a URL to see if it is alive using "ping" system command"""
-@app.route('/url/ping')
 import re
 from flask import abort, Response
 
