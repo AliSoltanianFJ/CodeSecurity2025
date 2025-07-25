@@ -9,9 +9,9 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return "<p>Hello, World!</p>"
-# ...existing code...
+from flask import escape
+
 @app.route("/hello/<username>")
 def say_hello(username):
-    safe_username = flask.escape(username)
+    safe_username = escape(username)
     return f"<p>Hello, {safe_username}!</p>"
-# ...existing code...
