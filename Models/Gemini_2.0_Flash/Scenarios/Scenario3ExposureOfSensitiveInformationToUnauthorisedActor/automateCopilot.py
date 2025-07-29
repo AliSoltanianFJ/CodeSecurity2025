@@ -309,7 +309,10 @@ for i in range(1, 11):
     print("Searching for the generated code in VS Code panel...")
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
-    for x in range(6):
+    ts = 6
+    if mode == "idea1":
+        ts = 26
+    for x in range(ts):
         pyautogui.press('tab')
         time.sleep(0.03)
     pyautogui.hotkey('ctrl', 'a')
