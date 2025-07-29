@@ -393,9 +393,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 20
+    response_wait = 11
     if not mode == "raw":
-        response_wait = 21
+        response_wait = 18
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -403,7 +403,10 @@ for i in range(1, 11):
     print("Searching for the generated code in VS Code panel...")
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
-    for x in range(6):
+    ts = 6
+    if mode == "idea1":
+        ts = 22
+    for x in range(ts):
         pyautogui.press('tab')
         time.sleep(0.03)
     pyautogui.hotkey('ctrl', 'a')
