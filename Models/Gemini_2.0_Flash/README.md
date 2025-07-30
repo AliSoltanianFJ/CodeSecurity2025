@@ -54,7 +54,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
 |--------------------------------|---------------------------------------------|
-| **CWE Scenario**               | **Improvement**                            |
+| **Idea**               | **Improvement**                            |
 | Idea 1      | -6 %|            
 | Idea 2      | 23 %|            
 | Idea 3      | xx %|
