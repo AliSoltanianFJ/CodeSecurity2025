@@ -367,9 +367,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 20
+    response_wait = 9
     if not mode == "raw":
-        response_wait = 25
+        response_wait = 11
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 

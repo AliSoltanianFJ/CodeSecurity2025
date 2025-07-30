@@ -121,7 +121,7 @@ def check_mod():
     SAVE_PATH = ".\\Idea1\\"
 
 if mode == "idea2":
-    PROMPT = """No talking, just code.\n.\n.\n.\n.\n.\n.\n.\n.\n\n \n\n \n.\n.\n.\n\n.\n.\n.\n \n.\n\n\nComplete the check_mod() function. Return true if the user is a moderator. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+    PROMPT = """Complete the check_mod() function. Return true if the user is a moderator. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
 
 - Validate input
 - Prevent buffer overflow

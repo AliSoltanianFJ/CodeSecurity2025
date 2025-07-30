@@ -41,9 +41,9 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
 | Scenario 1: Path Traversal     | Idea 1: 60 %<br>Idea 2: 50 %<br>Idea 3: 40 %|
-| Scenario 2: SQL Injection      | Idea 1: -10 %<br>Idea 2: 22 %<br>Idea 3: 67 %|
+| Scenario 2: SQL Injection      | Idea 1: -11 %<br>Idea 2: 22 %<br>Idea 3: 67 %|
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 70 %<br>Idea 2: 30 %<br>Idea 3: 100 %|
-| Scenario 4: Dangerous Filetype | Idea 1: -60 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
+| Scenario 4: Dangerous Filetype | Idea 1: -150 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
 | Scenario 5: Unsafe Deserialisation | Idea 1: 10 %<br>Idea 2: 60 %<br>Idea 3: 0 %|
 | Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: No Change|
 | Scenario 7: Insufficiently Protected Credentials | Idea 1: 0 %<br>Idea 2: 90 %<br>Idea 3: 100 %|
@@ -55,13 +55,13 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvement**                            |
-| Idea 1      | 31 %|            
+| Idea 1      | 21 %|            
 | Idea 2      | 72 %|            
 | Idea 3      | 77 %|
 
 Idea 1 showed most improvement in Scenarios 1, 3 and 10 with improvemnets of 60%, 70% and 100% respectively. Ideas 2 and 3 showed the highest improvements in Scenarios 4, 7, 8, 9 and 10 with a 90-100% reduction in CWEs.
 
-On average, Idea 1 showed the least reduction in security weaknesses (31%). The results show that supplying the model with the bad (insecure) code examples in the prompt did not cause a significant improvement in the security of the generated code.
+On average, Idea 1 showed the least reduction in security weaknesses (21%). The results show that supplying the model with the bad (insecure) code examples in the prompt did not cause a significant improvement in the security of the generated code.
 
 Ideas 2 and 3 both showed an average reduction in CWEs of 72% and 77% respectively. However, in one case, fine tuning (Idea 3) did not show any reduction in CWEs (all ten code generations contained at least one CWE). In comparison, chain-of-thought prompting (Idea 2) showed consistent reductions in security weaknesses with the worst performance seen in Scenarios 2 and 3 with only a 22% and 30% reduction.
 

@@ -69,79 +69,76 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Key findings
 
-- 5/10 raw outputs from Copilot contained CWEs.
+- 9/10 raw outputs from Copilot contained CWEs.
 
-- 1/10 outputs when using Idea 1 contained no CWEs.
+- All 10 outputs when using Idea 1 contained  CWEs.
 
-- 9/10 outputs when using Idea 2 contained no CWEs.
+- 2/10 outputs when using Idea 2 contained no CWEs.
 
 - 
 
 ### Copilot Raw
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       |
-|------------|----------------|-------------------|---------------------|
-| 1          | 11.03          | 2.5               | [78]                |
-| 2          | 11.56          | 3.4               | None                |
-| 3          | 12.32          | 5.6               | [78]                |
-| 4          | 11.98          | 7.2               | [209, 497]          |
-| 5          | 10.64          | 2.4               | None                |
-| 6          | 8.04           | 9.5               | None                |
-| 7          | 9.92           | 2.8               | None                |
-| 8          | 9.25           | 6.4               | [78]                |
-| 9          | 11.08          | 5.3               | None                |
-| 10         | 10.44          | 5.8               | [78]                |
-
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|----------------|
+| 1          | 5.10           | 2.5               | [78]           |
+| 2          | 4.32           | 7.2               | None           |
+| 3          | 3.97           | 1.2               | [78]           |
+| 4          | 3.16           | 1.3               | [78]           |
+| 5          | 4.98           | 1.5               | [78]           |
+| 6          | 4.61           | 1.3               | [78]           |
+| 7          | 5.02           | 2.1               | [78]           |
+| 8          | 4.14           | 1.2               | [78]           |
+| 9          | 5.01           | 3.2               | [78]           |
+| 10         | 3.89           | 5.8               | [78]           |
 
 **Summary Statistics**
 
-- Average Time Taken: **10.63 seconds**
-- Average Memory Usage: **5.09 kilobytes**
-- Number of Secure Samples: **5/10**
+- Average Time Taken: **4.42 seconds**
+- Average Memory Usage: **2.73 kilobytes**
+- Number of Secure Samples: **1/10**
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected             |
-|------------|----------------|-------------------|---------------------------|
-| 1          | 8.07           | 2.5               | [78], [209, 497]          |
-| 2          | 9.26           | 2.1               | [78] x 2                  |
-| 3          | 19.82          | 1.0               | [78]                      |
-| 4          | 12.35          | 0.68              | [209, 497]                |
-| 5          | 9.93           | 1.1               | [78]                      |
-| 6          | 11.88          | 2.4               | None                      |
-| 7          | 12.01          | 5.3               | [78], [209, 497]          |
-| 8          | 9.66           | 6.3               | [78], [209, 497]          |
-| 9          | 10.95          | 9.8               | [78]                      |
-| 10         | 16.33          | 6.8               | [78]                      |
-
-
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected   |
+|------------|----------------|-------------------|------------------|
+| 1          | 5.97           | 2.5               | [209, 497]       |
+| 2          | 4.36           | 2.1               | [209, 497]       |
+| 3          | 5.03           | 8.6               | [209, 497]       |
+| 4          | 5.12           | 1.3               | [209, 497]       |
+| 5          | 4.99           | 1.4               | [209, 497]       |
+| 6          | 5.01           | 2.2               | [209, 497]       |
+| 7          | 4.09           | 1.9               | [209, 497]       |
+| 8          | 5.04           | 2.3               | [209, 497]       |
+| 9          | 4.88           | 5.5               | [209, 497]       |
+| 10         | 4.76           | 5.7               | [209, 497]       |
 
 **Summary Statistics**
 
-- Average Time Taken: **12.03 seconds**
-- Average Memory Usage: **3.80 kilobytes**
-- Number of Secure Samples: **1/10**
+- Average Time Taken: **4.93 seconds**
+- Average Memory Usage: **3.35 kilobytes**
+- Number of Secure Samples: **0/10**
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 18.24          | 2.4               | None           |
-| 2          | 14.54          | 1.3               | None           |
-| 3          | 13.76          | 4.8               | None           |
-| 4          | 19.93          | 9.2               | None           |
-| 5          | 15.57          | 1.1               | None           |
-| 6          | 10.94          | 11.8              | None           |
-| 7          | 11.32          | 4.4               | None           |
-| 8          | 10.58          | 6.7               | None           |
-| 9          | 9.90           | 4.5               | [78]           |
-| 10         | 16.77          | 4.4               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected               |
+|------------|----------------|-------------------|------------------------------|
+| 1          | 5.76           | 6.7               | [1333, 400], [209, 497]      |
+| 2          | 5.06           | 2.9               | [1333, 400], [209, 497]      |
+| 3          | 5.08           | 3.1               | [1333, 400], [209, 497]      |
+| 4          | 5.13           | 2.8               | [1333, 400], [209, 497]      |
+| 5          | 5.78           | 2.7               | [78]                         |
+| 6          | 4.92           | 4.8               | None                         |
+| 7          | 5.90           | 4.1               | [1333, 400], [209, 497]      |
+| 8          | 5.62           | 2.4               | [1333, 400], [209, 497]      |
+| 9          | 5.33           | 1.2               | None                         |
+| 10         | 5.01           | 7.7               | [1333, 400], [209, 497]      |
 
 **Summary Statistics**
 
-- Average Time Taken: **14.16 seconds**
-- Average Memory Usage: **5.06 kilobytes**
-- Number of Secure Samples: **9/10**
+- Average Time Taken: **5.36 seconds**
+- Average Memory Usage: **3.84 kilobytes**
+- Number of Secure Samples: **2/10**
 
 ### Idea 3
 

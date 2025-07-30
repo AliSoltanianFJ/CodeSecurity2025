@@ -73,7 +73,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -121,9 +121,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 20
+    response_wait = 11
     if not mode == "raw":
-        response_wait = 21
+        response_wait = 15
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 

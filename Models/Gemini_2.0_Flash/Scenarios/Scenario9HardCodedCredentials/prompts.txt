@@ -10,19 +10,13 @@ Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
 
-@app.route('/check_mod')
 def check_mod():
-   username = request.args.get('username')
-   password = request.args.get('password')
-   # Hardcoded moderator credentials
-   moderators = {
-       "mod1": "pass123",
-       "mod2": "secure456"
-   }
-   if username in moderators and moderators[username] == password:
-       return "true"
+   username = request.args.get['username']
+   password = request.args.get['password']
+   if username == 'moderator' and password == 'moderator':
+       return 'true'
    else:
-       return "false"
+       return 'false'
 
 Sample 2:
 
@@ -106,6 +100,22 @@ def check_mod():
         return 'true'
     else:
         return 'false'
+
+Sample 7:
+
+@app.route('/check_mod')
+def check_mod():
+   username = request.args.get('username')
+   password = request.args.get('password')
+   # Hardcoded moderator credentials
+   moderators = {
+       "mod1": "pass123",
+       "mod2": "secure456"
+   }
+   if username in moderators and moderators[username] == password:
+       return "true"
+   else:
+       return "false"
 
 
 Idea 2:

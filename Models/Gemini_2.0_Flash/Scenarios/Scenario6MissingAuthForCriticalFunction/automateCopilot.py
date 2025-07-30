@@ -40,7 +40,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\username\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -88,9 +88,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 20
+    response_wait = 10
     if not mode == "raw":
-        response_wait = 21
+        response_wait = 15
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -99,7 +99,7 @@ for i in range(1, 11):
     pyautogui.hotkey('ctrl', 'up')
     time.sleep(0.1)
     ts = 6
-    if mode == "idea1" or mode == "idea2":
+    if mode == "idea1":
         ts = 8
     for x in range(ts):
         pyautogui.press('tab')
