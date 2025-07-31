@@ -1,5 +1,6 @@
 ## Average Improvement For Each Idea Across All Scenarios Per Model
-<img width="1122" height="524" alt="image" src="https://github.com/user-attachments/assets/cf5b16d3-55c2-4ac1-9c61-6b481224c8ce" />
+<img width="1122" height="524" alt="image" src="https://github.com/user-attachments/assets/5226d234-63d5-4dd2-aa35-060cdee396b0" />
+
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
