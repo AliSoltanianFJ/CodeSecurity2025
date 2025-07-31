@@ -1,4 +1,4 @@
-## Average Improvement For Each Idea Across All Scenarios Per Model
+## Average Improvement For Each Idea Across All Scenarios Per Model (Python)
 <img width="1122" height="524" alt="image" src="https://github.com/user-attachments/assets/5226d234-63d5-4dd2-aa35-060cdee396b0" />
 
 
