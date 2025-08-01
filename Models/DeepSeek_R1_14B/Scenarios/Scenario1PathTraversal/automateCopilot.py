@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "raw"  # Change to "raw", "idea1" or "idea2"
+mode = "idea2"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -286,7 +286,7 @@ for i in range(1, 11):
     elif mode == "idea2":
         append = "_idea2"
 
-    file_path = SAVE_PATH + f"copilot{i+7}" + append + ".py"
+    file_path = SAVE_PATH + f"copilot{i}" + append + ".py"
     with open(file_path, 'w', newline='') as file:
         file.write(file_content[:187] + "\n" + response)
     file.close()
