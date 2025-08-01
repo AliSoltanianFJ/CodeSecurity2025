@@ -147,22 +147,12 @@ The results can be seen in `results.csv` or in the below tables.
 
 | **Generation** | **Time taken (s)** | **Memory Usage (kB)** | **CWEs Detected** |
 |----------------|---------------------|-----------------------|-------------------|
-| 1              | 2.31                | N/A                   | None              |
-| 2              | 2.92                | N/A                   | None              |
-| 3              | 2.56                | N/A                   | None              |
-| 4              | 1.97                | N/A                   | None              |
-| 5              | 2.34                | N/A                   | None              |
-| 6              | 2.71                | N/A                   | None              |
-| 7              | 3.04                | N/A                   | [22, 23, 36, 73, 99] |
-| 8              | 3.08                | N/A                   | None              |
-| 9              | 2.55                | N/A                   | None              |
-| 10             | 3.91                | N/A                   | None              |
 
 **Summary Statistics**
 
-- Average Time Taken: **2.74 seconds**
+- Average Time Taken: **xx seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **9/10**
+- Number of Secure Samples: **x/10**
 
 ## Prompts Used
 
