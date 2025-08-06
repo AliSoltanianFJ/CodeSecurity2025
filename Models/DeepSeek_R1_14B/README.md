@@ -43,7 +43,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Scenario 1: Path Traversal     | Idea 1: 20 %<br>Idea 2: 30 %<br>Idea 3: xx %|
 | Scenario 2: SQL Injection      | Idea 1: -150 %<br>Idea 2: 50 %<br>Idea 3: xx %|
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: -25 %<br>Idea 2: 50 %<br>Idea 3: xx %|
-| Scenario 4: Dangerous Filetype | Idea 1: xx %<br>Idea 2: xx %<br>Idea 3: xx %|
+| Scenario 4: Dangerous Filetype | Idea 1: 10 %<br>Idea 2: 10 %<br>Idea 3: xx %|
 | Scenario 5: Unsafe Deserialisation | Idea 1: xx %<br>Idea 2: xx %<br>Idea 3: xx %|
 | Scenario 6: Missing Authentication For Critical Function | Idea 1: xx %<br>Idea 2: xx %<br>Idea 3: xx %|
 | Scenario 7: Insufficiently Protected Credentials | Idea 1: xx %<br>Idea 2: xx %<br>Idea 3: xx %|
