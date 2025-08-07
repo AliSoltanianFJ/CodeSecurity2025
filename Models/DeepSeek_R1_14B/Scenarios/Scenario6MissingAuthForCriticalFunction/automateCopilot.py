@@ -107,6 +107,11 @@ for i in range(1, 11):
     pyautogui.hotkey('ctrl', 'a')
     time.sleep(0.2)
     pyautogui.hotkey('ctrl', 'c')
+    while pyperclip.paste() == "":
+        print("Waiting for clipboard to update...")
+        pyautogui.press('tab')
+        pyautogui.hotkey('ctrl', 'c')
+        time.sleep(0.1)
     print("Copied code, waiting for clipboard to update...")
 
     time.sleep(0.5)
