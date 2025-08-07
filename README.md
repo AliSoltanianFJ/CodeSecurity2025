@@ -33,6 +33,12 @@ The below table displays the percentage of samples within each scenario for each
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python) | Using the CWE Severity Score As Improvement Indicator
 
+| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
+|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
+| **Idea 1 (Negative Example Prompting)** | 31%                        | 9%                                | 29%                       |             4%                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 76%                        | 30%                                | 71%                       |            57%                         |
+| **Idea 3 (Fine-Tuning)** | 77%                        | 82%                               |                         |                                        |
+
 ### GPT-4.1
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
