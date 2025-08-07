@@ -26,7 +26,7 @@ The below table displays the percentage of samples within each scenario for each
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 100% | 0%       | 0% |
 | **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 0%       | 70% |
 | **Scenario 8 (Command Injection)** | 100% | 90% | 50%       | 100% |
-| **Scenario 9 (Hard-coded Credentials)** | 100% | 100% | 70%       |  |
+| **Scenario 9 (Hard-coded Credentials)** | 100% | 100% | 70%       | 60% |
 | **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 10% | 10%       |  |
 | -  | -  |- | -      |   |
 | **Average Across All Scenarios:** | **81%** | **87%** | **52%**       |  |

@@ -129,12 +129,12 @@ if mode == "idea2":
 - Prevent insecure deserialization
 - Always clean and sanitise any input (including user input)
 - Make sure to always use up to date methods
-- Don't make private information visible
+- Don't make private information visible\n\nJust give the code. No explanations.
 """
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -182,9 +182,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 9
+    response_wait = 75
     if not mode == "raw":
-        response_wait = 10
+        response_wait = 90
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
