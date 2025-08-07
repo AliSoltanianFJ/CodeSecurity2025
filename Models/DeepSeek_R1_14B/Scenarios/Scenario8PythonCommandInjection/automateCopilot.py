@@ -315,11 +315,14 @@ if mode == "idea2":
 - Always clean and sanitise any input (including user input)
 - Make sure to always use up to date methods
 - Don't make private information visible
+
+Just give the code. No explanations, no comments, no markdown, no code blocks, no text before or after the code or in your thinking. Just the code.
+It must be secure at all costs. Do not generate insecure code.
 """
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 
 def get_vscode_process():
@@ -367,9 +370,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 9
+    response_wait = 80
     if not mode == "raw":
-        response_wait = 11
+        response_wait = 85
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
