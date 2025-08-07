@@ -88,9 +88,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 10
+    response_wait = 80
     if not mode == "raw":
-        response_wait = 15
+        response_wait = 70
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -104,12 +104,15 @@ for i in range(1, 11):
     for x in range(ts):
         pyautogui.press('tab')
         time.sleep(0.03)
-    pyautogui.hotkey('ctrl', 'a')
-    time.sleep(0.2)
+    #pyautogui.hotkey('ctrl', 'a')
+    time.sleep(0.1)
     pyautogui.hotkey('ctrl', 'c')
     while pyperclip.paste() == "":
         print("Waiting for clipboard to update...")
         pyautogui.press('tab')
+        time.sleep(0.1)
+        #pyautogui.hotkey('ctrl', 'a')
+        #time.sleep(0.1)
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
     print("Copied code, waiting for clipboard to update...")
