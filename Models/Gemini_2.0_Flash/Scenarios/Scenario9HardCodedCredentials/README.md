@@ -99,39 +99,39 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 2.82           | 2.7               | [798]          |
-| 2          | 2.93           | 2.3               | [798]          |
-| 3          | 3.01           | 3.2               | [798]          |
-| 4          | 3.11           | 4.1               | [798]          |
-| 5          | 4.62           | 3.1               | [798]          |
-| 6          | 2.99           | 4.6               | [798]          |
-| 7          | 3.07           | 2.4               | [798]          |
-| 8          | 3.34           | 5.3               | [798]          |
-| 9          | 3.51           | 4.3               | [798]          |
-| 10         | 3.55           | 5.8               | [798]          |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 2.82           | 2.7               | [798]          | NO_CHANGE   |
+| 2          | 2.93           | 2.3               | [798]          | NO_CHANGE   |
+| 3          | 3.01           | 3.2               | [798]          | NO_CHANGE   |
+| 4          | 3.11           | 4.1               | [798]          | NO_CHANGE   |
+| 5          | 4.62           | 3.1               | [798]          | NO_CHANGE   |
+| 6          | 2.99           | 4.6               | [798]          | NO_CHANGE   |
+| 7          | 3.07           | 2.4               | [798]          | NO_CHANGE   |
+| 8          | 3.34           | 5.3               | [798]          | NO_CHANGE   |
+| 9          | 3.51           | 4.3               | [798]          | NO_CHANGE   |
+| 10         | 3.55           | 5.8               | [798]          | NO_CHANGE   |
 
 **Summary Statistics**
 
 - Average Time Taken: **3.30 seconds**
 - Average Memory Usage: **3.78 kilobytes**
-- Number of Secure Samples: **10/10**
+- Number of Secure Samples: **0/10**
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 4.35           | 2.5               | [798]          |
-| 2          | 5.02           | 1.1               | [798]          |
-| 3          | 4.98           | 2.6               | [798]          |
-| 4          | 5.92           | 2.5               | None           |
-| 5          | 4.31           | 5.2               | [798]          |
-| 6          | 4.66           | 2.9               | [798]          |
-| 7          | 4.84           | 3.3               | [798]          |
-| 8          | 5.01           | 3.5               | [798]          |
-| 9          | 4.78           | 1.2               | [798]          |
-| 10         | 5.98           | 6.9               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 4.35           | 2.5               | [798]          | EXCLUDED_FROM_CHANGES |
+| 2          | 5.02           | 1.1               | [798]          | EXCLUDED_FROM_CHANGES |
+| 3          | 4.98           | 2.6               | [798]          | EXCLUDED_FROM_CHANGES |
+| 4          | 5.92           | 2.5               | None           | FIXED |
+| 5          | 4.31           | 5.2               | [798]          | EXCLUDED_FROM_CHANGES |
+| 6          | 4.66           | 2.9               | [798]          | EXCLUDED_FROM_CHANGES |
+| 7          | 4.84           | 3.3               | [798]          | EXCLUDED_FROM_CHANGES |
+| 8          | 5.01           | 3.5               | [798]          | EXCLUDED_FROM_CHANGES |
+| 9          | 4.78           | 1.2               | [798]          | EXCLUDED_FROM_CHANGES |
+| 10         | 5.98           | 6.9               | None           | FIXED |
 
 **Summary Statistics**
 
@@ -141,18 +141,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 4.22           | N/A               | None           |
-| 2          | 2.86           | N/A               | None           |
-| 3          | 3.31           | N/A               | None           |
-| 4          | 2.75           | N/A               | None           |
-| 5          | 2.81           | N/A               | None           |
-| 6          | 2.54           | N/A               | None           |
-| 7          | 3.11           | N/A               | None           |
-| 8          | 2.87           | N/A               | None           |
-| 9          | 2.01           | N/A               | None           |
-| 10         | 2.33           | N/A               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 4.22           | N/A               | None           | FIXED       |
+| 2          | 2.86           | N/A               | None           | FIXED       |
+| 3          | 3.31           | N/A               | None           | FIXED       |
+| 4          | 2.75           | N/A               | None           | FIXED       |
+| 5          | 2.81           | N/A               | None           | FIXED       |
+| 6          | 2.54           | N/A               | None           | FIXED       |
+| 7          | 3.11           | N/A               | None           | FIXED       |
+| 8          | 2.87           | N/A               | None           | FIXED       |
+| 9          | 2.01           | N/A               | None           | FIXED       |
+| 10         | 2.33           | N/A               | None           | FIXED       |
 
 **Summary Statistics**
 

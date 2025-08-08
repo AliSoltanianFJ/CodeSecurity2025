@@ -97,18 +97,18 @@ The results can be seen in `results.csv` or in the below table:
 
 **Idea 1**
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                  |
-|------------|----------------|-------------------|--------------------------------|
-| 1          | 4.22           | 2.4               | [79, 116] x 2, [209, 497]      |
-| 2          | 4.68           | 3.2               | [79, 116] x 2, [209, 497]      |
-| 3          | 3.98           | 2.8               | [79, 116] x 2, [209, 497]      |
-| 4          | 5.01           | 1.2               | [79, 116] x 2, [209, 497]      |
-| 5          | 4.93           | 1.9               | [79, 116] x 2, [209, 497]      |
-| 6          | 4.77           | 1.1               | [79, 116] x 2, [209, 497]      |
-| 7          | 4.58           | 0.7               | [79, 116] x 2, [209, 497]      |
-| 8          | 5.26           | 5.1               | [79, 116] x 2, [209, 497]      |
-| 9          | 4.02           | 1.3               | [79, 116] x 2, [209, 497]      |
-| 10         | 4.10           | 5.0               | [79, 116] x 2, [209, 497]      |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                  | Change Type |
+|------------|----------------|-------------------|--------------------------------|-------------|
+| 1          | 4.22           | 2.4               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 2          | 4.68           | 3.2               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 3          | 3.98           | 2.8               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 4          | 5.01           | 1.2               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 5          | 4.93           | 1.9               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 6          | 4.77           | 1.1               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 7          | 4.58           | 0.7               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 8          | 5.26           | 5.1               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 9          | 4.02           | 1.3               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
+| 10         | 4.10           | 5.0               | [79, 116] x 2, [209, 497]      |INTRODUCED_NEW_VULNERABILITY |
 
 
 **Summary Statistics**
@@ -119,18 +119,18 @@ The results can be seen in `results.csv` or in the below table:
 
 **Idea 2**
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected            |
-|------------|----------------|-------------------|--------------------------|
-| 1          | 5.97           | 6.0               | [1333, 400], [209, 497]  |
-| 2          | 5.02           | 3.4               | [1333, 400], [209, 497]  |
-| 3          | 6.01           | 1.1               | [1333, 400], [209, 497]  |
-| 4          | 4.78           | 1.2               | [1333, 400], [209, 497]  |
-| 5          | 4.45           | 5.7               | [1333, 400], [209, 497]  |
-| 6          | 4.43           | 2.7               | [1333, 400], [209, 497]  |
-| 7          | 5.32           | 4.1               | [1333, 400], [209, 497]  |
-| 8          | 5.66           | 4.1               | [1333, 400], [209, 497]  |
-| 9          | 6.04           | 3.9               | [1333, 400], [209, 497]  |
-| 10         | 5.98           | 9.0               | [1333, 400], [209, 497]  |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected            | Change Type |
+|------------|----------------|-------------------|--------------------------|-------------|
+| 1          | 5.97           | 6.0               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 2          | 5.02           | 3.4               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 3          | 6.01           | 1.1               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 4          | 4.78           | 1.2               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 5          | 4.45           | 5.7               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 6          | 4.43           | 2.7               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 7          | 5.32           | 4.1               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 8          | 5.66           | 4.1               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 9          | 6.04           | 3.9               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
+| 10         | 5.98           | 9.0               | [1333, 400], [209, 497]  |INTRODUCED_NEW_VULNERABILITY |
 
 **Summary Statistics**
 
@@ -140,18 +140,18 @@ The results can be seen in `results.csv` or in the below table:
 
 ### Idea 3
 
-| **Generation** | **Time taken (s)** | **Memory Usage (kB)** | **CWEs Detected** |
-|----------------|---------------------|-----------------------|-------------------|
-| 1              | 3.54                | N/A                   | [798]             |
-| 2              | 3.68                | N/A                   | None              |
-| 3              | 3.46                | N/A                   | None              |
-| 4              | 3.66                | N/A                   | None              |
-| 5              | 3.71                | N/A                   | None              |
-| 6              | 3.11                | N/A                   | None              |
-| 7              | 4.33                | N/A                   | None              |
-| 8              | 3.56                | N/A                   | [798]             |
-| 9              | 2.68                | N/A                   | None              |
-| 10             | 3.33                | N/A                   | None              |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |                 Change Type |
+|----------------|---------------------|-----------------------|-------------------|-----------|
+| 1              | 3.54                | N/A                   | [798]             | INTRODUCED_NEW_VULNERABILITY|
+| 2              | 3.68                | N/A                   | None              | FIXED     |
+| 3              | 3.46                | N/A                   | None              | FIXED     |
+| 4              | 3.66                | N/A                   | None              | FIXED     |
+| 5              | 3.71                | N/A                   | None              | FIXED     |
+| 6              | 3.11                | N/A                   | None              | FIXED     |
+| 7              | 4.33                | N/A                   | None              | FIXED     |
+| 8              | 3.56                | N/A                   | [798]             | INTRODUCED_NEW_VULNERABILITY |
+| 9              | 2.68                | N/A                   | None              | FIXED     |
+| 10             | 3.33                | N/A                   | None              | FIXED     |
 
 **Summary Statistics**
 

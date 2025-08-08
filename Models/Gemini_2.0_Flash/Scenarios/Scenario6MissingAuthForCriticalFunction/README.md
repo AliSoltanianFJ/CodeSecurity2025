@@ -124,18 +124,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 3.05           | 4.9               | None           |
-| 2          | 4.09           | 4.8               | None           |
-| 3          | 3.36           | 4.7               | None           |
-| 4          | 3.82           | 4.6               | None           |
-| 5          | 3.61           | 4.8               | None           |
-| 6          | 4.22           | 1.6               | None           |
-| 7          | 3.93           | 2.3               | None           |
-| 8          | 3.84           | 1.1               | None           |
-| 9          | 3.71           | 4.5               | None           |
-| 10         | 3.99           | 5.2               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 3.05           | 4.9               | None           | NO_CHANGE   |
+| 2          | 4.09           | 4.8               | None           | NO_CHANGE   |
+| 3          | 3.36           | 4.7               | None           | NO_CHANGE   |
+| 4          | 3.82           | 4.6               | None           | NO_CHANGE   |
+| 5          | 3.61           | 4.8               | None           | NO_CHANGE   |
+| 6          | 4.22           | 1.6               | None           | NO_CHANGE   |
+| 7          | 3.93           | 2.3               | None           | NO_CHANGE   |
+| 8          | 3.84           | 1.1               | None           | NO_CHANGE   |
+| 9          | 3.71           | 4.5               | None           | NO_CHANGE   |
+| 10         | 3.99           | 5.2               | None           | NO_CHANGE   |
 
 **Summary Statistics**
 
@@ -145,18 +145,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 1.89           | 4.9               | None           |
-| 2          | 2.03           | 4.2               | None           |
-| 3          | 2.31           | 1.7               | None           |
-| 4          | 1.96           | 2.3               | None           |
-| 5          | 3.24           | 2.4               | None           |
-| 6          | 1.85           | 2.1               | None           |
-| 7          | 3.75           | 2.6               | None           |
-| 8          | 4.09           | 2.3               | None           |
-| 9          | 4.06           | 4.5               | None           |
-| 10         | 3.81           | 5.1               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 1.89           | 4.9               | None           | NO_CHANGE   |
+| 2          | 2.03           | 4.2               | None           | NO_CHANGE   |
+| 3          | 2.31           | 1.7               | None           | NO_CHANGE   |
+| 4          | 1.96           | 2.3               | None           | NO_CHANGE   |
+| 5          | 3.24           | 2.4               | None           | NO_CHANGE   |
+| 6          | 1.85           | 2.1               | None           | NO_CHANGE   |
+| 7          | 3.75           | 2.6               | None           | NO_CHANGE   |
+| 8          | 4.09           | 2.3               | None           | NO_CHANGE   |
+| 9          | 4.06           | 4.5               | None           | NO_CHANGE   |
+| 10         | 3.81           | 5.1               | None           | NO_CHANGE   |
 
 **Summary Statistics**
 
@@ -166,18 +166,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 4.31           | N/A               | None           |
-| 2          | 1.25           | N/A               | None           |
-| 3          | 1.31           | N/A               | None           |
-| 4          | 1.53           | N/A               | None           |
-| 5          | 1.55           | N/A               | None           |
-| 6          | 1.73           | N/A               | None           |
-| 7          | 1.66           | N/A               | None           |
-| 8          | 2.31           | N/A               | None           |
-| 9          | 1.97           | N/A               | None           |
-| 10         | 1.65           | N/A               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 4.31           | N/A               | None           | NO_CHANGE   |
+| 2          | 1.25           | N/A               | None           | NO_CHANGE   |
+| 3          | 1.31           | N/A               | None           | NO_CHANGE   |
+| 4          | 1.53           | N/A               | None           | NO_CHANGE   |
+| 5          | 1.55           | N/A               | None           | NO_CHANGE   |
+| 6          | 1.73           | N/A               | None           | NO_CHANGE   |
+| 7          | 1.66           | N/A               | None           | NO_CHANGE   |
+| 8          | 2.31           | N/A               | None           | NO_CHANGE   |
+| 9          | 1.97           | N/A               | None           | NO_CHANGE   |
+| 10         | 1.65           | N/A               | None           | NO_CHANGE   |
 
 **Summary Statistics**
 

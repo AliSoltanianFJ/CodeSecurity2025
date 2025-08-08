@@ -100,18 +100,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                         |
-|------------|----------------|-------------------|----------------------------------------|
-| 1          | 6.23           | 15.8              | [327, 328, 916], [209, 497]            |
-| 2          | 4.61           | 7.5               | [327, 328, 916], [209, 497]            |
-| 3          | 4.72           | 8.3               | [327, 328, 916], [209, 497]            |
-| 4          | 5.02           | 11.2              | [327, 328, 916], [209, 497]            |
-| 5          | 5.26           | 8.5               | [327, 328, 916], [209, 497]            |
-| 6          | 5.08           | 1.4               | [327, 328, 916], [209, 497]            |
-| 7          | 4.61           | 2.1               | [327, 328, 916], [209, 497]            |
-| 8          | 6.91           | 2.9               | [327, 328, 916], [209, 497]            |
-| 9          | 3.99           | 3.4               | [327, 328, 916], [209, 497]            |
-| 10         | 4.04           | 2.6               | [327, 328, 916], [209, 497]            |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                          |  Change Type             |
+|------------|----------------|-------------------|----------------------------------------|--------------------------|
+| 1          | 6.23           | 15.8              | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 2          | 4.61           | 7.5               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 3          | 4.72           | 8.3               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 4          | 5.02           | 11.2              | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 5          | 5.26           | 8.5               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 6          | 5.08           | 1.4               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 7          | 4.61           | 2.1               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 8          | 6.91           | 2.9               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 9          | 3.99           | 3.4               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
+| 10         | 4.04           | 2.6               | [327, 328, 916], [209, 497]            | INTRODUCED_NEW_VULNERABILITY |
 
 **Summary Statistics**
 
@@ -121,18 +121,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected         |
-|------------|----------------|-------------------|------------------------|
-| 1          | 4.63           | 2.6               | [327, 328, 916]        |
-| 2          | 4.81           | 1.6               | [327, 328, 916]        |
-| 3          | 5.03           | 3.1               | [327, 328, 916]        |
-| 4          | 4.91           | 1.2               | [327, 328, 916]        |
-| 5          | 4.26           | 0.9               | [327, 328, 916]        |
-| 6          | 4.58           | 7.9               | [327, 328, 916]        |
-| 7          | 4.92           | 3.2               | [327, 328, 916]        |
-| 8          | 5.32           | 1.3               | [327, 328, 916]        |
-| 9          | 4.78           | 1.2               | [327, 328, 916]        |
-| 10         | 6.01           | 10.4              | [327, 328, 916]        |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected          | Change Type           |
+|------------|----------------|-------------------|------------------------|-----------------------|
+| 1          | 4.63           | 2.6               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 2          | 4.81           | 1.6               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 3          | 5.03           | 3.1               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 4          | 4.91           | 1.2               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 5          | 4.26           | 0.9               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 6          | 4.58           | 7.9               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 7          | 4.92           | 3.2               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 8          | 5.32           | 1.3               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 9          | 4.78           | 1.2               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 10         | 6.01           | 10.4              | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
 
 **Summary Statistics**
 
@@ -142,18 +142,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 4.45           | N/A               | None           |
-| 2          | 3.34           | N/A               | None           |
-| 3          | 4.76           | N/A               | None           |
-| 4          | 5.33           | N/A               | None           |
-| 5          | 3.36           | N/A               | None           |
-| 6          | 4.43           | N/A               | None           |
-| 7          | 4.68           | N/A               | None           |
-| 8          | 3.39           | N/A               | None           |
-| 9          | 3.58           | N/A               | None           |
-| 10         | 2.88           | N/A               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 4.45           | N/A               | None           | FIXED       |
+| 2          | 3.34           | N/A               | None           | FIXED       |
+| 3          | 4.76           | N/A               | None           | FIXED       |
+| 4          | 5.33           | N/A               | None           | FIXED       |
+| 5          | 3.36           | N/A               | None           | FIXED       |
+| 6          | 4.43           | N/A               | None           | FIXED       |
+| 7          | 4.68           | N/A               | None           | FIXED       |
+| 8          | 3.39           | N/A               | None           | FIXED       |
+| 9          | 3.58           | N/A               | None           | FIXED       |
+| 10         | 2.88           | N/A               | None           | FIXED       |
 
 **Summary Statistics**
 
