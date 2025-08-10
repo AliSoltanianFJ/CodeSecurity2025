@@ -101,18 +101,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected         |
-|------------|----------------|-------------------|------------------------|
-| 1          | 70.08          | 4.0               | [327, 328, 916]        |
-| 2          | 80.72          | 1.9               | [327, 328, 916]        |
-| 3          | 68.93          | 5.8               | [327, 328, 916]        |
-| 4          | 66.24          | 5.2               | [327, 328, 916]        |
-| 5          | 55.33          | 1.8               | [327, 328, 916]        |
-| 6          | 58.35          | 8.7               | [327, 328, 916]        |
-| 7          | 66.11          | 8.6               | [327, 328, 916]        |
-| 8          | 63.19          | 13.4              | [327, 328, 916]        |
-| 9          | 72.42          | 1.5               | [327, 328, 916]        |
-| 10         | 72.99          | 12.4              | [327, 328, 916]        |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected          | Change Type           |
+|------------|----------------|-------------------|------------------------|-----------------------|
+| 1          | 70.08          | 4.0               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 2          | 80.72          | 1.9               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 3          | 68.93          | 5.8               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 4          | 66.24          | 5.2               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 5          | 55.33          | 1.8               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 6          | 58.35          | 8.7               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 7          | 66.11          | 8.6               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 8          | 63.19          | 13.4              | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 9          | 72.42          | 1.5               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 10         | 72.99          | 12.4              | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
 
 **Summary Statistics**
 
@@ -122,18 +122,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected         |
-|------------|----------------|-------------------|------------------------|
-| 1          | 89.92          | 7.1               | None                   |
-| 2          | 81.33          | 10.8              | None                   |
-| 3          | 73.98          | 12.4              | None                   |
-| 4          | 61.29          | 8.6               | [327, 328, 916]        |
-| 5          | 70.02          | 3.4               | [327, 328, 916]        |
-| 6          | 68.01          | 16.8              | [327, 328, 916]        |
-| 7          | 82.63          | 1.9               | None                   |
-| 8          | 68.72          | 9.0               | [327, 328, 916]        |
-| 9          | 82.13          | 13.0              | None                   |
-| 10         | 81.09          | 14.5              | None                   |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected          | Change Type   |
+|------------|----------------|-------------------|------------------------|---------------|
+| 1          | 89.92          | 7.1               | None                   | FIXED         |
+| 2          | 81.33          | 10.8              | None                   | FIXED         |
+| 3          | 73.98          | 12.4              | None                   | FIXED         |
+| 4          | 61.29          | 8.6               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 5          | 70.02          | 3.4               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 6          | 68.01          | 16.8              | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 7          | 82.63          | 1.9               | None                   | FIXED         |
+| 8          | 68.72          | 9.0               | [327, 328, 916]        | EXCLUDED_FROM_CHANGES |
+| 9          | 82.13          | 13.0              | None                   | FIXED         |
+| 10         | 81.09          | 14.5              | None                   | FIXED         |
 
 **Summary Statistics**
 

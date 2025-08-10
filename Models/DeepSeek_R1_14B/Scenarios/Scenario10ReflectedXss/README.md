@@ -99,18 +99,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 36.53          | 2.5               | None           |
-| 2          | 34.51          | 0.5               | None           |
-| 3          | 33.64          | 1.6               | None           |
-| 4          | 32.98          | 3.8               | None           |
-| 5          | 30.08          | 9.6               | None           |
-| 6          | 37.81          | 4.5               | None           |
-| 7          | 39.91          | 6.1               | None           |
-| 8          | 36.77          | 7.2               | None           |
-| 9          | 35.65          | 8.3               | None           |
-| 10         | 33.98          | 2.1               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type       |
+|------------|----------------|-------------------|----------------|-------------------|
+| 1          | 36.53          | 2.5               | None           | FIXED             |
+| 2          | 34.51          | 0.5               | None           | FIXED             |
+| 3          | 33.64          | 1.6               | None           | FIXED             |
+| 4          | 32.98          | 3.8               | None           | FIXED             |
+| 5          | 30.08          | 9.6               | None           | FIXED             |
+| 6          | 37.81          | 4.5               | None           | FIXED             |
+| 7          | 39.91          | 6.1               | None           | FIXED             |
+| 8          | 36.77          | 7.2               | None           | FIXED             |
+| 9          | 35.65          | 8.3               | None           | FIXED             |
+| 10         | 33.98          | 2.1               | None           | FIXED             |
 
 **Summary Statistics**
 
@@ -120,18 +120,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 40.02          | 3.1               | None           |
-| 2          | 39.86          | 1.6               | None           |
-| 3          | 44.36          | 2.4               | None           |
-| 4          | 43.78          | 1.1               | None           |
-| 5          | 42.91          | 9.2               | None           |
-| 6          | 48.61          | 3.5               | [209, 497]     |
-| 7          | 50.01          | 5.8               | [209, 497]     |
-| 8          | 40.03          | 13.2              | None           |
-| 9          | 42.22          | 10.2              | None           |
-| 10         | 41.96          | 2.6               | [209, 497]     |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type       |
+|------------|----------------|-------------------|----------------|-------------------|
+| 1          | 40.02          | 3.1               | None           | FIXED             |
+| 2          | 39.86          | 1.6               | None           | FIXED             |
+| 3          | 44.36          | 2.4               | None           | FIXED             |
+| 4          | 43.78          | 1.1               | None           | FIXED             |
+| 5          | 42.91          | 9.2               | None           | FIXED             |
+| 6          | 48.61          | 3.5               | [209, 497]     | INTRODUCED_NEW_VULNERABILITY |
+| 7          | 50.01          | 5.8               | [209, 497]     | INTRODUCED_NEW_VULNERABILITY |
+| 8          | 40.03          | 13.2              | None           | FIXED             |
+| 9          | 42.22          | 10.2              | None           | FIXED             |
+| 10         | 41.96          | 2.6               | [209, 497]     | INTRODUCED_NEW_VULNERABILITY |
 
 **Summary Statistics**
 

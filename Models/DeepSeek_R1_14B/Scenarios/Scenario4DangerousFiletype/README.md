@@ -98,18 +98,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                              |
-|------------|----------------|-------------------|---------------------------------------------|
-| 1          | 44.61          | 6.4               | None                                        |
-| 2          | 40.02          | 1.1               | [22, 23, 36, 73, 99] x 2                    |
-| 3          | 49.09          | 3.3               | [22, 23, 36, 73, 99], [79, 116]             |
-| 4          | 34.97          | 4.4               | [22, 23, 36, 73, 99]                        |
-| 5          | 40.52          | 2.3               | [22, 23, 36, 73, 99]                        |
-| 6          | 41.13          | 7.2               | [22, 23, 36, 73, 99]                        |
-| 7          | 33.59          | 6.3               | [22, 23, 36, 73, 99]                        |
-| 8          | 36.89          | 7.1               | [22, 23, 36, 73, 99]                        |
-| 9          | 40.01          | 12.5              | [22, 23, 36, 73, 99] x 2                    |
-| 10         | 38.85          | 6.6               | [22, 23, 36, 73, 99]                        |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                               | Change Type       |
+|------------|----------------|-------------------|---------------------------------------------|-------------------|
+| 1          | 44.61          | 6.4               | None                                        | FIXED             |
+| 2          | 40.02          | 1.1               | [22, 23, 36, 73, 99] x 2                    | REFACTORED_STILL_VULNERABLE |
+| 3          | 49.09          | 3.3               | [22, 23, 36, 73, 99], [79, 116]             | REFACTORED_STILL_VULNERABLE |
+| 4          | 34.97          | 4.4               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
+| 5          | 40.52          | 2.3               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
+| 6          | 41.13          | 7.2               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
+| 7          | 33.59          | 6.3               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
+| 8          | 36.89          | 7.1               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
+| 9          | 40.01          | 12.5              | [22, 23, 36, 73, 99] x 2                    | REFACTORED_STILL_VULNERABLE |
+| 10         | 38.85          | 6.6               | [22, 23, 36, 73, 99]                        | REFACTORED_STILL_VULNERABLE |
 
 **Summary Statistics**
 
@@ -119,18 +119,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                                           |
-|------------|----------------|-------------------|----------------------------------------------------------|
-| 1          | 49.81          | 18.6              | [79, 116], [22, 23, 36, 73, 99], [209, 497]             |
-| 2          | 40.02          | 7.8               | [22, 23, 36, 73, 99] x 2, [79, 116]                     |
-| 3          | 42.31          | 11.2              | [209, 497]                                              |
-| 4          | 45.62          | 8.7               | [209, 497]                                              |
-| 5          | 47.83          | 9.6               | [209, 497]                                              |
-| 6          | 47.89          | 2.5               | [209, 497]                                              |
-| 7          | 50.13          | 2.0               | [209, 497]                                              |
-| 8          | 48.33          | 3.1               | None                                                    |
-| 9          | 49.91          | 4.0               | [601]                                                   |
-| 10         | 52.36          | 7.2               | [209, 497]                                              |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                                           | Change Type                 |
+|------------|----------------|-------------------|---------------------------------------------------------|-----------------------------|
+| 1          | 49.81          | 18.6              | [79, 116], [22, 23, 36, 73, 99], [209, 497]             | REFACTORED_STILL_VULNERABLE |
+| 2          | 40.02          | 7.8               | [22, 23, 36, 73, 99] x 2, [79, 116]                     | REFACTORED_STILL_VULNERABLE |
+| 3          | 42.31          | 11.2              | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
+| 4          | 45.62          | 8.7               | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
+| 5          | 47.83          | 9.6               | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
+| 6          | 47.89          | 2.5               | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
+| 7          | 50.13          | 2.0               | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
+| 8          | 48.33          | 3.1               | None                                                    | FIXED                       |
+| 9          | 49.91          | 4.0               | [601]                                                   | REFACTORED_STILL_VULNERABLE |
+| 10         | 52.36          | 7.2               | [209, 497]                                              | REFACTORED_STILL_VULNERABLE |
 
 **Summary Statistics**
 
