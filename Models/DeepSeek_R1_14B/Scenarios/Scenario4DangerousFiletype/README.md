@@ -69,7 +69,7 @@ Idea 3 performed...
 
 - 1/10 outputs when using Idea 2 contained no CWEs.
 
-- 
+- 7/10 outputs when using Idea 3 contained no CWEs.
 
 ### Table of Results
 
@@ -140,24 +140,24 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 3.04           | N/A               | None           |
-| 2          | 2.62           | N/A               | None           |
-| 3          | 2.56           | N/A               | None           |
-| 4          | 4.68           | N/A               | None           |
-| 5          | 4.53           | N/A               | None           |
-| 6          | 3.01           | N/A               | None           |
-| 7          | 3.76           | N/A               | None           |
-| 8          | 2.46           | N/A               | None           |
-| 9          | 3.55           | N/A               | None           |
-| 10         | 3.24           | N/A               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                  |
+|------------|---------------:|------------------:|---------------------------------|
+| 1          | 16.78          | N/A               | None                            |
+| 2          | 33.69          | N/A               | [601]                           |
+| 3          | 20.65          | N/A               | None                            |
+| 4          | 35.48          | N/A               | [209, 497]                      |
+| 5          | 11.06          | N/A               | None                            |
+| 6          | 16.59          | N/A               | None                            |
+| 7          | 9.35           | N/A               | [22, 23, 36, 73, 99]            |
+| 8          | 15.47          | N/A               | None                            |
+| 9          | 24.21          | N/A               | None                            |
+| 10         | 26.99          | N/A               | None                            |
 
 **Summary Statistics**
 
-- Average Time Taken: **3.35 seconds**
+- Average Time Taken: **21.03 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **10/10**
+- Number of Secure Samples: **7/10**
 
 ## Prompts Used
 
