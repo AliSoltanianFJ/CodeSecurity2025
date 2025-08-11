@@ -43,13 +43,13 @@ Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
 Idea 3,,,
 ,,,
 Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
-1,,N/A,
-2,,N/A,
-3,,N/A,
-4,,N/A,
-5,,N/A,
-6,,N/A,
-7,,N/A,
-8,,N/A,
-9,,N/A,
-10,,N/A,
+1,24.51,N/A,None
+2,31.44,N/A,None
+3,26.56,N/A,None
+4,15.61,N/A,None
+5,47.51,N/A,None
+6,30.58,N/A,"[1333, 400], [209, 497]"
+7,32.12,N/A,None
+8,46.63,N/A,"[209, 497], [215, 489]"
+9,36.52,N/A,None
+10,33.45,N/A,None

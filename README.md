@@ -91,9 +91,9 @@ The below table displays the percentage of samples within each scenario for each
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | 61     | 48     | xx     |
-| Scenario 2: SQL Injection                                      | -158   | 63     | xx     |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 15     | 66     | xx     |
+| Scenario 1: Path Traversal                                     | 61     | 48     | 30     |
+| Scenario 2: SQL Injection                                      | -158   | 63     | 45     |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 15     | 66     | 32     |
 | Scenario 4: Dangerous File Type                                | 38     | 45     | xx     |
 | Scenario 5: Unsafe Deserialization                             | -49    | 53     | xx     |
 | Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change |
