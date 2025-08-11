@@ -37,7 +37,7 @@ The below table displays the percentage of samples within each scenario for each
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 31%                        | 9%                                | 29%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 76%                        | 30%                                | 71%                       |            57%                         |
-| **Idea 3 (Fine-Tuning)** | 77%                        | 82%                               |                         |                                        |
+| **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |                         |                                        |
 
 ### GPT-4.1
 
