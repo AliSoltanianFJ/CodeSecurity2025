@@ -8,7 +8,7 @@ The below table displays a comparison between the percentage of samples in which
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 21%                        | -6%                                | 18%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 72%                        | 23%                                | 76%                       |            45%                         |
-| **Idea 3 (Fine-Tuning)** | 77%                        | 76%                               |                         |                                        |
+| **Idea 3 (Fine-Tuning)** | 77%                        | 76%                               |                         |                                 53%       |
 
 ## Comparison of Security Weaknesses Across Models
 
@@ -37,7 +37,7 @@ The below table displays the percentage of samples within each scenario for each
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 31%                        | 9%                                | 29%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 76%                        | 30%                                | 71%                       |            57%                         |
-| **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |                         |                                        |
+| **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |                         |                  58%                    |
 
 ### GPT-4.1
 
@@ -103,9 +103,9 @@ The below table displays the percentage of samples within each scenario for each
 | Scenario 7: Insufficiently Protected Credentials               | -16%    | 56%     | 43%     |
 | Scenario 8: Command Injection                                  | -45%    | 46%     | 74%     |
 | Scenario 9: Hardcoded Credentials                              | 90%     | 67%     | 100%     |
-| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 73%     | xx     |
+| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 73%     | 90%     |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **4%**  | **57%** | **xx** |
+| **Average**                                                    | **4%**  | **57%** | **58%** |
 
 ### CWE Reference Table
 

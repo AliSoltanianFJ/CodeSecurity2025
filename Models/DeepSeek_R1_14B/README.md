@@ -49,7 +49,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Scenario 7: Insufficiently Protected Credentials | Idea 1: -14 %<br>Idea 2: 28 %<br>Idea 3: 28 %|
 | Scenario 8: Python Command Injection | Idea 1: 10 %<br>Idea 2: 60 %<br>Idea 3: 70 %|
 | Scenario 9: Hard-coded Credentials | Idea 1: 83 %<br>Idea 2: 67 %<br>Idea 3: 100 %|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 100 %<br>Idea 2: 70 %<br>Idea 3: xx %|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 100 %<br>Idea 2: 70 %<br>Idea 3: 90 %|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -57,7 +57,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | **Idea**               | **Improvement**                            |
 | Idea 1      | 4 %|            
 | Idea 2      | 45 %|            
-| Idea 3      | xx %|
+| Idea 3      | 53 %|
 
 ...
 
