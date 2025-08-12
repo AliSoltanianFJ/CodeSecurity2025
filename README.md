@@ -99,7 +99,7 @@ The below table displays the percentage of samples within each scenario for each
 | Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 15%     | 66%     | 32%     |
 | Scenario 4: Dangerous File Type                                | 38%     | 45%     | 87%     |
 | Scenario 5: Unsafe Deserialization                             | -49%    | 53%     | 20%     |
-| Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | xx |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change |
 | Scenario 7: Insufficiently Protected Credentials               | -16%    | 56%     | xx     |
 | Scenario 8: Command Injection                                  | -45%    | 46%     | xx     |
 | Scenario 9: Hardcoded Credentials                              | 90%     | 67%     | xx     |
