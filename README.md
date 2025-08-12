@@ -100,7 +100,7 @@ The below table displays the percentage of samples within each scenario for each
 | Scenario 4: Dangerous File Type                                | 38%     | 45%     | 87%     |
 | Scenario 5: Unsafe Deserialization                             | -49%    | 53%     | 20%     |
 | Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change |
-| Scenario 7: Insufficiently Protected Credentials               | -16%    | 56%     | xx     |
+| Scenario 7: Insufficiently Protected Credentials               | -16%    | 56%     | 43%     |
 | Scenario 8: Command Injection                                  | -45%    | 46%     | xx     |
 | Scenario 9: Hardcoded Credentials                              | 90%     | 67%     | xx     |
 | Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 73%     | xx     |
@@ -123,3 +123,4 @@ The below table displays the percentage of samples within each scenario for each
 | [215, 489]       | Flask app is run in debug mode                          | 7.5      |
 | [601]            | URL Redirection from Remote Source                      | 6.1      |
 | [117]            | Log Injection                                           | 7.8      |
+| [20]             | Overly permissive regular expression ranges match a wider range of characters than intended | 5.0 |
