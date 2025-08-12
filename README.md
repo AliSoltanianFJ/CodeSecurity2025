@@ -1,7 +1,8 @@
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
 
-<img width="1127" height="445" alt="image" src="https://github.com/user-attachments/assets/4360333e-0452-4182-89f6-5f3c5e1c3c95" />
+<img width="1298" height="574" alt="image" src="https://github.com/user-attachments/assets/c91bf305-72e0-4e6e-ae4b-b161d97c919d" />
+
 
 
 <br><br>
