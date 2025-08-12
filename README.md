@@ -1,7 +1,9 @@
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
 
-<img width="984" height="459" alt="image" src="https://github.com/user-attachments/assets/3352f278-16f6-42c7-b05f-0cb3f0cb20e8" />
+<img width="1127" height="445" alt="image" src="https://github.com/user-attachments/assets/4360333e-0452-4182-89f6-5f3c5e1c3c95" />
+
+
 <br><br>
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
