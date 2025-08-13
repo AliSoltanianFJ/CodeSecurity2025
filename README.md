@@ -36,7 +36,7 @@ The below table displays the percentage of samples within each scenario for each
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python) | Using the CWE Severity Score As Improvement Indicator
 
-<img width="1311" height="568" alt="image" src="https://github.com/user-attachments/assets/bbed2ead-34cc-42d9-9a82-88eb10160b48" />
+<img width="1311" height="568" alt="image" src="https://github.com/user-attachments/assets/664a1be1-ef71-4a68-8abd-401bf1d2b229" />
 <br><br>
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
