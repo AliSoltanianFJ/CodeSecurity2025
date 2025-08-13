@@ -140,18 +140,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                  |
-|------------|---------------:|------------------:|---------------------------------|
-| 1          | 16.78          | N/A               | None                            |
-| 2          | 33.69          | N/A               | [601]                           |
-| 3          | 20.65          | N/A               | None                            |
-| 4          | 35.48          | N/A               | [209, 497]                      |
-| 5          | 11.06          | N/A               | None                            |
-| 6          | 16.59          | N/A               | None                            |
-| 7          | 9.35           | N/A               | [22, 23, 36, 73, 99]            |
-| 8          | 15.47          | N/A               | None                            |
-| 9          | 24.21          | N/A               | None                            |
-| 10         | 26.99          | N/A               | None                            |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                   | Change Type |
+|------------|---------------:|------------------:|---------------------------------|-------------|
+| 1          | 16.78          | N/A               | None                            | FIXED       |
+| 2          | 33.69          | N/A               | [601]                           | REFACTORED_STILL_VULNERABLE |
+| 3          | 20.65          | N/A               | None                            | FIXED       |
+| 4          | 35.48          | N/A               | [209, 497]                      | REFACTORED_STILL_VULNERABLE |
+| 5          | 11.06          | N/A               | None                            | FIXED       |
+| 6          | 16.59          | N/A               | None                            | FIXED       |
+| 7          | 9.35           | N/A               | [22, 23, 36, 73, 99]            | REFACTORED_STILL_VULNERABLE |
+| 8          | 15.47          | N/A               | None                            | FIXED       |
+| 9          | 24.21          | N/A               | None                            | FIXED       |
+| 10         | 26.99          | N/A               | None                            | FIXED       |
 
 **Summary Statistics**
 

@@ -145,18 +145,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|---------------:|------------------:|---------------|
-| 1          | 73.12          | N/A              | [22, 23, 36, 73, 99], [601] × 2, [209, 497] |
-| 2          | 55.31          | N/A               | [22, 23, 36, 73, 99] × 3 |
-| 3          | 33.98          | N/A               | None |
-| 4          | 40.09          | N/A               | [22, 23, 36, 73, 99] |
-| 5          | 31.92          | N/A             | [209, 497] |
-| 6          | 35.76          | N/A               | None |
-| 7          | 39.71          | N/A            | [22, 23, 36, 73, 99] × 3 |
-| 8          | 32.44          | N/A              | None |
-| 9          | 58.72          | N/A             | [22, 23, 36, 73, 99] × 2, [601], [215, 489] |
-| 10         | 33.45          | N/A            | [22, 23, 36, 73, 99] × 2, [79, 116] |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected | Change Type |
+|------------|---------------:|------------------:|---------------|--------------|
+| 1          | 73.12          | N/A              | [22, 23, 36, 73, 99], [601] × 2, [209, 497] | INTRODUCED_NEW_VULNERABILITY |
+| 2          | 55.31          | N/A               | [22, 23, 36, 73, 99] × 3 | REFACTORED_STILL_VULNERABLE |
+| 3          | 33.98          | N/A               | None | FIXED |
+| 4          | 40.09          | N/A               | [22, 23, 36, 73, 99] | REFACTORED_STILL_VULNERABLE | 
+| 5          | 31.92          | N/A             | [209, 497] | REFACTORED_STILL_VULNERABLE |
+| 6          | 35.76          | N/A               | None | FIXED |
+| 7          | 39.71          | N/A            | [22, 23, 36, 73, 99] × 3 | REFACTORED_STILL_VULNERABLE |
+| 8          | 32.44          | N/A              | None | FIXED
+| 9          | 58.72          | N/A             | [22, 23, 36, 73, 99] × 2, [601], [215, 489] |  INTRODUCED_NEW_VULNERABILITY |
+| 10         | 33.45          | N/A            | [22, 23, 36, 73, 99] × 2, [79, 116] | INTRODUCED_NEW_VULNERABILITY |
 
 
 **Summary Statistics**

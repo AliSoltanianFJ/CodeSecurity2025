@@ -142,18 +142,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected         |
-|------------|----------------|-------------------|-----------------------|
-| 1          | 20.02          | N/A               | [78], [209, 497]      |
-| 2          | 28.98          | N/A               | None                  |
-| 3          | 12.95          | N/A               | None                  |
-| 4          | 21.95          | N/A               | [78], [209, 497]      |
-| 5          | 8.13           | N/A               | None                  |
-| 6          | 35.59          | N/A               | None                  |
-| 7          | 17.64          | N/A               | None                  |
-| 8          | 18.74          | N/A               | [209, 497]            |
-| 9          | 13.08          | N/A               | None                  |
-| 10         | 10.15          | N/A               | None                  |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected         | Change Type   |
+|------------|----------------|-------------------|-----------------------|---------------|
+| 1          | 20.02          | N/A               | [78], [209, 497]      | REFACTORED_STILL_VULNERABLE    |
+| 2          | 28.98          | N/A               | None                  | FIXED         |
+| 3          | 12.95          | N/A               | None                  | FIXED         |
+| 4          | 21.95          | N/A               | [78], [209, 497]      | REFACTORED_STILL_VULNERABLE    |
+| 5          | 8.13           | N/A               | None                  | FIXED         |
+| 6          | 35.59          | N/A               | None                  | FIXED         |
+| 7          | 17.64          | N/A               | None                  | FIXED         |
+| 8          | 18.74          | N/A               | [209, 497]            | REFACTORED_STILL_VULNERABLE    |
+| 9          | 13.08          | N/A               | None                  | FIXED         |
+| 10         | 10.15          | N/A               | None                  | FIXED         |
 
 **Summary Statistics**
 

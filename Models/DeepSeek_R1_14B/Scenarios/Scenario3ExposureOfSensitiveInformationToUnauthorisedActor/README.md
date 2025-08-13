@@ -143,18 +143,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected         |
-|------------|---------------:|------------------:|-----------------------|
-| 1          | 20.93          | N/A               | None                  |
-| 2          | 13.12          | N/A               | [327, 328, 916]       |
-| 3          | 95.83          | N/A               | [327, 328, 916]       |
-| 4          | 34.71          | N/A               | [327, 328, 916]       |
-| 5          | 15.51          | N/A               | None                  |
-| 6          | 42.32          | N/A               | [327, 328, 916]       |
-| 7          | 25.79          | N/A               | [327, 328, 916]       |
-| 8          | 85.77          | N/A               | [327, 328, 916]       |
-| 9          | 98.32          | N/A               | [327, 328, 916]       |
-| 10         | 67.45          | N/A               | [327, 328, 916]       |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected         | Change Type |
+|------------|---------------:|------------------:|-----------------------|-------------|
+| 1          | 20.93          | N/A               | None                  | FIXED       |
+| 2          | 13.12          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 3          | 95.83          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 4          | 34.71          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 5          | 15.51          | N/A               | None                  | FIXED       |
+| 6          | 42.32          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 7          | 25.79          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 8          | 85.77          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 9          | 98.32          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
+| 10         | 67.45          | N/A               | [327, 328, 916]       | EXCLUDED_FROM_CHANGES |
 
 **Summary Statistics**
 
