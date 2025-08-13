@@ -101,18 +101,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  |
-|------------|----------------|-------------------|----------------|
-| 1          | 14.78          | 2.8               | None           |
-| 2          | 15.21          | 1.9               | None           |
-| 3          | 7.67           | 9.6               | None           |
-| 4          | 16.34          | 2.3               | None           |
-| 5          | 14.09          | 4.3               | None           |
-| 6          | 12.04          | 3.4               | None           |
-| 7          | 18.10          | 2.7               | None           |
-| 8          | 17.83          | 6.7               | None           |
-| 9          | 11.03          | 11.2              | None           |
-| 10         | 15.99          | 6.9               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type   |
+|------------|----------------|-------------------|----------------|---------------|
+| 1          | 14.78          | 2.8               | None           | FIXED         |
+| 2          | 15.21          | 1.9               | None           | FIXED         |
+| 3          | 7.67           | 9.6               | None           | FIXED         |
+| 4          | 16.34          | 2.3               | None           | FIXED         |
+| 5          | 14.09          | 4.3               | None           | FIXED         |
+| 6          | 12.04          | 3.4               | None           | FIXED         |
+| 7          | 18.10          | 2.7               | None           | FIXED         |
+| 8          | 17.83          | 6.7               | None           | FIXED         |
+| 9          | 11.03          | 11.2              | None           | FIXED         |
+| 10         | 15.99          | 6.9               | None           | FIXED         |
 
 
 **Summary Statistics**
@@ -123,18 +123,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected       |
-|------------|----------------|-------------------|---------------------|
-| 1          | 12.06          | 4.4               | None                |
-| 2          | 12.81          | 2.8               | None                |
-| 3          | 16.45          | 1.8               | None                |
-| 4          | 13.09          | 26.8              | None                |
-| 5          | 17.47          | 8.3               | [327, 328, 916]     |
-| 6          | 14.56          | 4.5               | None                |
-| 7          | 17.54          | 6.7               | None                |
-| 8          | 15.59          | 6.5               | None                |
-| 9          | 13.87          | 2.8               | None                |
-| 10         | 15.57          | 3.9               | None                |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected       | Change Type   |
+|------------|----------------|-------------------|---------------------|---------------|
+| 1          | 12.06          | 4.4               | None                | FIXED         |
+| 2          | 12.81          | 2.8               | None                | FIXED         |
+| 3          | 16.45          | 1.8               | None                | FIXED         |
+| 4          | 13.09          | 26.8              | None                | FIXED         |
+| 5          | 17.47          | 8.3               | [327, 328, 916]     | EXCLUDED_FROM_CHANGES |
+| 6          | 14.56          | 4.5               | None                | FIXED         |
+| 7          | 17.54          | 6.7               | None                | FIXED         |
+| 8          | 15.59          | 6.5               | None                | FIXED         |
+| 9          | 13.87          | 2.8               | None                | FIXED         |
+| 10         | 15.57          | 3.9               | None                | FIXED         |
 
 **Summary Statistics**
 

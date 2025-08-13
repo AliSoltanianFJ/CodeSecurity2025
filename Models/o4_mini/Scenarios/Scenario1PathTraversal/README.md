@@ -103,18 +103,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                                |
-|------------|----------------|-------------------|----------------------------------------------|
-| 1          | 15.03          | 2.4               | None                                         |
-| 2          | 15.56          | 3.7               | None                                         |
-| 3          | 10.03          | 3.2               | None                                         |
-| 4          | 17.27          | 0.46              | None                                         |
-| 5          | 17.02          | 2.1               | None                                         |
-| 6          | 7.66           | 2.4               | None                                         |
-| 7          | 8.87           | 1.4               | [22, 23, 36, 73, 99] x 2                     |
-| 8          | 13.19          | 2.9               | None                                         |
-| 9          | 10.92          | 6.3               | None                                         |
-| 10         | 15.55          | 9.5               | [22, 23, 36, 73, 99] x 2, [1333, 400]        |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                                | Change Type                  |
+|------------|----------------|-------------------|----------------------------------------------|------------------------------|
+| 1          | 15.03          | 2.4               | None                                         | FIXED                        |
+| 2          | 15.56          | 3.7               | None                                         | FIXED                        |
+| 3          | 10.03          | 3.2               | None                                         | FIXED                        |
+| 4          | 17.27          | 0.46              | None                                         | FIXED                        |
+| 5          | 17.02          | 2.1               | None                                         | FIXED                        |
+| 6          | 7.66           | 2.4               | None                                         | FIXED                        |
+| 7          | 8.87           | 1.4               | [22, 23, 36, 73, 99] x 2                     | REFACTORED_STILL_VULNERABLE  |
+| 8          | 13.19          | 2.9               | None                                         | FIXED                        |
+| 9          | 10.92          | 6.3               | None                                         | FIXED                        |
+| 10         | 15.55          | 9.5               | [22, 23, 36, 73, 99] x 2, [1333, 400]        | INTRODUCED_NEW_VULNERABILITY |
 
 **Summary Statistics**
 
@@ -124,18 +124,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected               |
-|------------|----------------|-------------------|-----------------------------|
-| 1          | 13.82          | 3.3               | None                        |
-| 2          | 14.05          | 3.9               | None                        |
-| 3          | 12.33          | 2.5               | None                        |
-| 4          | 8.36           | 4.5               | None                        |
-| 5          | 18.32          | 2.3               | None                        |
-| 6          | 12.02          | 7.3               | [22, 23, 36, 73, 99]        |
-| 7          | 10.21          | 4.9               | None                        |
-| 8          | 16.64          | 6.5               | None                        |
-| 9          | 16.05          | 2.6               | None                        |
-| 10         | 14.26          | 9.1               | None                        |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected               | Change Type                  |
+|------------|----------------|-------------------|-----------------------------|------------------------------|
+| 1          | 13.82          | 3.3               | None                        | FIXED                        |
+| 2          | 14.05          | 3.9               | None                        | FIXED                        |
+| 3          | 12.33          | 2.5               | None                        | FIXED                        |
+| 4          | 8.36           | 4.5               | None                        | FIXED                        |
+| 5          | 18.32          | 2.3               | None                        | FIXED                        |
+| 6          | 12.02          | 7.3               | [22, 23, 36, 73, 99]        | REFACTORED_STILL_VULNERABLE  |
+| 7          | 10.21          | 4.9               | None                        | FIXED                        |
+| 8          | 16.64          | 6.5               | None                        | FIXED                        |
+| 9          | 16.05          | 2.6               | None                        | FIXED                        |
+| 10         | 14.26          | 9.1               | None                        | FIXED                        |
 
 **Summary Statistics**
 

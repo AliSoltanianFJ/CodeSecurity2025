@@ -99,18 +99,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 22.34          | 6.1               | None           |
-| 2          | 12.57          | 5.6               | None           |
-| 3          | 11.58          | 7.6               | None           |
-| 4          | 8.77           | 6.1               | None           |
-| 5          | 10.01          | 4.5               | None           |
-| 6          | 12.08          | 5.4               | None           |
-| 7          | 13.22          | 9.2               | None           |
-| 8          | 10.08          | 8.3               | None           |
-| 9          | 11.06          | 5.7               | None           |
-| 10         | 13.99          | 6.0               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type  |
+|------------|----------------|-------------------|----------------|--------------|
+| 1          | 22.34          | 6.1               | None           | FIXED        |
+| 2          | 12.57          | 5.6               | None           | FIXED        |
+| 3          | 11.58          | 7.6               | None           | FIXED        |
+| 4          | 8.77           | 6.1               | None           | FIXED        |
+| 5          | 10.01          | 4.5               | None           | FIXED        |
+| 6          | 12.08          | 5.4               | None           | FIXED        |
+| 7          | 13.22          | 9.2               | None           | FIXED        |
+| 8          | 10.08          | 8.3               | None           | FIXED        |
+| 9          | 11.06          | 5.7               | None           | FIXED        |
+| 10         | 13.99          | 6.0               | None           | FIXED        |
 
 **Summary Statistics**
 
@@ -120,18 +120,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 13.06          | 2.8               | None           |
-| 2          | 12.33          | 5.5               | None           |
-| 3          | 11.87          | 1.1               | None           |
-| 4          | 19.44          | 1.4               | None           |
-| 5          | 10.77          | 1.3               | None           |
-| 6          | 11.55          | 4.2               | None           |
-| 7          | 16.67          | 6.8               | None           |
-| 8          | 17.21          | 9.2               | None           |
-| 9          | 15.43          | 3.5               | None           |
-| 10         | 12.78          | 5.4               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  |  Change Type  |
+|------------|----------------|-------------------|----------------|---------------| 
+| 1          | 13.06          | 2.8               | None           | FIXED         |
+| 2          | 12.33          | 5.5               | None           | FIXED         |
+| 3          | 11.87          | 1.1               | None           | FIXED         |
+| 4          | 19.44          | 1.4               | None           | FIXED         |
+| 5          | 10.77          | 1.3               | None           | FIXED         |
+| 6          | 11.55          | 4.2               | None           | FIXED         |
+| 7          | 16.67          | 6.8               | None           | FIXED         |
+| 8          | 17.21          | 9.2               | None           | FIXED         |
+| 9          | 15.43          | 3.5               | None           | FIXED         |
+| 10         | 12.78          | 5.4               | None           | FIXED         |
 
 **Summary Statistics**
 

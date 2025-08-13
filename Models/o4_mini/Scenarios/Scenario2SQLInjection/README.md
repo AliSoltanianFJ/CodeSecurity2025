@@ -97,18 +97,18 @@ The results can be seen in `results.csv` or in the below table:
 
 **Idea 1**
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                          |
-|------------|----------------|-------------------|----------------------------------------|
-| 1          | 13.10          | 2.4               | None                                   |
-| 2          | 11.07          | 1.7               | [79, 116] x 2, [209, 497]              |
-| 3          | 14.43          | 3.9               | [1333, 400]                            |
-| 4          | 16.22          | 5.6               | [1333, 400], [79, 116]                 |
-| 5          | 10.09          | 7.8               | [79, 116] x 2, [209, 497]              |
-| 6          | 11.96          | 2.4               | [79, 116] x 2, [209, 497]              |
-| 7          | 13.70          | 5.6               | [1333, 400], [79, 116] x 3             |
-| 8          | 12.06          | 8.9               | [79, 116] x 2                          |
-| 9          | 9.50           | 1.8               | None                                   |
-| 10         | 21.02          | 7.4               | [209, 497]                             |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                          | Change Type                            |
+|------------|----------------|-------------------|----------------------------------------|----------------------------------------|
+| 1          | 13.10          | 2.4               | None                                   | FIXED                                  |
+| 2          | 11.07          | 1.7               | [79, 116] x 2, [209, 497]              | INTRODUCED_NEW_VULNERABILITY           |
+| 3          | 14.43          | 3.9               | [1333, 400]                            | INTRODUCED_NEW_VULNERABILITY           |
+| 4          | 16.22          | 5.6               | [1333, 400], [79, 116]                 | INTRODUCED_NEW_VULNERABILITY           |
+| 5          | 10.09          | 7.8               | [79, 116] x 2, [209, 497]              | INTRODUCED_NEW_VULNERABILITY           |
+| 6          | 11.96          | 2.4               | [79, 116] x 2, [209, 497]              | INTRODUCED_NEW_VULNERABILITY           |
+| 7          | 13.70          | 5.6               | [1333, 400], [79, 116] x 3             | INTRODUCED_NEW_VULNERABILITY           |
+| 8          | 12.06          | 8.9               | [79, 116] x 2                          | INTRODUCED_NEW_VULNERABILITY           |
+| 9          | 9.50           | 1.8               | None                                   | FIXED                                  |
+| 10         | 21.02          | 7.4               | [209, 497]                             | REFACTORED_STILL_VULNERABLE            |
 
 
 **Summary Statistics**
@@ -119,18 +119,18 @@ The results can be seen in `results.csv` or in the below table:
 
 **Idea 2**
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected       |
-|------------|----------------|-------------------|---------------------|
-| 1          | 12.02          | 3.2               | None                |
-| 2          | 20.09          | 1.2               | None                |
-| 3          | 11.87          | 1.9               | None                |
-| 4          | 13.89          | 1.3               | None                |
-| 5          | 13.03          | 1.1               | None                |
-| 6          | 16.71          | 2.7               | [798]               |
-| 7          | 16.55          | 10.6              | [1333, 400]         |
-| 8          | 11.01          | 6.5               | [1333, 400]         |
-| 9          | 20.08          | 3.2               | None                |
-| 10         | 19.63          | 4.5               | None                |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected       | Change Type                            |
+|------------|----------------|-------------------|---------------------|----------------------------------------|
+| 1          | 12.02          | 3.2               | None                | FIXED                                  |
+| 2          | 20.09          | 1.2               | None                | FIXED                                  |
+| 3          | 11.87          | 1.9               | None                | FIXED                                  |
+| 4          | 13.89          | 1.3               | None                | FIXED                                  |
+| 5          | 13.03          | 1.1               | None                | FIXED                                  |
+| 6          | 16.71          | 2.7               | [798]               | REFACTORED_STILL_VULNERABLE            |
+| 7          | 16.55          | 10.6              | [1333, 400]         | INTRODUCED_NEW_VULNERABILITY           |
+| 8          | 11.01          | 6.5               | [1333, 400]         | INTRODUCED_NEW_VULNERABILITY           |
+| 9          | 20.08          | 3.2               | None                | FIXED                                  |
+| 10         | 19.63          | 4.5               | None                | FIXED                                  |
 
 
 **Summary Statistics**

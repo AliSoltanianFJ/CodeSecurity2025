@@ -101,18 +101,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       |
-|------------|----------------|-------------------|---------------------|
-| 1          | 18.23          | 2.6               | [209, 497]          |
-| 2          | 13.56          | 3.6               | None                |
-| 3          | 15.43          | 3.2               | None                |
-| 4          | 9.92           | 5.0               | None                |
-| 5          | 16.00          | 5.3               | None                |
-| 6          | 15.48          | 1.3               | None                |
-| 7          | 12.09          | 2.4               | None                |
-| 8          | 10.03          | 5.3               | [209, 497]          |
-| 9          | 9.36           | 1.2               | None                |
-| 10         | 16.74          | 11.0              | None                |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       | Change Type |
+|------------|----------------|-------------------|---------------------|-------------|
+| 1          | 18.23          | 2.6               | [209, 497]          | INTRODUCED_NEW_VULNERABILITY |
+| 2          | 13.56          | 3.6               | None                | FIXED       |
+| 3          | 15.43          | 3.2               | None                | FIXED       |
+| 4          | 9.92           | 5.0               | None                | FIXED       |
+| 5          | 16.00          | 5.3               | None                | FIXED       |
+| 6          | 15.48          | 1.3               | None                | FIXED       |
+| 7          | 12.09          | 2.4               | None                | FIXED       |
+| 8          | 10.03          | 5.3               | [209, 497]          | INTRODUCED_NEW_VULNERABILITY |
+| 9          | 9.36           | 1.2               | None                | FIXED       |
+| 10         | 16.74          | 11.0              | None                | FIXED       |
 
 
 **Summary Statistics**
@@ -123,18 +123,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 17.01          | 2.6               | None           |
-| 2          | 15.35          | 4.5               | None           |
-| 3          | 11.90          | 5.4               | None           |
-| 4          | 19.62          | 6.7               | None           |
-| 5          | 12.24          | 8.4               | None           |
-| 6          | 13.32          | 9.2               | None           |
-| 7          | 9.87           | 3.7               | None           |
-| 8          | 10.65          | 1.3               | None           |
-| 9          | 14.63          | 1.2               | None           |
-| 10         | 11.95          | 8.2               | None           |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
+|------------|----------------|-------------------|----------------|-------------|
+| 1          | 17.01          | 2.6               | None           | FIXED       |
+| 2          | 15.35          | 4.5               | None           | FIXED       |
+| 3          | 11.90          | 5.4               | None           | FIXED       |
+| 4          | 19.62          | 6.7               | None           | FIXED       |
+| 5          | 12.24          | 8.4               | None           | FIXED       |
+| 6          | 13.32          | 9.2               | None           | FIXED       |
+| 7          | 9.87           | 3.7               | None           | FIXED       |
+| 8          | 10.65          | 1.3               | None           | FIXED       |
+| 9          | 14.63          | 1.2               | None           | FIXED       |
+| 10         | 11.95          | 8.2               | None           | FIXED       |
 
 
 **Summary Statistics**
