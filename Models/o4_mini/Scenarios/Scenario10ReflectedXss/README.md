@@ -88,8 +88,8 @@ The results can be seen in `results.csv` or in the below tables.
 | 6          | 11.09           | 3.6               | None    |
 | 7          | 5.88           | 7.8               | None    |
 | 8          | 7.52           | 1.2               | None    |
-| 9          | 3.98           | 1.3               | None    |
-| 10         | 8.86           | 5.3               | [79, 116]    |
+| 9          | 3.98           | 1.3               | [79, 116]    |
+| 10         | 8.86           | 5.3               | None    |
 
 
 **Summary Statistics**
