@@ -35,6 +35,23 @@ The below table displays the percentage of samples within each scenario for each
 | **Average Across All Scenarios:** | **81%** | **87%** | **52%**       | **75%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python) | Using the CWE Severity Score As Improvement Indicator
+### Formula
+The formula below is used to calculate the percentage improvement for each idea from the original raw output from the AI models:
+
+**For each scenario:**
+
+  1. Calculate severity score for each CWE.
+  
+      - This is done by taking the severity score for the CWE given by CodeQL. The severity score is calculated by grouping the CVSS 3.1 score of related CVEs, then taking the 75th percentile of the score.
+  2. Calculate total severity score for the raw output of the AI model by taking the sum of the severity scores of all CWEs reported in the ten raw samples.
+  3. Calculate total severity score for the output of each idea by taking the sum of the severity scores of all CWEs reported in the ten samples of each idea.
+  4. Calculate the percentage change between the total severity score of the raw output and the total severity score for the outputs of each idea to get the final percentage improvement.
+
+<p align="center">
+<img width="708" alt="image" src="https://github.com/user-attachments/assets/d14c1a30-370d-4222-8672-563793d03ba9" />
+</p>
+
+### Improvements
 
 <img width="1311" height="568" alt="image" src="https://github.com/user-attachments/assets/664a1be1-ef71-4a68-8abd-401bf1d2b229" />
 <br><br>
@@ -45,7 +62,7 @@ The below table displays the percentage of samples within each scenario for each
 | **Idea 2 (Chain-Of-Thought Prompting)** | 76%                        | 30%                                | 71%                       |            57%                         |
 | **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |                         |                  58%                    |
 
-### GPT-4.1
+#### GPT-4.1
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
@@ -62,7 +79,7 @@ The below table displays the percentage of samples within each scenario for each
 | -  | -  |- | -      |  - |
 | **Average**                                                    | **31%** | **76%** | **83%** |
 
-### o4-mini
+#### o4-mini
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
@@ -79,7 +96,7 @@ The below table displays the percentage of samples within each scenario for each
 | -  | -  |- | -      |  - |
 | **Average**                                                    | **29%** | **71%** | **xx** |
 
-### Gemini 2.0 Flash
+#### Gemini 2.0 Flash
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
@@ -96,7 +113,7 @@ The below table displays the percentage of samples within each scenario for each
 | -  | -  |- | -      |  - |
 | **Average**                                                    | **9%**  | **30%** | **82%** |
 
-### DeepSeek R1 14B
+#### DeepSeek R1 14B
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
@@ -113,7 +130,7 @@ The below table displays the percentage of samples within each scenario for each
 | -  | -  |- | -      |  - |
 | **Average**                                                    | **4%**  | **57%** | **58%** |
 
-### CWE Reference Table
+#### CWE Reference Table
 
 | CWE ID(s)        | Weakness Name                                           | Severity |
 |------------------|---------------------------------------------------------|----------|
