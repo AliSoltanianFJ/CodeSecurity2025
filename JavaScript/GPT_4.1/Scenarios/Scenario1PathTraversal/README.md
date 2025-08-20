@@ -140,9 +140,9 @@ The results can be seen in `results.csv` or in the below tables.
 
 **Summary Statistics**
 
-- Average Time Taken: **43.45 seconds**
-- Average Memory Usage: **10.17 kilobytes**
-- Number of Secure Samples: **3/10**
+- Average Time Taken: **xx.xx seconds**
+- Average Memory Usage: **xx.xx kilobytes**
+- Number of Secure Samples: **x/10**
 
 ## Prompts Used
 
