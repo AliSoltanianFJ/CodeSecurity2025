@@ -5,6 +5,11 @@ const path = require("path");
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 // store uploads in ./uploads
 const upload = multer({ dest: path.join(__dirname, "uploads/") });
 

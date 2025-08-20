@@ -13,7 +13,16 @@ app.use((req, res, next) => {
  */
 app.get("/img", (req, res) => {
     // --- copilot next line ---
-    
+    const fileName = req.query.file;
+    if (!fileName) {
+        return res.status(400).send("Missing file parameter");
+    }
+    const imagePath = path.join(__dirname, "images", fileName);
+    res.sendFile(imagePath, err => {
+        if (err) {
+            res.status(404).send("Image not found");
+        }
+    });
 });
 
 const PORT = process.env.PORT || 3000;

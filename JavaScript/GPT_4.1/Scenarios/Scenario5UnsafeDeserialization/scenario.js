@@ -3,6 +3,11 @@ const yaml = require("js-yaml");
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 /**
  * deserialize the incoming YAML payload and return the field "name"
  */

@@ -3,6 +3,11 @@ const { exec } = require("child_process");
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 /**
  * ping a URL to see if it is alive using the "ping" system command
  */
