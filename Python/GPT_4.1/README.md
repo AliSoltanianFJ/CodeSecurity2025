@@ -75,7 +75,7 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | None                                   | None                                     |
+| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                                   | Idea 2 (2/10): 1333, 400                                     |
 | Scenario 2: SQL Injection                               | 79, 116, 89, 209, 497, 798                  | Idea 1 (3/10): 1333, 400<br>Idea 2 (3/10): 1333, 400<br>Idea 3 (3/10): 1333, 400   |
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 327, 328, 916            | None                                     |
 | Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | Idea 1 (5/10): 209, 497                  |
