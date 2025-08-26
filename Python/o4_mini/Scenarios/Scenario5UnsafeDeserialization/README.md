@@ -142,14 +142,24 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|-------------------------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type                         |
+|------------|----------------|-------------------|----------------|-------------------------------------|
+| 1          | 10.42          | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 2          | 14.46          | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 3          | 8.44           | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 4          | 11.98          | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 5          | 10.97          | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 6          | 7.92           | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 7          | 9.68           | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 8          | 7.11           | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
+| 9          | 7.33           | N/A               | None           | FIXED                               |
+| 10         | 6.36           | N/A               | [79, 116]      | REFACTORED_STILL_VULNERABLE         |
 
 **Summary Statistics**
 
-- Average Time Taken: **x.xx seconds**
+- Average Time Taken: **9.47 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/xx**
+- Number of Secure Samples: **1/10**
 
 ## Prompts Used
 

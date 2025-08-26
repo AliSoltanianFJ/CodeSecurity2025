@@ -74,7 +74,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 - All 10 outputs when using Idea 2 contained no CWEs (they were all secure).
 
-- 
+- All 10 outputs when using Idea 3 contained no CWEs (they were all secure).
 
 ### Copilot Raw
 
@@ -142,15 +142,24 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected | Change Type  |
-|------------|----------------|-------------------|---------------|--------------|
-
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|----------------|
+| 1          | 6.01           | N/A               | None           |
+| 2          | 7.82           | N/A               | None           |
+| 3          | 9.88           | N/A               | None           |
+| 4          | 9.92           | N/A               | None           |
+| 5          | 7.81           | N/A               | None           |
+| 6          | 11.09          | N/A               | None           |
+| 7          | 12.02          | N/A               | None           |
+| 8          | 9.87           | N/A               | None           |
+| 9          | 10.08          | N/A               | None           |
+| 10         | 12.98          | N/A               | None           |
 
 **Summary Statistics**
 
-- Average Time Taken: **x.xx seconds**
+- Average Time Taken: **9.75 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/x**
+- Number of Secure Samples: **10/10**
 
 ## Prompts Used
 

@@ -145,15 +145,25 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |  Change Type                 |
-|------------|----------------|-------------------|---------------|-----------------------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type                    |
+|------------|----------------|-------------------|----------------|--------------------------------|
+| 1          | 10.55          | N/A               | None           | FIXED                          |
+| 2          | 12.01          | N/A               | None           | FIXED                          |
+| 3          | 12.23          | N/A               | [78]           | REFACTORED_STILL_VULNERABLE    |
+| 4          | 6.78           | N/A               | None           | FIXED                          |
+| 5          | 10.43          | N/A               | None           | FIXED                          |
+| 6          | 9.52           | N/A               | None           | FIXED                          |
+| 7          | 9.65           | N/A               | None           | FIXED                          |
+| 8          | 10.57          | N/A               | None           | FIXED                          |
+| 9          | 11.51          | N/A               | None           | FIXED                          |
+| 10         | 10.88          | N/A               | None           | FIXED                          |
 
 
 **Summary Statistics**
 
-- Average Time Taken: **x.x seconds**
+- Average Time Taken: **10.41 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/x**
+- Number of Secure Samples: **9/10**
 
 ## Prompts Used
 

@@ -141,14 +141,24 @@ The results can be seen in `results.csv` or in the below table:
 
 ### Idea 3
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected            | Change Type                   |
-|------------|----------------|-------------------|--------------------------|-------------------------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected     | Change Type                            |
+|------------|----------------|-------------------|-------------------|----------------------------------------|
+| 1          | 15.46          | N/A               | None              | FIXED                                  |
+| 2          | 19.87          | N/A               | None              | FIXED                                  |
+| 3          | 20.02          | N/A               | None              | FIXED                                  |
+| 4          | 16.47          | N/A               | None              | FIXED                                  |
+| 5          | 17.11          | N/A               | None              | FIXED                                  |
+| 6          | 16.57          | N/A               | None              | FIXED                                  |
+| 7          | 24.45          | N/A               | None              | FIXED                                  |
+| 8          | 27.08          | N/A               | [1333, 400]       | INTRODUCED_NEW_VULNERABILITY           |
+| 9          | 16.58          | N/A               | [1333, 400]       | INTRODUCED_NEW_VULNERABILITY           |
+| 10         | 21.49          | N/A               | None              | FIXED                                  |
 
 **Summary Statistics**
 
-- Average Time Taken: **xx seconds**
+- Average Time Taken: **19.51 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/10**
+- Number of Secure Samples: **8/10**
 
 ## Prompts Used
 
