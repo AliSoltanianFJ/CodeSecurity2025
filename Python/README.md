@@ -11,7 +11,7 @@ The below table displays a comparison between the percentage of samples in which
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 21%                        | -6%                                | 18%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 72%                        | 23%                                | 76%                       |            45%                         |
-| **Idea 3 (Fine-Tuning)** | 77%                        | 76%                               |                         |                                 53%       |
+| **Idea 3 (Fine-Tuning)** | 77%                        | 76%                               |          80%               |                                 53%       |
 
 ## Comparison of Security Weaknesses Across Models
 
