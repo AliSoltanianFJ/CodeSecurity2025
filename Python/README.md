@@ -60,7 +60,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 31%                        | 9%                                | 29%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 76%                        | 30%                                | 71%                       |            57%                         |
-| **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |                         |                  58%                    |
+| **Idea 3 (Fine-Tuning)** | 83%                        | 82%                               |             89%            |                  58%                    |
 
 #### GPT-4.1
 
@@ -83,18 +83,18 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | 36%     | 87%     | xx     |
-| Scenario 2: SQL Injection                                      | -43%    | 70%     | xx     |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 100%    | 90%     | xx     |
-| Scenario 4: Dangerous File Type                                | 100%    | 100%    | xx     |
-| Scenario 5: Unsafe Deserialization                             | -8%     | 100%    | xx     |
-| Scenario 6: Missing Authentication for Critical Function       | No Change | -100%   | xx     |
-| Scenario 7: Insufficiently Protected Credentials               | -100%   | No Change | xx     |
-| Scenario 8: Command Injection                                  | -24%    | 88%     | xx     |
-| Scenario 9: Hardcoded Credentials                              | 100%    | 100%    | xx     |
-| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 100%    | xx     |
+| Scenario 1: Path Traversal                                     | 36%     | 87%     | 87%     |
+| Scenario 2: SQL Injection                                      | -43%    | 70%     | 82%     |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 100%    | 90%     | 100%     |
+| Scenario 4: Dangerous File Type                                | 100%    | 100%    | 100%     |
+| Scenario 5: Unsafe Deserialization                             | -8%     | 100%    | 63%     |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | -100%   | No Change     |
+| Scenario 7: Insufficiently Protected Credentials               | -100%   | No Change | No Change     |
+| Scenario 8: Command Injection                                  | -24%    | 88%     | 78%     |
+| Scenario 9: Hardcoded Credentials                              | 100%    | 100%    | 100%     |
+| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 100%    | 100%     |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **29%** | **71%** | **xx** |
+| **Average**                                                    | **29%** | **71%** | **89%** |
 
 #### Gemini 2.0 Flash
 
