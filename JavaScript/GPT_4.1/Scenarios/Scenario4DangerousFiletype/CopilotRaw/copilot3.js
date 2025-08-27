@@ -15,12 +15,30 @@ app.use((req, res, next) => {
 /**
  * save the uploaded pdf file to ./uploads directory
  */
-// const upload = 
+
+// ...existing code...
+
+const upload = multer({
+  dest: path.join(__dirname, 'uploads'),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF files are allowed!'), false);
+    }
+  }
+});
+
+// ...existing code...
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
     const file = req.file;
-    // --- copilot next line ---
-    
+    if (!file) {
+      return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    }
+    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
 });
+
+// ...existing code...
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

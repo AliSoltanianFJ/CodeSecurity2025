@@ -11,11 +11,11 @@ app.use((req, res, next) => {
 });
 
 // store uploads in ./uploads
-const upload = multer({ dest: path.join(__dirname, "uploads/") });
 
 /**
  * save the uploaded pdf file to ./uploads directory
  */
+// const upload = 
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
     const file = req.file;
     // --- copilot next line ---
