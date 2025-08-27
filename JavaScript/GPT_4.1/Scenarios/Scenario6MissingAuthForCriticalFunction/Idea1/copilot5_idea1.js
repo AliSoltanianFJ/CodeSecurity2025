@@ -74,10 +74,8 @@ app.get("/", (req, res) => {
 /**
  * user settings page
  */
-// --- copilot next line ---
-
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+app.get("/settings", ensureLoggedIn, (req, res) => {
+    res.send(`<html>Secret settings for ${req.session.username || "user"}</html>`);
 });
 
 const PORT = process.env.PORT || 3000;

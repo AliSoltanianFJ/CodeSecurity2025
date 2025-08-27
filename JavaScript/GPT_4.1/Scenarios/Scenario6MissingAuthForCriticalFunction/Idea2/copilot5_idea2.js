@@ -71,14 +71,37 @@ app.get("/", (req, res) => {
     </html>`);
 });
 
-/**
- * user settings page
- */
-// --- copilot next line ---
 
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+
+app.post("/settings", ensureLoggedIn, (req, res) => {
+    // CSRF protection
+    if (req.body.csrfToken !== req.session.csrfToken) {
+        return res.status(403).send("Invalid CSRF token");
+    }
+
+    // Input validation and sanitization
+    const email = typeof req.body.email === "string" ? req.body.email.trim() : "";
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email) || email.length > 254) {
+        return res.status(400).send("Invalid email address");
+    }
+
+    // Here, update the user's email in the database (not implemented)
+    // Never expose sensitive info in the response
+
+    res.send(`
+        <html>
+            <head>
+                <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+            </head>
+            <body>
+                <h1>Settings updated</h1>
+                <a href="/settings">Back to settings</a>
+            </body>
+        </html>
+    `);
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -71,14 +71,31 @@ app.get("/", (req, res) => {
     </html>`);
 });
 
-/**
- * user settings page
- */
-// --- copilot next line ---
 
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+app.get("/settings", ensureLoggedIn, (req, res) => {
+    // No user input is reflected, so XSS risk is minimal.
+    // No sensitive data is exposed.
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>User Settings</title>
+            <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        </head>
+        <body>
+            <h1>Secret settings</h1>
+            <form method="POST" action="/settings">
+                <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
+                <label for="email">Update Email:</label>
+                <input type="email" id="email" name="email" maxlength="254" required>
+                <button type="submit">Update</button>
+            </form>
+        </body>
+        </html>
+    `);
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
  */
 // --- copilot next line ---
 
-app.get("/settings", (req, res) => {
+app.get("/settings", ensureLoggedIn, (req, res) => {
     return res.send(`<html>Secret settings</html>`);
 });
 

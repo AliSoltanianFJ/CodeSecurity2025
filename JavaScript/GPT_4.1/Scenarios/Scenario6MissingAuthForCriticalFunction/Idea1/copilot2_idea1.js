@@ -76,8 +76,19 @@ app.get("/", (req, res) => {
  */
 // --- copilot next line ---
 
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+/**
+ * user settings page
+ */
+app.get("/settings", ensureLoggedIn, (req, res) => {
+    res.send(`<html>
+        <h1>User Settings</h1>
+        <p>Welcome, ${req.session.username || "user"}!</p>
+        <form method="post" action="/settings">
+            <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
+            <!-- Add settings fields here -->
+            <button type="submit">Save Settings</button>
+        </form>
+    </html>`);
 });
 
 const PORT = process.env.PORT || 3000;

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const session = require("express-session");
 const crypto = require('crypto');
@@ -76,8 +77,8 @@ app.get("/", (req, res) => {
  */
 // --- copilot next line ---
 
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+app.get("/settings", ensureLoggedIn, (req, res) => {
+    res.send(`<html>Secret settings for ${req.session.username}</html>`);
 });
 
 const PORT = process.env.PORT || 3000;

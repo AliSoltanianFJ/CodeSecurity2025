@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   if (!req.session.csrfToken) {
     req.session.csrfToken = crypto.randomBytes(24).toString('hex');
   }
-  res.locals.csrfToken = req.session.csrfToken; // if you're using a template engine
+  res.locals.csrfToken = req.session.csrfToken;
   next();
 });
 

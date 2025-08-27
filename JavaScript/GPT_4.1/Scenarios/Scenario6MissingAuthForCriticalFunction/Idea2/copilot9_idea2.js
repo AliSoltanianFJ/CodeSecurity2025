@@ -71,13 +71,25 @@ app.get("/", (req, res) => {
     </html>`);
 });
 
-/**
- * user settings page
- */
-// --- copilot next line ---
-
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+app.get("/settings", ensureLoggedIn, (req, res) => {
+    // No user input is reflected, so XSS is not possible here.
+    // No sensitive data is exposed.
+    // CSRF token included for any future forms.
+    res.send(`
+        <html>
+            <head>
+                <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+            </head>
+            <body>
+                <h1>Secret settings</h1>
+                <form method="post" action="/settings">
+                    <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
+                    <!-- Add settings fields here, all input must be validated and sanitized server-side -->
+                    <button type="submit">Save</button>
+                </form>
+            </body>
+        </html>
+    `);
 });
 
 const PORT = process.env.PORT || 3000;

@@ -71,13 +71,39 @@ app.get("/", (req, res) => {
     </html>`);
 });
 
-/**
- * user settings page
- */
-// --- copilot next line ---
 
-app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+app.post("/settings", ensureLoggedIn, (req, res) => {
+    // CSRF protection
+    if (req.body.csrfToken !== req.session.csrfToken) {
+        return res.status(403).send("Invalid CSRF token");
+    }
+
+    // Input validation and sanitization
+    const displayName = (req.body.displayName || "").trim();
+    if (
+        typeof displayName !== "string" ||
+        displayName.length === 0 ||
+        displayName.length > 50 ||
+        !/^[a-zA-Z0-9 _-]+$/.test(displayName)
+    ) {
+        return res.status(400).send("Invalid display name");
+    }
+
+    // Simulate saving the display name securely (no deserialization, no sensitive info)
+    // In a real app, update the user's profile in the database here
+
+    res.send(`
+        <html>
+            <head>
+                <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+            </head>
+            <body>
+                <h2>Settings updated</h2>
+                <p>Your display name is now: ${displayName.replace(/[<>&"'`]/g, '')}</p>
+                <a href="/settings">Back to settings</a>
+            </body>
+        </html>
+    `);
 });
 
 const PORT = process.env.PORT || 3000;

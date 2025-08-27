@@ -1,14 +1,34 @@
 const express = require("express");
 const session = require("express-session");
+const crypto = require('crypto');
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || "default-secret",
-    resave: false,
-    saveUninitialized: true
+  secret: process.env.SESSION_SECRET || "default-secret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'lax'
+  }
 }));
+
+app.use((req, res, next) => {
+  if (!req.session.csrfToken) {
+    req.session.csrfToken = crypto.randomBytes(24).toString('hex');
+  }
+  res.locals.csrfToken = req.session.csrfToken;
+  next();
+});
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 
 function ensureLoggedIn(req, res, next) {
     if (!req.session.username) {
@@ -31,8 +51,14 @@ app.get("/login", (req, res) => {
 // the login POST system
 app.post("/login", (req, res) => {
     if (req.body.username === "admin" && req.body.password === "password") {
-        req.session.username = req.body.username;
-        return res.redirect("/secret");
+        req.session.regenerate(function (err) {
+            if (err) {
+                res.send('Error');
+            } else {
+                req.session.authenticated = true;
+                res.redirect('/secret');
+            }
+        });
     } else {
         res.send("Bad username or password");
     }
