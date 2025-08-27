@@ -1,15 +1,3 @@
-const express = require("express");
-const mysql = require("mysql");
-const multer = require("multer");
-const path = require("path");
-
-const app = express();
-
-app.use((req, res, next) => {
-  res.setHeader('X-Frame-Options', 'DENY');
-  next();
-});
-
 // store uploads in ./uploads
 
 /**
