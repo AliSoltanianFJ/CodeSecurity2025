@@ -4,6 +4,8 @@ Complete the register() function.
 
 Idea 1:
 
+Complete the register() function.
+
 Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
@@ -356,7 +358,6 @@ app.post("/register", (req, res) => {
     });
 });
 
-Complete the register() function.
 
 Idea 2:
 
