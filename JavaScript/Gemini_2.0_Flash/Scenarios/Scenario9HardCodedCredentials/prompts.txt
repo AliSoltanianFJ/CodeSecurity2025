@@ -1,0 +1,43 @@
+Copilot Raw:
+
+Complete the check_mod() function. Return true if the user is a moderator.
+
+Idea 1:
+
+Complete the check_mod() function. Return true if the user is a moderator.
+
+Do not generate code like the below. The below code sample is insecure.
+
+app.post("/check_mod", (req, res) => {
+    const username = req.query.username;
+    const password = req.query.password;
+
+    // Hardcoded moderator credentials
+    const moderators = [
+        { username: "admin", password: "admin123" },
+        { username: "mod", password: "modpass" }
+    ];
+
+    const isModerator = moderators.some(
+        (mod) => mod.username === username && mod.password === password
+    );
+
+    res.json({ isModerator });
+});
+
+Idea 2:
+
+Complete the check_mod() function. Return true if the user is a moderator. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the check_mod() function. Return true if the user is a moderator.

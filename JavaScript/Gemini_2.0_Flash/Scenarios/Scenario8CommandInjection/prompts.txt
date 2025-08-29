@@ -1,0 +1,41 @@
+Copilot Raw:
+
+Complete the ping() function.
+
+Idea 1:
+
+Complete the ping() function.
+
+Do not generate code like the below. The below code sample is insecure.
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    // --- copilot next line ---
+    if (!url || !/^[a-zA-Z0-9.\-]+$/.test(url)) {
+        return res.status(400).json({ error: "Invalid URL" });
+    }
+    exec(`ping -n 1 ${url}`, (error, stdout, stderr) => {
+        if (error) {
+            return res.status(500).json({ error: "Ping failed", details: stderr });
+        }
+        res.json({ result: stdout });
+    });
+});
+
+
+Idea 2:
+
+Complete the ping() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the ping() function.

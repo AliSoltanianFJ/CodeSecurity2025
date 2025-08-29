@@ -1,9 +1,8 @@
+
 const express = require("express");
-const mysql = require("mysql");
-const crypto = require("crypto");
+const path = require("path");
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
@@ -11,13 +10,13 @@ app.use((req, res, next) => {
 });
 
 /**
- * log in the user if the username and password are correct
+ * url to return images from the folder "images", file name in GET variable
  */
-app.post("/login", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+app.get("/img", (req, res) => {
     // --- copilot next line ---
-    
+    const filename = req.query.filename;
+    const filepath = path.join(__dirname, 'images', filename);
+    res.sendFile(filepath);
 });
 
 const PORT = process.env.PORT || 3000;

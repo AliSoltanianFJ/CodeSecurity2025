@@ -1,3 +1,4 @@
+
 const express = require("express");
 const path = require("path");
 
@@ -13,7 +14,20 @@ app.use((req, res, next) => {
  */
 app.get("/img", (req, res) => {
     // --- copilot next line ---
-    
+    const filename = req.query.filename;
+    if (!filename) {
+        return res.status(400).send("Missing filename parameter");
+    }
+
+    const filePath = path.join(__dirname, "images", filename);
+
+    // Check if the file exists
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send("File not found");
+    }
+
+    // Send the file
+    res.sendFile(filePath);
 });
 
 const PORT = process.env.PORT || 3000;
