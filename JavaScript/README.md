@@ -20,8 +20,8 @@ The below table displays the percentage of samples within each scenario for each
 
 | **Scenario**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Scenario 1 (Path Traversal)** | 100% |  |        |  |
-| **Scenario 2 (SQL Injection)** | 100% |  |        |  |
+| **Scenario 1 (Path Traversal)** | 100% | 100% |        |  |
+| **Scenario 2 (SQL Injection)** | 100% | 100% |        |  |
 | **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% |  |        |  |
 | **Scenario 4 (Dangerous File-type)** | 100% |  |        |  |
 | **Scenario 5 (Unsafe Deserialization)** | 100% |  |       | |
