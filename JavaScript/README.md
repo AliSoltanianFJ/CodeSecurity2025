@@ -8,9 +8,9 @@ The below table displays a comparison between the percentage of samples in which
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 14%                        | xx%                                | xx%                       |            xx%                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | xx%                                | xx%                       |            xx%                         |
-| **Idea 3 (Fine-Tuning)** | xx%                        | xx%                               |          xx%               |                                 xx%       |
+| **Idea 1 (Negative Example Prompting)** | 14%                        | xx                                | xx                       |            xx                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | xx                                | xx                       |            xx                         |
+| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |          xx               |                                 xx       |
 
 ## Comparison of Security Weaknesses Across Models
 
@@ -58,9 +58,9 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | xx%                        | xx%                                | xx%                       |             xx%                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | xx%                        | xx%                                | xx%                       |            xx%                         |
-| **Idea 3 (Fine-Tuning)** | xx%                        | xx%                               |             xx%            |                  xx%                    |
+| **Idea 1 (Negative Example Prompting)** | 37%                        | xx                                | xx                       |             xx                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | xx                                | xx                       |            xx                         |
+| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |             xx            |                  xx                    |
 
 #### GPT-4.1
 
