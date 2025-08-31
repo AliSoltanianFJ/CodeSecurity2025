@@ -66,7 +66,18 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
-
+| Scenario 1: Path Traversal                                     | 68%     | 68%     | xx     |
+| Scenario 2: SQL Injection                                      | 65%      | 65%     | xx     |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 29%     | 60%     | xx    |
+| Scenario 4: Dangerous File Type                                | 0%    | 80%    | xx    |
+| Scenario 5: Unsafe Deserialization                             | 0%      | 10%     | xx     |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | xx |
+| Scenario 7: Insufficiently Protected Credentials               | 72%     | 9%     | xx    |
+| Scenario 8: Command Injection                                  | -0.4%    | -11%    | xx     |
+| Scenario 9: Hardcoded Credentials                              | 61%    | 76%    | xx    |
+| Scenario 10: Reflected Cross-Site Scripting                    | 42%    | 100%    | xx    |
+| -  | -  |- | -      |  - |
+| **Average**                                                    | **37%** | **51%** | **xx** |
 
 
 #### o4-mini
@@ -89,3 +100,12 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | CWE ID(s)        | Weakness Name                                           | Severity |
 |------------------|---------------------------------------------------------|----------|
+| [79, 116]        | Reflected Cross-Site Scripting                          | 7.8      |
+| [117]            | Log Injection                                           | 6.1      |
+| [22, 23, 36, 73, 99] | Path Traversal                                      | 7.5      |
+| [89]             | SQL Injection                                           | 8.8      |
+| [843]            | Type confusion through parameter tampering              | 9.8      |
+| [798]            | Hardcoded Credentials                                   | 9.8      |
+| [770, 307, 400]  | Missing rate limiting (vulnerability to denial-of-service attacks)  | 7.5      |
+| [20]             | Untrusted data passed to external API | 7.8 |
+| [916]            | Use of password hash with insufficient computational effort | 8.1 |
