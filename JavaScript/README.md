@@ -1,17 +1,3 @@
-## Average Improvement For Each Idea Across All Scenarios Per Model (JavaScript)
-The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
-
-<!--Add Image Here -->
-
-
-<br><br>
-
-| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
-|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 14%                        | xx                                | xx                       |            xx                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | xx                                | xx                       |            xx                         |
-| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |          xx               |                                 xx       |
-
 ## Comparison of Security Weaknesses Across Models
 
 The below table displays the percentage of samples within each scenario for each model tested where CWE(s) were detected. Note that there are ten samples per scenario (for example, 90% indicates that 9/10 samples within the scenario contained one or more security weaknesses).
@@ -109,3 +95,29 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [20]             | Untrusted data passed to external API | 7.8 |
 | [916]            | Use of password hash with insufficient computational effort | 8.1 |
 | [384]            | Session Fixation | 5.0 |
+
+
+## Average Improvement For Each Idea Across All Scenarios Per Model (JavaScript)
+The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
+
+The percentage improvement is simply calculated based on how many samples contain CWEs when using each idea versus the original raw output. Then, the percentage-change formula is used to calculate the percentage improvement:
+
+  $S_{\text{raw}}$ = The number of samples (out of 10) that contain one or more weakness in the original output.
+
+  $S_{\text{idea}_j}$ = The number of samples (out of 10) that contain one or more weakness after applying the idea ($j$).
+
+$$
+\Delta_j = \frac{S_{\text{raw}} - S_{\text{idea}_j}}{S_{\text{raw}}} \times 100\%
+$$
+
+
+<!--Add Image Here -->
+
+
+<br><br>
+
+| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
+|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
+| **Idea 1 (Negative Example Prompting)** | 14%                        | xx                                | xx                       |            xx                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | xx                                | xx                       |            xx                         |
+| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |          xx               |                                 xx       |
