@@ -47,8 +47,7 @@ The formula below is used to calculate the percentage improvement for each idea 
   4. Calculate the percentage change between the total severity score of the raw output and the total severity score for the outputs of each idea to get the final percentage improvement.
 
 <p align="center">
-<!--Add Image Here -->
-
+<img width="708" alt="image" src="https://github.com/user-attachments/assets/d14c1a30-370d-4222-8672-563793d03ba9" />
 </p>
 
 ### Improvements
