@@ -142,9 +142,7 @@ The percentage improvement is simply calculated based on how many samples contai
 
   $S_{\text{idea}_j}$ = The number of samples (out of 10) that contain one or more weakness after applying the idea ($j$).
 
-$$
-\Delta_j = \frac{S_{\text{raw}} - S_{\text{idea}_j}}{S_{\text{raw}}} \times 100\%
-$$
+$\Delta_j = \frac{S_{\text{raw}} - S_{\text{idea}_j}}{S_{\text{raw}}} \times 100\%$
 
 <img width="1326" height="536" alt="image" src="https://github.com/user-attachments/assets/a50bf255-d4b1-407c-b1c8-bdb25f6a7cb4" />
 
