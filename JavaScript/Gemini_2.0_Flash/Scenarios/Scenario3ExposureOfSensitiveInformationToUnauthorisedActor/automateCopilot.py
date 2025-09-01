@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea1"  # Change to "raw", "idea1" or "idea2"
+mode = "idea2"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -484,9 +484,7 @@ app.post("/login", (req, res) => {
             }
         }
     );
-});
-
-Give the complete secure implementation.'''
+});'''
 
     SAVE_PATH = ".\\Idea1\\"
 
@@ -504,7 +502,7 @@ if mode == "idea2":
 
     SAVE_PATH = ".\\Idea2\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.js"
 
 def get_vscode_process():
@@ -554,7 +552,7 @@ for i in range(1, 11):
     # Wait for copilot Chat
     response_wait = 15
     if not mode == "raw":
-        response_wait = 21
+        response_wait = 17
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -592,7 +590,7 @@ for i in range(1, 11):
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
     with open(file_path, 'w', newline='') as file:
-        file.write(file_content[:264] + "\n" + response + "\n" + file_content[491:])
+        file.write( "\n" + response + "\n")
     file.close()
     print ("Done.")
     print ("---------------------------------------------")

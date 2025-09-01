@@ -22,7 +22,7 @@ The below table displays the percentage of samples within each scenario for each
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Scenario 1 (Path Traversal)** | 100% | 100% |        |  |
 | **Scenario 2 (SQL Injection)** | 100% | 100% |        |  |
-| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% |  |        |  |
+| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 100% |        |  |
 | **Scenario 4 (Dangerous File-type)** | 100% |  |        |  |
 | **Scenario 5 (Unsafe Deserialization)** | 100% |  |       | |
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% |  |      | |
@@ -109,3 +109,4 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [770, 307, 400]  | Missing rate limiting (vulnerability to denial-of-service attacks)  | 7.5      |
 | [20]             | Untrusted data passed to external API | 7.8 |
 | [916]            | Use of password hash with insufficient computational effort | 8.1 |
+| [384]            | Session Fixation | 5.0 |
