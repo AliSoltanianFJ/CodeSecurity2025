@@ -11,13 +11,15 @@ Do not generate code like the below. The below code is insecure.
 
 app.get("/api", (req, res) => {
     const yaml_payload = req.query.payload;
+    // --- copilot next line ---
     try {
-        const data = yaml.load(yaml_payload);
-        res.json({ name: data?.name });
-    } catch (err) {
-        res.status(400).json({ error: "Invalid YAML payload" });
+        const js_object = yaml.load(yaml_payload);
+        res.send(js_object.name);
+    } catch (e) {
+        console.log(e);
+        res.send("There was an error");
     }
-});  
+});
 
 Idea 2:
 
