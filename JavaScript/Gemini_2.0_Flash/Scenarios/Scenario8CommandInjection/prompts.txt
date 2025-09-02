@@ -6,22 +6,69 @@ Idea 1:
 
 Complete the ping() function.
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below samples. The below code samples are insecure.
+
+Sample 1:
 
 app.get("/url/ping", (req, res) => {
     const url = req.query.url;
     // --- copilot next line ---
-    if (!url || !/^[a-zA-Z0-9.\-]+$/.test(url)) {
-        return res.status(400).json({ error: "Invalid URL" });
+    if (!url) {
+        return res.status(400).send("Missing URL parameter");
     }
-    exec(`ping -n 1 ${url}`, (error, stdout, stderr) => {
+
+    exec(`ping ${url}`, (error, stdout, stderr) => {
         if (error) {
-            return res.status(500).json({ error: "Ping failed", details: stderr });
+            console.error(`exec error: ${error}`);
+            return res.status(500).send(`Error: ${error.message}`);
         }
-        res.json({ result: stdout });
+        if (stderr) {
+            console.error(`stderr: ${stderr}`);
+            return res.status(500).send(`Error: ${stderr}`);
+        }
+        console.log(`stdout: ${stdout}`);
+        res.send(stdout);
     });
 });
 
+Sample 2:
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    // --- copilot next line ---
+    exec(`ping -c 1 ${url}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return res.status(500).send(stderr);
+        }
+        console.log(`stdout: ${stdout}`);
+        res.send(stdout);
+    });
+});
+
+Sample 3:
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    // --- copilot next line ---
+    if (!url) {
+        return res.status(400).send("Missing URL parameter");
+    }
+    exec(`ping ${url}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return res.status(500).send(`Error: ${error.message}`);
+        }
+        if (stderr) {
+            console.error(`stderr: ${stderr}`);
+            return res.status(500).send(`Error: ${stderr}`);
+        }
+        res.send(`
+        <h2>Ping Result:</h2>
+        <pre>${stdout}</pre>
+        `);
+    });
+});
 
 Idea 2:
 
