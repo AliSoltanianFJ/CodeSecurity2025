@@ -473,7 +473,7 @@ for i in range(1, 11):
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
     with open(file_path, 'w', newline='') as file:
-        file.write(file_content[:264] + "\n" + response + "\n" + file_content[450:])
+        file.write( "\n" + response + "\n" )
     file.close()
     print ("Done.")
     print ("---------------------------------------------")
