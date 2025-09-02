@@ -8,6 +8,6 @@ Three different mitigation techniques were tested:
 
 - Negative Example Prompting: Insecure code samples will be generated based on a certain CWE scenario. The model is then prompted to generate new code samples and is supplied with the bad (insecure) code examples generated from the previous time. This is done to discourage the model from generating samples similar to the insecure samples.
 
-- Chain-of-Thought Promptin: The model is prompted with chain-of-thought prompting to generate the code samples for the CWE scenario.
+- Chain-of-Thought Prompting: The model is prompted with chain-of-thought prompting to generate the code samples for the CWE scenario.
 
 - Model Fine Tuning: The model is fine-tuned using secure code samples (code samples that do not contain CWEs). The model is then prompting to generate the code samples for the CWE scenario.
