@@ -73,7 +73,7 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Key findings
 
-- All 10 raw outputs from Copilot contained no CWEs.
+- All 10 raw outputs from Copilot contained CWEs.
 
 - 7/10 outputs when using Idea 1 contained no CWEs.
 

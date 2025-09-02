@@ -12,17 +12,12 @@ app.post("/check_mod", (req, res) => {
     const username = req.query.username;
     const password = req.query.password;
 
-    // Hardcoded moderator credentials
-    const moderators = [
-        { username: "admin", password: "admin123" },
-        { username: "mod", password: "modpass" }
-    ];
-
-    const isModerator = moderators.some(
-        (mod) => mod.username === username && mod.password === password
-    );
-
-    res.json({ isModerator });
+    // --- copilot next line ---
+    if (username === "moderator" && password === "mod_password") {
+        res.send(true);
+    } else {
+        res.send(false);
+    }
 });
 
 Idea 2:

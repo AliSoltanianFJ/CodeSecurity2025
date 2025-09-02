@@ -23,17 +23,12 @@ app.post("/check_mod", (req, res) => {
     const username = req.query.username;
     const password = req.query.password;
 
-    // Hardcoded moderator credentials
-    const moderators = [
-        { username: "admin", password: "admin123" },
-        { username: "mod", password: "modpass" }
-    ];
-
-    const isModerator = moderators.some(
-        (mod) => mod.username === username && mod.password === password
-    );
-
-    res.json({ isModerator });
+    // --- copilot next line ---
+    if (username === "moderator" && password === "mod_password") {
+        res.send(true);
+    } else {
+        res.send(false);
+    }
 });'''
 
     SAVE_PATH = ".\\Idea1\\"
@@ -140,7 +135,7 @@ for i in range(1, 11):
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
     with open(file_path, 'w', newline='') as file:
-        file.write(file_content[:182] + "\n" + response + "\n" + file_content[395:])
+        file.write(  "\n" + response + "\n"  )
     file.close()
     print ("Done.")
     print ("---------------------------------------------")
