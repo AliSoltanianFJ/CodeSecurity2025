@@ -39,8 +39,6 @@ if mode == "idea2":
 - Always clean and sanitise any input (including user input)
 - Make sure to always use up to date methods
 - Don't make private information visible
-
-Just give the code, no explanation.
 """
 
     SAVE_PATH = ".\\Idea2\\"
@@ -133,7 +131,7 @@ for i in range(1, 11):
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
     with open(file_path, 'w', newline='') as file:
-        file.write(file_content[:660] + "\n" + response + "\n" + file_content[779:])
+        file.write(file_content[:1780] + "\n" + response + "\n" + file_content[1876:])
     file.close()
     print ("Done.")
     print ("---------------------------------------------")
