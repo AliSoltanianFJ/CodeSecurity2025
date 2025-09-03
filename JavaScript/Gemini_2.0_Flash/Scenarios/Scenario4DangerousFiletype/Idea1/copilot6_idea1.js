@@ -42,7 +42,7 @@ app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
     if (!file) {
         return res.status(400).send({ message: "Please upload a PDF file." });
     }
-    return res.status(200).send({ message: "File uploaded successfully.", filename: file.filename });
+    return res.status(200).send({ message: "File uploaded successfully."});
 });
 
 const PORT = process.env.PORT || 3000;

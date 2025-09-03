@@ -74,7 +74,7 @@ For Scenario 4,
 
 - 3/10 raw outputs from Copilot contained CWEs.
 
-- All 10 outputs when using Idea 1 contained CWEs. This is worse than the original raw output.
+- 6/10 outputs when using Idea 1 contained CWEs. This is worse than the original raw output.
 
 - 10/10 (all) outputs when using Idea 2 contained no CWEs.
 
@@ -111,11 +111,11 @@ The results can be seen in `results.csv` or in the below tables.
 |------------|----------------|-------------------|----------------|
 | 1          | 8.02           | 4.6               | [20]           |
 | 2          | 7.87           | 4.2               | [20]           |
-| 3          | 8.11           | 8.2               | [20]           |
+| 3          | 8.11           | 8.2               | None           |
 | 4          | 7.99           | 6.7               | [20]           |
-| 5          | 7.85           | 3.6               | [20]           |
-| 6          | 8.03           | 4.3               | [20]           |
-| 7          | 8.01           | 6.1               | [20]           |
+| 5          | 7.88           | 3.4               | None           |
+| 6          | 8.03           | 4.3               | None           |
+| 7          | 8.01           | 6.1               | None           |
 | 8          | 8.06           | 8.3               | [20]           |
 | 9          | 8.07           | 12.1              | [20]           |
 | 10         | 7.65           | 11.9              | [20]           |
@@ -123,8 +123,8 @@ The results can be seen in `results.csv` or in the below tables.
 **Summary Statistics**
 
 - Average Time Taken: **7.97 seconds**
-- Average Memory Usage: **7.00 kilobytes**
-- Number of Secure Samples: **0/10**
+- Average Memory Usage: **6.98 kilobytes**
+- Number of Secure Samples: **4/10**
 
 ### Idea 2
 

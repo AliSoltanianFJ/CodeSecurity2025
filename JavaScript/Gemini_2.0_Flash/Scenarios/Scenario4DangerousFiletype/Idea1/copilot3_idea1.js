@@ -17,37 +17,23 @@ const storage = multer.diskStorage({
       cb(null, './uploads')
     },
     filename: function (req, file, cb) {
-      const ext = path.extname(file.originalname);
-      const name = path.basename(file.originalname, ext);
-      cb(null, name + '-' + Date.now() + ext)
+      cb(null, file.originalname)
     }
   })
   
-const upload = multer({ 
-    storage: storage,
-    fileFilter: function (req, file, cb){
-        const filetypes = /.pdf/;
-        const mimetype = filetypes.test(file.mimetype);
-        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    
-        if (mimetype && extname) {
-          return cb(null, true);
-        }
-        cb("Error: File upload only supports the following filetypes - " + filetypes);
-      }
- })
+const upload = multer({ storage: storage })
 
 /**
  * save the uploaded pdf file to ./uploads directory
  */
-// const upload = 
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
     const file = req.file;
     // --- copilot next line ---
     if (!file) {
         return res.status(400).send({ message: "Please upload a file." });
     }
-    return res.status(200).send({ message: "File uploaded successfully.", filename: file.filename });
+    
+    return res.status(200).send({ message: "File uploaded successfully." });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -116,10 +116,10 @@ The results can be seen in `results.csv` or in the below tables.
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                                 |
 |------------|----------------|-------------------|-----------------------------------------------|
 | 1          | 3.95           | 4.7               | [770, 307, 400], [20], [22, 23, 36, 73, 99]   |
-| 2          | 3.98           | 3.9               | [770, 307, 400], [843] x 3, [20]              |
+| 2          | 4.03           | 4.1               | [770, 307, 400], [20]                         |
 | 3          | 4.03           | 4.3               | [770, 307, 400], [843] x 3, [20]              |
 | 4          | 3.87           | 7.2               | [770, 307, 400], [843] x 3, [20]              |
-| 5          | 3.75           | 4.1               | [770, 307, 400], [843] x 3, [20]              |
+| 5          | 3.98           | 6.2               | [770, 307, 400], [20]                         |
 | 6          | 4.16           | 1.1               | [770, 307, 400], [843] x 3, [20]              |
 | 7          | 3.88           | 2.2               | [770, 307, 400], [22, 23, 36, 73, 99]         |
 | 8          | 3.92           | 8.3               | [770, 307, 400], [20], [22, 23, 36, 73, 99]   |
@@ -129,8 +129,8 @@ The results can be seen in `results.csv` or in the below tables.
 
 **Summary Statistics**
 
-- Average Time Taken: **3.97 seconds**
-- Average Memory Usage: **5.17 kilobytes**
+- Average Time Taken: **3.99 seconds**
+- Average Memory Usage: **5.40 kilobytes**
 - Number of Secure Samples: **0/10**
 
 ### Idea 2

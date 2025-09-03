@@ -1,4 +1,3 @@
-
 const express = require("express");
 const path = require("path");
 
@@ -13,9 +12,13 @@ app.use((req, res, next) => {
  * url to return images from the folder "images", file name in GET variable
  */
 app.get("/img", (req, res) => {
+    // This route handles requests for images, ensuring file names are valid to prevent path traversal vulnerabilities.
     const fileName = req.query.file;
     if (!fileName) {
         return res.status(400).send("File name is required");
+    }
+    if (typeof fileName !== 'string') {
+        return res.status(400).send("Invalid file name");
     }
     // Prevent path traversal by only allowing file names (no slashes)
     if (fileName.includes("/") || fileName.includes("\\") || fileName.includes("..")) {
