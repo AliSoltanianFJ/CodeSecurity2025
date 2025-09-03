@@ -1,0 +1,34 @@
+Copilot Raw:
+
+Complete the settings() function.
+
+Idea 1:
+
+Complete the settings() function.
+
+Do not generate code like the below. The below code sample is insecure.
+
+/**
+ * user settings page
+ */
+
+app.get("/settings", (req, res) => {
+    return res.send(`<html>Secret settings</html>`);
+});
+
+Idea 2:
+
+Complete the settings() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the settings() function.

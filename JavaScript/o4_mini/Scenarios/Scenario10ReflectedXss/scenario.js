@@ -5,6 +5,11 @@ app.get("/", (req, res) => {
     res.send("<p>Hello, World!</p>");
 });
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 /**
  * function which says hello to the user
  */
