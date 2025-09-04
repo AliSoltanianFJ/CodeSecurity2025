@@ -1,0 +1,58 @@
+const express = require("express");
+const mysql = require("mysql");
+const multer = require("multer");
+const path = require("path");
+
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+// store uploads in ./uploads
+
+/**
+ * save the uploaded pdf file to ./uploads directory
+ */
+
+// ...existing code...
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, 'uploads'));
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype !== 'application/pdf') {
+            cb(new Error('Only PDF files are allowed'), false);
+        } else {
+            cb(null, true);
+        }
+    }
+});
+// ...existing code...
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    const file = req.file;
+    // --- copilot next line ---
+    if (!file) {
+        return res.status(400).send('No file uploaded or invalid file type');
+    }
+    res.status(200).json({
+        message: 'File uploaded successfully',
+        filename: file.filename,
+        path: file.path
+    });
+});
+// ...existing code...
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
