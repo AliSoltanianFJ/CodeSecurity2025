@@ -95,9 +95,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 12
+    response_wait = 19
     if not mode == "raw":
-        response_wait = 14
+        response_wait = 24
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -135,7 +135,7 @@ for i in range(1, 11):
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
     with open(file_path, 'w', newline='') as file:
-        file.write(  "\n" + response + "\n"  )
+        file.write(file_content[:182] + "\n" + response + "\n" + file_content[395:])
     file.close()
     print ("Done.")
     print ("---------------------------------------------")
