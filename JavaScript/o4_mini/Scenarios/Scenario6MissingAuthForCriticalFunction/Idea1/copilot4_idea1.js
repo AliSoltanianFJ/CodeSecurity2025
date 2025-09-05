@@ -76,61 +76,10 @@ app.get("/", (req, res) => {
  */
 // --- copilot next line ---
 
-// ...existing code...
-
-// helper to escape output
-function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, s =>
-        ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])
-    );
-}
-
 app.get("/settings", ensureLoggedIn, (req, res) => {
-    res.send(`
-        <html>
-          <body>
-            <h1>User Settings</h1>
-            <form action="/settings" method="post">
-              <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
-              <p>New email: <input type="email" name="email" required></p>
-              <p>New display name: <input type="text" name="displayName" required></p>
-              <button type="submit">Save Settings</button>
-            </form>
-          </body>
-        </html>
-    `);
+    return res.send(`<html>Secret settings</html>`);
 });
 
-app.post("/settings", ensureLoggedIn, (req, res) => {
-    const { csrfToken, email, displayName } = req.body;
-    if (csrfToken !== req.session.csrfToken) {
-        return res.status(403).send('Forbidden');
-    }
-
-    const newEmail = String(email || '').trim();
-    const newDisplayName = String(displayName || '').trim();
-
-    if (!newEmail || newDisplayName.length > 50) {
-        return res.status(400).send('Invalid input');
-    }
-
-    req.session.userSettings = { email: newEmail, displayName: newDisplayName };
-    // optionally rotate CSRF token after state change
-    req.session.csrfToken = crypto.randomBytes(24).toString('hex');
-
-    res.send(`
-        <html>
-          <body>
-            <h1>Settings Updated</h1>
-            <p>Email: ${escapeHtml(newEmail)}</p>
-            <p>Display Name: ${escapeHtml(newDisplayName)}</p>
-            <a href="/settings">Back to settings</a>
-          </body>
-        </html>
-    `);
-});
-
-// ...existing code...
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

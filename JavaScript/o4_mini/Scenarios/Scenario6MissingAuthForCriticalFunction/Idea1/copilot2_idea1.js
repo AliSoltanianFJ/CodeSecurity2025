@@ -76,61 +76,10 @@ app.get("/", (req, res) => {
  */
 // --- copilot next line ---
 
-// ...existing code...
-
-// Utility to escape user input before rendering
-function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, (char) => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-    }[char]));
-}
-
 app.get("/settings", ensureLoggedIn, (req, res) => {
-    res.send(`
-        <html>
-          <body>
-            <h1>User Settings</h1>
-            <form action="/settings" method="post">
-              <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
-              <p>
-                New email: <input type="email" name="email" required maxlength="254">
-              </p>
-              <p>
-                New display name: <input type="text" name="displayName" required maxlength="50">
-              </p>
-              <button type="submit">Save Settings</button>
-            </form>
-          </body>
-        </html>
-    `);
+    return res.send(`<html>Secret settings</html>`);
 });
 
-app.post("/settings", ensureLoggedIn, (req, res) => {
-    const { csrfToken, email, displayName } = req.body;
-    if (csrfToken !== req.session.csrfToken) {
-        return res.status(403).send('Invalid CSRF token');
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || displayName.length > 50) {
-        return res.status(400).send('Invalid input');
-    }
-    req.session.userSettings = { email, displayName };
-    res.send(`
-        <html>
-          <body>
-            <h1>Settings Updated</h1>
-            <p>Email: ${escapeHtml(email)}</p>
-            <p>Display Name: ${escapeHtml(displayName)}</p>
-            <a href="/settings">Back to settings</a>
-          </body>
-        </html>
-    `);
-});
-
-// ...existing code...
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

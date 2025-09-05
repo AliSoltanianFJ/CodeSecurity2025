@@ -78,55 +78,8 @@ app.get("/", (req, res) => {
 
 // ...existing code...
 
-function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));
-}
-
 app.get("/settings", ensureLoggedIn, (req, res) => {
-    const current = req.session.userSettings || {};
-    res.send(`
-        <html>
-          <body>
-            <h1>User Settings</h1>
-            <form action="/settings" method="post">
-              <input type="hidden" name="csrfToken" value="${res.locals.csrfToken}">
-              <p>
-                New email: <input type="email" name="email" value="${escapeHtml(current.email || '')}" required>
-              </p>
-              <p>
-                New display name: <input type="text" name="displayName" value="${escapeHtml(current.displayName || '')}" required>
-              </p>
-              <button type="submit">Save Settings</button>
-            </form>
-          </body>
-        </html>
-    `);
-});
-
-app.post("/settings", ensureLoggedIn, (req, res) => {
-    const { csrfToken, email, displayName } = req.body;
-    try {
-        if (!crypto.timingSafeEqual(Buffer.from(csrfToken), Buffer.from(req.session.csrfToken))) {
-            return res.status(403).send('Invalid CSRF token');
-        }
-    } catch {
-        return res.status(403).send('Invalid CSRF token');
-    }
-
-    const safeEmail = escapeHtml(email);
-    const safeName  = escapeHtml(displayName);
-    req.session.userSettings = { email: safeEmail, displayName: safeName };
-
-    res.send(`
-        <html>
-          <body>
-            <h1>Settings Updated</h1>
-            <p>Email: ${safeEmail}</p>
-            <p>Display Name: ${safeName}</p>
-            <a href="/settings">Back to settings</a>
-          </body>
-        </html>
-    `);
+    return res.send(`<html>Secret settings</html>`);
 });
 
 // ...existing code...
