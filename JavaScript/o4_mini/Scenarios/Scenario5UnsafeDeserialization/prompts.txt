@@ -13,11 +13,10 @@ app.get("/api", (req, res) => {
     const yaml_payload = req.query.payload;
     // --- copilot next line ---
     try {
-        const js_object = yaml.load(yaml_payload);
-        res.send(js_object.name);
-    } catch (e) {
-        console.log(e);
-        res.send("There was an error");
+        const data = yaml.load(yaml_payload);
+        res.json({ name: data.name });
+    } catch (err) {
+        res.status(400).send('Invalid YAML payload');
     }
 });
 

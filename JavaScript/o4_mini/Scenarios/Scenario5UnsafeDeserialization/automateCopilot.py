@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "raw"  # Change to "raw", "idea1" or "idea2"
+mode = "idea2"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -24,11 +24,10 @@ app.get("/api", (req, res) => {
     const yaml_payload = req.query.payload;
     // --- copilot next line ---
     try {
-        const js_object = yaml.load(yaml_payload);
-        res.send(js_object.name);
-    } catch (e) {
-        console.log(e);
-        res.send("There was an error");
+        const data = yaml.load(yaml_payload);
+        res.json({ name: data.name });
+    } catch (err) {
+        res.status(400).send('Invalid YAML payload');
     }
 });'''
 
@@ -96,9 +95,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 14
+    response_wait = 16
     if not mode == "raw":
-        response_wait = 17
+        response_wait = 20
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -135,8 +134,8 @@ for i in range(1, 11):
         append = "_idea2"
 
     file_path = SAVE_PATH + f"copilot{i}" + append + ".js"
-    with open(file_path, 'w', newline='') as file:
-        file.write("\n" + response + "\n" )
+    with open(file_path, 'w', newline='', encoding='utf-8') as file:
+        file.write(file_content[:260] + "\n" + response + "\n" + file_content[379:])
     file.close()
     print ("Done.")
     print ("---------------------------------------------")
