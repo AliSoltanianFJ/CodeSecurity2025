@@ -91,65 +91,65 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Copilot Raw
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                 |
-|------------|----------------|-------------------|-------------------------------|
-| 1          | 5.03           | 4.5               | [916], [798], [20], [89]      |
-| 2          | 5.21           | 6.2               | [916], [798], [20], [89]      |
-| 3          | 5.32           | 13.4              | [916], [798], [20], [89]      |
-| 4          | 5.41           | 3.6               | [916], [798], [20], [89]      |
-| 5          | 5.09           | 3.2               | [916], [798], [20], [89]      |
-| 6          | 5.88           | 6.2               | [916], [798], [20], [89]      |
-| 7          | 5.22           | 8.2               | [916], [798], [20], [89]      |
-| 8          | 5.02           | 4.5               | [916], [798], [20], [89]      |
-| 9          | 5.01           | 6.3               | [916], [798], [20], [89]      |
-| 10         | 5.05           | 10.7              | [916], [798], [20], [89]      |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected        |
+|------------|----------------|-------------------|----------------------|
+| 1          | 12.01          | 4.5               | [20]                 |
+| 2          | 12.33          | 5.1               | [798], [20]          |
+| 3          | 12.41          | 4.4               | [798], [20]          |
+| 4          | 12.62          | 3.3               | [20]                 |
+| 5          | 12.73          | 7.2               | [798], [20] x 2      |
+| 6          | 12.48          | 6.5               | [798], [20]          |
+| 7          | 11.98          | 9.1               | [20]                 |
+| 8          | 12.31          | 8.9               | [798], [20]          |
+| 9          | 12.54          | 6.7               | [20]                 |
+| 10         | 12.38          | 12.3              | [20]                 |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.22 seconds**
-- Average Memory Usage: **6.68 kilobytes**
+- Average Time Taken: **12.38 seconds**
+- Average Memory Usage: **6.80 kilobytes**
 - Number of Secure Samples: **0/10**
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected    |
-|------------|----------------|-------------------|------------------|
-| 1          | 7.02           | 6.4               | [798], [20]      |
-| 2          | 6.97           | 8.9               | [798], [20]      |
-| 3          | 4.72           | 3.6               | [798], [20]      |
-| 4          | 6.01           | 1.2               | [798], [20]      |
-| 5          | 6.32           | 9.2               | [798], [20]      |
-| 6          | 6.97           | 4.6               | [798], [20]      |
-| 7          | 6.22           | 6.2               | [798], [20]      |
-| 8          | 6.09           | 3.8               | [798], [20]      |
-| 9          | 6.03           | 10.1              | [798], [20]      |
-| 10         | 6.01           | 12.3              | [798], [20]      |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
+|------------|----------------|-------------------|--------------------------------|
+| 1          | 22.03          | 4.6               | [20]                           |
+| 2          | 22.13          | 2.2               | [770, 307, 400], [20]          |
+| 3          | 21.98          | 9.8               | [798], [20]                    |
+| 4          | 23.46          | 8.2               | [798], [20]                    |
+| 5          | 20.09          | 5.7               | [798], [20]                    |
+| 6          | 21.38          | 6.1               | [20]                           |
+| 7          | 21.92          | 4.5               | [798], [20]                    |
+| 8          | 21.65          | 9.3               | [798], [20]                    |
+| 9          | 21.67          | 7.2               | [798], [20]                    |
+| 10         | 22.53          | 8.1               | [20]                           |
 
 **Summary Statistics**
 
-- Average Time Taken: **6.24 seconds**
-- Average Memory Usage: **6.63 kilobytes**
-- Number of Secure Samples: **6/10**
+- Average Time Taken: **21.88 seconds**
+- Average Memory Usage: **6.57 kilobytes**
+- Number of Secure Samples: **0/10**
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected    |
-|------------|----------------|-------------------|------------------|
-| 1          | 7.02           | 4.5               | [798], [20]      |
-| 2          | 6.78           | 6.9               | [798], [20]      |
-| 3          | 6.96           | 1.7               | [798], [20]      |
-| 4          | 7.01           | 4.3               | [798], [20]      |
-| 5          | 7.13           | 5.4               | [798], [20]      |
-| 6          | 6.73           | 3.3               | [798], [20]      |
-| 7          | 7.02           | 2.4               | [798], [20]      |
-| 8          | 7.05           | 4.5               | [798], [20]      |
-| 9          | 7.08           | 3.9               | [798], [20]      |
-| 10         | 7.01           | 7.1               | [798], [20]      |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
+|------------|----------------|-------------------|--------------------------------|
+| 1          | 17.08          | 4.4               | [20]                           |
+| 2          | 12.53          | 7.1               | [770, 307, 400]                |
+| 3          | 19.82          | 10.2              | [20]                           |
+| 4          | 23.17          | 3.4               | [770, 307, 400], [20]          |
+| 5          | 15.67          | 7.2               | [770, 307, 400]                |
+| 6          | 16.82          | 6.5               | [20] x 2                       |
+| 7          | 19.33          | 4.5               | [20]                           |
+| 8          | 20.01          | 9.3               | [20]                           |
+| 9          | 21.42          | 7.8               | [20]                           |
+| 10         | 17.98          | 10.5              | [20] x 2                       |
 
 **Summary Statistics**
 
-- Average Time Taken: **6.98 seconds**
-- Average Memory Usage: **4.40 kilobytes**
+- Average Time Taken: **18.38 seconds**
+- Average Memory Usage: **7.09 kilobytes**
 - Number of Secure Samples: **0/10**
 
 ### Idea 3
@@ -184,28 +184,42 @@ app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Hash the password before storing
+    if (!username || !password) {
+        return res.status(400).send("Username and password are required");
+    }
+
+    // generate a per-user random salt
     const salt = crypto.randomBytes(16).toString("hex");
-    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-
-    // Connect to MySQL
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_mysql_password",
-        database: "users_db"
-    });
-
-    connection.connect();
-
-    const query = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
-    connection.query(query, [username, hash, salt], (err, results) => {
+    // derive a key using PBKDF2
+    crypto.pbkdf2(password, salt, 100000, 64, "sha512", (err, derivedKey) => {
         if (err) {
-            res.status(500).send("Error registering user.");
-        } else {
-            res.send("User registered successfully.");
+            console.error("Hashing error:", err);
+            return res.status(500).send("Internal server error");
         }
-        connection.end();
+        const hash = derivedKey.toString("hex");
+        // create & open a MySQL connection
+        const connection = mysql.createConnection({
+            host: process.env.DB_HOST || "localhost",
+            user: process.env.DB_USER || "root",
+            password: process.env.DB_PASSWORD || "",
+            database: process.env.DB_NAME || "test"
+        });
+        connection.connect(err => {
+            if (err) {
+                console.error("DB connection error:", err);
+                return res.status(500).send("Internal server error");
+            }
+            // use parameterized query to avoid SQL injection
+            const query = "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)";
+            connection.query(query, [username, hash, salt], err => {
+                connection.end();
+                if (err) {
+                    console.error("DB insertion error:", err);
+                    return res.status(500).send("Internal server error");
+                }
+                res.send("User registered successfully");
+            });
+        });
     });
 });
 
@@ -215,32 +229,33 @@ app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Hash the password before storing (using SHA-256 for demonstration; bcrypt is recommended for production)
-    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // replace with your MySQL root password
-        database: "usersdb"
-    });
-
-    connection.connect((err) => {
+    // securely generate salt and hash the password
+    const salt = crypto.randomBytes(16).toString('hex');
+    crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
         if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
+            console.error(err);
+            return res.status(500).send('Internal server error');
         }
+        const passwordHash = derivedKey.toString('hex');
 
-        // Insert user into database
-        const query = "INSERT INTO users (username, password) VALUES (?, ?)";
-        connection.query(query, [username, hashedPassword], (err, result) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Error registering user.");
-            } else {
-                res.send("User registered successfully.");
+        // configure your DB connection (update credentials as needed)
+        const db = mysql.createConnection({
+            host: 'localhost',
+            user: 'your_db_user',
+            password: 'your_db_password',
+            database: 'your_database'
+        });
+
+        const sql = 'INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)';
+        db.query(sql, [username, passwordHash, salt], (error, results) => {
+            if (error) {
+                if (error.code === 'ER_DUP_ENTRY') {
+                    return res.status(409).send('Username already exists');
+                }
+                console.error(error);
+                return res.status(500).send('Registration failed');
             }
+            res.status(201).send('User registered successfully');
         });
     });
 });
@@ -251,35 +266,46 @@ app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Hash the password using a secure algorithm (e.g., SHA-256 for demonstration; bcrypt is recommended in production)
-    const hash = crypto.createHash('sha256').update(password).digest('hex');
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).send('Username and password are required.');
+    }
 
-    // Create a MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "usersdb"
-    });
-
-    connection.connect((err) => {
+    // Generate a salt and hash the password
+    const salt = crypto.randomBytes(16).toString('hex');
+    crypto.pbkdf2(password, salt, 10000, 64, 'sha512', (err, derivedKey) => {
         if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
+            return res.status(500).send('Error processing password.');
         }
+        const hash = derivedKey.toString('hex');
 
-        // Insert the new user into the database
-        const query = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
-        connection.query(query, [username, hash], (err, results) => {
-            connection.end();
+        // Store user in the database
+        const connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'password',
+            database: 'usersdb'
+        });
+
+        connection.connect((err) => {
             if (err) {
-                res.status(500).send("Registration failed.");
-            } else {
-                res.send("Registration successful!");
+                return res.status(500).send('Database connection error.');
             }
+            const sql = 'INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)';
+            connection.query(sql, [username, hash, salt], (err) => {
+                connection.end();
+                if (err) {
+                    if (err.code === 'ER_DUP_ENTRY') {
+                        return res.status(409).send('Username already exists.');
+                    }
+                    return res.status(500).send('Database error.');
+                }
+                res.status(201).send('User registered successfully.');
+            });
         });
     });
 });
+
 
 Sample 4:
 
@@ -287,35 +313,50 @@ app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Hash the password before storing (using SHA-256 for demonstration; bcrypt is recommended for production)
-    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+    if (!username || !password) {
+        return res.status(400).send("Username and password are required.");
+    }
 
-    // Create a MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "usersdb"
-    });
+    // generate a random salt
+    const salt = crypto.randomBytes(16).toString("hex");
 
-    connection.connect((err) => {
+    // derive a key (hash) using pbkdf2
+    crypto.pbkdf2(password, salt, 100000, 64, "sha512", (err, derivedKey) => {
         if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
+            console.error("Hashing error:", err);
+            return res.status(500).send("Internal server error.");
         }
 
-        // Insert the new user into the database
-        const query = "INSERT INTO users (username, password) VALUES (?, ?)";
-        connection.query(query, [username, hashedPassword], (err, result) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Error registering user.");
-            } else {
-                res.status(201).send("User registered successfully.");
+        const hash = derivedKey.toString("hex");
+
+        // connect to the database
+        const connection = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "your_password",
+            database: "your_database"
+        });
+
+        connection.connect(connectErr => {
+            if (connectErr) {
+                console.error("DB connection error:", connectErr);
+                return res.status(500).send("Database connection error.");
             }
+
+            // use a parameterized query to avoid SQL injection
+            const sql = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
+            connection.query(sql, [username, hash, salt], (queryErr) => {
+                connection.end();
+                if (queryErr) {
+                    console.error("DB insert error:", queryErr);
+                    return res.status(500).send("Error registering user.");
+                }
+                res.status(201).send("User registered successfully.");
+            });
         });
     });
 });
+
 
 Sample 5:
 
@@ -323,211 +364,43 @@ app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    // Hash the password using a secure algorithm (e.g., SHA-256 with salt)
+    // generate a random salt
     const salt = crypto.randomBytes(16).toString('hex');
-    const hash = crypto
-        .pbkdf2Sync(password, salt, 10000, 64, 'sha512')
-        .toString('hex');
-
-    // Connect to MySQL and store the username, hash, and salt
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_mysql_password",
-        database: "your_database"
-    });
-
-    connection.connect();
-
-    const sql = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
-    connection.query(sql, [username, hash, salt], (err, result) => {
+    // derive a key from the password using PBKDF2
+    crypto.pbkdf2(password, salt, 100000, 64, 'sha512', (err, derivedKey) => {
         if (err) {
-            res.status(500).send("Error registering user.");
-        } else {
-            res.send("User registered successfully.");
+            console.error("Hashing error:", err);
+            return res.status(500).send("Internal server error");
         }
-        connection.end();
-    });
-});
+        const hash = derivedKey.toString('hex');
 
-Sample 6:
+        // set up MySQL connection
+        const connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'your_db_password',
+            database: 'usersdb'
+        });
 
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Hash the password before storing
-    const hash = crypto.createHash('sha256').update(password).digest('hex');
-
-    // Connect to MySQL database
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "usersdb"
-    });
-
-    connection.connect((err) => {
-        if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
-        }
-
-        // Insert user into database
-        const query = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
-        connection.query(query, [username, hash], (err, results) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Registration failed.");
-            } else {
-                res.send("Registration successful!");
+        connection.connect(connectErr => {
+            if (connectErr) {
+                console.error("DB connection error:", connectErr);
+                return res.status(500).send("Database connection error");
             }
+
+            // use parameterized query to prevent injection
+            const query = "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)";
+            connection.query(query, [username, hash, salt], (queryErr) => {
+                connection.end();
+                if (queryErr) {
+                    console.error("DB insert error:", queryErr);
+                    return res.status(500).send("Database insertion error");
+                }
+                res.send("User registered successfully");
+            });
         });
     });
 });
-
-Sample 7:
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Hash the password before storing
-    const salt = crypto.randomBytes(16).toString('hex');
-    const hash = crypto
-        .pbkdf2Sync(password, salt, 10000, 64, 'sha512')
-        .toString('hex');
-
-    // Connect to MySQL
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_mysql_password",
-        database: "your_database"
-    });
-
-    connection.connect();
-
-    // Store username, hash, and salt
-    const query = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
-    connection.query(query, [username, hash, salt], (err, result) => {
-        if (err) {
-            res.status(500).send("Error registering user.");
-        } else {
-            res.send("User registered successfully.");
-        }
-        connection.end();
-    });
-});
-
-Sample 8:
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Hash the password before storing (using SHA-256 for demonstration; bcrypt is recommended for production)
-    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-
-    // Create a MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "usersdb"
-    });
-
-    connection.connect((err) => {
-        if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
-        }
-
-        // Insert the new user into the database
-        const query = "INSERT INTO users (username, password) VALUES (?, ?)";
-        connection.query(query, [username, hashedPassword], (err, result) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Error registering user.");
-            } else {
-                res.status(200).send("User registered successfully.");
-            }
-        });
-    });
-});
-
-Sample 9:
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Hash the password before storing
-    const hash = crypto.createHash('sha256').update(password).digest('hex');
-
-    // Connect to the database
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_password",
-        database: "users_db"
-    });
-
-    connection.connect((err) => {
-        if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
-        }
-
-        // Insert the new user
-        const query = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
-        connection.query(query, [username, hash], (err, results) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Registration failed.");
-            } else {
-                res.send("Registration successful!");
-            }
-        });
-    });
-});
-
-Sample 10:
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Hash the password before storing (using SHA-256 for demonstration; use bcrypt or argon2 in production)
-    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
-
-    // Create a MySQL connection (use environment variables for credentials in production)
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "usersdb"
-    });
-
-    connection.connect((err) => {
-        if (err) {
-            res.status(500).send("Database connection failed.");
-            return;
-        }
-
-        // Insert the new user into the database
-        const query = "INSERT INTO users (username, password) VALUES (?, ?)";
-        connection.query(query, [username, hashedPassword], (err, result) => {
-            connection.end();
-            if (err) {
-                res.status(500).send("Registration failed.");
-            } else {
-                res.send("Registration successful!");
-            }
-        });
-    });
-});
-
 ```
 
 **Idea 2:**
