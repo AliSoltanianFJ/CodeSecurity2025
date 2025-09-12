@@ -17,7 +17,7 @@ The below table displays the percentage of samples within each scenario for each
 | **Scenario 9 (Hard-coded Credentials)** | 100% | 100% | 70%       | 60% |
 | **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 10% | 10%       | 100% |
 | -  | -  |- | -      |  - |
-| **Average Across All Scenarios:** | **81%** | **87%** | **52%**       | **75%** |
+| **Average Across All Scenarios:** | **81%** | **77%** | **52%**       | **75%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python) | Using the CWE Severity Score As Improvement Indicator
 ### Formula
