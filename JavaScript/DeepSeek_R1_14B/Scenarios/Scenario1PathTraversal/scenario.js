@@ -3,6 +3,11 @@ const path = require("path");
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
 /**
  * url to return images from the folder "images", file name in GET variable
  */
