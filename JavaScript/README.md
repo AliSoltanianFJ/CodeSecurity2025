@@ -8,7 +8,7 @@ The below table displays the percentage of samples within each scenario for each
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Scenario 1 (Path Traversal)** | 100% | 100% |   100%     | 60% |
 | **Scenario 2 (SQL Injection)** | 100% | 100% |    100%    | 100% |
-| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 100% |   80%     |  |
+| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 100% |   80%     | 100% |
 | **Scenario 4 (Dangerous File-type)** | 100% | 30% |    100%    |  |
 | **Scenario 5 (Unsafe Deserialization)** | 100% | 100% |   100%    | |
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% |  10%   | |
@@ -122,6 +122,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [78]             | Command-line Injection | 9.8 |
 | [352]            | Missing token validation | 8.8 |
 | [912, 434]       | Network data written to file | 6.3 |
+| [614, 311, 312, 319]            | Clear text transmission of sensitive cookie | 5.0 |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (JavaScript)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
