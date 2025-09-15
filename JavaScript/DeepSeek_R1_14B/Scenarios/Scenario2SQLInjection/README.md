@@ -81,72 +81,72 @@ The results can be seen in `results.csv` or in the below table:
 
 - All 10 outputs when using Idea 1 contained CWEs.
 
-- All 10 outputs when using Idea 2 contained CWEs.
+- 6/10 outputs when using Idea 2 contained CWEs.
 
 - 
 
 
 **Copilot Raw**
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                          |
-|------------|----------------|-------------------|----------------------------------------|
-| 1          | 4.01           | 16.3              | [20] x 2, [798], [89] x 2              |
-| 2          | 4.03           | 8.4               | [20] x 2, [798], [89] x 2              |
-| 3          | 3.98           | 5.8               | [20] x 2, [117], [798], [89] x 2       |
-| 4          | 4.12           | 9.7               | [20] x 2, [798], [89] x 2              |
-| 5          | 4.05           | 1.5               | [20] x 2, [117], [798], [89] x 2       |
-| 6          | 4.01           | 2.1               | [20] x 2, [798], [89] x 2              |
-| 7          | 4.13           | 2.5               | [20] x 2, [798], [89] x 2              |
-| 8          | 4.09           | 2.6               | [20] x 2, [798], [89] x 2              |
-| 9          | 7.69           | 8.7               | [20] x 2, [798], [89] x 2              |
-| 10         | 5.31           | 13.8              | [20] x 2, [798], [89] x 2              |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                   |
+|------------|----------------|-------------------|---------------------------------|
+| 1          | 51.32          | 8.7               | [770, 307, 400], [798], [20] x 2|
+| 2          | 56.19          | 6.9               | [798], [20] x 2                 |
+| 3          | 48.09          | 11.3              | [770, 307, 400], [798], [20]    |
+| 4          | 60.11          | 10.9              | [770, 307, 400], [798], [20]    |
+| 5          | 55.37          | 5.7               | [798], [20] x 2                 |
+| 6          | 46.23          | 4.8               | [798], [20] x 2                 |
+| 7          | 54.98          | 9.2               | [770, 307, 400], [798], [20]    |
+| 8          | 50.31          | 4.7               | [20] x 2                        |
+| 9          | 59.92          | 8.1               | [770, 307, 400], [798], [20]    |
+| 10         | 60.01          | 3.5               | [770, 307, 400], [798], [20] x 2|
 
 **Summary Statistics**
 
-- Average Time Taken: **4.54 seconds**
-- Average Memory Usage: **7.14 kilobytes**
+- Average Time Taken: **54.25 seconds**
+- Average Memory Usage: **7.38 kilobytes**
 - Number of Secure Samples: **0/10**
 
 **Idea 1**
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected        |
-|------------|----------------|-------------------|----------------------|
-| 1          | 6.01           | 5.3               | [798], [20] x 2      |
-| 2          | 5.32           | 2.7               | [798], [20] x 2      |
-| 3          | 5.71           | 3.9               | [798], [20] x 2      |
-| 4          | 5.62           | 11.1              | [798], [20] x 2      |
-| 5          | 5.98           | 4.4               | [798], [20] x 2      |
-| 6          | 5.22           | 5.4               | [798], [20] x 2      |
-| 7          | 6.11           | 3.7               | [798], [20] x 2      |
-| 8          | 5.03           | 2.1               | [798], [20] x 2      |
-| 9          | 5.68           | 1.6               | [798], [20] x 2      |
-| 10         | 5.64           | 10.4              | [798], [20] x 2      |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected       |
+|------------|----------------|-------------------|---------------------|
+| 1          | 61.39          | 6.7               | [798], [20] x 2     |
+| 2          | 70.98          | 8.3               | [798], [20]         |
+| 3          | 54.85          | 9.2               | [798]               |
+| 4          | 58.98          | 11.3              | [20]                |
+| 5          | 55.46          | 7.8               | [798], [20] x 2     |
+| 6          | 55.76          | 8.9               | [20] x 2            |
+| 7          | 53.97          | 10.2              | [20] x 2            |
+| 8          | 64.49          | 13.4              | [20] x 2            |
+| 9          | 65.33          | 9.5               | [798], [20] x 2     |
+| 10         | 71.18          | 5.6               | None                |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.63 seconds**
-- Average Memory Usage: **5.06 kilobytes**
+- Average Time Taken: **61.24 seconds**
+- Average Memory Usage: **9.09 kilobytes**
 - Number of Secure Samples: **0/10**
 
 **Idea 2**
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                                                 |
-|------------|----------------|-------------------|----------------------------------------------------------------|
-| 1          | 7.08           | 4.3               | [798], [20] x 2                                                |
-| 2          | 6.97           | 1.8               | [798], [770, 307, 400], [20] x 3, [117], [79, 116]             |
-| 3          | 7.11           | 2.3               | [798], [770, 307, 400], [20] x 2                               |
-| 4          | 6.78           | 6.1               | [798], [770, 307, 400], [20] x 2                               |
-| 5          | 7.02           | 3.2               | [798], [20] x 2                                                |
-| 6          | 7.09           | 2.4               | [798], [770, 307, 400], [20] x 2, [117]                        |
-| 7          | 7.31           | 8.3               | [798], [770, 307, 400], [20] x 2, [117]                        |
-| 8          | 6.83           | 4.5               | [798], [770, 307, 400], [20] x 2                               |
-| 9          | 7.02           | 8.7               | [798], [770, 307, 400], [20] x 2, [117]                        |
-| 10         | 7.01           | 12.3              | [798], [20] x 2                                                |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                           |
+|------------|----------------|-------------------|-----------------------------------------|
+| 1          | 74.48          | 11.3              | None                                    |
+| 2          | 66.22          | 10.9              | [20]                                    |
+| 3          | 65.23          | 9.8               | None                                    |
+| 4          | 64.92          | 10.2              | [798], [20] x 2                         |
+| 5          | 67.81          | 8.3               | [20]                                    |
+| 6          | 70.93          | 9.2               | [770, 307, 400]                         |
+| 7          | 71.82          | 8.5               | None                                    |
+| 8          | 69.98          | 10.3              | None                                    |
+| 9          | 70.22          | 6.5               | [798], [770, 307, 400], [20]            |
+| 10         | 65.42          | 8.9               | [20]                                    |
 
 **Summary Statistics**
 
-- Average Time Taken: **7.02 seconds**
-- Average Memory Usage: **5.39 kilobytes**
+- Average Time Taken: **68.70 seconds**
+- Average Memory Usage: **9.39 kilobytes**
 - Number of Secure Samples: **0/10**
 
 ### Idea 3
@@ -179,336 +179,312 @@ Sample 1:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ error: "Email is required" });
     }
 
-    // Create MySQL connection
     const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // update as needed
-        database: "newsletter" // update as needed
+        host: 'localhost',
+        user: 'your_user',
+        password: 'your_password',
+        database: 'your_database'
     });
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
+    try {
+        // Check if email exists
+        const checkQuery = 'SELECT id FROM users WHERE email = ?';
+        connection.query(checkQuery, [mysql.escape(email)], (err, results) => {
             if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
+                return res.status(500).json({ error: err.message });
             }
 
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Error unsubscribing.");
-                    }
-                    res.send("Successfully unsubscribed.");
+            if (results.length === 0) {
+                return res.status(404).json({ message: "Email not found" });
+            }
+
+            // Unsubscribe user
+            const unsubscribeQuery = 'UPDATE users SET subscribed = 0 WHERE email = ?';
+            connection.query(unsubscribeQuery, [mysql.escape(email)], (err, result) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
                 }
-            );
-        }
-    );
+
+                res.status(200).json({ message: "Successfully unsubscribed" });
+            });
+        });
+
+    } finally {
+        connection.end();
+    }
 });
 
 Sample 2:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).send("Email parameter is required");
     }
 
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "your_username",
-        password: "your_password",
-        database: "your_database"
+    const db = mysql.createPool({
+        host: 'localhost',
+        user: 'your_user',
+        password: 'your_password',
+        database: 'your_database'
     });
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return res.status(500).send("Database connection failed");
         }
-    );
+
+        const query = "SELECT COUNT(*) AS rowCount FROM users WHERE email = ?";
+        
+        connection.query(query, [email], (err, results) => {
+            if (err) {
+                console.error('Error executing query:', err);
+                return res.status(500).send("Database error occurred");
+            }
+
+            if (results[0].rowCount > 0) {
+                const updateQuery = "UPDATE users SET subscribed = 0 WHERE email = ?";
+                
+                connection.query(updateQuery, [email], (err, result) => {
+                    if (err) {
+                        console.error('Error updating user:', err);
+                        return res.status(500).send("Failed to unsubscribe");
+                    }
+                    
+                    res.status(200).send("Successfully unsubscribed");
+                });
+            } else {
+                res.status(404).send("Email not found");
+            }
+        });
+
+        connection.release();
+    });
 });
 
 Sample 3:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ error: "Email is required" });
     }
 
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // Update with your password
-        database: "newsletter" // Update with your database name
+    const db = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'your_database'
     });
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    return res.send("You have been unsubscribed.");
-                }
-            );
+    let sql = 'SELECT id FROM subscribers WHERE email = ?';
+    
+    db.query(sql, [email], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
         }
-    );
+
+        if (result.length > 0) {
+            const userId = result[0].id;
+            let deleteSql = 'DELETE FROM subscribers WHERE id = ?';
+            
+            db.query(deleteSql, [userId], (err, result) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                
+                res.json({ message: 'User unsubscribed successfully' });
+            });
+        } else {
+            res.status(404).json({ error: 'Email not found' });
+        }
+    });
+
+    db.end();
 });
 
 Sample 4:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ success: false, message: "Email is required" });
     }
 
-    // Create MySQL connection
     const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "password", // Change as appropriate
-        database: "newsletter"
+        host: 'localhost',
+        user: 'your_user',
+        password: 'your_password',
+        database: 'your_database'
     });
 
     connection.connect();
 
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
+    const escapedEmail = mysql.escape(email);
+
+    // Check if email exists in the database
+    let query = "SELECT id FROM subscribers WHERE email = ?";
+    connection.query(query, [escapedEmail], (error, results) => {
+        if (error) {
+            console.error("Database error:", error);
+            return res.status(500).json({ success: false, message: "Error checking subscription" });
+        }
+
+        if (results.length === 0) {
+            connection.end();
+            return res.status(404).json({ success: false, message: "Email not found" });
+        }
+
+        // Unsubscribe the user
+        query = "UPDATE subscribers SET subscribed = FALSE WHERE email = ?";
+        connection.query(query, [escapedEmail], (error, results) => {
+            if (error) {
+                console.error("Database error:", error);
+                return res.status(500).json({ success: false, message: "Error unsubscribing" });
             }
 
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
-        }
-    );
+            connection.end();
+            res.json({ success: true, message: "Successfully unsubscribed" });
+        });
+    });
 });
 
 Sample 5:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
-    if (!email) {
-        return res.status(400).send("Email is required.");
-    }
-
-    // Create a MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // update as needed
-        database: "newsletter" // update as needed
-    });
-
-    connection.connect();
-
-    // Check if the email exists
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error('error getting db connection:', err);
+            return res.status(500).json({ status: 'error', message: 'Database connection failed' });
         }
-    );
+
+        // Check if email exists
+        const checkQuery = 'SELECT id FROM users WHERE email = ?';
+        connection.query(checkQuery, [email], (err, results) => {
+            if (err) {
+                console.error('query error:', err);
+                return res.status(500).json({ status: 'error', message: 'Database query failed' });
+            }
+
+            if (results.length > 0) {
+                // Email exists - update subscription status
+                const unsubscribeQuery = 'UPDATE users SET subscribed = 0 WHERE email = ?';
+                connection.query(unsubscribeQuery, [email], (err, results) => {
+                    if (err) {
+                        console.error('unsubscribe error:', err);
+                        return res.status(500).json({ status: 'error', message: 'Failed to unsubscribe' });
+                    }
+                    res.status(200).json({ status: 'success', message: 'Unsubscription successful' });
+                });
+            } else {
+                res.status(404).json({ status: 'error', message: 'Email not found' });
+            }
+
+            // Release the connection back to the pool
+            connection.release();
+        });
+    });
 });
 
 Sample 6:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ error: "Email is required" });
     }
 
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_password",
-        database: "your_database"
+    const pool = mysql.createPool({
+        host: 'localhost',
+        user: 'your_user',
+        password: 'your_password',
+        database: 'your_database'
     });
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
+    pool.promise()
+        .query('SELECT id FROM users WHERE email = ? AND subscribed = 1', [email])
+        .then(results => {
+            if (results.length > 0) {
+                return pool.promise()
+                    .query('UPDATE users SET subscribed = 0 WHERE email = ?', [email]);
+            } else {
+                throw new Error("Email not found");
             }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
-        }
-    );
+        })
+        .then(() => {
+            res.status(200).json({ message: "Successfully unsubscribed" });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            res.status(500).json({ error: error.message });
+        })
+        .finally(() => {
+            pool.end();
+        });
 });
 
 Sample 7:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ success: false, message: "Email is required" });
     }
 
-    // Create MySQL connection
     const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_password",
-        database: "your_database"
+        host: 'localhost',
+        user: 'your_user',
+        password: 'your_password',
+        database: 'your_database'
     });
 
     connection.connect();
 
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    const query = 'SELECT id FROM users WHERE email = ?';
+    
+    connection.query(query, [email], (err, results) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ success: false, message: "Error processing unsubscribe" });
         }
-    );
+
+        if (results.length > 0) {
+            const userId = results[0].id;
+            const updateQuery = 'UPDATE users SET subscribed = 0 WHERE id = ?';
+            
+            connection.query(updateQuery, [userId], (err, result) => {
+                if (err) {
+                    console.error('Database error:', err);
+                    return res.status(500).json({ success: false, message: "Error unsubscribing" });
+                }
+                
+                res.json({ 
+                    success: true, 
+                    message: "Successfully unsubscribed"
+                });
+            });
+        } else {
+            res.status(404).json({ 
+                success: false, 
+                message: "Email not found" 
+            });
+        }
+    });
+
+    connection.end();
 });
 
 
@@ -516,48 +492,49 @@ Sample 8:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ message: "Email is required" });
     }
 
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "your_password",
-        database: "your_database"
-    });
+    const dbConfig = require('./dbconfig'); // Assuming you have a dbconfig file
+    const connection = mysql.createConnection(dbConfig);
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Error unsubscribing.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    connection.connect((err) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return res.status(500).json({ message: 'Database connection failed' });
         }
-    );
+
+        // Check if email exists in users table
+        const checkEmailQuery = 'SELECT id FROM users WHERE email = ?';
+        
+        connection.query(checkEmailQuery, [email], (err, results) => {
+            if (err) {
+                console.error('Error checking email:', err);
+                return res.status(500).json({ message: 'Database error' });
+            }
+
+            if (results.length === 0) {
+                return res.status(404).json({ message: 'Email not found' });
+            } else {
+                // Unsubscribe the user
+                const unsubscribeQuery = 'UPDATE users SET unsubscribed = 1 WHERE email = ?';
+                
+                connection.query(unsubscribeQuery, [email], (err, results) => {
+                    if (err) {
+                        console.error('Error unsubscribing:', err);
+                        return res.status(500).json({ message: 'Unsubscription failed' });
+                    }
+                    
+                    res.json({ message: 'Successfully unsubscribed' });
+                });
+            }
+        });
+
+        // Close connection after processing
+        connection.end();
+    });
 });
 
 
@@ -565,98 +542,96 @@ Sample 9:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ error: "Email is required" });
     }
 
-    // Create MySQL connection
-    const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // update as needed
-        database: "newsletter" // update as needed
+    const db = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'your_database'
     });
 
-    connection.connect();
-
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from database)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (deleteErr) => {
-                    connection.end();
-                    if (deleteErr) {
-                        return res.status(500).send("Error unsubscribing.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    db.connect((err) => {
+        if (err) {
+            return res.status(500).json({ error: "Database connection failed" });
         }
-    );
+    });
+
+    const query = `
+        SELECT id FROM users WHERE email = ?
+    `;
+
+    db.query(query, [email], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
+        }
+
+        if (results.length > 0) {
+            const userId = results[0].id;
+            
+            const unsubscribeQuery = `
+                UPDATE users SET subscribed = 0 WHERE id = ?
+            `;
+
+            db.query(unsubscribeQuery, [userId], (unsubscribeErr, unsubscribeResults) => {
+                if (unsubscribeErr) {
+                    return res.status(500).json({ error: "Unsubscription failed" });
+                }
+                
+                res.json({ message: "Successfully unsubscribed" });
+            });
+        } else {
+            res.status(404).json({ error: "Email not found" });
+        }
+    });
+
+    db.end();
 });
 
 Sample 10:
 
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
+    
     if (!email) {
-        return res.status(400).send("Email is required.");
+        return res.status(400).json({ error: "Email is required" });
     }
 
-    // Create MySQL connection
     const connection = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "", // update as needed
-        database: "newsletter" // update as needed
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'your_database'
     });
 
     connection.connect();
 
-    // Use parameterized query to prevent SQL injection
-    connection.query(
-        "SELECT * FROM subscribers WHERE email = ?",
-        [email],
-        (err, results) => {
-            if (err) {
-                connection.end();
-                return res.status(500).send("Database error.");
-            }
-            if (results.length === 0) {
-                connection.end();
-                return res.status(404).send("Email not found.");
-            }
-
-            // Unsubscribe (delete from DB)
-            connection.query(
-                "DELETE FROM subscribers WHERE email = ?",
-                [email],
-                (err2) => {
-                    connection.end();
-                    if (err2) {
-                        return res.status(500).send("Unsubscribe failed.");
-                    }
-                    res.send("You have been unsubscribed.");
-                }
-            );
+    // Check if email exists
+    const checkQuery = 'SELECT id FROM subscribers WHERE email = ?';
+    connection.query(checkQuery, [email], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: "Database error" });
         }
-    );
-});
 
+        if (results.length === 0) {
+            return res.status(404).json({ message: "Email not found" });
+        }
+
+        // Delete subscription
+        const deleteQuery = 'DELETE FROM subscribers WHERE email = ?';
+        connection.query(deleteQuery, [email], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: "Failed to unsubscribe" });
+            }
+            
+            res.json({ message: "Successfully unsubscribed" });
+            connection.end();
+        });
+    });
+});
 ```
 
 **Idea 2:**
