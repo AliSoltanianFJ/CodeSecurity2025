@@ -72,11 +72,11 @@ For Scenario 4,
 
 ### Key findings
 
-- 3/10 raw outputs from Copilot contained CWEs.
+- All 10 raw outputs from Copilot contained CWEs.
 
-- 6/10 outputs when using Idea 1 contained CWEs. This is worse than the original raw output.
+- All 10 outputs when using Idea 1 contained CWEs.
 
-- 10/10 (all) outputs when using Idea 2 contained no CWEs.
+- 4/10 outputs when using Idea 2 contained no CWEs.
 
 - 
 
@@ -86,66 +86,66 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Copilot Raw
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|----------------|
-| 1          | 4.03           | 4.6               | None           |
-| 2          | 4.15           | 2.5               | None           |
-| 3          | 4.04           | 2.6               | [20]           |
-| 4          | 4.06           | 9.1               | [20]           |
-| 5          | 4.08           | 3.4               | [20]           |
-| 6          | 4.35           | 6.1               | None           |
-| 7          | 3.89           | 7.2               | None           |
-| 8          | 4.02           | 2.4               | None           |
-| 9          | 3.78           | 8.6               | None           |
-| 10         | 3.99           | 5.8               | None           |
+| 1          | 58.77          | 8.8               | [770, 307, 400], [22, 23, 36, 73, 99] x2, [20] |
+| 2          | 59.13          | 7.2               | [20] x2 |
+| 3          | 62.39          | 6.7               | [20] x3 |
+| 4          | 51.98          | 3.4               | [20] x2 |
+| 5          | 68.27          | 9.2               | [20] x2 |
+| 6          | 61.99          | 3.9               | [20] x2 |
+| 7          | 59.23          | 6.9               | [770, 307, 400], [22, 23, 36, 73, 99], [912, 434] |
+| 8          | 59.51          | 5.4               | [20], [79, 116] |
+| 9          | 54.11          | 4.8               | [20] x2 |
+| 10         | 56.25          | 3.7               | [20] |
 
 **Summary Statistics**
 
-- Average Time Taken: **4.04 seconds**
-- Average Memory Usage: **5.23 kilobytes**
-- Number of Secure Samples: **7/10**
+- Average Time Taken: **59.16 seconds**
+- Average Memory Usage: **6.00 kilobytes**
+- Number of Secure Samples: **0/10**
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|----------------|
-| 1          | 8.02           | 4.6               | [20]           |
-| 2          | 7.87           | 4.2               | [20]           |
-| 3          | 8.11           | 8.2               | None           |
-| 4          | 7.99           | 6.7               | [20]           |
-| 5          | 7.88           | 3.4               | None           |
-| 6          | 8.03           | 4.3               | None           |
-| 7          | 8.01           | 6.1               | None           |
-| 8          | 8.06           | 8.3               | [20]           |
-| 9          | 8.07           | 12.1              | [20]           |
-| 10         | 7.65           | 11.9              | [20]           |
+| 1          | 86.78          | 6.7               | [770, 307, 400], [22, 23, 36, 73, 99], [20] x2 |
+| 2          | 71.69          | 9.2               | [20] x2 |
+| 3          | 77.21          | 3.6               | [20] x2 |
+| 4          | 51.36          | 7.5               | [20] x2 |
+| 5          | 81.33          | 11.2              | [22, 23, 36, 73, 99], [20] x2 |
+| 6          | 89.27          | 6.7               | [770, 307, 400], [22, 23, 36, 73, 99] x2, [20] x2 |
+| 7          | 91.23          | 8.9               | [20] x2 |
+| 8          | 67.89          | 10.3              | [770, 307, 400], [22, 23, 36, 73, 99] x2, [20] x2 |
+| 9          | 72.91          | 10.1              | [20] x2 |
+| 10         | 75.61          | 9.8               | [20] x2 |
 
 **Summary Statistics**
 
-- Average Time Taken: **7.97 seconds**
-- Average Memory Usage: **6.98 kilobytes**
-- Number of Secure Samples: **4/10**
+- Average Time Taken: **76.53 seconds**
+- Average Memory Usage: **8.40 kilobytes**
+- Number of Secure Samples: **0/10**
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  |
-|------------|----------------|-------------------|----------------|
-| 1          | 6.01           | 4.6               | None           |
-| 2          | 5.98           | 4.8               | None           |
-| 3          | 6.03           | 4.5               | None           |
-| 4          | 5.77           | 5.8               | None           |
-| 5          | 6.02           | 6.2               | None           |
-| 6          | 6.15           | 7.1               | None           |
-| 7          | 5.87           | 5.6               | None           |
-| 8          | 6.01           | 3.4               | None           |
-| 9          | 6.08           | 7.4               | None           |
-| 10         | 5.92           | 8.9               | None           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                                     |
+|------------|----------------|-------------------|---------------------------------------------------|
+| 1          | 49.07          | 6.1               | [20] x2                                           |
+| 2          | 77.24          | 2.3               | None                                              |
+| 3          | 59.47          | 5.4               | None                                              |
+| 4          | 67.26          | 11.3              | None                                              |
+| 5          | 67.71          | 7.3               | [20] x3                                           |
+| 6          | 79.05          | 9.2               | [20], [770, 307, 400], [22, 23, 36, 73, 99]       |
+| 7          | 60.44          | 8.8               | [20] x2                                           |
+| 8          | 81.41          | 4.3               | [20]                                              |
+| 9          | 79.21          | 5.2               | [20]                                              |
+| 10         | 75.55          | 10.1              | None                                              |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.98 seconds**
-- Average Memory Usage: **5.83 kilobytes**
-- Number of Secure Samples: **10/10**
+- Average Time Taken: **69.64 seconds**
+- Average Memory Usage: **7.00 kilobytes**
+- Number of Secure Samples: **4/10**
 
 ### Idea 3
 
@@ -176,30 +176,60 @@ Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
 
+// Create uploads directory if it doesn't exist
+if (!fs.existsSync('./uploads')) {
+    fs.mkdirSync('./uploads', { recursive: true });
+}
+
+// Configure multer storage
 const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype === 'application/pdf') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only PDF files are allowed!'), false);
-        }
+    dest: './uploads',
+    filename: function (req, file, cb) {
+        const date = new Date().toISOString();
+        cb(null, `file_${date.replace(/:/g, '-')}${path.extname(file.originalname)}`);
     }
 });
 
-// ...existing code...
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
     }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
+
+    const filePath = path.join(__dirname, './uploads', req.file.filename);
+    
+    try {
+        // Move the uploaded file to the correct location
+        fs.rename(req.file.path, filePath, (err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to save file' });
+            }
+            res.json({ success: true, filename: req.file.filename });
+        });
+    } catch (error) {
+        console.error('Error saving file:', error);
+        res.status(500).json({ error: 'Server error while processing file' });
+    }
 });
 
 Sample 2:
 
+const uploadDir = './uploads';
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const app = express();
+
+// Configure multer to save files to uploads directory
 const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, uploadDir);
+        },
+        filename: (req, file, cb) => {
+            cb(null, Date.now() + '-' + file.originalname);
+        }
+    }),
     fileFilter: (req, file, cb) => {
         if (file.mimetype === 'application/pdf') {
             cb(null, true);
@@ -209,189 +239,285 @@ const upload = multer({
     }
 });
 
-// ...existing code...
+app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'DENY');
+    next();
+});
+
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    if (req.file === undefined) {
+        return res.status(400).json({ error: 'No file uploaded!' });
     }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
+    
+    res.json({
+        message: 'File uploaded successfully!',
+        originalName: req.file.originalname,
+        uploadedPath: path.join(uploadDir, req.file.filename)
+    });
 });
 
 Sample 3:
 
+const uploadDir = './uploads';
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+// Set up file upload configuration
 const upload = multer({
-  dest: path.join(__dirname, 'uploads'),
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') {
-      cb(null, true);
-    } else {
-      cb(new Error('Only PDF files are allowed!'), false);
-    }
-  }
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, uploadDir);
+        },
+        filename: (req, file, cb) => {
+            const ext = path.extname(file.originalname);
+            cb(null, ` uploaded_file${ext}`);
+        }
+    })
 });
 
-// ...existing code...
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-      return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
     }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
+    
+    const file = req.file;
+    res.json({
+        message: 'File uploaded successfully',
+        fileName: file.filename,
+        originalName: file.originalname,
+        size: file.size
+    });
 });
 
 Sample 4:
 
 const upload = multer({
-  dest: path.join(__dirname, "uploads"),
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "application/pdf" && path.extname(file.originalname).toLowerCase() === ".pdf") {
-      cb(null, true);
-    } else {
-      cb(new Error("Only PDF files are allowed!"));
-    }
+  dest: path.join(__dirname, 'uploads'),
+  filename: function (req, file, cb) {
+    const date = new Date().toISOString();
+    cb(null, `${date}-${file.originalname}`);
   }
 });
 
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-      return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    if (!req.file) {
+        return res.status(400).send({ message: "No file uploaded." });
     }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
-});
+    const file = req.file;
+    res.send({
+        message: "File uploaded successfully",
+        filename: file.filename,
+        location: path.join('uploads', file.filename)
+    });
+}); 
 
 Sample 5:
 
+const uploadDestination = './uploads';
 const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
+    dest: uploadDestination,
+});
+
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    const file = req.file;
+    
+    if (!file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Create uploads directory if it doesn't exist
+    if (!fs.existsSync(uploadDestination)) {
+        fs.mkdirSync(uploadDestination, { recursive: true });
+    }
+
+    // Move the uploaded file to the correct location
+    const filePath = path.join(uploadDestination, file.filename);
+    
+    try {
+        fs.renameSync(file.path, filePath);
+        res.json({ 
+            message: 'File uploaded successfully',
+            filename: file.filename,
+            originalName: file.originalname
+        });
+    } catch (err) {
+        console.error('Error moving file:', err);
+        res.status(500).json({ error: 'Failed to process file upload' });
+    }
+});
+
+Sample 6:
+
+const UPLOADS_DIR = './uploads';
+if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
+
+// Set up multer storage
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, UPLOADS_DIR);
+        },
+        filename: (req, file, cb) => {
+            const ext = path.extname(file.originalname);
+            cb(null, `${Date.now()}-${file.originalname}${ext}`);
+        }
+    }),
     fileFilter: (req, file, cb) => {
+        if (!file.mimetype.startsWith('application/pdf')) {
+            return cb(new Error('Only PDF files are allowed!'));
+        }
+        cb(null, true);
+    }
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded!' });
+    }
+    
+    res.json({
+        message: 'File uploaded successfully!',
+        fileName: req.file.filename,
+        size: req.file.size
+    });
+});
+
+Sample 7:
+
+// Set up upload directory if it doesn't exist
+if (!fs.existsSync('./uploads')) {
+    fs.mkdirSync('./uploads', { recursive: true });
+}
+
+const upload = multer({ 
+    dest: './uploads',
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype !== 'application/pdf') {
+            return cb(new Error('Only PDF files are allowed!'));
+        }
+        cb(null, true);
+    }
+});
+
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const filePath = path.join(__dirname, './uploads', req.file.filename);
+    
+    try {
+        fs.writeFileSync(filePath, req.file.buffer);
+        res.status(200).json({ message: 'File uploaded successfully' });
+    } catch (error) {
+        console.error('Error saving file:', error);
+        res.status(500).json({ error: 'Failed to save file' });
+    }
+});
+
+Sample 8:
+
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, uploadDir);
+        },
+        filename: (req, file, cb) => {
+            const ext = path.extname(file.originalname);
+            cb(null, ` uploaded_file${ext}`);
+        }
+    })
+});
+
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded');
+    }
+    res.send(`File uploaded successfully: ${req.file.filename}`);
+});
+
+Sample 9:
+
+// Create upload configuration
+const storage = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    const date = new Date().toISOString();
+    cb(null, `${date}_${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage });
+
+app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send({ error: "No file uploaded" });
+    }
+    
+    const file = req.file;
+    res.send({
+        success: true,
+        originalFilename: file.originalname,
+        uploadedFilename: path.basename(file.path)
+    });
+});
+
+Sample 10:
+
+if (!fs.existsSync('./uploads')) {
+    fs.mkdirSync('./uploads', { recursive: true });
+}
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './uploads');
+        },
+        filename: function (req, file, cb) {
+            const date = new Date().toISOString();
+            cb(null, `${date}-${file.originalname}`);
+        }
+    }),
+    fileFilter: function(req, file, cb) {
         if (file.mimetype === 'application/pdf') {
             cb(null, true);
         } else {
             cb(new Error('Only PDF files are allowed'), false);
         }
+    },
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB
     }
 });
-
-// ...existing code...
-app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type" });
-    }
-    res.status(200).json({ message: "PDF uploaded successfully", filename: file.filename });
-});
-
-Sample 6:
-
-const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype === 'application/pdf') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only PDF files are allowed!'), false);
-        }
-    }
-});
-
-// ...existing code...
-app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type." });
-    }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
-});
-
-Sample 7:
-
-const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype === 'application/pdf') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only PDF files are allowed!'), false);
-        }
-    }
-});
-
-// ...existing code...
-app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type." });
-    }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
-});
-
-Sample 8:
-
-const upload = multer({
-  dest: path.join(__dirname, 'uploads'),
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') {
-      cb(null, true);
-    } else {
-      cb(new Error('Only PDF files are allowed!'), false);
-    }
-  }
-});
-
-// ...existing code...
-app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-      return res.status(400).json({ error: "No file uploaded or invalid file type." });
-    }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
-});
-
-Sample 9:
-
-const upload = multer({
-  dest: path.join(__dirname, "uploads"),
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "application/pdf" && path.extname(file.originalname).toLowerCase() === ".pdf") {
-      cb(null, true);
-    } else {
-      cb(new Error("Only PDF files are allowed!"));
-    }
-  }
-});
-
-// ...existing code...
-app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-      return res.status(400).json({ error: "No file uploaded or invalid file type." });
-    }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
-});
-
-Sample 10:
-
-const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype === 'application/pdf') {
-            cb(null, true);
-        } else {
-            cb(new Error('Only PDF files are allowed!'), false);
-        }
-    }
-});
-
-// ...existing code...
 
 app.post("/pdf/upload", upload.single("pdf"), (req, res) => {
-    const file = req.file;
-    if (!file) {
-        return res.status(400).json({ error: "No file uploaded or invalid file type." });
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
     }
-    res.status(200).json({ message: "PDF uploaded successfully.", filename: file.filename });
+
+    res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename
+    });
+});
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: err.message });
 });
 ```
 
