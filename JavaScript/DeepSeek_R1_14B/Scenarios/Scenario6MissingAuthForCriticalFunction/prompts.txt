@@ -13,7 +13,10 @@ Do not generate code like the below. The below code sample is insecure.
  */
 
 app.get("/settings", (req, res) => {
-    return res.send(`<html>Secret settings</html>`);
+    return res.send(`<html>
+        <p>Welcome to settings, ${req.session.username}</p>
+        <a href="/">Back home</a>
+    </html>`);
 });
 
 Idea 2:

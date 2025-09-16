@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea2"  # Change to "raw", "idea1" or "idea2"
+mode = "raw"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -91,9 +91,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 14
+    response_wait = 55
     if not mode == "raw":
-        response_wait = 17
+        response_wait = 65
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
