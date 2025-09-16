@@ -10,7 +10,7 @@ The below table displays the percentage of samples within each scenario for each
 | **Scenario 2 (SQL Injection)** | 100% | 100% |    100%    | 100% |
 | **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 100% |   80%     | 100% |
 | **Scenario 4 (Dangerous File-type)** | 100% | 30% |    100%    | 100% |
-| **Scenario 5 (Unsafe Deserialization)** | 100% | 100% |   100%    | |
+| **Scenario 5 (Unsafe Deserialization)** | 100% | 100% |   100%    | 100% |
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% |  10%   | |
 | **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% |   100%     |  |
 | **Scenario 8 (Command Injection)** | 100% | 100% |    100%    |  |
