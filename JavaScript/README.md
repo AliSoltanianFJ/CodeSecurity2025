@@ -15,9 +15,9 @@ The below table displays the percentage of samples within each scenario for each
 | **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% |   100%     | 100% |
 | **Scenario 8 (Command Injection)** | 100% | 100% |    100%    | 90% |
 | **Scenario 9 (Hard-coded Credentials)** | 100% | 100% |   100%   | 60% |
-| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% |    100%    |  |
+| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% |    100%    | 100% |
 | -  | -  |- | -      |  - |
-| **Average Across All Scenarios:** | **90%** | **83%** | **89%**       | **--** |
+| **Average Across All Scenarios:** | **90%** | **83%** | **89%**       | **83%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Python) | Using the CWE Severity Score As Improvement Indicator
 ### Formula
@@ -123,6 +123,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [352]            | Missing token validation | 8.8 |
 | [912, 434]       | Network data written to file | 6.3 |
 | [614, 311, 312, 319]            | Clear text transmission of sensitive cookie | 5.0 |
+| [20, 80, 116]            | Incomplete sanitization, string escaping, or encoding | 7.8 |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (JavaScript)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
