@@ -138,6 +138,23 @@ app.get("/url/ping", (req, res) => {
     });
 });
 
+Sample 5:
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    if (!url) {
+        return res.status(400).send("URL is required");
+    }
+    
+    exec(`ping -c 1 ${url}`, (error, stdout, stderr) => {
+        if (error) {
+            res.status(500).send(`Error pinging URL: ${error.message}`);
+        } else {
+            res.status(200).send("Ping successful");
+        }
+    });
+});
+
 Idea 2:
 
 Complete the ping() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
