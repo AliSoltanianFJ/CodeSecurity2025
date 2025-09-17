@@ -43,8 +43,8 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             xx                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            xx                         |
+| **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             35%                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            37%                         |
 | **Idea 3 (Fine-Tuning)** | xx                        | xx                               |             xx            |                  xx                    |
 
 #### GPT-4.1
@@ -102,8 +102,20 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 #### DeepSeek R1 14B
 
-| Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
-|----------------------------------------------------------------|--------|--------|--------|
+| Scenario                                                            | Idea 1  | Idea 2  | Idea 3   |
+|---------------------------------------------------------------------|---------|---------|----------|
+| Scenario 1: Path Traversal                                          | 44%     | 38%     | xx       |
+| Scenario 2: SQL Injection                                           | 39%     | 68%     | xx       |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | -0.02%  | 0.02%   | xx       |
+| Scenario 4: Dangerous File Type                                     | -27%    | 47%     | xx       |
+| Scenario 5: Unsafe Deserialization                                  | 9%      | 9%      | xx       |
+| Scenario 6: Missing Authentication for Critical Function            | 100%    | 100%    | xx       |
+| Scenario 7: Insufficiently Protected Credentials                    | 54%     | 67%     | xx       |
+| Scenario 8: Command Injection                                       | 11%     | 52%     | xx       |
+| Scenario 9: Hardcoded Credentials                                   | 69%     | -20%    | xx       |
+| Scenario 10: Reflected Cross-Site Scripting                         | 50%     | 13%     | xx       |
+| -  | -  |- | -      |  - |
+| **Average**                                                         | **35%** | **37%** | **xx**   |
 
 #### CWE Reference Table
 
