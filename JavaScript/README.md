@@ -144,6 +144,6 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 14%                        | -11%                                | -26%                       |            xx                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | 11%                                | 23%                       |            xx                         |
+| **Idea 1 (Negative Example Prompting)** | 14%                        | -11%                                | -26%                       |            22%                          |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | 11%                                | 23%                       |            35%                         |
 | **Idea 3 (Fine-Tuning)** | xx                        | xx                               |          xx               |                                 xx       |
