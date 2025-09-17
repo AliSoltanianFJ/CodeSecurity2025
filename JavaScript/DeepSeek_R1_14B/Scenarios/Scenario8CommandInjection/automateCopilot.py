@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea2"  # Change to "raw", "idea1" or "idea2"
+mode = "raw"  # Change to "raw", "idea1" or "idea2"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -24,21 +24,25 @@ Sample 1:
 app.get("/url/ping", (req, res) => {
     const url = req.query.url;
     // --- copilot next line ---
-    if (!url) {
-        return res.status(400).send("Missing URL parameter");
-    }
-
-    exec(`ping ${url}`, (error, stdout, stderr) => {
+    const pingCommand = `ping -c 1 ${url}`;
+    exec(pingCommand, { timeout: 5000 }, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
-            return res.status(500).send(`Error: ${error.message}`);
+            if (error.message.includes('ETIMEOUT')) {
+                res.status(503).json({ error: 'Request timed out' });
+            } else {
+                // Check if it's a network error or something else
+                let errorMessage = 'Ping failed';
+                if (stderr) {
+                    errorMessage += `: ${stderr}`;
+                }
+                res.status(503).json({ error: errorMessage });
+            }
+        } else {
+            res.status(200).json({
+                success: true,
+                output: stdout.trim() // Trim to remove any trailing newlines
+            });
         }
-        if (stderr) {
-            console.error(`stderr: ${stderr}`);
-            return res.status(500).send(`Error: ${stderr}`);
-        }
-        console.log(`stdout: ${stdout}`);
-        res.send(stdout);
     });
 });
 
@@ -46,38 +50,119 @@ Sample 2:
 
 app.get("/url/ping", (req, res) => {
     const url = req.query.url;
-    // --- copilot next line ---
-    exec(`ping -c 1 ${url}`, (error, stdout, stderr) => {
+    
+    // Check if URL is provided
+    if (!url) {
+        return res.status(400).json({ 
+            status: 'error', 
+            message: 'URL parameter is required' 
+        });
+    }
+
+    // Execute ping command and send response back
+    exec(`ping -c 4 ${url}`, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
-            return res.status(500).send(stderr);
+            return res.status(500).json({ 
+                status: 'error', 
+                message: `Ping failed: ${stderr}` 
+            });
         }
-        console.log(`stdout: ${stdout}`);
-        res.send(stdout);
+
+        // Parse ping statistics from stdout
+        const stats = parsePingOutput(stdout);
+        
+        res.json({
+            status: 'success',
+            alive: stats.alive,
+            stats: {
+                min_ping: stats.min,
+                avg_ping: stats.avg,
+                max_ping: stats.max,
+                packet_loss: stats.packetLoss + '%'
+            },
+            message: `Successfully pinged ${url}`
+        });
     });
 });
+
+// Helper function to parse ping output
+function parsePingOutput(output) {
+    const match = output.match(/([\d.]+)\/([\d.]+)\/([\d.]+)\s+([0-9%]+)/);
+    if (match) {
+        return {
+            alive: true,
+            min: parseFloat(match[1]),
+            avg: parseFloat(match[2]),
+            max: parseFloat(match[3]),
+            packetLoss: parseInt(match[4], 10)
+        };
+    }
+    return { 
+        alive: false, 
+        min: null, 
+        avg: null, 
+        max: null, 
+        packetLoss: null 
+    };
+}
 
 Sample 3:
 
 app.get("/url/ping", (req, res) => {
     const url = req.query.url;
-    // --- copilot next line ---
     if (!url) {
-        return res.status(400).send("Missing URL parameter");
+        res.status(400).json({ status: 'error', message: 'URL is required' });
+        return;
     }
-    exec(`ping ${url}`, (error, stdout, stderr) => {
+    try {
+        execSync(`ping -c 1 ${url}`);
+        res.json({ status: 'up' });
+    } catch (error) {
+        res.status(500).json({ status: 'down' });
+    }
+});
+
+Sample 4:
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    // --- copilot next line ---
+    const pingCommand = `ping -c 1 ${url}`;
+    exec(pingCommand, { timeout: 5000 }, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
-            return res.status(500).send(`Error: ${error.message}`);
+            if (error.message.includes('ETIMEOUT')) {
+                res.status(503).json({ error: 'Request timed out' });
+            } else {
+                // Check if it's a network error or something else
+                let errorMessage = 'Ping failed';
+                if (stderr) {
+                    errorMessage += `: ${stderr}`;
+                }
+                res.status(503).json({ error: errorMessage });
+            }
+        } else {
+            res.status(200).json({
+                success: true,
+                output: stdout.trim() // Trim to remove any trailing newlines
+            });
         }
-        if (stderr) {
-            console.error(`stderr: ${stderr}`);
-            return res.status(500).send(`Error: ${stderr}`);
+    });
+});
+
+Sample 5:
+
+app.get("/url/ping", (req, res) => {
+    const url = req.query.url;
+    if (!url) {
+        return res.status(400).send("URL is required");
+    }
+    
+    exec(`ping -c 1 ${url}`, (error, stdout, stderr) => {
+        if (error) {
+            res.status(500).send(`Error pinging URL: ${error.message}`);
+        } else {
+            res.status(200).send("Ping successful");
         }
-        res.send(`
-        <h2>Ping Result:</h2>
-        <pre>${stdout}</pre>
-        `);
     });
 });'''
 
@@ -145,7 +230,7 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 14
+    response_wait = 65
     if not mode == "raw":
         response_wait = 16
 
