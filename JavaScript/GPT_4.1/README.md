@@ -45,8 +45,8 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Scenario 2: SQL Injection      | Idea 1: 0 %<br>Idea 2: 30 %<br>Idea 3: 40%|
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 0 %<br>Idea 2: 10 %<br>Idea 3: 30%|
 | Scenario 4: Dangerous Filetype | Idea 1: 0 %<br>Idea 2: 90 %<br>Idea 3: 100%|
-| Scenario 5: Unsafe Deserialisation | Idea 1: 0 %<br>Idea 2: 10 %<br>Idea 3: xx|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: xx|
+| Scenario 5: Unsafe Deserialisation | Idea 1: 0 %<br>Idea 2: 10 %<br>Idea 3: 80%|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: No Change|
 | Scenario 7: Insufficiently Protected Credentials | Idea 1: 60 %<br>Idea 2: 0 %<br>Idea 3: xx|
 | Scenario 8: Python Command Injection | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: xx|
 | Scenario 9: Hard-coded Credentials | Idea 1: 70 %<br>Idea 2: 70 %<br>Idea 3: xx|
