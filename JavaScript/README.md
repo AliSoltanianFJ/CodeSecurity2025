@@ -51,7 +51,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
 |----------------------------------------------------------------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | 68%     | 68%     | xx     |
+| Scenario 1: Path Traversal                                     | 68%     | 68%     | 71%     |
 | Scenario 2: SQL Injection                                      | 65%      | 65%     | xx     |
 | Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 29%     | 60%     | xx    |
 | Scenario 4: Dangerous File Type                                | 0%    | 80%    | xx    |
