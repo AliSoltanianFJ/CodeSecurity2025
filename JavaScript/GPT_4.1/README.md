@@ -47,10 +47,10 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Scenario 4: Dangerous Filetype | Idea 1: 0 %<br>Idea 2: 90 %<br>Idea 3: 100%|
 | Scenario 5: Unsafe Deserialisation | Idea 1: 0 %<br>Idea 2: 10 %<br>Idea 3: 80%|
 | Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: No Change|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: 60 %<br>Idea 2: 0 %<br>Idea 3: xx|
-| Scenario 8: Python Command Injection | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: xx|
-| Scenario 9: Hard-coded Credentials | Idea 1: 70 %<br>Idea 2: 70 %<br>Idea 3: xx|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 0 %<br>Idea 2: 100 %<br>Idea 3: xx|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: 60 %<br>Idea 2: 0 %<br>Idea 3: 40%|
+| Scenario 8: Python Command Injection | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 60%|
+| Scenario 9: Hard-coded Credentials | Idea 1: 70 %<br>Idea 2: 70 %<br>Idea 3: 90%|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 0 %<br>Idea 2: 100 %<br>Idea 3: 100%|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -58,7 +58,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | **Idea**               | **Improvement**                            |
 | Idea 1      | 14 %|            
 | Idea 2      | 34 %|            
-| Idea 3      | xx %|
+| Idea 3      | 64 %|
 
 ...
 

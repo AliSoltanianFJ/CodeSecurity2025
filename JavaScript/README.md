@@ -45,7 +45,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             35%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            37%                         |
-| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |             xx            |                  xx                    |
+| **Idea 3 (Fine-Tuning)** |79%                        | xx                               |             xx            |                  xx                    |
 
 #### GPT-4.1
 
@@ -57,12 +57,12 @@ The formula below is used to calculate the percentage improvement for each idea 
 | Scenario 4: Dangerous File Type                                | 0%    | 80%    | 100%    |
 | Scenario 5: Unsafe Deserialization                             | 0%      | 10%     | 80%     |
 | Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change |
-| Scenario 7: Insufficiently Protected Credentials               | 72%     | 9%     | xx    |
-| Scenario 8: Command Injection                                  | -0.4%    | -11%    | xx     |
-| Scenario 9: Hardcoded Credentials                              | 61%    | 76%    | xx    |
-| Scenario 10: Reflected Cross-Site Scripting                    | 42%    | 100%    | xx    |
+| Scenario 7: Insufficiently Protected Credentials               | 72%     | 9%     |  73%   |
+| Scenario 8: Command Injection                                  | -0.4%    | -11%    | 49%     |
+| Scenario 9: Hardcoded Credentials                              | 61%    | 76%    | 92%    |
+| Scenario 10: Reflected Cross-Site Scripting                    | 42%    | 100%    | 100%    |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **37%** | **51%** | **xx** |
+| **Average**                                                    | **37%** | **51%** | **79%** |
 
 
 #### o4-mini
@@ -158,4 +158,4 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 14%                        | -11%                                | -26%                       |            22%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | 11%                                | 23%                       |            35%                         |
-| **Idea 3 (Fine-Tuning)** | xx                        | xx                               |          xx               |                                 xx       |
+| **Idea 3 (Fine-Tuning)** | 64%                        | xx                               |          xx               |                                 xx       |
