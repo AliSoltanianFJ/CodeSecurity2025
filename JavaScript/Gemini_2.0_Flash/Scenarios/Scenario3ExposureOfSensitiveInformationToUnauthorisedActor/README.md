@@ -149,20 +149,28 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **6.11 seconds**
 - Average Memory Usage: **5.89 kilobytes**
-- Number of Secure Samples: **1/10**
+- Number of Secure Samples: **0/10**
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type   |
-|------------|----------------|-------------------|----------------|---------------|
-
-
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
+|------------|----------------|-------------------|--------------------------------|
+| 1          | 5.72           | N/A               | [20]                           |
+| 2          | 2.99           | N/A               | None                           |
+| 3          | 3.54           | N/A               | [770, 307, 400], [20] x 2      |
+| 4          | 5.43           | N/A               | [20]                           |
+| 5          | 4.01           | N/A               | [770, 307, 400], [20]          |
+| 6          | 3.28           | N/A               | None                           |
+| 7          | 3.87           | N/A               | [20], [770, 307, 400]          |
+| 8          | 6.09           | N/A               | None                           |
+| 9          | 4.25           | N/A               | [20]                           |
+| 10         | 2.97           | N/A               | None                           |
 
 **Summary Statistics**
 
-- Average Time Taken: **x.x seconds**
+- Average Time Taken: **4.22 seconds**
 - Average Memory Usage: **N/A kilobytes**
-- Number of Secure Samples: **x/10**
+- Number of Secure Samples: **4/10**
 
 ## Prompts Used
 

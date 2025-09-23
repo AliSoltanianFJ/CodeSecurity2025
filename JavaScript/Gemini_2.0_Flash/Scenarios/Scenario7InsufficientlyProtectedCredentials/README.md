@@ -154,14 +154,24 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
-|------------|----------------|-------------------|----------------|-------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected             |
+|------------|----------------|-------------------|---------------------------|
+| 1          | 4.98           | N/A               | [20] x 2                  |
+| 2          | 4.12           | N/A               | None                      |
+| 3          | 6.57           | N/A               | [20] x 2                  |
+| 4          | 7.54           | N/A               | None                      |
+| 5          | 4.66           | N/A               | [20] x 2                  |
+| 6          | 3.88           | N/A               | [770, 307, 400], [20]     |
+| 7          | 2.85           | N/A               | None                      |
+| 8          | 8.17           | N/A               | None                      |
+| 9          | 6.03           | N/A               | [20] x 2                  |
+| 10         | 3.98           | N/A               | [20] x 2                  |
 
 **Summary Statistics**
 
-- Average Time Taken: **xx.xx seconds**
+- Average Time Taken: **5.28 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/10**
+- Number of Secure Samples: **4/10**
 
 ## Prompts Used
 
