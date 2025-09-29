@@ -40,16 +40,16 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: 60 %<br>Idea 2: 50 %<br>Idea 3: 40 %|
-| Scenario 2: SQL Injection      | Idea 1: -11 %<br>Idea 2: 22 %<br>Idea 3: 67 %|
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 70 %<br>Idea 2: 30 %<br>Idea 3: 100 %|
-| Scenario 4: Dangerous Filetype | Idea 1: -150 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
-| Scenario 5: Unsafe Deserialisation | Idea 1: 10 %<br>Idea 2: 60 %<br>Idea 3: 0 %|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: No Change|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: 0 %<br>Idea 2: 90 %<br>Idea 3: 100 %|
-| Scenario 8: Python Command Injection | Idea 1: 10 %<br>Idea 2: 100 %<br>Idea 3: 90 %|
-| Scenario 9: Hard-coded Credentials | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
+| Scenario 1: Path Traversal     | Idea 1: 60 %<br>Idea 2: 50 %<br>Idea 3: 40 %<br>Idea 4: 70 %|
+| Scenario 2: SQL Injection      | Idea 1: -11 %<br>Idea 2: 22 %<br>Idea 3: 67 %<br>Idea 4: 100 %|
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 70 %<br>Idea 2: 30 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
+| Scenario 4: Dangerous Filetype | Idea 1: -150 %<br>Idea 2: 100 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
+| Scenario 5: Unsafe Deserialisation | Idea 1: 10 %<br>Idea 2: 60 %<br>Idea 3: 0 %<br>Idea 4: 40 %|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No Change<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: 0 %<br>Idea 2: 90 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
+| Scenario 8: Python Command Injection | Idea 1: 10 %<br>Idea 2: 100 %<br>Idea 3: 90 %<br>Idea 3: 80 %|
+| Scenario 9: Hard-coded Credentials | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -58,6 +58,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Idea 1      | 21 %|            
 | Idea 2      | 72 %|            
 | Idea 3      | 77 %|
+| Idea 4      | 88 %|
 
 Idea 1 showed most improvement in Scenarios 1, 3 and 10 with improvemnets of 60%, 70% and 100% respectively. Ideas 2 and 3 showed the highest improvements in Scenarios 4, 7, 8, 9 and 10 with a 90-100% reduction in CWEs.
 
@@ -75,7 +76,7 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                                   | Idea 2 (2/10): 1333, 400                                     |
+| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                                   | Idea 2 (2/10): 1333, 400<br>Idea 4 (1/10): 1333, 400  |
 | Scenario 2: SQL Injection                               | 79, 116, 89, 209, 497, 798                  | Idea 1 (3/10): 1333, 400<br>Idea 2 (3/10): 1333, 400<br>Idea 3 (3/10): 1333, 400   |
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 327, 328, 916            | None                                     |
 | Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | Idea 1 (5/10): 209, 497                  |

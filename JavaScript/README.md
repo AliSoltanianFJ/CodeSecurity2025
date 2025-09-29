@@ -160,3 +160,4 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 | **Idea 1 (Negative Example Prompting)** | 14%                        | -11%                                | -26%                       |            22%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | 11%                                | 23%                       |            35%                         |
 | **Idea 3 (Fine-Tuning)** | 64%                        | 60%                               |          xx               |                                 xx       |
+| **Idea 4 (Meta Prompting)** | 31%                        | xx                               |          xx               |                                 xx       |
