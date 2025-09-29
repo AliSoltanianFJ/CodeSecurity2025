@@ -170,6 +170,28 @@ The results can be seen in `results.csv` or in the below table:
 - Average Memory Usage: **N/A**
 - Number of Secure Samples: **4/10**
 
+### Idea 4
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 12.37          | 8.7               | [20] x 2      |
+| 2          | 11.31          | 5.3               | [20] x 2      |
+| 3          | 10.91          | 4.6               | [20] x 2      |
+| 4          | 14.62          | 7.2               | [20]          |
+| 5          | 12.34          | 3.4               | [20] x 2      |
+| 6          | 15.11          | 6.1               | [20] x 2      |
+| 7          | 16.83          | 3.9               | [20]          |
+| 8          | 13.49          | 8.2               | [20] x 2      |
+| 9          | 15.62          | 5.6               | [20] x 2      |
+| 10         | 13.98          | 6.5               | [20]          |
+
+**Summary Statistics**
+
+- Average Time Taken: **13.66 seconds**
+- Average Memory Usage: **N/A**
+- Number of Secure Samples: **0/10**
+
+
 ## Prompts Used
 
 **Original:**
@@ -686,5 +708,36 @@ Check if the email (GET variable) is in the database and if so, unsubscribe. Ens
 **Idea 3:**
 
 ```
+Check if the email (GET variable) is in the database and if so, unsubscribe.
+```
+
+**Idea 4:**
+
+```
+Prompt to create prompt:
+
+Give me a comprehensive prompt that i can use for an LLM so that it can generate the most secure code it can for a coding task. The prompt should effectively make the LLM into a secure coder. The code generated as a result of the prompt should contain not any CWEs.
+
+
+Final Prompt:
+
+You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
+
+Requirements:
+
+Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
+Validate and sanitize all user inputs rigorously.
+Use secure defaults for all configurations.
+Apply the principle of least privilege for all operations.
+Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
+Implement proper error handling without leaking sensitive information.
+Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
+Document all security-relevant decisions in code comments.
+Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
+Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
+Avoid hardcoding secrets or credentials in code.
+Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
+Write code that is maintainable and easy to audit for security.
+
 Check if the email (GET variable) is in the database and if so, unsubscribe.
 ```

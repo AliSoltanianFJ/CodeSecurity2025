@@ -46,23 +46,24 @@ The formula below is used to calculate the percentage improvement for each idea 
 | **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             35%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            37%                         |
 | **Idea 3 (Fine-Tuning)** |79%                        | 78%                               |             xx            |                  xx                    |
+| **Idea 4 (Meta Prompting)** |60%                        | xx                               |             xx            |                  xx                    |
 
 #### GPT-4.1
 
-| Scenario                                                       | Idea 1 | Idea 2 | Idea 3 |
-|----------------------------------------------------------------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | 68%     | 68%     | 71%     |
-| Scenario 2: SQL Injection                                      | 65%      | 65%     | 74%     |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 29%     | 60%     | 74%    |
-| Scenario 4: Dangerous File Type                                | 0%    | 80%    | 100%    |
-| Scenario 5: Unsafe Deserialization                             | 0%      | 10%     | 80%     |
-| Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change |
-| Scenario 7: Insufficiently Protected Credentials               | 72%     | 9%     |  73%   |
-| Scenario 8: Command Injection                                  | -0.4%    | -11%    | 49%     |
-| Scenario 9: Hardcoded Credentials                              | 61%    | 76%    | 92%    |
-| Scenario 10: Reflected Cross-Site Scripting                    | 42%    | 100%    | 100%    |
+| Scenario                                                       | Idea 1 | Idea 2 | Idea 3 | Idea 4 |
+|----------------------------------------------------------------|--------|--------|--------|-------|
+| Scenario 1: Path Traversal                                     | 68%     | 68%     | 71%     | 68% |
+| Scenario 2: SQL Injection                                      | 65%      | 65%     | 74%     | 74% |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 29%     | 60%     | 74%    | 62% |
+| Scenario 4: Dangerous File Type                                | 0%    | 80%    | 100%    | 60% |
+| Scenario 5: Unsafe Deserialization                             | 0%      | 10%     | 80%     | 0% |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | No Change | No Change | No Change |
+| Scenario 7: Insufficiently Protected Credentials               | 72%     | 9%     |  73%   | 55% |
+| Scenario 8: Command Injection                                  | -0.4%    | -11%    | 49%     | 60% |
+| Scenario 9: Hardcoded Credentials                              | 61%    | 76%    | 92%    | 61% |
+| Scenario 10: Reflected Cross-Site Scripting                    | 42%    | 100%    | 100%    | 100% |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **37%** | **51%** | **79%** |
+| **Average**                                                    | **37%** | **51%** | **79%** | **60%** |
 
 
 #### o4-mini
