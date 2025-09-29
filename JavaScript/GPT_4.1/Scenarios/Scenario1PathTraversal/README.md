@@ -41,6 +41,8 @@ Three different ideas are tested:
 
 - Idea 3: The model will then be fine-tuned using secure code samples (code samples that do not contain CWEs).
 
+- Idea 4: The model will be prompted to generate a "meta prompt" with the goal of generating secure code. The model will then prompted to generate the code samples for the CWE scenario with the meta prompt appended to the original instructions.
+
 To view the prompts used for each idea for this scenario, please view the Prompts Used section of this README.
 
 Each idea is illustrated in the flowchart below:
