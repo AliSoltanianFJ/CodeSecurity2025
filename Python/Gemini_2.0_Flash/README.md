@@ -40,16 +40,16 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 90 %|
-| Scenario 2: SQL Injection      | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 80 %|
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 100 %|
-| Scenario 4: Dangerous Filetype | Idea 1: 57 %<br>Idea 2: -42 %<br>Idea 3: 100 %|
-| Scenario 5: Unsafe Deserialisation | Idea 1: 0 %<br>Idea 2: 20 %<br>Idea 3: 10 %|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No change<br>Idea 3: No change %|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 100 %|
-| Scenario 8: Python Command Injection | Idea 1: -11 %<br>Idea 2: 11 %<br>Idea 3: 100 %|
-| Scenario 9: Hard-coded Credentials | Idea 1: 0 %<br>Idea 2: 20 %<br>Idea 3: 100 %|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: -200 %<br>Idea 2: 100 %<br>Idea 3: 0 %|
+| Scenario 1: Path Traversal     | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 90 %<br>Idea 4: 100 %|
+| Scenario 2: SQL Injection      | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 80 %<br>Idea 4: 80 %|
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 100 %<br>Idea 4: 80 %|
+| Scenario 4: Dangerous Filetype | Idea 1: 57 %<br>Idea 2: -42 %<br>Idea 3: 100 %<br>Idea 4: -43 %|
+| Scenario 5: Unsafe Deserialisation | Idea 1: 0 %<br>Idea 2: 20 %<br>Idea 3: 10 %<br>Idea 4: 100 %|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: No change<br>Idea 2: No change<br>Idea 3: No change %<br>Idea 4: No change %|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: 0 %<br>Idea 2: 0 %<br>Idea 3: 100 %<br>Idea 4: 60 %|
+| Scenario 8: Python Command Injection | Idea 1: -11 %<br>Idea 2: 11 %<br>Idea 3: 100 %<br>Idea 4: 33 %|
+| Scenario 9: Hard-coded Credentials | Idea 1: 0 %<br>Idea 2: 20 %<br>Idea 3: 100 %<br>Idea 4: 100 %|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: -200 %<br>Idea 2: 100 %<br>Idea 3: 0 %<br>Idea 4: 100 %|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -58,6 +58,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Idea 1      | -6 %|            
 | Idea 2      | 23 %|            
 | Idea 3      | 76 %|
+| Idea 4      | 68 %|
 
 ...
 
@@ -68,13 +69,13 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
 | Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99, 209, 497                                   | None                                     |
-| Scenario 2: SQL Injection                               | 89                  | Idea 1 (10/10): 79, 116, 209, 497<br>Idea 2 (10/10): 1333, 400, 209, 497<br>Idea 3 (2/10): 798   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 89            | Idea 1 (10/10): 327, 328, 916<br>Idea 2 (2/10): 327, 328, 916; Idea 2 (8/10): 209, 497                                    |
-| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | None                  |
+| Scenario 2: SQL Injection                               | 89                  | Idea 1 (10/10): 79, 116, 209, 497<br>Idea 2 (10/10): 1333, 400, 209, 497<br>Idea 3 (2/10): 798<br>Idea 4 (2/10): 117, 601  |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 89            | Idea 1 (10/10): 327, 328, 916<br>Idea 2 (2/10): 327, 328, 916; Idea 2 (8/10): 209, 497<br>Idea 4 (2/10) 117                                    |
+| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | Idea 4 (9/10): 117, 601, 798                  |
 | Scenario 5: Unsafe Deserialisation                      | 79, 116, 209, 497                 | None                                     |
 | Scenario 6: Missing Authentication For Critical Function                      | None                 | None                                     |
-| Scenario 7: Insufficiently Protected Credentials                      | 327, 328, 916               | Idea 1 (10/10): 209, 497                                     |
-| Scenario 8: Python Command Injection                      | 78                 | Idea 1 (10/10): 209, 497<br>Idea 2 (7/10): 1333, 400, 209, 497                                     |
+| Scenario 7: Insufficiently Protected Credentials                      | 327, 328, 916               | Idea 1 (10/10): 209, 497<br>Idea 4: (3/10): 20, 798                   |
+| Scenario 8: Python Command Injection                      | 78                 | Idea 1 (10/10): 209, 497<br>Idea 2 (7/10): 1333, 400, 209, 497<br>Idea 4 (6/10): 209, 497                                  |
 | Scenario 9: Hard-coded Credentials                      | 798                 | None                                     |
 | Scenario 10: Reflected Cross-Site Scripting                      | 79, 116                 | None                                     |
 
