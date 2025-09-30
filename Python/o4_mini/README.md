@@ -40,7 +40,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: 60 %<br>Idea 2: 80 %<br>Idea 3: 80 %|
+| Scenario 1: Path Traversal     | Idea 1: 60 %<br>Idea 2: 80 %<br>Idea 3: 80 %<br>Idea 4: 100 %|
 | Scenario 2: SQL Injection      | Idea 1: -14 %<br>Idea 2: 57 %<br>Idea 3: 71%|
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: 100 %<br>Idea 2: 90 %<br>Idea 3: 100 %|
 | Scenario 4: Dangerous Filetype | Idea 1: 100 %<br>Idea 2: 100 %<br>Idea 3: 100 %|
