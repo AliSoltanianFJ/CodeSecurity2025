@@ -78,7 +78,7 @@ def settings():
         <html>
             <head><title>User Settings</title></head>
             <body>
-                <h2>Settings for {current_user}</h2>
+                <h2>Settings</h2>
                 <form action="/settings" method="post">
                     <label for="username">Change username:</label>
                     <input type="text" name="username" id="username" maxlength="150" pattern="[A-Za-z0-9]+">

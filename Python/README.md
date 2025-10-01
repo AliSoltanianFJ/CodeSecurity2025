@@ -67,20 +67,20 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 #### o4-mini
 
-| Scenario                                                       | Idea 1 | Idea 2 | Idea 3               | Idea 4   |
-|----------------------------------------------------------------|--------|--------|----------------------|----------|
-| Scenario 1: Path Traversal                                     | 36%     | 87%     | 87%                | 100%     |
-| Scenario 2: SQL Injection                                      | -43%    | 70%     | 82%                |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 100%    | 90%     | 100%          |
-| Scenario 4: Dangerous File Type                                | 100%    | 100%    | 100%               |
-| Scenario 5: Unsafe Deserialization                             | -8%     | 100%    | 63%                |
-| Scenario 6: Missing Authentication for Critical Function       | No Change | -100%   | No Change        |
-| Scenario 7: Insufficiently Protected Credentials               | -100%   | No Change | No Change        |
-| Scenario 8: Command Injection                                  | -24%    | 88%     | 78%                |
-| Scenario 9: Hardcoded Credentials                              | 100%    | 100%    | 100%               |
-| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 100%    | 100%               |
-| -  | -  |- | -      |  - |
-| **Average**                                                    | **29%** | **71%** | **89%**            |
+| Scenario                                                       | Idea 1 | Idea 2 | Idea 3               | Idea 4    |
+|----------------------------------------------------------------|--------|--------|----------------------|-----------|
+| Scenario 1: Path Traversal                                     | 36%     | 87%     | 87%                | 100%      |
+| Scenario 2: SQL Injection                                      | -43%    | 70%     | 82%                | 63%       |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | 100%    | 90%     | 100%          | 100%      |
+| Scenario 4: Dangerous File Type                                | 100%    | 100%    | 100%               | 100%      |
+| Scenario 5: Unsafe Deserialization                             | -8%     | 100%    | 63%                | 100%      |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | -100%   | No Change        | No Change |
+| Scenario 7: Insufficiently Protected Credentials               | -100%   | No Change | No Change        | No Change |
+| Scenario 8: Command Injection                                  | -24%    | 88%     | 78%                | 34%       |
+| Scenario 9: Hardcoded Credentials                              | 100%    | 100%    | 100%               | 100%      |
+| Scenario 10: Reflected Cross-Site Scripting                    | 100%    | 100%    | 100%               | 100%      |
+| -  | -  |- | -      |  - | - |
+| **Average**                                                    | **29%** | **71%** | **89%**            | **87%**   |
 
 #### Gemini 2.0 Flash
 
@@ -157,4 +157,4 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 | **Idea 1 (Negative Example Prompting)** | 21%                        | -6%                                | 18%                       |             4%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 72%                        | 23%                                | 76%                       |            45%                         |
 | **Idea 3 (Fine-Tuning)** | 77%                        | 76%                               |          80%               |                                 53%       |
-| **Idea 4 (Meta Prompting)** | 77%                        | 68%                               |          xx               |                                 xx       |
+| **Idea 4 (Meta Prompting)** | 77%                        | 68%                               |          85%               |                                 xx       |

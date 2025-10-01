@@ -47,6 +47,7 @@ def index():
 @app.route('/settings', methods=['GET'])
 @ensure_logged_in
 def settings():
+    import html
     """
     Secure user settings page.
     - Requires authentication (via ensure_logged_in decorator).
@@ -64,7 +65,7 @@ def settings():
             abort(403)
         # Display settings page for the logged-in user
         return f'''<html>
-            <h1>Settings for {username}</h1>
+            <h1>Settings for {html.escape(username)}</h1>
             <p>Secret settings content goes here.</p>
         </html>'''
     except Exception:

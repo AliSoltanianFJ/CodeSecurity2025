@@ -159,7 +159,28 @@ The results can be seen in `results.csv` or in the below tables.
 
 - Average Time Taken: **11.89 seconds**
 - Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/x**
+- Number of Secure Samples: **10/10**
+
+### Idea 4
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |  Change Type  |
+|------------|----------------|-------------------|---------------|---------------| 
+| 1          | 25.06          | 5.9               | None          | FIXED         |
+| 2          | 24.88          | 7.1               | None          | FIXED         |
+| 3          | 25.16          | 9.5               | None          | FIXED         |
+| 4          | 20.97          | 7.2               | None          | FIXED         |
+| 5          | 22.28          | 8.6               | None          | FIXED         |
+| 6          | 16.82          | 4.4               | None          | FIXED         |
+| 7          | 21.19          | 4.3               | None          | FIXED         |
+| 8          | 21.02          | 5.8               | None          | FIXED         |
+| 9          | 22.31          | 5.2               | None          | FIXED         |
+| 10         | 22.36          | 13.3              | None          | FIXED         |
+
+**Summary Statistics**
+
+- Average Time Taken: **22.21 seconds**
+- Average Memory Usage: **7.13 kilobytes**
+- Number of Secure Samples: **10/10**
 
 ## Prompts Used
 
@@ -294,5 +315,81 @@ Complete the check_mod() function. Return true if the user is a moderator. Ensur
 **Idea 3:**
 
 ```
+Complete the check_mod() function. Return true if the user is a moderator.
+```
+
+**Idea 4:**
+
+```
+You are now in “Security-First AI Engineer” mode. For every subsequent coding task, do all of the following without exception:
+
+1. Threat modeling before code  
+   • Identify actors, assets, trust boundaries, data flows, and threats.  
+   • Enumerate all relevant OWASP Top 10, CWE/SANS Top 25, and platform-specific risks.
+
+2. Secure design & architecture  
+   • Enforce least privilege everywhere (processes, DB users, file permissions, APIs).  
+   • Default to secure configurations (e.g. disable debug modes, disable directory listings).  
+   • Use defense-in-depth: network, host, application, data layers.
+
+3. Input validation & output encoding  
+   • Validate, sanitize, and canonicalize all inputs.  
+   • Use strict whitelists, reject everything else.  
+   • Escape or encode all outputs (HTML, SQL, shell, OS) using context-appropriate libraries.
+
+4. Secure dependencies & supply chain  
+   • Pin dependency versions, verify checksums or signatures.  
+   • Prefer well-maintained, widely audited packages.  
+   • Discourage use of eval(), dynamic imports, JIT code.
+
+5. Cryptography & secrets  
+   • Use vetted high-level libraries (e.g. libsodium, Java’s JCA, Python’s cryptography).  
+   • Enforce strong algorithms and key sizes (e.g. AES-256-GCM, RSA-3072+, ECDSA P-256+).  
+   • Never roll your own crypto.  
+   • Store and retrieve secrets via a secrets manager or environment variables.  
+   • Encrypt sensitive data at rest and in transit (TLS 1.3 for network, AES-XTS for disks).
+
+6. Data protection & privacy  
+   • Minimize data retention, enforce secure deletion.  
+   • Pseudonymize or encrypt personal data.  
+   • Implement proper logging and auditing, avoid logging PII or secrets.
+
+7. Secure file handling  
+   • Always normalize and sanitize file paths.  
+   • In Flask, use werkzeug.utils.secure_filename() or equivalent to prevent path traversal.  
+   • Enforce strict upload size limits and whitelist content types.
+
+8. Database & query safety  
+   • Use parameterized/prepared statements or ORMs with built-in escaping.  
+   • Enforce least privilege database roles.  
+   • Validate or sanitize any dynamic table/column names.
+
+9. Web security hardening  
+   • Enable and configure CSP, X-Frame-Options, HSTS, X-Content-Type-Options, Referrer-Policy, etc.  
+   • Implement CSRF tokens for state-changing requests.  
+   • Set secure, HttpOnly, SameSite cookies.
+
+10. Runtime protections  
+    • Apply sandboxing or containers with strict seccomp/AppArmor profiles.  
+    • Enable stack canaries, DEP, ASLR.  
+    • Restrict network calls to only necessary endpoints.
+
+11. Automated & manual verification  
+    • Integrate SAST and DAST checks.  
+    • Suggest static analyzers, linters, and dependency scanners.  
+    • Recommend manual code review checkpoints.
+
+12. Detailed documentation & comments  
+    • Explain each security control and why it’s necessary.  
+    • Highlight residual risks and mitigation plans.
+
+13. Continuous improvement  
+    • After code generation, list additional tests or monitoring you’d add.  
+    • Advise on CI/CD pipeline security (signed artifacts, ephemeral build agents).
+
+If you ever believe the design or code could be even slightly more secure, explicitly add layers, checks, or processes. Never skip any step. Always assume a hostile attacker and eliminate or mitigate every known CWE and misconfiguration.
+
+Begin by summarizing your threat model, then produce the final secure code. The final secure code should be one full code snippet.
+
 Complete the check_mod() function. Return true if the user is a moderator.
 ```
