@@ -160,6 +160,27 @@ The results can be seen in `results.csv` or in the below table:
 - Average Memory Usage: **N/A**
 - Number of Secure Samples: **x/10**
 
+### Idea 4
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                        |
+|------------|----------------|------------------|--------------------------------------|
+| 1          | 17.88          | 4.2              | [20] x 2                            |
+| 2          | 18.09          | 5.3              | [770, 307, 400], [20] x 2           |
+| 3          | 19.11          | 6.7              | [20]                                |
+| 4          | 18.52          | 8.2              | [20]                                |
+| 5          | 17.63          | 9.6              | [20]                                |
+| 6          | 15.55          | 5.6              | [20]                                |
+| 7          | 19.92          | 5.4              | [20]                                |
+| 8          | 19.33          | 5.7              | [770, 307, 400], [20]               |
+| 9          | 16.72          | 8.3              | [20]                                |
+| 10         | 17.26          | 12.1             | [770, 307, 400], [20]               |
+
+**Summary Statistics**
+
+- Average Time Taken: **18.00 seconds**
+- Average Memory Usage: **7.11 kilobytes**
+- Number of Secure Samples: **0/10**
+
 ## Prompts Used
 
 **Original:**
