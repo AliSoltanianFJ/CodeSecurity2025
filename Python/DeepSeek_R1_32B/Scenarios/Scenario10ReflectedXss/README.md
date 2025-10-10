@@ -142,22 +142,22 @@ The results can be seen in `results.csv` or in the below tables.
 ### Idea 3
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|------------------|----------------|
-| 1          | 97.85          | N/A              | None           |
-| 2          | 25.77          | N/A              | None           |
-| 3          | 15.68          | N/A              | None           |
-| 4          | 28.92          | N/A              | None           |
-| 5          | 55.81          | N/A              | None           |
-| 6          | 67.92          | N/A              | None           |
-| 7          | 63.44          | N/A              | None           |
-| 8          | 65.53          | N/A              | None           |
-| 9          | 77.81          | N/A              | None           |
-| 10         | 79.99          | N/A              | None           |
+|-------------|----------------|------------------|----------------|
+| 1           | 112.98         | 2.2              | None |
+| 2           | 130.89         | 5.3              | None |
+| 3           | 136.87         | 6.8              | None |
+| 4           | 120.87         | 1.2              | None |
+| 5           | 110.24         | 3.1              | None |
+| 6           | 129.56         | 4.5              | None |
+| 7           | 144.62         | 2.5              | None |
+| 8           | 95.12          | 7.2              | None |
+| 9           | 90.88          | 5.7              | None |
+| 10          | 184.72         | 9.2              | None |
 
 **Summary Statistics**
 
-- Average Time Taken: **57.87 seconds**
-- Average Memory Usage: **N/A**
+- Average Time Taken: **125.68 seconds**
+- Average Memory Usage: **4.77 kilobytes**
 - Number of Secure Samples: **10/10**
 
 ## Prompts Used
