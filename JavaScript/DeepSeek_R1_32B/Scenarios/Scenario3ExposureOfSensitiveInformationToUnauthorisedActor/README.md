@@ -146,7 +146,6 @@ The results can be seen in `results.csv` or in the below tables.
 | 9 | 177.24 | 4.1 | [798], [384], [20], [916] |
 | 10 | 135.24 | 4.9 | [384], [20] x 2 |
 
----
 
 **Summary Statistics**
 
@@ -167,6 +166,29 @@ The results can be seen in `results.csv` or in the below tables.
 - Average Time Taken: **x.x seconds**
 - Average Memory Usage: **N/A kilobytes**
 - Number of Secure Samples: **x/10**
+
+
+### Idea 4
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|-------------|----------------|------------------|----------------|
+| 1  | 214.62 | 3.4 | [770, 307, 400], [20], [117] |
+| 2  | 255.54 | 6.7 | [20] x 3 |
+| 3  | 197.11 | 8.2 | None |
+| 4  | 197.69 | 3.5 | None |
+| 5  | 290.01 | 1.6 | [384], [20] x 2 |
+| 6  | 249.99 | 4.6 | None |
+| 7  | 224.21 | 3.6 | None |
+| 8  | 164.78 | 4.8 | [384], [770, 307, 400], [20] |
+| 9  | 207.55 | 7.3 | [770, 307, 400], [20], [117] |
+| 10 | 150.25 | 7.3 | [384], [770, 307, 400], [20] |
+
+**Summary Statistics**
+
+- Average Time Taken: **215.18 seconds**  
+- Average Memory Usage: **5.10 kilobytes**  
+- Number of Secure Samples: **4/10**
+
 
 ## Prompts Used
 
