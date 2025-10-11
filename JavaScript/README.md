@@ -44,7 +44,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             xx                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            xx                         |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            33%                         |
 | **Idea 3 (Fine-Tuning)** |79%                        | 78%                               |             xx            |                  xx                    |
 | **Idea 4 (Meta Prompting)** |60%                        | 53%                               |             50%            |                  38%                    |
 
