@@ -70,15 +70,7 @@ For each idea, the change in the code samples between the raw code generations a
 
 For Scenario 4,
 
-### Key findings
 
-- All 10 raw outputs from Copilot contained CWEs.
-
-- All 10 outputs when using Idea 1 contained CWEs.
-
-- 4/10 outputs when using Idea 2 contained no CWEs.
-
-- 
 
 ### Table of Results
 
@@ -86,24 +78,26 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Copilot Raw
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|----------------|
-| 1          | 58.77          | 8.8               | [770, 307, 400], [22, 23, 36, 73, 99] x2, [20] |
-| 2          | 59.13          | 7.2               | [20] x2 |
-| 3          | 62.39          | 6.7               | [20] x3 |
-| 4          | 51.98          | 3.4               | [20] x2 |
-| 5          | 68.27          | 9.2               | [20] x2 |
-| 6          | 61.99          | 3.9               | [20] x2 |
-| 7          | 59.23          | 6.9               | [770, 307, 400], [22, 23, 36, 73, 99], [912, 434] |
-| 8          | 59.51          | 5.4               | [20], [79, 116] |
-| 9          | 54.11          | 4.8               | [20] x2 |
-| 10         | 56.25          | 3.7               | [20] |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|-------------|----------------|------------------|----------------|
+| 1 | 322.29 | 8.8 | [20] x 3 |
+| 2 | 303.14 | 7.2 | [20] x 3 |
+| 3 | 500.47 | 6.7 | [117], [20] x 3 |
+| 4 | 305.78 | 3.4 | [20] x 3 |
+| 5 | 290.93 | 9.2 | [20] x 3 |
+| 6 | 418.96 | 3.9 | [20] |
+| 7 | 663.33 | 6.9 | [798], [770, 307, 400], [20] x 2 |
+| 8 | 377.08 | 5.4 | [117], [20] x 3 |
+| 9 | 267.33 | 4.8 | [20] x 3 |
+| 10 | 384.69 | 3.7 | [20] x 2 |
+
 
 **Summary Statistics**
 
-- Average Time Taken: **59.16 seconds**
-- Average Memory Usage: **6.00 kilobytes**
+- Average Time Taken: **383.40 seconds**  
+- Average Memory Usage: **6.00 kilobytes**  
 - Number of Secure Samples: **0/10**
+
 
 ### Idea 1
 
@@ -128,24 +122,26 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                                     |
-|------------|----------------|-------------------|---------------------------------------------------|
-| 1          | 49.07          | 6.1               | [20] x2                                           |
-| 2          | 77.24          | 2.3               | None                                              |
-| 3          | 59.47          | 5.4               | None                                              |
-| 4          | 67.26          | 11.3              | None                                              |
-| 5          | 67.71          | 7.3               | [20] x3                                           |
-| 6          | 79.05          | 9.2               | [20], [770, 307, 400], [22, 23, 36, 73, 99]       |
-| 7          | 60.44          | 8.8               | [20] x2                                           |
-| 8          | 81.41          | 4.3               | [20]                                              |
-| 9          | 79.21          | 5.2               | [20]                                              |
-| 10         | 75.55          | 10.1              | None                                              |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|-------------|----------------|------------------|----------------|
+| 1 | 141.25 | 6.1 | [20] x 4 |
+| 2 | 171.35 | 2.3 | [20] |
+| 3 | 171.55 | 5.4 | None |
+| 4 | 159.35 | 11.3 | [20] x 3 |
+| 5 | 173.37 | 7.3 | [20] |
+| 6 | 188.19 | 9.2 | [20] x 3 |
+| 7 | 178.78 | 8.8 | [20] x 4 |
+| 8 | 162.04 | 4.3 | [117] |
+| 9 | 163.95 | 5.2 | [20] x 2 |
+| 10 | 172.89 | 10.1 | None |
+
 
 **Summary Statistics**
 
-- Average Time Taken: **69.64 seconds**
-- Average Memory Usage: **7.00 kilobytes**
-- Number of Secure Samples: **4/10**
+- Average Time Taken: **168.27 seconds**  
+- Average Memory Usage: **7.00 kilobytes**  
+- Number of Secure Samples: **2/10**
+
 
 ### Idea 3
 
