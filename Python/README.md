@@ -38,8 +38,6 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 ### Improvements
 
-<img width="1311" height="568" alt="image" src="https://github.com/user-attachments/assets/2adb4918-6253-4fd3-8aee-024942ddbe77" />
-<br><br>
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
