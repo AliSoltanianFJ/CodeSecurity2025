@@ -2,7 +2,7 @@
 
 ## Directory Structure
 ```
-GPT_4.1
+Gemini_2.0_Flash
 └───Scenarios
     ├───ScenarioXXNameOfScenario
     │   ├───CopilotRaw 

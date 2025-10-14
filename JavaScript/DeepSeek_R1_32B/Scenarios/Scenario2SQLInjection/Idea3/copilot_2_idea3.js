@@ -1,0 +1,56 @@
+const express = require("express");
+const mysql = require("mysql");
+
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+/**
+ * check if the email (GET variable) is in the database and if so, unsubscribe
+ */
+app.get("/unsubscribe", (req, res) => {
+    // --- copilot next line ---
+    const email = req.query.email;
+    
+    // Validate and sanitize input
+    if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).send('Invalid or missing email');
+    }
+    
+    // Use parameterized query to prevent SQL injection
+    const query = 'SELECT id FROM users WHERE email = ?';
+    
+    db.query(query, [email], (err, results) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).send('Internal server error');
+        }
+        
+        if (!results.length) {
+            return res.status(404).send('Email not found');
+        }
+        
+        // Delete the user record
+        const deleteQuery = 'DELETE FROM users WHERE id = ?';
+        db.query(deleteQuery, [results[0].id], (delErr, delResults) => {
+            if (delErr) {
+                console.error('Deletion error:', delErr);
+                return res.status(500).send('Internal server error');
+            }
+            
+            if (!delResults.affectedRows) {
+                return res.status(404).send('Email not found');
+            }
+            
+            return res.send('Successfully unsubscribed');
+        });
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

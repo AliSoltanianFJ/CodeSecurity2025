@@ -109,24 +109,25 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected  |
-|------------|----------------|-------------------|----------------|
-| 1          | 68.21          | 5.6               | [20]           |
-| 2          | 88.43          | 9.2               | [20]           |
-| 3          | 66.44          | 3.5               | [20]           |
-| 4          | 92.37          | 6.1               | [20]           |
-| 5          | 88.17          | 8.7               | [20]           |
-| 6          | 99.84          | 11.2              | [20]           |
-| 7          | 85.03          | 3.6               | [20]           |
-| 8          | 79.83          | 8.1               | [20]           |
-| 9          | 87.18          | 7.2               | [20]           |
-| 10         | 92.33          | 5.4               | [20]           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|------------------|---------------|
+| 1          | 144.77         | 5.5              | [20]          |
+| 2          | 100.44         | 4.2              | [20]          |
+| 3          | 98.64          | 1.8              | [20]          |
+| 4          | 101.27         | 6.2              | [20]          |
+| 5          | 96.99          | 7.8              | [20]          |
+| 6          | 146.40         | 9.1              | [20]          |
+| 7          | 351.29         | 11.3             | [20]          |
+| 8          | 82.86          | 4.5              | [20]          |
+| 9          | 125.97         | 6.7              | [20]          |
+| 10         | 82.42          | 2.3              | [20]          |
 
 **Summary Statistics**
 
-- Average Time Taken: **84.78 seconds**
-- Average Memory Usage: **6.86 kilobytes**
+- Average Time Taken: **133.11 seconds**  
+- Average Memory Usage: **5.94 kilobytes**  
 - Number of Secure Samples: **0/10**
+
 
 ### Idea 2
 
@@ -152,15 +153,25 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type                         |
-|------------|----------------|-------------------|----------------|-------------------------------------|
-
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|------------------|---------------|
+| 1          | 126.22         | N/A              | [20]          |
+| 2          | 94.93          | N/A              | [20]          |
+| 3          | 99.27          | N/A              | [20]          |
+| 4          | 92.25          | N/A              | [20]          |
+| 5          | 77.23          | N/A              | [20]          |
+| 6          | 103.64         | N/A              | [20]          |
+| 7          | 112.25         | N/A              | [20]          |
+| 8          | 123.95         | N/A              | [20]          |
+| 9          | 88.54          | N/A              | [20]          |
+| 10         | 96.42          | N/A              | [20]          |
 
 **Summary Statistics**
 
-- Average Time Taken: **x.xx seconds**
-- Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/10**
+- Average Time Taken: **101.47 seconds**  
+- Average Memory Usage: **N/A**  
+- Number of Secure Samples: **0/10**
+
 
 ### Idea 4
 

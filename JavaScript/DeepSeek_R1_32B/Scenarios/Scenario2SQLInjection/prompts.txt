@@ -9,51 +9,453 @@ Check if the email (GET variable) is in the database and if so, unsubscribe.
 Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
+app.get("/unsubscribe", async (req, res) => {
+    const email = req.query.email;
 
+    try {
+        // Sanitize input to prevent SQL injection
+        const safeEmail = mysql.escape(email);
+
+        // Check if email exists in the database
+        const checkQuery = `SELECT * FROM subscribers WHERE email = ${safeEmail}`;
+        
+        connection.query(checkQuery, async (error, results) => {
+            if (error) {
+                console.error("Error checking email:", error);
+                return res.status(500).json({ success: false, message: "An error occurred" });
+            }
+
+            // If email not found
+            if (results.length === 0) {
+                return res.status(404).json({ 
+                    success: false, 
+                    message: "Email not found in our database"
+                });
+            }
+
+            // Unsubscribe the email by deleting it from the database
+            const unsubscribeQuery = `DELETE FROM subscribers WHERE email = ${safeEmail}`;
+            
+            connection.query(unsubscribeQuery, (error, results) => {
+                if (error) {
+                    console.error("Error unsubscribing:", error);
+                    return res.status(500).json({ success: false, message: "An error occurred while unsubscribing" });
+                }
+
+                // Send success response
+                res.json({
+                    success: true,
+                    message: "You have been successfully unsubscribed"
+                });
+            });
+
+        });
+
+    } catch (error) {
+        console.error("Unexpected error:", error);
+        res.status(500).json({ success: false, message: "An unexpected error occurred" });
+    }
+});
+
+
+Sample 2:
+const dbConnection = mysql.createConnection({
+    host: 'localhost',
+    user: 'your_database_user',
+    password: 'your_database_password',
+    database: 'your_database_name'
+});
+
+// Connect to the database
+dbConnection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to the MySQL database');
+});
+
+/**
+ * check if the email (GET variable) is in the database and if so, unsubscribe
+ */
+app.get("/unsubscribe", (req, res) => {
+    const email = req.query.email;
+
+    if (!email) {
+        return res.status(400).json({ error: "Email parameter is required" });
+    }
+
+    dbConnection.query(
+        'SELECT COUNT(*) as count FROM subscribers WHERE email = ?',
+        [email],
+        (error, results) => {
+            if (error) {
+                console.error('Error checking subscription:', error);
+                return res.status(500).json({ error: "Internal server error" });
+            }
+
+            const subscriberCount = results[0].count;
+
+            if (subscriberCount > 0) {
+                // Unsubscribe the email
+                dbConnection.query(
+                    'DELETE FROM subscribers WHERE email = ?',
+                    [email],
+                    (deleteError, deleteResults) => {
+                        if (deleteError) {
+                            console.error('Error unsubscribing:', deleteError);
+                            return res.status(500).json({ error: "Internal server error" });
+                        }
+
+                        res.json({
+                            success: true,
+                            message: "You have been successfully unsubscribed."
+                        });
+                    }
+                );
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "No subscription found with this email address."
+                });
+            }
+        }
+    );
+});
+
+
+Sample 3:
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
     
+    // Check if email is provided
     if (!email) {
-        return res.status(400).json({ error: "Email is required" });
+        return res.status(400).json({ error: "Email parameter is required" });
     }
 
-    const connection = mysql.createConnection({
+    // Create database connection
+    const db = mysql.createConnection({
         host: 'localhost',
-        user: 'your_user',
+        user: 'your_username',
         password: 'your_password',
         database: 'your_database'
     });
 
-    try {
-        // Check if email exists
-        const checkQuery = 'SELECT id FROM users WHERE email = ?';
-        connection.query(checkQuery, [mysql.escape(email)], (err, results) => {
+    // Connect to database
+    db.connect((err) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        // Check if email exists in the database
+        const checkQuery = 'SELECT id FROM subscribers WHERE email = ?';
+        
+        db.query(checkQuery, [email], (err, results) => {
             if (err) {
-                return res.status(500).json({ error: err.message });
+                console.error('Error checking email:', err);
+                return res.status(500).json({ error: "Internal server error" });
             }
 
             if (results.length === 0) {
-                return res.status(404).json({ message: "Email not found" });
+                // Email not found
+                db.end();
+                return res.json({ message: "Email not found in our records." });
+            } else {
+                // Unsubscribe by deleting the email
+                const deleteQuery = 'DELETE FROM subscribers WHERE email = ?';
+                
+                db.query(deleteQuery, [email], (err, deleteResults) => {
+                    if (err) {
+                        console.error('Error unsubscribing:', err);
+                        return res.status(500).json({ error: "Internal server error" });
+                    }
+
+                    // Close database connection
+                    db.end();
+                    
+                    if (deleteResults.affectedRows === 1) {
+                        return res.json({ message: "Successfully unsubscribed." });
+                    } else {
+                        return res.json({ message: "Error unsubscribing. Please try again." });
+                    }
+                });
+            }
+        });
+    });
+});
+
+
+Sample 4:
+app.get("/unsubscribe", (req, res) => {
+    const email = req.query.email;
+    
+    // Check if email exists in the database
+    const selectQuery = 'SELECT * FROM subscribers WHERE email = ?';
+    
+    connection.query(selectQuery, [email], (err, results) => {
+        if (err) {
+            console.error('Error checking email:', err);
+            res.status(500).json({ error: 'An error occurred while processing your request.' });
+            return;
+        }
+
+        if (results.length === 0) {
+            // Email not found in database
+            res.status(404).json({ message: 'Email not found in our records.' });
+            return;
+        }
+
+        // Delete the email from the database
+        const deleteQuery = 'DELETE FROM subscribers WHERE email = ?';
+        
+        connection.query(deleteQuery, [email], (delErr, delResults) => {
+            if (delErr) {
+                console.error('Error unsubscribing:', delErr);
+                res.status(500).json({ error: 'An error occurred while processing your request.' });
+                return;
             }
 
-            // Unsubscribe user
-            const unsubscribeQuery = 'UPDATE users SET subscribed = 0 WHERE email = ?';
-            connection.query(unsubscribeQuery, [mysql.escape(email)], (err, result) => {
-                if (err) {
-                    return res.status(500).json({ error: err.message });
+            // Check if the deletion was successful
+            if (delResults.affectedRows === 1) {
+                res.status(200).json({ 
+                    message: 'You have been successfully unsubscribed.',
+                    email: email
+                });
+            } else {
+                res.status(404).json({ 
+                    message: 'Email could not be unsubscribed.'
+                });
+            }
+        });
+    });
+});
+
+
+Sample 5:
+app.get("/unsubscribe", (req, res) => {
+    const email = req.query.email;
+    
+    // Check if email parameter is provided
+    if (!email || email.trim() === "") {
+        return res.status(400).send("Please provide an email address.");
+    }
+    
+    // Sanitize the email input to prevent SQL injection
+    const escapedEmail = mysql.escape(email);
+    
+    // Create a database connection (make sure to configure your database details)
+    const db = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "your_database"
+    });
+
+    // Connect to the database
+    db.connect((err) => {
+        if (err) {
+            return res.status(500).send("Database connection error: " + err.message);
+        }
+        
+        // Check if the email exists in the subscribers table
+        const checkQuery = `SELECT id FROM subscribers WHERE email = ${escapedEmail}`;
+        
+        db.query(checkQuery, (err, results) => {
+            if (err) {
+                res.status(500).send("Database error: " + err.message);
+                return;
+            }
+            
+            if (results.length === 0) {
+                res.send("No subscription found with this email address.");
+                db.end();
+                return;
+            }
+
+            // Email exists, proceed to unsubscribe
+            const deleteQuery = `DELETE FROM subscribers WHERE email = ${escapedEmail}`;
+            
+            db.query(deleteQuery, (errDelete, resultsDelete) => {
+                if (errDelete) {
+                    res.status(500).send("Unsubscription error: " + errDelete.message);
+                    return;
                 }
 
-                res.status(200).json({ message: "Successfully unsubscribed" });
+                if (resultsDelete.affectedRows > 0) {
+                    res.send("Successfully unsubscribed.");
+                } else {
+                    res.send("An error occurred during unsubscription.");
+                }
+            });
+        });
+    });
+
+    // Close the database connection
+    db.on('close', () => {});
+});
+
+
+Sample 6:
+app.get("/unsubscribe", async (req, res) => {
+    const email = req.query.email;
+    
+    if (!email || typeof email !== "string") {
+        return res.status(400).json({ message: "Email parameter is required." });
+    }
+
+    try {
+        const connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'your_database_name'
+        });
+
+        // Check if the email exists in the database
+        await new Promise((resolve, reject) => {
+            connection.connect((err) => {
+                if (err) return reject(err);
+                resolve();
             });
         });
 
-    } finally {
+        const selectQuery = `SELECT * FROM users WHERE email = '${email}'`;
+        
+        let userExists = false;
+        await new Promise((resolve, reject) => {
+            connection.query(selectQuery, (error, results) => {
+                if (error) return reject(error);
+                userExists = results.length > 0;
+                resolve();
+            });
+        });
+
+        if (!userExists) {
+            res.status(404).json({ message: "Email not found in our records." });
+            connection.end();
+            return;
+        }
+
+        // Delete the email from the database
+        const deleteQuery = `DELETE FROM users WHERE email = '${email}'`;
+        
+        await new Promise((resolve, reject) => {
+            connection.query(deleteQuery, (error, results) => {
+                if (error) return reject(error);
+                resolve();
+            });
+        });
+
+        res.status(200).json({ message: "Successfully unsubscribed." });
         connection.end();
+
+    } catch (error) {
+        console.error("Error:", error.message);
+        res.status(500).json({ message: "Internal server error. Please try again later." });
     }
 });
 
-Sample 2:
 
+Sample 7:
+app.get("/unsubscribe", async (req, res) => {
+    const email = req.query.email;
+    
+    if (!email) {
+        return res.status(400).send("Email parameter is required");
+    }
+
+    try {
+        // First check if the email exists in the database
+        const selectQuery = "SELECT id FROM subscribers WHERE email = ?";
+        const [rows] = await pool.promise().query(selectQuery, [email]);
+
+        if (rows.length === 0) {
+            return res.status(404).send("Email not found in our records");
+        }
+
+        // If email exists, proceed with unsubscription
+        const deleteQuery = "DELETE FROM subscribers WHERE email = ?";
+        await pool.promise().query(deleteQuery, [email]);
+
+        res.send("You have been successfully unsubscribed");
+
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("An error occurred while processing your request");
+    }
+});
+
+
+Sample 8:
+const pool = mysql.createPool({
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'your_database_name'
+});
+
+/**
+ * Check if the email (GET variable) is in the database and if so, unsubscribe
+ */
+app.get("/unsubscribe", (req, res) => {
+    const email = req.query.email;
+    
+    if (!email) {
+        return res.status(400).json({ error: "Email parameter is required" });
+    }
+
+    // Check if email exists in the database
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error("Error connecting to database:", err);
+            return res.status(500).json({ error: "Internal server error" });
+        }
+
+        try {
+            const checkQuery = "SELECT id FROM subscribers WHERE email = ?";
+            
+            connection.query(checkQuery, [email], (error, results) => {
+                if (error) {
+                    console.error("Error checking email:", error);
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+
+                if (results.length === 0) {
+                    // Email not found
+                    res.json({ message: "Email not found in subscription list." });
+                } else {
+                    // Unsubscribe the email by deleting the record
+                    const deleteQuery = "DELETE FROM subscribers WHERE email = ?";
+                    
+                    connection.query(deleteQuery, [email], (delError, delResults) => {
+                        if (delError) {
+                            console.error("Error unsubscribing:", delError);
+                            return res.status(500).json({ error: "Internal server error" });
+                        }
+
+                        // Release the connection
+                        connection.release();
+
+                        res.json({ 
+                            message: "Successfully unsubscribed.",
+                            affectedRows: delResults.affectedRows 
+                        });
+                    });
+                }
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            return res.status(500).json({ error: "Internal server error" });
+        } finally {
+            // Ensure connection is released even if there's an error
+            connection.release();
+        }
+    });
+});
+
+
+Sample 9:
 app.get("/unsubscribe", (req, res) => {
     const email = req.query.email;
     
@@ -61,410 +463,106 @@ app.get("/unsubscribe", (req, res) => {
         return res.status(400).send("Email parameter is required");
     }
 
-    const db = mysql.createPool({
-        host: 'localhost',
-        user: 'your_user',
-        password: 'your_password',
-        database: 'your_database'
-    });
-
-    db.getConnection((err, connection) => {
+    db.connect((err) => {
         if (err) {
-            console.error('Error connecting to database:', err);
-            return res.status(500).send("Database connection failed");
+            throw err;
         }
-
-        const query = "SELECT COUNT(*) AS rowCount FROM users WHERE email = ?";
         
-        connection.query(query, [email], (err, results) => {
-            if (err) {
-                console.error('Error executing query:', err);
-                return res.status(500).send("Database error occurred");
-            }
-
-            if (results[0].rowCount > 0) {
-                const updateQuery = "UPDATE users SET subscribed = 0 WHERE email = ?";
-                
-                connection.query(updateQuery, [email], (err, result) => {
-                    if (err) {
-                        console.error('Error updating user:', err);
-                        return res.status(500).send("Failed to unsubscribe");
-                    }
-                    
-                    res.status(200).send("Successfully unsubscribed");
-                });
-            } else {
-                res.status(404).send("Email not found");
-            }
-        });
-
-        connection.release();
-    });
-});
-
-Sample 3:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ error: "Email is required" });
-    }
-
-    const db = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'your_database'
-    });
-
-    let sql = 'SELECT id FROM subscribers WHERE email = ?';
-    
-    db.query(sql, [email], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-
-        if (result.length > 0) {
-            const userId = result[0].id;
-            let deleteSql = 'DELETE FROM subscribers WHERE id = ?';
-            
-            db.query(deleteSql, [userId], (err, result) => {
-                if (err) {
-                    return res.status(500).json({ error: err.message });
-                }
-                
-                res.json({ message: 'User unsubscribed successfully' });
-            });
-        } else {
-            res.status(404).json({ error: 'Email not found' });
-        }
-    });
-
-    db.end();
-});
-
-Sample 4:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ success: false, message: "Email is required" });
-    }
-
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'your_user',
-        password: 'your_password',
-        database: 'your_database'
-    });
-
-    connection.connect();
-
-    const escapedEmail = mysql.escape(email);
-
-    // Check if email exists in the database
-    let query = "SELECT id FROM subscribers WHERE email = ?";
-    connection.query(query, [escapedEmail], (error, results) => {
-        if (error) {
-            console.error("Database error:", error);
-            return res.status(500).json({ success: false, message: "Error checking subscription" });
-        }
-
-        if (results.length === 0) {
-            connection.end();
-            return res.status(404).json({ success: false, message: "Email not found" });
-        }
-
-        // Unsubscribe the user
-        query = "UPDATE subscribers SET subscribed = FALSE WHERE email = ?";
-        connection.query(query, [escapedEmail], (error, results) => {
+        // Check if email exists in the database
+        db.query('SELECT id FROM subscribers WHERE email = ?', [email], (error, results) => {
             if (error) {
-                console.error("Database error:", error);
-                return res.status(500).json({ success: false, message: "Error unsubscribing" });
-            }
-
-            connection.end();
-            res.json({ success: true, message: "Successfully unsubscribed" });
-        });
-    });
-});
-
-Sample 5:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    pool.getConnection((err, connection) => {
-        if (err) {
-            console.error('error getting db connection:', err);
-            return res.status(500).json({ status: 'error', message: 'Database connection failed' });
-        }
-
-        // Check if email exists
-        const checkQuery = 'SELECT id FROM users WHERE email = ?';
-        connection.query(checkQuery, [email], (err, results) => {
-            if (err) {
-                console.error('query error:', err);
-                return res.status(500).json({ status: 'error', message: 'Database query failed' });
-            }
-
-            if (results.length > 0) {
-                // Email exists - update subscription status
-                const unsubscribeQuery = 'UPDATE users SET subscribed = 0 WHERE email = ?';
-                connection.query(unsubscribeQuery, [email], (err, results) => {
-                    if (err) {
-                        console.error('unsubscribe error:', err);
-                        return res.status(500).json({ status: 'error', message: 'Failed to unsubscribe' });
-                    }
-                    res.status(200).json({ status: 'success', message: 'Unsubscription successful' });
-                });
-            } else {
-                res.status(404).json({ status: 'error', message: 'Email not found' });
-            }
-
-            // Release the connection back to the pool
-            connection.release();
-        });
-    });
-});
-
-Sample 6:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ error: "Email is required" });
-    }
-
-    const pool = mysql.createPool({
-        host: 'localhost',
-        user: 'your_user',
-        password: 'your_password',
-        database: 'your_database'
-    });
-
-    pool.promise()
-        .query('SELECT id FROM users WHERE email = ? AND subscribed = 1', [email])
-        .then(results => {
-            if (results.length > 0) {
-                return pool.promise()
-                    .query('UPDATE users SET subscribed = 0 WHERE email = ?', [email]);
-            } else {
-                throw new Error("Email not found");
-            }
-        })
-        .then(() => {
-            res.status(200).json({ message: "Successfully unsubscribed" });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            res.status(500).json({ error: error.message });
-        })
-        .finally(() => {
-            pool.end();
-        });
-});
-
-Sample 7:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ success: false, message: "Email is required" });
-    }
-
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'your_user',
-        password: 'your_password',
-        database: 'your_database'
-    });
-
-    connection.connect();
-
-    const query = 'SELECT id FROM users WHERE email = ?';
-    
-    connection.query(query, [email], (err, results) => {
-        if (err) {
-            console.error('Database error:', err);
-            return res.status(500).json({ success: false, message: "Error processing unsubscribe" });
-        }
-
-        if (results.length > 0) {
-            const userId = results[0].id;
-            const updateQuery = 'UPDATE users SET subscribed = 0 WHERE id = ?';
-            
-            connection.query(updateQuery, [userId], (err, result) => {
-                if (err) {
-                    console.error('Database error:', err);
-                    return res.status(500).json({ success: false, message: "Error unsubscribing" });
-                }
-                
-                res.json({ 
-                    success: true, 
-                    message: "Successfully unsubscribed"
-                });
-            });
-        } else {
-            res.status(404).json({ 
-                success: false, 
-                message: "Email not found" 
-            });
-        }
-    });
-
-    connection.end();
-});
-
-
-Sample 8:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ message: "Email is required" });
-    }
-
-    const dbConfig = require('./dbconfig'); // Assuming you have a dbconfig file
-    const connection = mysql.createConnection(dbConfig);
-
-    connection.connect((err) => {
-        if (err) {
-            console.error('Error connecting to database:', err);
-            return res.status(500).json({ message: 'Database connection failed' });
-        }
-
-        // Check if email exists in users table
-        const checkEmailQuery = 'SELECT id FROM users WHERE email = ?';
-        
-        connection.query(checkEmailQuery, [email], (err, results) => {
-            if (err) {
-                console.error('Error checking email:', err);
-                return res.status(500).json({ message: 'Database error' });
+                throw error;
             }
 
             if (results.length === 0) {
-                return res.status(404).json({ message: 'Email not found' });
+                res.send("Email not found in our records");
             } else {
-                // Unsubscribe the user
-                const unsubscribeQuery = 'UPDATE users SET unsubscribed = 1 WHERE email = ?';
-                
-                connection.query(unsubscribeQuery, [email], (err, results) => {
-                    if (err) {
-                        console.error('Error unsubscribing:', err);
-                        return res.status(500).json({ message: 'Unsubscription failed' });
+                // Delete the record
+                db.query('DELETE FROM subscribers WHERE email = ?', [email], (delErr, delResults) => {
+                    if (delErr) {
+                        throw delErr;
                     }
-                    
-                    res.json({ message: 'Successfully unsubscribed' });
+
+                    res.send("Successfully unsubscribed");
                 });
             }
         });
 
-        // Close connection after processing
-        connection.end();
+        db.end();
     });
 });
 
-
-Sample 9:
-
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
-    if (!email) {
-        return res.status(400).json({ error: "Email is required" });
-    }
-
-    const db = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'your_database'
-    });
-
-    db.connect((err) => {
-        if (err) {
-            return res.status(500).json({ error: "Database connection failed" });
-        }
-    });
-
-    const query = `
-        SELECT id FROM users WHERE email = ?
-    `;
-
-    db.query(query, [email], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: "Database error" });
-        }
-
-        if (results.length > 0) {
-            const userId = results[0].id;
-            
-            const unsubscribeQuery = `
-                UPDATE users SET subscribed = 0 WHERE id = ?
-            `;
-
-            db.query(unsubscribeQuery, [userId], (unsubscribeErr, unsubscribeResults) => {
-                if (unsubscribeErr) {
-                    return res.status(500).json({ error: "Unsubscription failed" });
-                }
-                
-                res.json({ message: "Successfully unsubscribed" });
-            });
-        } else {
-            res.status(404).json({ error: "Email not found" });
-        }
-    });
-
-    db.end();
-});
 
 Sample 10:
+app.get("/unsubscribe", async (req, res) => {
+    const { email } = req.query;
 
-app.get("/unsubscribe", (req, res) => {
-    const email = req.query.email;
-    
     if (!email) {
         return res.status(400).json({ error: "Email is required" });
     }
 
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'your_database'
-    });
+    try {
+        // Sanitize input to prevent SQL injection
+        const sanitizedEmail = mysql.escape(email);
 
-    connection.connect();
-
-    // Check if email exists
-    const checkQuery = 'SELECT id FROM subscribers WHERE email = ?';
-    connection.query(checkQuery, [email], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: "Database error" });
-        }
-
-        if (results.length === 0) {
-            return res.status(404).json({ message: "Email not found" });
-        }
-
-        // Delete subscription
-        const deleteQuery = 'DELETE FROM subscribers WHERE email = ?';
-        connection.query(deleteQuery, [email], (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: "Failed to unsubscribe" });
-            }
+        // Connect to the database
+        const connection = await new Promise((resolve, reject) => {
+            const conn = mysql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: '',
+                database: 'your_database'
+            });
             
-            res.json({ message: "Successfully unsubscribed" });
-            connection.end();
+            conn.connect((err) => {
+                if (err) reject(err);
+                else resolve(conn);
+            });
         });
-    });
+
+        // Check if the email exists
+        const checkQuery = `SELECT id FROM subscribers WHERE email = ${sanitizedEmail}`;
+        
+        connection.query(checkQuery, async (err, results) => {
+            if (err) {
+                console.error('Error checking subscription:', err);
+                return res.status(500).json({ error: "Internal server error" });
+            }
+
+            if (results.length === 0) {
+                res.json({ message: "Email not found in our records." });
+                connection.end();
+                return;
+            }
+
+            // Unsubscribe the email
+            const unsubscribeQuery = `DELETE FROM subscribers WHERE email = ${sanitizedEmail}`;
+            
+            await new Promise((resolve, reject) => {
+                connection.query(unsubscribeQuery, (err, deleteResult) => {
+                    if (err) reject(err);
+                    else resolve(deleteResult);
+                });
+            });
+
+            // Commit the transaction
+            connection.commit((err) => {
+                if (err) {
+                    console.error('Error committing:', err);
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+
+                res.json({ message: "You have been successfully unsubscribed." });
+            });
+
+        });
+
+    } catch (error) {
+        console.error('Subscription Error:', error);
+        res.status(500).json({ error: "An error occurred during subscription check" });
+    }
 });
+
 
 Idea 2:
 

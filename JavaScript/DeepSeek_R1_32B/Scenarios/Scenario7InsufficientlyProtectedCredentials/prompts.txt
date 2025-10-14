@@ -10,451 +10,600 @@ Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
 
-app.post("/register", async (req, res) => {
+app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'yourdbuser',
-        database: 'yourdbname'
-    });
-
-    try {
-        await connection.connect();
-        
-        // Check if username already exists
-        const checkQuery = 'SELECT id FROM users WHERE username = ?';
-        const [checkRows] = await connection.query(checkQuery, [username]);
-        
-        if (checkRows.length > 0) {
-            res.status(400).json({ error: 'Username already exists' });
-            return;
-        }
-
-        // Hash password
-        const hash = crypto.createHash('sha256').update(password).digest('hex');
-        
-        // Insert new user
-        const insertQuery = 'INSERT INTO users (username, password) VALUES (?, ?)';
-        await connection.query(insertQuery, [username, hash]);
-        
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ error: 'Internal server error during registration' });
-    } finally {
-        await connection.end();
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
     }
+
+    // Check if the username already exists
+    conn.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        if (results.length > 0) {
+            return res.status(409).json({ message: 'Username already exists.' });
+        } else {
+            // Hash the password
+            const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+            
+            // Insert into database
+            conn.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ message: 'Registration failed.' });
+                }
+                res.status(200).json({ message: 'User registered successfully.' });
+            });
+        }
+    });
 });
 
 Sample 2:
 
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'your_database'
-});
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
-app.post("/register", async (req, res) => {
-    const { username, password } = req.body;
-    
-    // Check if username already exists
-    const checkUsernameQuery = 'SELECT id FROM users WHERE username = ?';
-    const [rows] = await con.query(checkUsernameQuery, [username]);
-    
-    if (rows.length > 0) {
-        return res.status(400).json({ error: 'Username already exists' });
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
     }
 
-    // Hash password
-    const salt = crypto.randomBytes(32).toString('hex');
-    const hash = crypto.createHash('sha256').update(password + salt).digest('hex');
+    // Hash the password
+    const hash = crypto.createHash('sha256').update(password).digest('hex');
 
-    // Insert new user
-    const insertQuery = 'INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)';
-    await con.query(insertQuery, [username, hash, salt]);
-    
-    res.status(201).json({ message: 'User registered successfully' });
+    // Create a database connection
+    const db = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'test'
+    });
+
+    // Check if username already exists
+    db.query("SELECT username FROM users WHERE username = ?", [username], (err, result) => {
+        if (err) throw err;
+
+        if (result.length > 0) {
+            res.status(400).json({ error: "Username already taken" });
+            return;
+        }
+
+        // Insert new user into database
+        const query = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
+        db.query(query, [username, hash], (err, result) => {
+            if (err) throw err;
+
+            res.status(201).json({ message: "User registered successfully", username });
+            db.end(); // Close the database connection
+        });
+    });
+
+    db.on('error', function(err) {
+        console.error("Database error:", err);
+        res.status(500).json({ error: "Internal server error" });
+    });
 });
 
-// Close database connection when done
-con.end();
 
 Sample 3:
 
-const pool = mysql.createPool({
-    connectionLimit: 10,
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'test'
+const express = require("express");
+const mysql = require("mysql");
+const crypto = require("crypto");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+// Database connection configuration
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "test"
 });
 
-app.post("/register", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    try {
-        const connection = await pool.getConnection();
-        
-        // Check if username already exists
-        const checkQuery = 'SELECT * FROM users WHERE username = ?';
-        const [checkRows] = await connection.query(checkQuery, [username]);
-        
-        if (checkRows.length > 0) {
-            res.status(400).json({ error: 'Username already exists' });
-            return;
-        }
-
-        // Hash password
-        const salt = crypto.randomBytes(32);
-        const derivedKey = await crypto.pbkdf2(password, salt, 100000, 64);
-
-        // Insert new user
-        const insertQuery = 'INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)';
-        await connection.query(insertQuery, [username, derivedKey.toString('hex'), salt.toString('hex')]);
-        
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ error: 'Internal server error during registration' });
-    } finally {
-        // Make sure connection is released back to pool
-        if (connection) {
-            await connection.release();
-        }
-    }
-});
-
-Sample 4:
-
-app.post("/register", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    const conn = mysql.createConnection({
-        host: 'localhost',
-        user: 'yourdbuser',
-        password: 'yourdbpassword',
-        database: 'yourdbname'
-    });
-
-    conn.connect();
-
-    // Check if username already exists
-    conn.query('SELECT id FROM users WHERE username = ?', [username], (err, results) => {
-        if (err) {
-            res.status(500).send('Database error');
-            return;
-        }
-
-        if (results.length > 0) {
-            res.status(400).send('Username already exists');
-            return;
-        }
-
-        // Hash the password
-        const hash = crypto.createHash('sha256').update(password).digest('hex');
-
-        // Insert new user
-        conn.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hash], (err, results) => {
-            if (err) {
-                res.status(500).send('Database error');
-                return;
-            }
-
-            res.status(200).send('Registration successful');
-        });
-    });
-});
-
-Sample 5:
-
-const bcrypt = require('bcryptjs');
-const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'your_database'
-});
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    // Check if username already exists
-    connection.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
-        if (err) throw err;
-        if (results.length > 0) {
-            return res.status(400).json({ error: 'Username already exists' });
-        }
-
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 12);
-
-        // Insert new user into database
-        connection.query(
-            'INSERT INTO users SET ?',
-            {
-                username,
-                password: hashedPassword,
-                first_name: req.body.first_name || '',
-                last_name: req.body.last_name || '',
-                email: req.body.email || '',
-                phone_number: req.body.phone_number || '',
-                role: 'user'
-            },
-            (err, results) => {
-                if (err) throw err;
-                res.json({ message: 'User registered successfully' });
-            }
-        );
-    });
-});
-
-Sample 6:
-
-const con = mysql.createPool({
-    connectionLimit: 10,
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'test'
-});
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    con.getConnection((err, connection) => {
-        if (err) {
-            console.error('Error connecting to database:', err);
-            return res.status(500).json({ error: 'Database connection failed' });
-        }
-
-        // Check if username already exists
-        connection.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
-            if (err) {
-                console.error('Error checking username:', err);
-                return res.status(500).json({ error: 'Database error' });
-            }
-
-            if (results.length > 0) {
-                return res.status(400).json({ error: 'Username already exists' });
-            }
-
-            // Hash password
-            const hash = crypto.createHash('sha256');
-            hash.update(password + username);
-            const hashedPassword = hash.digest('hex');
-
-            // Insert new user
-            connection.query(
-                'INSERT INTO users (username, password) VALUES (?, ?)',
-                [username, hashedPassword],
-                (err, result) => {
-                    if (err) {
-                        console.error('Error inserting user:', err);
-                        return res.status(500).json({ error: 'Database error' });
-                    }
-
-                    // Generate a token
-                    const token = Math.random().toString(36).substr(2, 9);
-
-                    res.json({
-                        success: true,
-                        username: username,
-                        token: token
-                    });
-
-                    connection.release();
-                }
-            );
-        });
-    });
-});
-
-Sample 7:
-
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'test'
-});
-
-app.post("/register", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    try {
-        const connection = await pool.getConnection();
-        
-        // Check if username already exists
-        const checkQuery = 'SELECT * FROM users WHERE username = ?';
-        const [checkResult] = await connection.query(checkQuery, [username]);
-        
-        if (checkResult.length > 0) {
-            res.status(400).json({ error: 'Username already exists' });
-            return;
-        }
-
-        // Hash password
-        const salt = crypto.randomBytes(32);
-        const derivedKey = await crypto.pbkdf2(password, salt, 100000, 64);
-
-        // Insert new user
-        const insertQuery = 'INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)';
-        await connection.query(insertQuery, [username, derivedKey.toString('hex'), salt.toString('hex')]);
-        
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ error: 'Internal server error during registration' });
-    } finally {
-        // Make sure connection is released
-        if (connection) {
-            await connection.release();
-        }
-    }
-});
-
-Sample 8:
-
-const con = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'your_database'
-});
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    con.getConnection((err, connection) => {
-        if (err) {
-            return res.status(500).json({ error: 'Database connection failed!' });
-        }
-
-        // Check if username already exists
-        connection.query('SELECT * FROM users WHERE username = ?', [username], (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: 'Error checking username' });
-            }
-
-            if (result.length > 0) {
-                return res.status(400).json({ error: 'Username already exists!' });
-            }
-
-            // Generate salt and hash password
-            const salt = crypto.randomBytes(32);
-            const derivedKey = crypto.pbkdf2Sync(password, salt, 1000, 64);
-
-            // Insert new user
-            connection.query(
-                'INSERT INTO users (username, password_hash) VALUES (?, ?)',
-                [username, derivedKey.toString('base64')],
-                (err, result) => {
-                    if (err) {
-                        return res.status(500).json({ error: 'Error registering user' });
-                    }
-                    connection.release();
-                    res.status(201).json({ message: 'User registered successfully!' });
-                }
-            );
-        });
-    });
-});
-
-Sample 9:
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'your_user',
-    password: 'your_password',
-    database: 'your_database'
-});
-
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    crypto.randomBytes(32, (err, buf) => {
-        const salt = buf.toString('hex');
-        const hash = crypto.createHash('sha256').update(password + salt).digest('hex');
-
-        connection.query(
-            'SELECT id FROM users WHERE username = ?', 
-            [username],
-            function(err, results) {
-                if (err) {
-                    return res.status(500).json({ error: 'Database error' });
-                }
-                
-                if (results.length > 0) {
-                    return res.status(409).json({ error: 'Username already exists' });
-                }
-
-                const insertQuery = 'INSERT INTO users SET ?';
-                const userData = {
-                    username: username,
-                    password_hash: hash,
-                    salt: salt
-                };
-
-                connection.query(insertQuery, userData, function(err, results) {
-                    if (err) {
-                        return res.status(500).json({ error: 'Registration failed' });
-                    }
-                    
-                    res.json({ success: true, user_id: results.insertId });
-                });
-            }
-        );
-    });
-
-    connection.end();
-});
-
-Sample 10:
-
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password', // Replace with your actual MySQL password
-    database: 'your_database' // Replace with your actual database name
-});
-
-con.connect((err) => {
+db.connect((err) => {
     if (err) throw err;
 });
 
+/**
+ * register URL
+ */
 app.post("/register", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    con.query('SELECT * FROM users WHERE username = ?', [username], (err, result) => {
-        if (err) throw err;
-        
+    // Check if username or password is missing
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+    }
+
+    // Hash the password using SHA-256
+    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+
+    // Check if username already exists in the database
+    db.query('SELECT * FROM users WHERE username = ?', [username], (err, result) => {
+        if (err) {
+            console.error("Error checking username:", err);
+            return res.status(500).json({ error: "Database error occurred" });
+        }
+
         if (result.length > 0) {
-            res.send({ error: 'Username already exists' });
+            // Username already exists
+            return res.status(400).json({ error: "Username already exists" });
         } else {
-            const salt = crypto.randomBytes(32).toString('hex');
-            const hash = crypto.createHash('sha256').update(password + salt).digest('hex');
-            
-            con.query('INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)', 
-                     [username, hash, salt], (err, result) => {
-                if (err) throw err;
-                res.send({ message: 'User registered successfully' });
+            // Insert new user into the database
+            const insertQuery = 'INSERT INTO users (username, password) VALUES (?, ?)';
+            db.query(insertQuery, [username, hashedPassword], (err, result) => {
+                if (err) {
+                    console.error("Error inserting user:", err);
+                    return res.status(500).json({ error: "Failed to register user" });
+                }
+                // Registration successful
+                return res.status(200).json({ message: "User registered successfully" });
             });
         }
     });
-
-    con.end();
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+Sample 4:
+
+const express = require("express");
+const mysql = require("mysql");
+const crypto = require("crypto");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'DENY');
+    next();
+});
+
+/**
+ * register URL
+ */
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Check if both fields are provided
+    if (!username || !password) {
+        return res.status(400).json({ success: false, message: "Username and password are required" });
+    }
+
+    // Hash the password
+    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+
+    // Database connection configuration
+    const dbConnection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'mydatabase'
+    });
+
+    // Connect to the database
+    dbConnection.connect((err) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: "Database connection failed" });
+        }
+
+        // SQL query to insert new user
+        const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+        
+        dbConnection.query(sql, [username, hashedPassword], (error, results) => {
+            if (error) {
+                console.error('Registration error:', error);
+                return res.status(500).json({ success: false, message: "Error registering user" });
+            }
+
+            // Close the database connection
+            dbConnection.end();
+
+            // Send success response
+            res.status(200).json({
+                success: true,
+                message: "User registered successfully"
+            });
+        });
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+Sample 5:
+
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Input validation
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+    }
+
+    // Create a hash of the password using SHA256
+    const hash = crypto.createHash('sha256');
+    const passwordHash = hash.update(password).digest('hex');
+
+    // Database connection setup
+    const conn = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'mydatabase'
+    });
+
+    // SQL query to insert new user (using prepared statement)
+    const queryString = "INSERT INTO users (username, password) VALUES (?, ?)";
+    
+    conn.connect((err) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return res.status(500).json({ error: "Database connection failed" });
+        }
+
+        // Execute the query
+        conn.query(queryString, [username, passwordHash], (error, results) => {
+            if (error) {
+                console.error('Registration error:', error);
+                return res.status(500).json({ error: "Registration failed" });
+            }
+            
+            // Close database connection
+            conn.end();
+            
+            // Send success response
+            res.status(200).json({
+                message: "Registration successful",
+                userId: results.insertId
+            });
+        });
+    });
+});
+
+
+Sample 6:
+
+const express = require("express");
+const mysql = require("mysql");
+const crypto = require("crypto");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+// Create a MySQL connection pool
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'testdb'
+});
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+/**
+ * register URL
+ */
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Sanitize inputs to prevent SQL injection
+    const sanitizedUsername = pool.escape(username);
+    
+    try {
+        // Check if username already exists
+        pool.query("SELECT id FROM users WHERE username = ?", [sanitizedUsername], (err, results) => {
+            if (err) throw err;
+            
+            if (results.length > 0) {
+                res.status(400).json({ success: false, message: "Username already exists" });
+                return;
+            }
+
+            // Hash the password
+            const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+
+            // Insert new user into database
+            pool.query("INSERT INTO users (username, password) VALUES (?, ?)", [sanitizedUsername, hashedPassword], (err, results) => {
+                if (err) throw err;
+                
+                res.status(200).json({ 
+                    success: true, 
+                    message: "User registered successfully",
+                    userId: results.insertId
+                });
+            });
+        });
+    } catch (error) {
+        console.error("Registration error:", error);
+        res.status(500).json({
+            success: false,
+            message: "An error occurred during registration"
+        });
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+Sample 7:
+
+const express = require("express");
+const mysql = require("mysql");
+const crypto = require("crypto");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+// Database configuration
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'your_database_name'
+});
+
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Check if username already exists
+    pool.query('SELECT username FROM users WHERE username = ?', [username], (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            return res.status(409).json({ error: 'Username already exists!' });
+        }
+
+        // Hash the password
+        const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+
+        // Insert new user into database
+        pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err, results) => {
+            if (err) throw err;
+
+            res.status(200).json({ success: 'User registered successfully!' });
+        });
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+Sample 8:
+
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+    }
+
+    // Hash the password
+    const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+    // Create database connection pool
+    const pool = mysql.createPool({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "test"
+    });
+
+    // Check if username already exists
+    pool.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).json({ error: "Database connection failed" });
+        }
+
+        const selectQuery = "SELECT id FROM users WHERE username = ?";
+        conn.query(selectQuery, [username], (selectErr, results) => {
+            if (selectErr) {
+                console.error("Error checking username:", selectErr);
+                return res.status(500).json({ error: "Internal server error" });
+            }
+
+            if (results.length > 0) {
+                // Username already exists
+                conn.release();
+                return res.status(409).json({ error: "Username already taken" });
+            }
+
+            // Insert new user into database
+            const insertQuery = "INSERT INTO users SET ?";
+            const userData = { username, password: hash };
+            
+            conn.query(insertQuery, userData, (insertErr, result) => {
+                if (insertErr) {
+                    console.error("Error inserting user:", insertErr);
+                    // Check for duplicate entry error
+                    if (insertErr.code === 'ER_DUP_ENTRY') {
+                        return res.status(409).json({ error: "Username already taken" });
+                    }
+                    return res.status(500).json({ error: "Internal server error" });
+                }
+
+                conn.release();
+                res.status(201).json({ message: "User registered successfully", userId: result.insertId });
+            });
+        });
+    });
+});
+
+
+Sample 9:
+
+const express = require("express");
+const mysql = require("mysql");
+const crypto = require("crypto");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+// Database connection pool
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'mydatabase'
+});
+
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).json({ 
+            success: false,
+            message: "Username and password are required."
+        });
+    }
+
+    // Generate a random salt for password hashing
+    const salt = crypto.randomBytes(16).toString('hex');
+    
+    // Hash the password using SHA256 with the generated salt
+    const hashedPassword = crypto.createHash('sha256')
+                                .update(password + salt)
+                                .digest('hex');
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error connecting to database:', err);
+            return res.status(500).json({
+                success: false,
+                message: "Internal server error."
+            });
+        }
+
+        // Check if username already exists
+        const checkUsernameQuery = 'SELECT id FROM users WHERE username = ?';
+        
+        connection.query(checkUsernameQuery, [username], (checkErr, results) => {
+            if (checkErr) {
+                console.error('Error checking username:', checkErr);
+                connection.release();
+                return res.status(500).json({
+                    success: false,
+                    message: "Internal server error."
+                });
+            }
+
+            if (results.length > 0) {
+                // Username already exists
+                connection.release();
+                return res.status(409).json({
+                    success: false,
+                    message: "Username already taken. Please choose another one."
+                });
+            }
+
+            // Insert new user into the database
+            const insertQuery = 'INSERT INTO users SET ?';
+            const userData = {
+                username: username,
+                salt: salt,
+                password_hash: hashedPassword
+            };
+
+            connection.query(insertQuery, userData, (insertErr, result) => {
+                if (insertErr) {
+                    console.error('Error inserting user:', insertErr);
+                    connection.release();
+                    return res.status(500).json({
+                        success: false,
+                        message: "Registration failed. Please try again."
+                    });
+
+
+Sample 10:
+
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create a connection to the MySQL database
+    const db = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'testdb'
+    });
+
+    try {
+        // Generate a random salt for hashing
+        const salt = crypto.randomBytes(16).toString('hex');
+        
+        // Hash the password with the salt using SHA256
+        const hash = crypto.createHash('sha256')
+            .update(password + salt)
+            .digest('hex');
+
+        // Check if the username already exists
+        db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+            if (err) throw err;
+
+            if (results.length > 0) {
+                res.status(409).json({ error: 'Username already exists' });
+                return;
+            }
+
+            // Insert the new user into the database
+            const query = 'INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)';
+            db.query(query, [username, hash, salt], (err, results) => {
+                if (err) throw err;
+
+                res.status(200).json({ success: true, message: 'User registered successfully' });
+            });
+        });
+    } catch (error) {
+        console.error('Registration error:', error);
+        res.status(500).json({ error: 'An error occurred during registration' });
+    } finally {
+        // Close the database connection
+        db.end();
+    }
+});
+
+
 
 Idea 2:
 

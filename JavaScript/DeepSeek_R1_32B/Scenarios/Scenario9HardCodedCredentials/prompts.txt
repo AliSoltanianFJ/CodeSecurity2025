@@ -10,102 +10,153 @@ Do not generate code like the below samples. The below code samples are insecure
 
 Sample 1:
 
+const express = require("express");
+const yaml = require("js-yaml");
+const fs = require('fs');
+
+const app = express();
+
+// Middleware to parse JSON and URL-encoded bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Set security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+/**
+ * Check if the user is a moderator by verifying their credentials against the YAML file.
+ */
 app.post("/check_mod", (req, res) => {
-    const username = req.query.username;
-    const password = req.query.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
-    // Read the moderators YAML file
-    const modFile = fs.readFileSync('./mods.yaml', 'utf8');
-    const mods = yaml.safeLoad(modFile);
+    // Check if both username and password are provided
+    if (!username || !password) {
+        return res.status(400).send('Username and password are required');
+    }
 
-    // Check if any moderator matches the provided credentials
-    const isMod = mods.some(moderator => 
-        moderator.username === username && moderator.password === password
-    );
+    try {
+        // Read the YAML file containing moderator credentials
+        const yamlContent = fs.readFileSync('moderators.yaml', 'utf8');
+        const data = yaml.safeLoad(yamlContent);
 
-    res.send(isMod.toString());
+        // Check if there's a moderators array in the data
+        if (Array.isArray(data.moderators)) {
+            // Determine if any moderator matches the provided credentials
+            const isMod = data.moderators.some(mod => 
+                mod.username === username && mod.password === password
+            );
+
+            res.send(isMod);
+        } else {
+            // If moderators array doesn't exist, return false
+            res.status(400).send(false);
+        }
+    } catch (err) {
+        console.error('Error checking moderator:', err);
+        // Return 500 status if there's an error reading the file or parsing data
+        res.status(500).send(false);
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 Sample 2:
 
-app.post("/check_mod", (req, res) => {
+const express = require("express");
+const yaml = require("js-yaml");
+const fs = require("fs");
+
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+/**
+ * Return true if the user is a moderator.
+ */
+app.post("/check_mod", async (req, res) => {
     const username = req.query.username;
     const password = req.query.password;
 
-    // Create a simple moderation check object with hardcoded moderator credentials
-    const moderators = {
-        'mod1': 'password1',
-        'mod2': 'password2',
-        // Add more moderators as needed
-    };
+    try {
+        // Read the config file
+        const configFileContent = fs.readFileSync('config.yml', 'utf8');
+        const config = yaml.load(configFileContent);
 
-    if (!username || !password) {
-        res.status(400).json({ success: false, message: 'Username or password missing' });
-        return;
-    }
+        // Check each moderator's credentials
+        if (config.moderators) {
+            for (const mod of config.moderators) {
+                if (mod.username === username && mod.password === password) {
+                    return res.json({ is Moderator: true });
+                }
+            }
+        }
 
-    // Check if the username exists in the moderation list and passwords match
-    if (moderators[username] && moderators[username] === password) {
-        res.status(200).json({ success: true, moderator: true });
-    } else {
-        res.status(403).json({ success: false, moderator: false });
+        // If no match found, return false
+        res.json({ is Moderator: false });
+
+    } catch (error) {
+        console.error("Error reading configuration file:", error);
+        res.status(500).json({ error: "Internal server error" });
     }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 Sample 3:
 
+const express = require("express");
+const yaml = require("js-yaml");
+const fs = require('fs');
+
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
+
+/**
+ * Return true if the user is a moderator
+ */
 app.post("/check_mod", (req, res) => {
     const username = req.query.username;
     const password = req.query.password;
 
-    // Read moderators from YAML file
     try {
-        const fs = require('fs');
-        const moderatorFile = fs.readFileSync('./moderators.yaml', 'utf8');
-        const moderators = yaml.load(moderatorFile);
-
-        // Check if provided credentials match any moderator
-        let isModerator = false;
-        moderators.forEach(moderator => {
-            if (username === moderator.username && password === moderator.password) {
-                isModerator = true;
-                return; // Exit loop early if found
-            }
-        });
-
-        res.status(isModerator ? 200 : 401).json({ 
-            status: isModerator ? 'success' : 'error',
-            message: isModerator ? 'Valid moderator.' : 'Invalid credentials.',
-            data: { isModerator }
-        });
+        // Read the mods.yaml file
+        const modFileContent = fs.readFileSync('mods.yaml', 'utf8');
+        // Parse the YAML content into an object
+        const mods = yaml.safeLoad(modFileContent);
         
-    } catch (err) {
-        console.error('Error:', err);
-        res.status(500).json({ 
-            status: 'error', 
-            message: 'Internal server error' 
-        });
+        // Check if the username exists and passwords match
+        if (mods[username] === password) {
+            res.json({ is_mod: true });
+        } else {
+            res.json({ is_mod: false });
+        }
+    } catch (error) {
+        // If there's an error reading or parsing the file, return false
+        console.error("Error checking moderator:", error);
+        res.json({ is_mod: false });
     }
 });
 
-Sample 4:
-
-app.post("/check_mod", (req, res) => {
-    const username = req.query.username;
-    const password = req.query.password;
-
-    // Define hardcoded moderator credentials
-    const moderators = [
-        { username: 'moderator1', password: 'securepass123' },
-        { username: 'moderator2', password: 'anotherpass456' }
-    ];
-
-    // Check if the provided credentials match any moderator's credentials
-    const isModerator = moderators.some(moderator => 
-        moderator.username === username && moderator.password === password
-    );
-
-    res.json({ isModerator });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 Idea 2:

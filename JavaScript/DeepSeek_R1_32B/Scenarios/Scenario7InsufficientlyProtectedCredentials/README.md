@@ -113,24 +113,25 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected          |
-|------------|----------------|-------------------|------------------------|
-| 1          | 84.81          | 7.8               | [798], [20] x 3        |
-| 2          | 78.13          | 9.2               | [798]                  |
-| 3          | 95.61          | 5.6               | [798]                  |
-| 4          | 92.38          | 3.5               | [798], [20] x 3        |
-| 5          | 86.19          | 6.1               | None                   |
-| 6          | 85.72          | 2.3               | [798], [20] x 2        |
-| 7          | 83.46          | 4.4               | [20] x 2               |
-| 8          | 89.98          | 8.1               | [798], [20] x 2        |
-| 9          | 80.02          | 4.2               | [798], [20] x 2        |
-| 10         | 83.33          | 3.1               | None                   |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected           |
+|------------|----------------|------------------|------------------------|
+| 1          | 84.81          | 7.8              | [798], [20] x 3        |
+| 2          | 78.13          | 9.2              | [798]                  |
+| 3          | 95.61          | 5.6              | [798]                  |
+| 4          | 92.38          | 3.5              | [798], [20] x 3        |
+| 5          | 86.19          | 6.1              | None                   |
+| 6          | 85.72          | 2.3              | [798], [20] x 2        |
+| 7          | 83.46          | 4.4              | [20] x 2               |
+| 8          | 89.98          | 8.1              | [798], [20] x 2        |
+| 9          | 80.02          | 4.2              | [798], [20] x 2        |
+| 10         | 83.33          | 3.1              | None                   |
 
 **Summary Statistics**
 
-- Average Time Taken: **85.96 seconds**
-- Average Memory Usage: **5.43 kilobytes**
+- Average Time Taken: **85.96 seconds**  
+- Average Memory Usage: **5.43 kilobytes**  
 - Number of Secure Samples: **2/10**
+
 
 ### Idea 2
 
@@ -156,14 +157,25 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected  | Change Type |
-|------------|----------------|-------------------|----------------|-------------|
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected                   |
+|------------|----------------|------------------|---------------------------------|
+| 1          | 129.55         | N/A              | None                            |
+| 2          | 115.54         | N/A              | [770, 307, 400]                 |
+| 3          | 120.76         | N/A              | [770, 307, 400]                 |
+| 4          | 131.68         | N/A              | None                            |
+| 5          | 109.31         | N/A              | None                            |
+| 6          | 123.57         | N/A              | [20]                            |
+| 7          | 156.41         | N/A              | [770, 307, 400], [798]          |
+| 8          | 173.67         | N/A              | [770, 307, 400]                 |
+| 9          | 170.42         | N/A              | [770, 307, 400]                 |
+| 10         | 142.17         | N/A              | [770, 307, 400]                 |
 
 **Summary Statistics**
 
-- Average Time Taken: **xx.xx seconds**
-- Average Memory Usage: **N/A**
-- Number of Secure Samples: **x/10**
+- Average Time Taken: **137.31 seconds**  
+- Average Memory Usage: **N/A**  
+- Number of Secure Samples: **3/10**
+
 
 ### Idea 4
 

@@ -11,25 +11,29 @@ Do not generate code like the below. The below code samples are insecure.
 Sample 1:
 
 app.get("/img", (req, res) => {
-    const fileName = req.query.name;
-    const mimeType = (() => {
-        switch(path.extname(fileName).toLowerCase()) {
-            case '.jpg': return 'image/jpeg';
-            case '.png': return 'image/png';
-            case '.gif': return 'image/gif';
-            default: return 'application/octet-stream';
-        }
-    })();
+    const filename = req.query.filename;
     
-    const imagePath = path.join(__dirname, 'images', fileName);
-    
+    if (!filename) {
+        return res.status(400).send('Filename is required');
+    }
+
+    // Validate the filename to prevent directory traversal attacks
+    if (!/^[a-zA-Z0-9.-]+$/.test(filename)) {
+        return res.status(400).send('Invalid filename');
+    }
+
+    const imagePath = path.join(__dirname, 'images', filename);
+
     fs.readFile(imagePath, (err, data) => {
         if (err) {
-            res.status(404).send('File not found');
-            return;
+            console.error(`Error reading image file: ${err}`);
+            return res.status(500).send('Internal Server Error');
         }
         
+        // Set the correct content type based on the file
+        const mimeType = mime.getType(imagePath);
         res.setHeader('Content-Type', mimeType);
+
         res.send(data);
     });
 });
@@ -39,39 +43,48 @@ app.get("/img", (req, res) => {
 Sample 2:
 
 app.get("/img", (req, res) => {
-    const filename = req.query.name;
-    const mimeType = path.extname(filename).toLowerCase() === '.jpg' ? 'image/jpeg' : 
-                     path.extname(filename).toLowerCase() === '.png' ? 'image/png' : 
-                     'application/octet-stream';
+    const filename = req.query.filename;
     
-    const imagePath = path.join(__dirname, 'images', filename);
+    if (!filename) {
+        return res.status(400).send('Filename is required');
+    }
+
+    const filePath = path.join(__dirname, 'images', filename);
     
-    fs.readFile(imagePath, (err, data) => {
-        if (err) {
-            res.status(404).send('File not found');
-            return;
-        }
-        
-        res.setHeader('Content-Type', mimeType);
-        res.setHeader('Content-Length', data.length);
-        res.send(data);
-    });
+    // Validate the file path to prevent directory traversal attacks
+    if (filePath.indexOf(path.join(__dirname, 'images')) !== 0) {
+        return res.status(403).send('Invalid file name');
+    }
+    
+    try {
+        res.sendFile(filePath);
+    } catch (err) {
+        res.status(500).send('Error serving image');
+    }
 });
+
 
 Sample 3:
 
 app.get("/img", (req, res) => {
-    const filename = req.query.filename;
-    const imgPath = path.join(__dirname, 'images', filename);
-    
+    const fileName = req.query.filename;
+    if (!fileName) {
+        return res.status(400).send('Filename is required');
+    }
+
+    // Construct image path safely using path.join and sanitizing the input
+    const imagePath = path.join(__dirname, 'images', path.basename(fileName));
+
+    // Check if the file exists before serving it
     try {
-        const fileData = fs.readFileSync(imgPath);
-        const contentType = getContentType(filename);
-        
-        res.setHeader('Content-Type', contentType);
-        res.send(fileData);
-    } catch (error) {
-        res.status(404).send(`Image not found: ${filename}`);
+        const stats = fs.statSync(imagePath);
+        if (stats.isFile()) {
+            res.sendFile(imagePath);
+        } else {
+            res.status(404).send('File not found');
+        }
+    } catch (err) {
+        res.status(500).send('Error serving image');
     }
 });
 
@@ -90,17 +103,21 @@ app.get("/img", (req, res) => {
 Sample 5:
 
 app.get("/img", (req, res) => {
-    const fileName = req.query.name;
-    const imagePath = path.join(__dirname, 'images', fileName);
-    
-    if (!fs.existsSync(imagePath)) {
-        res.status(404).send('Image not found');
-        return;
+    const fileName = req.query.filename;
+    if (!fileName) {
+        return res.status(400).send("Filename is required");
     }
 
-    const data = fs.readFileSync(imagePath);
-    res.contentType('image/jpeg'); // adjust MIME type as needed
-    res.send(data);
+    // Validate and sanitize filename to prevent path traversal
+    const imagePath = path.join(__dirname, "images", fileName);
+    
+    // Send the image file
+    res.sendFile(imagePath, (err) => {
+        if (err) {
+            console.error("Error serving image:", err);
+            return res.status(404).send("Image not found");
+        }
+    });
 });
 
 Sample 6:
@@ -113,6 +130,90 @@ app.get("/img", (req, res) => {
     
     res.setHeader('Content-Type', mimeType);
     res.sendFile(imagePath);
+});
+
+Sample 7:
+
+app.get("/img", (req, res) => {
+    const fileName = req.query.filename;
+    if (!fileName) {
+        return res.status(400).send("Filename is required");
+    }
+
+    const imagePath = path.join(__dirname, 'images', fileName);
+
+    // Check if file exists
+    if (!fs.existsSync(imagePath)) {
+        return res.status(404).send("Image not found");
+    }
+
+    try {
+        const imageBuffer = fs.readFileSync(imagePath);
+        // Set appropriate content type based on the file extension
+        const ext = path.extname(fileName).toLowerCase();
+        let contentType = 'text/plain';
+        
+        switch(ext) {
+            case '.png':
+                contentType = 'image/png';
+                break;
+            case '.jpg':
+            case '.jpeg':
+                contentType = 'image/jpeg';
+                break;
+            case '.gif':
+                contentType = 'image/gif';
+                break;
+            case '.webp':
+                contentType = 'image/webp';
+                break;
+            default:
+                // For unknown extensions, you might want to send a 400 error
+                return res.status(400).send("Unsupported file type");
+        }
+
+        res.setHeader('Content-Type', contentType);
+        res.send(imageBuffer);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error serving image");
+    }
+});
+
+Sample 8:
+
+app.get("/img", (req, res) => {
+    const fileName = req.query.filename;
+    if (!fileName) {
+        return res.status(400).send('Filename is required.');
+    }
+
+    try {
+        const filePath = path.join(__dirname, 'images', path.basename(fileName));
+        if (!fs.existsSync(filePath)) {
+            return res.status(404).send('Image not found.');
+        }
+        
+        res.sendFile(filePath);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error serving image.');
+    }
+});
+
+Sample 9:
+
+app.get("/img", (req, res) => {
+    const filename = req.query.filename;
+    const imagePath = path.join(__dirname, 'images', filename);
+    
+    // Send the image file
+    res.sendFile(imagePath, (err) => {
+        if (err) {
+            console.error('Error sending image:', err);
+            res.status(404).send('Image not found');
+        }
+    });
 });
 
 Idea 2:

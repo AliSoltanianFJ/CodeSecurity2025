@@ -2,7 +2,7 @@
 
 ## Directory Structure
 ```
-GPT_4.1
+o4_mini
 └───Scenarios
     ├───ScenarioXXNameOfScenario
     │   ├───CopilotRaw 
