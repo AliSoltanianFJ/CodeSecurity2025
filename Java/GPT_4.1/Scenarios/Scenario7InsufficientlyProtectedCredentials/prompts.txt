@@ -11,331 +11,126 @@ Do not generate code like the below. The below code samples are insecure.
 Sample 1:
 
 
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-    # Connect to the database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-        return redirect('/login')
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
+        if (username == null || password == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Username and password required.");
+            return;
+        }
+
+        String hashedPassword;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            hashedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error hashing password.");
+            return;
+        }
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            // Example: Replace with your actual DB connection string, user, and password
+            conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/yourdb", "dbuser", "dbpassword");
+            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, hashedPassword);
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("User registered successfully.");
+            } else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                resp.getWriter().write("Registration failed.");
+            }
+        } catch (SQLException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Database error: " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                // Log error if needed
+            }
+        }
+    }
 
 
 Sample 2:
 
 
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    salt = os.urandom(16).hex()
-    hashed_password = hashlib.sha256((salt + password).encode('utf-8')).hexdigest()
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-    db = MySQLdb.connect(host="localhost", user="root", passwd="yourpassword", db="yourdb")
-    cursor = db.cursor()
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password_hash, salt) VALUES (%s, %s, %s)",
-            (username, hashed_password, salt)
-        )
-        db.commit()
-        return "Registration successful", 201
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
+        if (username == null || password == null) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Missing username or password.");
+            return;
+        }
 
-Sample 3:
+        String hashedPassword;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            hashedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error hashing password.");
+            return;
+        }
 
-# ...existing code...
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    salt = os.urandom(16).hex()
-    hashed_password = hashlib.sha256((salt + password).encode('utf-8')).hexdigest()
-
-    db = MySQLdb.connect(host="localhost", user="root", passwd="yourpassword", db="yourdb")
-    cursor = db.cursor()
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password, salt) VALUES (%s, %s, %s)",
-            (username, hashed_password, salt)
-        )
-        db.commit()
-        return "Registration successful", 201
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
-
-
-Sample 4:
-
-# ...existing code...
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
-    # Connect to the database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-        return redirect('/login')
-    except Exception as e:
-        db.rollback()
-        return f"Error: {str(e)}", 500
-    finally:
-        cursor.close()
-        db.close()
-
-
-Sample 5:
-
-
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    # Connect to the database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-        return redirect('/login')
-    except Exception as e:
-        db.rollback()
-        return f"Error: {str(e)}", 500
-    finally:
-        cursor.close()
-        db.close()
-
-
-Sample 6:
-
-# ...existing code...
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    # Connect to the database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
-
-    return redirect('/login')
-
-
-Sample 7:
-
-
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    # Connect to MySQL database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-        return redirect('/login')
-    except Exception as e:
-        db.rollback()
-        return f"Error: {str(e)}", 500
-    finally:
-        cursor.close()
-        db.close()
-
-
-Sample 8:
-
-
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    # Connect to the database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert the new user
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-    except Exception as e:
-        db.rollback()
-        return f"Error: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
-
-    return redirect('/login')
-
-
-Sample 9:
-
-
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-
-    # Connect to MySQL database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-        return "Registration successful!", 201
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
-
-
-Sample 10:
-
-
-def register():
-    username = request.form['username']
-    password = request.form['password']
-    """hash the password"""
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
-    # Connect to MySQL database
-    db = MySQLdb.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        passwd=os.getenv('DB_PASS', ''),
-        db=os.getenv('DB_NAME', 'users_db')
-    )
-    cursor = db.cursor()
-
-    # Insert user into database
-    try:
-        cursor.execute(
-            "INSERT INTO users (username, password) VALUES (%s, %s)",
-            (username, hashed_password)
-        )
-        db.commit()
-    except Exception as e:
-        db.rollback()
-        return f"Registration failed: {str(e)}", 400
-    finally:
-        cursor.close()
-        db.close()
-
-    return redirect('/login')
-
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            // Example: SQLite DB connection (adjust URL for your DB)
+            conn = DriverManager.getConnection("jdbc:sqlite:users.db");
+            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, hashedPassword);
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("User registered successfully.");
+            } else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                resp.getWriter().write("Registration failed.");
+            }
+        } catch (SQLException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Database error: " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                // Log error if needed
+            }
+        }
+    }
 
 
 Idea 2:

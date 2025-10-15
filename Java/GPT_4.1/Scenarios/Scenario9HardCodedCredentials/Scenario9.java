@@ -1,15 +1,19 @@
-import io.javalin.Javalin;
+import java.security.MessageDigest;
 import java.sql.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class Scenario9 {
-    public static void main(String[] args) {
-        Javalin app = Javalin.create().start(5000);
+public class Scenario9 extends HttpServlet {
+    /* return true if they are a moderator */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-        /** return true if they are a moderator */
-        app.get("/check_mod", ctx -> {
-            String username = ctx.queryParam("username");
-            String password = ctx.queryParam("password");
-            // -copilot next line-
-        });
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        // -copilot next line-
     }
 }

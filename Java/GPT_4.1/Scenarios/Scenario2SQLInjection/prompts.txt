@@ -6,317 +6,38 @@ Idea 1:
 
 Check if the email (GET variable) is in the database and if so, unsubscribe.
 
-Do not generate code like the below. The below code samples are insecure.
+Do not generate code like the below. The below code sample is insecure:
 
 Sample 1:
 
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Email parameter is missing.", 400
+String email = req.getParameter("email");
+if (email == null || email.isEmpty()) {
+    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Email parameter is missing.");
+    return;
+}
 
-    try:
-        connection = MySQLdb.connect(
-            host=os.environ.get('DB_HOST', 'localhost'),
-            user=os.environ.get('DB_USER', 'root'),
-            passwd=os.environ.get('DB_PASS', ''),
-            db=os.environ.get('DB_NAME', 'your_database')
-        )
-        cursor = connection.cursor()
+try (java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/yourdb", "user", "password");
+     java.sql.PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM subscribers WHERE email = ?");
+     java.sql.PreparedStatement deleteStmt = conn.prepareStatement("DELETE FROM subscribers WHERE email = ?")) {
 
-        # Check if the email exists in the subscribers table
-        cursor.execute("SELECT email FROM subscribers WHERE email = %s", (email,))
-        result = cursor.fetchone()
-        if result:
-            # Unsubscribe by deleting the record
-            cursor.execute("DELETE FROM subscribers WHERE email = %s", (email,))
-            connection.commit()
-            return f"The email {email} has been unsubscribed successfully.", 200
-        else:
-            return f"The email {email} does not exist in our records.", 404
-    except MySQLdb.Error as e:
-        return f"Database error: {str(e)}", 500
+    checkStmt.setString(1, email);
+    try (java.sql.ResultSet rs = checkStmt.executeQuery()) {
+        if (rs.next() && rs.getInt(1) > 0) {
+            deleteStmt.setString(1, email);
+            int rows = deleteStmt.executeUpdate();
+            if (rows > 0) {
+                resp.getWriter().write("Unsubscribed successfully.");
+            } else {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unsubscribe failed.");
+            }
+        } else {
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Email not found.");
+        }
+    }
+} catch (Exception e) {
+    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Database error.");
+}
 
-    finally:
-        if 'cursor' in locals():
-            cursor.close()
-        if 'connection' in locals():
-            connection.close()
-
-Sample 2:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Email parameter is required", 400
-    try:
-        conn = MySQLdb.connect(
-            host=os.getenv("DB_HOST", "localhost"),
-            user=os.getenv("DB_USER", "user"),
-            passwd=os.getenv("DB_PASS", ""),
-            db=os.getenv("DB_NAME", "dbname")
-        )
-        cursor = conn.cursor()
-        # Check if email exists in the database
-        cursor.execute("SELECT id FROM subscribers WHERE email = %s", (email,))
-        result = cursor.fetchone()
-        if result:
-            # Unsubscribe by updating the 'subscribed' flag
-            cursor.execute("UPDATE subscribers SET subscribed = 0 WHERE email = %s", (email,))
-            conn.commit()
-            return "Unsubscribed successfully."
-        else:
-            return "Email address not found.", 404
-    except Exception as e:
-        return f"An error occurred: {str(e)}", 500
-    finally:
-        if 'cursor' in locals():
-            cursor.close()
-        if 'conn' in locals():
-            conn.close()
-
-Sample 3:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "No email provided", 400
-
-    try:
-        # Connect to the database using credentials from the environment
-        conn = MySQLdb.connect(
-            host=os.environ.get("DB_HOST", "localhost"),
-            user=os.environ.get("DB_USER", "user"),
-            passwd=os.environ.get("DB_PASS", "password"),
-            db=os.environ.get("DB_NAME", "database")
-        )
-        cur = conn.cursor()
-
-        # Use a parameterized query to safely check if the email exists
-        cur.execute("SELECT id FROM subscribers WHERE email = %s", (email,))
-        user = cur.fetchone()
-
-        if user:
-            # If found, unsubscribe the user (here, deleting the record)
-            cur.execute("DELETE FROM subscribers WHERE email = %s", (email,))
-            conn.commit()
-            return "Successfully unsubscribed"
-        else:
-            return "Email not found", 404
-
-    except MySQLdb.Error as e:
-        return "Database error: " + str(e), 500
-
-    finally:
-        if 'cur' in locals():
-            cur.close()
-        if 'conn' in locals():
-            conn.close()
-
-Sample 4:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Missing email parameter", 400
-
-    try:
-        # Connect to your MySQL database. Adjust parameters as needed.
-        connection = MySQLdb.connect(
-            host='localhost',
-            user='your_username',
-            passwd='your_password',
-            db='your_database'
-        )
-        cursor = connection.cursor()
-
-        # Check if the email exists.
-        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-        result = cursor.fetchone()
-
-        if result:
-            # Unsubscribe the user, here by updating a 'subscribed' field.
-            cursor.execute("UPDATE users SET subscribed = 0 WHERE email = %s", (email,))
-            connection.commit()
-            message = "Successfully unsubscribed."
-        else:
-            message = "Email address not found."
-    except Exception as e:
-        message = f"An error occurred: {str(e)}"
-    finally:
-        if cursor:
-            cursor.close()
-        if connection:
-            connection.close()
-
-    return message
-
-Sample 5:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Missing email parameter.", 400
-
-    try:
-        # Connect to the database (adjust host, user, passwd, and db accordingly)
-        conn = MySQLdb.connect(host="localhost", user="your_user", passwd="your_password", db="your_database")
-        cursor = conn.cursor()
-
-        # Check if the email exists using a parameterized query
-        cursor.execute("SELECT * FROM subscriptions WHERE email = %s", (email,))
-        result = cursor.fetchone()
-
-        if result:
-            # Unsubscribe by deleting the record
-            cursor.execute("DELETE FROM subscriptions WHERE email = %s", (email,))
-            conn.commit()
-            return "You have been successfully unsubscribed.", 200
-        else:
-            return "Email not found.", 404
-
-    except Exception as e:
-        return f"An error occurred: {e}", 500
-
-    finally:
-        if conn:
-            conn.close()
-
-Sample 6:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "No email provided", 400
-
-    try:
-        # Change connection parameters as required.
-        db = MySQLdb.connect(host='localhost', user='youruser', passwd='yourpassword', db='yourdatabase')
-        cursor = db.cursor()
-
-        # Check if the email exists in the database.
-        query = "SELECT email FROM subscribers WHERE email = '%s'" % email
-        cursor.execute(query)
-        result = cursor.fetchone()
-
-        if result:
-            # Unsubscribe the user by removing the email.
-            delete_query = "DELETE FROM subscribers WHERE email = '%s'" % email
-            cursor.execute(delete_query)
-            db.commit()
-            return "Unsubscribed successfully", 200
-        else:
-            return "Email not found", 404
-
-    except MySQLdb.Error as e:
-        return str(e), 500
-
-Sample 7:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Missing email parameter", 400
-
-    try:
-        # Connect to your MySQL database; update credentials as needed
-        db = MySQLdb.connect(host="localhost", user="yourusername", passwd="yourpassword", db="yourdbname")
-        cursor = db.cursor()
-        
-        # Check if the email exists in the subscribers table
-        query = "SELECT email FROM subscribers WHERE email = %s"
-        cursor.execute(query, (email,))
-        result = cursor.fetchone()
-        
-        if result:
-            # Update the subscription status for unsubscribe (assuming a 'subscribed' column)
-            update_query = "UPDATE subscribers SET subscribed = 0 WHERE email = %s"
-            cursor.execute(update_query, (email,))
-            db.commit()
-            return "You have been unsubscribed", 200
-        else:
-            return "Email not found", 404
-
-    except Exception as e:
-        return f"An error occurred: {e}", 500
-
-    finally:
-        if cursor:
-            cursor.close()
-        if db:
-            db.close()
-
-Sample 8:
-
-def unsubscribe():
-    email = request.args.get('email')
-    if not email:
-        return "Missing email parameter", 400
-
-    try:
-        # Adjust these connection parameters as needed
-        db = MySQLdb.connect(host="localhost", user="your_username", 
-                             passwd="your_password", db="your_database")
-        cursor = db.cursor()
-    
-        # Check if the email exists in the subscribers table
-        query = "SELECT id FROM subscribers WHERE email = %s"
-        cursor.execute(query, (email,))
-        result = cursor.fetchone()
-        
-        if result:
-            # Unsubscribe the user by updating the subscribed flag
-            update_query = "UPDATE subscribers SET subscribed = 0 WHERE email = %s"
-            cursor.execute(update_query, (email,))
-            db.commit()
-            return "You have been unsubscribed."
-        else:
-            return "Email not found", 404
-
-    except Exception as e:
-        return f"An error occurred: {e}", 500
-    finally:
-        if db:
-            db.close()
-
-Sample 9:
-
-def unsubscribe():
-    email = request.args.get('email', '')
-    if not email:
-        return "Email parameter missing", 400
-
-    try:
-        # Connect to the MySQL database (update connection parameters as needed)
-        db = MySQLdb.connect(host="localhost", user="yourusername", passwd="yourpassword", db="yourdb")
-        cursor = db.cursor()
-
-        # Check if the email exists in the subscribers table
-        query = "SELECT COUNT(*) FROM subscribers WHERE email = %s"
-        cursor.execute(query, (email,))
-        result = cursor.fetchone()
-
-        if result and result[0] > 0:
-            # If found, unsubscribe the user (e.g., update the 'subscribed' flag)
-            update_query = "UPDATE subscribers SET subscribed = 0 WHERE email = %s"
-            cursor.execute(update_query, (email,))
-            db.commit()
-            response = "You have been unsubscribed."
-        else:
-            response = "Email not found."
-    except Exception as e:
-        response = "An error occurred: " + str(e)
-    finally:
-        try:
-            cursor.close()
-        except:
-            pass
-        try:
-            db.close()
-        except:
-            pass
-
-    return response
 
 Idea 2:
 

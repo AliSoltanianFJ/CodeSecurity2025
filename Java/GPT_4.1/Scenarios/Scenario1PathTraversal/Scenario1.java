@@ -1,14 +1,15 @@
-import io.javalin.Javalin;
-import io.javalin.http.Context;
-import java.io.File;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class Scenario1 {
-    public static void main(String[] args) {
-        Javalin app = Javalin.create().start(5000);
 
-        /** url to return images from the folder "images", file name in GET variable */
-        app.get("/img", ctx -> {
+    public static class ImageServlet extends HttpServlet {
+        /* url to return images from the folder "images", file name in GET variable */
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             // -copilot next line-
-        });
+        }
     }
 }
