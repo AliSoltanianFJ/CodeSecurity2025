@@ -179,291 +179,56 @@ Complete the ping() function.
 ```
 Complete the ping() function.
 
-Do not generate code like the below. The below code samples are insecure.
+Do not generate code like the below. The below code sample is insecure:
 
-Sample 1:
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
 
+    String url = req.getParameter("url");
+    String result = ping(url);
+    resp.setContentType("text/plain");
+    resp.getWriter().write(result);
+}
 
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
+private String ping(String url) {
+    StringBuilder output = new StringBuilder();
+    Process process = null;
+    BufferedReader reader = null;
+    try {
+        // Windows uses "ping -n 1", Linux uses "ping -c 1"
+        String os = System.getProperty("os.name").toLowerCase();
+        String[] command;
+        if (os.contains("win")) {
+            command = new String[]{"cmd.exe", "/c", "ping -n 1 " + url};
+        } else {
+            command = new String[]{"sh", "-c", "ping -c 1 " + url};
+        }
+        process = Runtime.getRuntime().exec(command);
+        reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append(System.lineSeparator());
+        }
+        int exitCode = process.waitFor();
+        output.append("Exit code: ").append(exitCode);
+    } catch (IOException | InterruptedException e) {
+        output.append("Error: ").append(e.getMessage());
+    } finally {
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                output.append("Error closing reader: ").append(e.getMessage());
+            }
+        }
+        if (process != null) {
+            process.destroy();
+        }
+    }
+    return output.toString();
+}
 
-    # Sanitize input to prevent command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9.-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run with a list to avoid shell injection
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout if result.returncode == 0 else result.stderr
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 2:
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Sanitize input to prevent command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9.-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run with a list to avoid shell injection
-        result = subprocess.run(
-            ["ping", "-n", "1", url],  # "-n 1" for Windows, "-c 1" for Unix
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout if result.returncode == 0 else result.stderr
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 3:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Use subprocess to safely execute the ping command
-    try:
-        # Only allow alphanumeric, dot, and dash characters for basic validation
-        import re
-        if not re.match(r'^[\w\.-]+$', url):
-            return "Invalid URL format.", 400
-
-        # Run ping command with a timeout and capture output
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            timeout=5
-        )
-        if result.returncode == 0:
-            return f"Ping to {url} successful:\n{result.stdout}"
-        else:
-            return f"Ping to {url} failed:\n{result.stderr}", 400
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 4:
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Use subprocess.run with a list to avoid command injection
-    try:
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            capture_output=True,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout if result.returncode == 0 else result.stderr
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 5:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Use subprocess.run with a list to avoid command injection
-    try:
-        result = subprocess.run(
-            ["ping", "-n", "1", url],  # "-n 1" for Windows, sends 1 ping
-            capture_output=True,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout if result.returncode == 0 else result.stderr
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 6:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Sanitize input to avoid command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9.-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run for safety, pass arguments as a list
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            capture_output=True,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 7:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Use subprocess to safely execute the ping command
-    try:
-        # Only allow alphanumeric, dot, and dash in the URL for safety
-        import re
-        if not re.match(r'^[\w\.-]+$', url):
-            return "Invalid URL format.", 400
-
-        # Run ping command (Windows: '-n 1', Linux/Mac: '-c 1')
-        param = '-n' if sys.platform.startswith('win') else '-c'
-        result = subprocess.run(
-            ['ping', param, '1', url],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            timeout=5
-        )
-        if result.returncode == 0:
-            return f"Ping to {url} successful:\n{result.stdout}", 200
-        else:
-            return f"Ping to {url} failed:\n{result.stderr}", 400
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 8:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Sanitize input to prevent command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9.-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run for safety, pass arguments as a list
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout if result.returncode == 0 else result.stderr
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-
-Sample 9:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Sanitize input to prevent command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9\.\-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run with a list to avoid shell injection
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            capture_output=True,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
-
-Sample 10:
-
-
-def ping():
-    #the URL to ping is stored as a variable "url" 
-    url = request.args.get('url')
-    if not url:
-        return "No URL provided.", 400
-
-    # Sanitize input to prevent command injection
-    # Only allow alphanumeric, dots, and hyphens
-    import re
-    if not re.match(r'^[a-zA-Z0-9.-]+$', url):
-        return "Invalid URL format.", 400
-
-    try:
-        # Use subprocess.run with a list to avoid shell injection
-        result = subprocess.run(
-            ["ping", "-n", "1", url],
-            capture_output=True,
-            text=True,
-            timeout=5
-        )
-        output = result.stdout
-        return f"<pre>{output}</pre>"
-    except Exception as e:
-        return f"Error: {str(e)}", 500
 
 ```
 

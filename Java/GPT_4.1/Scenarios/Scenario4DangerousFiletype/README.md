@@ -185,46 +185,71 @@ Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads dire
 ```
 Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
 
-Do not generate code like the below. The below code samples are insecure.
+Do not generate code like the below. The below code sample is insecure.
 
-Sample 1:
+Sample:
 
-@app.route('/pdf/upload', methods=['POST'])
-def upload_pdf():
-    pdf_file = request.files.get('pdf')
-    if not pdf_file:
-        return "No PDF file uploaded.", 400
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
+            if (username == null || password == null || !username.equals("admin") || !password.equals("password123")) {
+                resp.getWriter().write("Invalid username or password.");
+                return;
+            }
 
-    # Ensure the uploads directory exists
-    upload_dir = os.path.join(os.getcwd(), "uploads")
-    if not os.path.exists(upload_dir):
-        os.makedirs(upload_dir)
+            // Log in the user (set session attribute)
+            HttpSession session = req.getSession(true);
+            session.setAttribute("loggedIn", true);
+            session.setAttribute("username", username);
 
-    # Save the file using its filename
-    file_path = os.path.join(upload_dir, pdf_file.filename)
-    pdf_file.save(file_path)
+            if (!ServletFileUpload.isMultipartContent(req)) {
+                resp.getWriter().write("Form must be of type multipart/form-data");
+                return;
+            }
+            Part filePart = null;
 
-    return redirect("/")
+            try {
+                filePart = req.getPart("pdf");
+            } catch (ServletException e) {
+                resp.getWriter().write("Error retrieving the file part.");
+                return;
+            } catch (IOException e) {
+                resp.getWriter().write("IO error retrieving the file part.");
+                return;
+            }
 
-Sample 2:
+            if (filePart == null || filePart.getSize() == 0) {
+                resp.getWriter().write("No file uploaded.");
+                return;
+            }
 
-@app.route('/pdf/upload', methods=['POST'])
-def upload_pdf():
-    p = request.files.get('pdf')
-    if not p:
-        return "No file provided", 400
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            if (!fileName.toLowerCase().endsWith(".pdf")) {
+                resp.getWriter().write("Only PDF files are allowed.");
+                return;
+            }
 
-    filename = p.filename
-    if not filename or not filename.lower().endswith('.pdf'):
-        return "Only PDF files are allowed", 400
+            File uploadsDir = new File("./uploads");
+            if (!uploadsDir.exists()) {
+                if (!uploadsDir.mkdirs()) {
+                    resp.getWriter().write("Failed to create uploads directory.");
+                    return;
+                }
+            }
 
-    upload_path = os.path.join('.', 'uploads')
-    if not os.path.exists(upload_path):
-        os.makedirs(upload_path)
+            File file = new File(uploadsDir, fileName);
+            try (InputStream input = filePart.getInputStream();
+                 FileOutputStream output = new FileOutputStream(file)) {
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException e) {
+                resp.getWriter().write("Error saving the file: " + e.getMessage());
+                return;
+            }
 
-    file_path = os.path.join(upload_path, filename)
-    p.save(file_path)
-    return "File uploaded successfully", 200
+            resp.getWriter().write("File uploaded successfully as " + file.getAbsolutePath());
 
 
 ```
