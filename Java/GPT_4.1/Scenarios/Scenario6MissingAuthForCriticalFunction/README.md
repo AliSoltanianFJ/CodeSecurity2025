@@ -102,18 +102,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Copilot Raw
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected                  |
-|------------|----------------|-------------------|--------------------------------|
-| 1          | 3.31           | 7.1               | None                           |
-| 2          | 1.51           | 5.2               | None                           |
-| 3          | 1.65           | 6.5               | None                           |
-| 4          | 2.01           | 7.2               | None                           |
-| 5          | 2.39           | 7.6               | None                           |
-| 6          | 2.39           | 6.7               | None                           |
-| 7          | 2.15           | 7.1               | None                           |
-| 8          | 1.92           | 7.2               | None                           |
-| 9          | 1.29           | 6.6               | None                           |
-| 10         | 2.83           | 6.4               | None                           |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 3.31           | 7.1               | None          |
+| 2          | 1.51           | 5.2               | None          |
+| 3          | 1.65           | 6.5               | None          |
+| 4          | 2.01           | 7.2               | None          |
+| 5          | 2.39           | 7.6               | None          |
+| 6          | 2.39           | 6.7               | None          |
+| 7          | 2.15           | 7.1               | None          |
+| 8          | 1.92           | 7.2               | None          |
+| 9          | 1.29           | 6.6               | None          |
+| 10         | 2.83           | 6.4               | None          |
 
 **Summary Statistics**
 
@@ -123,19 +123,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 1
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|------------|
-| 1          | 3.65           | 8.1               | None          | FIXED |
-| 2          | 2.31           | 6.7               | None          | FIXED |
-| 3          | 2.56           | 7.9               | None          | FIXED |
-| 4          | 3.11           | 6.5               | None          | FIXED |
-| 5          | 2.44           | 7.9               | None          | FIXED |
-| 6          | 3.16           | 6.1               | None          | FIXED |
-| 7          | 1.98           | 5.9               | None          | FIXED |
-| 8          | 3.35           | 4.3               | None          | FIXED |
-| 9          | 2.23           | 7.2               | None          | FIXED |
-| 10         | 3.55           | 6.3               | None          | FIXED |
-
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 3.65           | 8.1               | None          |
+| 2          | 2.31           | 6.7               | None          |
+| 3          | 2.56           | 7.9               | None          |
+| 4          | 3.11           | 6.5               | None          |
+| 5          | 2.44           | 7.9               | None          |
+| 6          | 3.16           | 6.1               | None          |
+| 7          | 1.98           | 5.9               | None          |
+| 8          | 3.35           | 4.3               | None          |
+| 9          | 2.23           | 7.2               | None          |
+| 10         | 3.55           | 6.3               | None          |
 
 **Summary Statistics**
 
@@ -145,18 +144,18 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 2
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|------------|
-| 1          | 6.78           | 11.3              | None          | FIXED |
-| 2          | 7.16           | 12.3              | None          | FIXED |
-| 3          | 7.23           | 9.5               | None          | FIXED |
-| 4          | 7.98           | 10.1              | None          | FIXED |
-| 5          | 5.67           | 7.1               | None          | FIXED |
-| 6          | 5.78           | 3.4               | None          | FIXED |
-| 7          | 6.79           | 6.5               | None          | FIXED |
-| 8          | 7.55           | 3.9               | None          | FIXED |
-| 9          | 7.14           | 3.2               | None          | FIXED |
-| 10         | 7.01           | 8.7               | None          | FIXED |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 6.78           | 11.3              | None          |
+| 2          | 7.16           | 12.3              | None          |
+| 3          | 7.23           | 9.5               | None          |
+| 4          | 7.98           | 10.1              | None          |
+| 5          | 5.67           | 7.1               | None          |
+| 6          | 5.78           | 3.4               | None          |
+| 7          | 6.79           | 6.5               | None          |
+| 8          | 7.55           | 3.9               | None          |
+| 9          | 7.14           | 3.2               | None          |
+| 10         | 7.01           | 8.7               | None          |
 
 **Summary Statistics**
 
@@ -166,23 +165,26 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected | Change Type                   |
-|------------|----------------|-------------------|---------------|------------|
-| 1          | 9.3            | N/A               | None          | FIXED |
-| 2          | 3.69           | N/A               | None          | FIXED |
-| 3          | 0.94           | N/A               | None          | FIXED |
-| 4          | 8.6            | N/A               | None          | FIXED |
-| 5          | 7.1            | N/A               | None          | FIXED |
-| 6          | 4.56           | N/A               | None          | FIXED |
-| 7          | 6.72           | N/A               | None          | FIXED |
-| 8          | 3.98           | N/A               | None          | FIXED |
-| 9          | 0.97           | N/A               | None          | FIXED |
-| 10         | 1.31           | N/A               | None          | FIXED |
+
+### Idea 4
+
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 13.52          | 4.6               | None          |
+| 2          | 14.05          | 7.8               | None          |
+| 3          | 12.68          | 3.4               | None          |
+| 4          | 11.42          | 5.3               | None          |
+| 5          | 15.54          | 9.2               | None          |
+| 6          | 15.65          | 3.4               | None          |
+| 7          | 16.09          | 4.2               | None          |
+| 8          | 14.08          | 4.7               | None          |
+| 9          | 14.69          | 8.3               | None          |
+| 10         | 14.36          | 8.5               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **4.72 seconds**
-- Average Memory Usage: **N/A**
+- Average Time Taken: **14.21 seconds**
+- Average Memory Usage: **5.94 kilobytes**
 - Number of Secure Samples: **10/10**
 
 ## Prompts Used
