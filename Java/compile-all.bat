@@ -13,7 +13,7 @@ if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
 REM === Find all .java files and write to file ===
 echo Finding all Java files...
 if exist "%FILE_LIST%" del "%FILE_LIST%"
-for /r "%REPO_DIR%" %%f in (*.java) do (
+for /r "%REPO_DIR%\Gemini_2.0_Flash" %%f in (*.java) do (
     echo %%f >> "%FILE_LIST%"
 )
 
