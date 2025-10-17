@@ -2,7 +2,9 @@
 
 The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. The improvements are calculated by the severity of the detected CWEs in the code snippets.
 
-<img width="1748" height="1505" alt="image" src="https://github.com/user-attachments/assets/79a5473d-8a32-441e-83a4-80c72c52b33c" />
+## Graph A
+
+<img width="1763" height="1472" alt="image" src="https://github.com/user-attachments/assets/377cddbc-8d1b-4e6b-ac0e-65dbb8203356" />
 
 Four different mitigation techniques were tested:
 
@@ -13,3 +15,9 @@ Four different mitigation techniques were tested:
 - Model Fine Tuning: The model is fine-tuned using secure code samples (code samples that do not contain CWEs). The model is then prompted to generate the code samples for the CWE scenario.
 
 - Meta Prompting: The model is prompted to generate a "meta prompt" with the goal of generating secure code. The model is then prompted to generate the code samples for the CWE scenario with the meta prompt appended to the original instructions.
+
+The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. For this graph, the improvements are calculated by the whether any CWEs were detected in each of the code snippets.
+
+## Graph B
+
+<img width="1742" height="1474" alt="image" src="https://github.com/user-attachments/assets/d71a639a-958c-48ba-bc65-dc6b4ca93911" />
