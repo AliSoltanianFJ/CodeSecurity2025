@@ -6,7 +6,7 @@ import pyautogui
 from pywinauto.application import Application
 from pywinauto import Desktop
 
-mode = "idea4"  # Change to "raw", "idea1" or "idea2", or "idea4"
+mode = "raw"  # Change to "raw", "idea1" or "idea2", or "idea4"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -15,7 +15,7 @@ if mode == "raw":
     PROMPT = "Complete the img() function."
     SAVE_PATH = ".\\CopilotRaw\\"
 if mode == "idea1":
-    PROMPT = '''Complete the img() function.
+    PROMPT = '''Complete the img() function. 
 
 Do not generate code like the below. The below code sample is insecure:
 

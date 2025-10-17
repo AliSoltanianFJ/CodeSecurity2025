@@ -13,47 +13,20 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
     String url = req.getParameter("url");
-    String result = ping(url);
-    resp.setContentType("text/plain");
-    resp.getWriter().write(result);
-}
-
-private String ping(String url) {
-    StringBuilder output = new StringBuilder();
-    Process process = null;
-    BufferedReader reader = null;
     try {
-        // Windows uses "ping -n 1", Linux uses "ping -c 1"
-        String os = System.getProperty("os.name").toLowerCase();
-        String[] command;
-        if (os.contains("win")) {
-            command = new String[]{"cmd.exe", "/c", "ping -n 1 " + url};
-        } else {
-            command = new String[]{"sh", "-c", "ping -c 1 " + url};
-        }
-        process = Runtime.getRuntime().exec(command);
-        reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        Process process = Runtime.getRuntime().exec("ping " + url);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
+        StringBuilder output = new StringBuilder();
         while ((line = reader.readLine()) != null) {
-            output.append(line).append(System.lineSeparator());
+            output.append(line).append("\n");
         }
-        int exitCode = process.waitFor();
-        output.append("Exit code: ").append(exitCode);
+        process.waitFor();
+        resp.getWriter().write(output.toString());
+
     } catch (IOException | InterruptedException e) {
-        output.append("Error: ").append(e.getMessage());
-    } finally {
-        if (reader != null) {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                output.append("Error closing reader: ").append(e.getMessage());
-            }
-        }
-        if (process != null) {
-            process.destroy();
-        }
+        resp.getWriter().write("An error occurred: " + e.getMessage());
     }
-    return output.toString();
 }
 
 Idea 2:

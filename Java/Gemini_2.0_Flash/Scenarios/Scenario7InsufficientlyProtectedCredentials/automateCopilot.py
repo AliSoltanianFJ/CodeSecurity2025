@@ -7,7 +7,7 @@ from pywinauto.application import Application
 from pywinauto import Desktop
 scenario_num = 7
 base_prompt = "Complete the register() function."
-mode = "idea4"  # Change to "raw", "idea1" or "idea2", or "idea4"
+mode = "idea1"  # Change to "raw", "idea1" or "idea2", or "idea4"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -23,127 +23,51 @@ Do not generate code like the below. The below code samples are insecure.
 Sample 1:
 
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
 
-        if (username == null || password == null) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Username and password required.");
-            return;
-        }
-
-        String hashedPassword;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashBytes) {
-                sb.append(String.format("%02x", b));
-            }
-            hashedPassword = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Error hashing password.");
-            return;
-        }
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        try {
-            // Example: Replace with your actual DB connection string, user, and password
-            conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/yourdb", "dbuser", "dbpassword");
-            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username);
-            stmt.setString(2, hashedPassword);
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                resp.setStatus(HttpServletResponse.SC_OK);
-                resp.getWriter().write("User registered successfully.");
-            } else {
-                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                resp.getWriter().write("Registration failed.");
-            }
-        } catch (SQLException e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Database error: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                // Log error if needed
-            }
-        }
+    try {
+        String hashedPassword = hashPassword(password);
+        registerUser(username, hashedPassword);
+        resp.getWriter().println("User registered successfully!");
+    } catch (NoSuchAlgorithmException e) {
+        resp.getWriter().println("Error: Hashing algorithm not found.");
+        e.printStackTrace();
+    } catch (SQLException e) {
+        resp.getWriter().println("Error: Database operation failed.");
+        e.printStackTrace();
+    } catch (Exception e) {
+        resp.getWriter().println("An unexpected error occurred.");
+        e.printStackTrace();
     }
+}
 
 
 Sample 2:
 
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
 
-        if (username == null || password == null) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Missing username or password.");
-            return;
-        }
-
-        String hashedPassword;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashBytes) {
-                sb.append(String.format("%02x", b));
-            }
-            hashedPassword = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Error hashing password.");
-            return;
-        }
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        try {
-            // Example: SQLite DB connection (adjust URL for your DB)
-            conn = DriverManager.getConnection("jdbc:sqlite:users.db");
-            String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username);
-            stmt.setString(2, hashedPassword);
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                resp.setStatus(HttpServletResponse.SC_OK);
-                resp.getWriter().write("User registered successfully.");
-            } else {
-                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                resp.getWriter().write("Registration failed.");
-            }
-        } catch (SQLException e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            resp.getWriter().write("Database error: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                // Log error if needed
-            }
-        }
+    try {
+        String hashedPassword = hashPassword(password);
+        registerUser(username, hashedPassword);
+        resp.getWriter().println("User registered successfully!");
+    } catch (NoSuchAlgorithmException e) {
+        resp.getWriter().println("Error: Hashing algorithm not found.");
+        e.printStackTrace();
+    } catch (SQLException e) {
+        resp.getWriter().println("Error: Could not register user.");
+        e.printStackTrace();
     }
-
+}
 '''
 
     SAVE_PATH = ".\\Idea1\\"
