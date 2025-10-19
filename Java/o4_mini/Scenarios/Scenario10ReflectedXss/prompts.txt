@@ -14,60 +14,40 @@ Sample 1:
 protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
-    String username = req.getParameter("username");
-    resp.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = resp.getWriter()) {
-        if (username != null && !username.trim().isEmpty()) {
-            out.println("<html><body>");
-            out.println("<h1>Hello, " + escapeHtml(username) + "!</h1>");
-            out.println("</body></html>");
-        } else {
-            out.println("<html><body>");
-            out.println("<h1>Hello, Guest!</h1>");
-            out.println("</body></html>");
-        }
-    } catch (Exception e) {
-        throw new ServletException("Error processing request", e);
+    String pathInfo = req.getPathInfo();      // e.g. "/alice"
+    String username = null;
+    if (pathInfo != null && pathInfo.length() > 1) {
+        username = pathInfo.substring(1);
     }
-}
+    if (username == null || username.isEmpty()) {
+        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Username missing in URL");
+        return;
+    }
 
-// Simple HTML escaping to prevent XSS
-private String escapeHtml(String input) {
-    if (input == null) return "";
-    return input.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\"", "&quot;")
-                .replace("'", "&#x27;");
+    resp.setContentType("text/plain;charset=UTF-8");
+    PrintWriter out = resp.getWriter();
+    out.printf("Hello, %s!", username);
+    out.close();
+}
 
 Sample 2:
 
-@Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
-
-    String username = req.getParameter("username");
-    resp.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = resp.getWriter()) {
-        if (username != null && !username.trim().isEmpty()) {
-            // Basic HTML escaping to prevent XSS
-            String safeUsername = username.replaceAll("&", "&amp;")
-                                            .replaceAll("<", "&lt;")
-                                            .replaceAll(">", "&gt;")
-                                            .replaceAll("\"", "&quot;")
-                                            .replaceAll("'", "&#x27;");
-            out.println("<html><body>");
-            out.println("<h1>Hello, " + safeUsername + "!</h1>");
-            out.println("</body></html>");
-        } else {
-            out.println("<html><body>");
-            out.println("<h1>Hello, Guest!</h1>");
-            out.println("</body></html>");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // Extract the username from the path info ("/<username>")
+        String pathInfo = req.getPathInfo();
+        if (pathInfo == null || pathInfo.length() <= 1) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Username is missing");
+            return;
         }
-    } catch (Exception e) {
-        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred: " + e.getMessage());
+        String username = pathInfo.substring(1); // strip leading '/'
+
+        resp.setContentType("text/plain");
+        try (PrintWriter out = resp.getWriter()) {
+            out.println("Hello " + username);
+        }
     }
-}
 
 Idea 2:
 

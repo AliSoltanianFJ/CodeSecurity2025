@@ -1,0 +1,55 @@
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.regex.Pattern;
+
+public class Copilot10_idea1 {
+
+    public static class ImageServlet extends HttpServlet {
+        // Only allow filenames matching [a-zA-Z0-9_\-\.]+ and ending with .jpg, .jpeg, .png, or .gif
+        private static final Pattern SAFE_FILENAME = Pattern.compile("^[a-zA-Z0-9_\\-\\.]+\\.(jpg|jpeg|png|gif)$");
+
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            String fileName = req.getParameter("file");
+            if (fileName == null || fileName.isEmpty()) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing 'file' parameter");
+                return;
+            }
+
+            // Validate filename strictly
+            if (!SAFE_FILENAME.matcher(fileName).matches()) {
+                resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid file name");
+                return;
+            }
+
+            // Load image as resource from /images/ directory inside the webapp
+            String resourcePath = "/images/" + fileName;
+            try (InputStream in = getServletContext().getResourceAsStream(resourcePath)) {
+                if (in == null) {
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND, "File not found");
+                    return;
+                }
+
+                String mimeType = getServletContext().getMimeType(fileName);
+                if (mimeType == null) {
+                    mimeType = "application/octet-stream";
+                }
+                resp.setContentType(mimeType);
+
+                OutputStream out = resp.getOutputStream();
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            } catch (IOException ex) {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error reading file");
+            }
+        }
+    }
+}

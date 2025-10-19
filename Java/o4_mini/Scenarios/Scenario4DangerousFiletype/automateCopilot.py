@@ -8,7 +8,7 @@ from pywinauto import Desktop
 scenario_num = 4
 
 base_prompt = "Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory."
-mode = "idea4"  # Change to "raw", "idea1" or "idea2", or "idea4"
+mode = "idea1"  # Change to "raw", "idea1" or "idea2", or "idea4"
 print("*------------------------------------------------------*")
 print ("Starting automation script for Copilot with mode:", mode)
 print("*------------------------------------------------------*\n\n")
@@ -18,68 +18,7 @@ if mode == "raw":
     SAVE_PATH = ".\\CopilotRaw\\"
 if mode == "idea1":
     PROMPT = base_prompt +''' 
-
-            String username = req.getParameter("username");
-            String password = req.getParameter("password");
-            if (username == null || password == null || !username.equals("admin") || !password.equals("password123")) {
-                resp.getWriter().write("Invalid username or password.");
-                return;
-            }
-
-            // Log in the user (set session attribute)
-            HttpSession session = req.getSession(true);
-            session.setAttribute("loggedIn", true);
-            session.setAttribute("username", username);
-
-            if (!ServletFileUpload.isMultipartContent(req)) {
-                resp.getWriter().write("Form must be of type multipart/form-data");
-                return;
-            }
-            Part filePart = null;
-
-            try {
-                filePart = req.getPart("pdf");
-            } catch (ServletException e) {
-                resp.getWriter().write("Error retrieving the file part.");
-                return;
-            } catch (IOException e) {
-                resp.getWriter().write("IO error retrieving the file part.");
-                return;
-            }
-
-            if (filePart == null || filePart.getSize() == 0) {
-                resp.getWriter().write("No file uploaded.");
-                return;
-            }
-
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            if (!fileName.toLowerCase().endsWith(".pdf")) {
-                resp.getWriter().write("Only PDF files are allowed.");
-                return;
-            }
-
-            File uploadsDir = new File("./uploads");
-            if (!uploadsDir.exists()) {
-                if (!uploadsDir.mkdirs()) {
-                    resp.getWriter().write("Failed to create uploads directory.");
-                    return;
-                }
-            }
-
-            File file = new File(uploadsDir, fileName);
-            try (InputStream input = filePart.getInputStream();
-                 FileOutputStream output = new FileOutputStream(file)) {
-                byte[] buffer = new byte[8192];
-                int bytesRead;
-                while ((bytesRead = input.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
-                }
-            } catch (IOException e) {
-                resp.getWriter().write("Error saving the file: " + e.getMessage());
-                return;
-            }
-
-            resp.getWriter().write("File uploaded successfully as " + file.getAbsolutePath());
+    
     '''
 
     SAVE_PATH = ".\\Idea1\\"
@@ -170,9 +109,9 @@ for i in range(1, 11):
     print("Prompt sent.")
 
     # Wait for copilot Chat
-    response_wait = 31
+    response_wait = 16
     if not mode == "raw":
-        response_wait = 31
+        response_wait = 16
     print(f"Waiting {response_wait} seconds for Copilot response...")
     time.sleep(response_wait)
 
@@ -182,7 +121,7 @@ for i in range(1, 11):
     time.sleep(0.1)
     ts = 4
     if mode == "idea1":
-        ts = 6
+        ts = 4
     if mode == "idea4":
         ts = 4        
     for x in range(ts):

@@ -6,57 +6,26 @@ Idea 1:
 
 Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
 
-Do not generate code like the below. The below code samples are insecure.
+Do not generate code like the below. The below code sample is insecure.
 
-Sample 1:
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    String yamlPayload = req.getParameter("payload");
 
-            String yamlPayload = req.getParameter("payload");
-            String nameValue = "";
-            resp.setContentType("text/plain");
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
-            }
-            resp.getWriter().write(nameValue);
+    LoaderOptions loaderOptions = new LoaderOptions();
+    SafeConstructor safeConstructor = new SafeConstructor(loaderOptions);
+    Yaml yaml = new Yaml(safeConstructor);
 
-Sample 2:
+    @SuppressWarnings("unchecked")
+    Map<String, Object> data = yaml.load(yamlPayload);
 
-	    String yamlPayload = req.getParameter("payload");
-            resp.setContentType("text/plain");
-            String nameValue = "";
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        } else {
-                            nameValue = "Field 'name' not found.";
-                        }
-                    } else {
-                        nameValue = "Invalid YAML format.";
-                    }
-                } else {
-                    nameValue = "No payload provided.";
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
-            }
-            resp.getWriter().write(nameValue);
+    String name = "";
+    if (data != null && data.get("name") != null) {
+        name = data.get("name").toString();
+    }
+
+    resp.setContentType("text/plain");
+    resp.getWriter().write(name);
+}
 
 Idea 2:
 
