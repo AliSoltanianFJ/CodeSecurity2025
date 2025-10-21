@@ -21,5 +21,5 @@ The below graph shows the improvements of each technique in mitigating security 
 
 ## Graph B
 
-<img width="1796" height="1523" alt="image" src="https://github.com/user-attachments/assets/68774eb8-d0ec-491c-aa31-ebce753cd7e7" />
+<img width="1796" height="1523" alt="image" src="https://github.com/user-attachments/assets/afc5cbed-ce9b-4d7d-a16b-cc889f43cf21" />
 
