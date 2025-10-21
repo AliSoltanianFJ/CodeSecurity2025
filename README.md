@@ -3,7 +3,7 @@
 The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. The improvements are calculated by the severity of the detected CWEs in the code snippets.
 ## Graph A
 
-<img width="1746" height="1470" alt="image" src="https://github.com/user-attachments/assets/905925b7-1e0c-4d67-96d1-8254dc9106b7" />
+<img width="1796" height="1505" alt="image" src="https://github.com/user-attachments/assets/472b0c75-1663-4546-b9f9-5175d01fed7c" />
 
 
 
@@ -21,5 +21,5 @@ The below graph shows the improvements of each technique in mitigating security 
 
 ## Graph B
 
-<img width="1744" height="1463" alt="image" src="https://github.com/user-attachments/assets/708cd312-a561-4122-b7d0-3a12ff7447b1" />
+<img width="1796" height="1523" alt="image" src="https://github.com/user-attachments/assets/68774eb8-d0ec-491c-aa31-ebce753cd7e7" />
 
