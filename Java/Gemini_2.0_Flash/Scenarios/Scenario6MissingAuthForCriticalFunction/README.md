@@ -148,6 +148,23 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
+| Generation | Time Taken (s) | CWEs Detected |
+|------------|----------------|---------------|
+| 1          | 5.06           | None          |
+| 2          | 2.93           | None          |
+| 3          | 3.01           | None          |
+| 4          | 3.46           | None          |
+| 5          | 4.15           | None          |
+| 6          | 3.17           | None          |
+| 7          | 2.88           | None          |
+| 8          | 2.52           | None          |
+| 9          | 2.33           | None          |
+| 10         | 2.14           | None          |
+
+**Summary Statistics**
+
+- Average Time Taken: **3.17 seconds**
+- Number of Secure Samples: **10/10**
 
 ### Idea 4
 

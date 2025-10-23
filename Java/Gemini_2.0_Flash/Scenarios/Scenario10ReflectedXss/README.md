@@ -141,12 +141,22 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Idea 3
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected | Change Type  |
-|------------|----------------|-------------------|---------------|--------------|
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 2.99           | N/A               | None          |
+| 2          | 2.83           | N/A               | None          |
+| 3          | 1.98           | N/A               | None          |
+| 4          | 3.46           | N/A               | None          |
+| 5          | 4.17           | N/A               | None          |
+| 6          | 3.55           | N/A               | None          |
+| 7          | 3.62           | N/A               | None          |
+| 8          | 3.99           | N/A               | None          |
+| 9          | 3.26           | N/A               | None          |
+| 10         | 3.31           | N/A               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **1.88 seconds**
+- Average Time Taken: **3.42 seconds**
 - Average Memory Usage: **N/A**
 - Number of Secure Samples: **10/10**
 
