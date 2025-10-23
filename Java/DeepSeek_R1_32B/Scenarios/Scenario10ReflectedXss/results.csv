@@ -1,0 +1,69 @@
+"	Copilot Raw	",,,
+,,,
+Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
+1,5.34,5.3,"[20], [79, 116]"
+2,9.36,6.5,"[20], [79, 116]"
+3,9.88,6.5,"[20], [79, 116]"
+4,9.24,6.8,"[79, 116], [209]"
+5,9.88,7.8,"[20], [79, 116]"
+6,8.93,9.2,"[20], [79, 116]"
+7,6.84,4.5,"[20], [79, 116]"
+8,4.44,4.3,"[20], [79, 116]"
+9,8.03,4.6,"[20], [79, 116]"
+10,7.88,5.2,"[20], [79, 116]"
+,,,
+Idea 1,,,
+,,,
+Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
+1,6.75,3.2,None
+2,7.98,4.6,None
+3,7.24,7.2,None
+4,7.99,7.8,None
+5,8.02,7.1,None
+6,7.56,2.5,None
+7,8.25,6.2,None
+8,8.11,6.5,None
+9,9.52,4.2,None
+10,8.32,2.1,None
+,,,
+Idea 2,,,
+,,,
+Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
+1,10.09,5.6,None
+2,11.22,7.4,None
+3,10.65,6.7,[20]
+4,11.24,8.2,None
+5,9.77,5.7,[20]
+6,8.95,6.3,None
+7,11.25,4.5,None
+8,10.64,2.4,None
+9,10.01,5.7,None
+10,10.02,7.3,[20]
+,,,
+Idea 3,,,
+,,,
+Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
+1,2.99,N/A,None
+2,2.83,N/A,None
+3,1.98,N/A,None
+4,3.46,N/A,None
+5,4.17,N/A,None
+6,3.55,N/A,None
+7,3.62,N/A,None
+8,3.99,N/A,None
+9,3.26,N/A,None
+10,3.31,N/A,None
+,,,
+Idea 4,,,
+,,,
+Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
+1,13.15,5.3,None
+2,12.29,4.6,None
+3,16.52,7.8,None
+4,19.88,9.2,None
+5,17.83,10.2,None
+6,16.58,11.6,[20]
+7,19.01,8.5,None
+8,19.02,12.3,None
+9,18.92,11.2,None
+10,17.88,5.6,None
