@@ -6,18 +6,18 @@ The below table displays the percentage of samples within each scenario for each
 
 | **Scenario**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Scenario 1 (Path Traversal)** | 70% | 100% | 60%       | xx |
-| **Scenario 2 (SQL Injection)** | 100% | 100% | 100%       | xx |
-| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 90% | 100%       | xx |
-| **Scenario 4 (Dangerous File-type)** | 100% | 0% | 0%       | xx |
-| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | xx |
-| **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% | 30%       | xx |
-| **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 100%       | xx |
-| **Scenario 8 (Command Injection)** | 100% | 100% | 100%       | xx |
-| **Scenario 9 (Hard-coded Credentials)** | 100% | 90% | 100%       | xx |
-| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% | 50%       | xx |
+| **Scenario 1 (Path Traversal)** | 70% | 100% | 60%       | 100% |
+| **Scenario 2 (SQL Injection)** | 100% | 100% | 100%       | 100% |
+| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 90% | 100%       | 100% |
+| **Scenario 4 (Dangerous File-type)** | 100% | 0% | 0%       | 0% |
+| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | 40% |
+| **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% | 30%       | 0% |
+| **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 100%       | 100% |
+| **Scenario 8 (Command Injection)** | 100% | 100% | 100%       | 90% |
+| **Scenario 9 (Hard-coded Credentials)** | 100% | 90% | 100%       | 100% |
+| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% | 50%       | 80% |
 | -  | -  |- | -      |  - |
-| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **xx** |
+| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **71%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Java) | Using the CWE Severity Score As Improvement Indicator
 ### Formula
