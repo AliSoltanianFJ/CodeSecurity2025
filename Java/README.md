@@ -10,14 +10,14 @@ The below table displays the percentage of samples within each scenario for each
 | **Scenario 2 (SQL Injection)** | 100% | 100% | 100%       | 100% |
 | **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 90% | 100%       | 100% |
 | **Scenario 4 (Dangerous File-type)** | 100% | 0% | 0%       | 0% |
-| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | 40% |
+| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | 60% |
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% | 30%       | 0% |
 | **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 100%       | 100% |
 | **Scenario 8 (Command Injection)** | 100% | 100% | 100%       | 90% |
 | **Scenario 9 (Hard-coded Credentials)** | 100% | 90% | 100%       | 100% |
 | **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% | 50%       | 80% |
 | -  | -  |- | -      |  - |
-| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **71%** |
+| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **73%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Java) | Using the CWE Severity Score As Improvement Indicator
 ### Formula
@@ -100,18 +100,18 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 (NEP) | Idea 2 (CoT) | Idea 3 (FT) | Idea 4 (MP) |
 |----------------------------------------------------------------|--------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | xx     | xx     | xx     | xx |
-| Scenario 2: SQL Injection                                      | xx   | xx     | xx      | xx |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | xx     | xx | xx   | xx |
-| Scenario 4: Dangerous File Type                                | xx     | xx     | xx     | xx |
-| Scenario 5: Unsafe Deserialization                             | xx     | xx     | xx     | xx |
-| Scenario 6: Missing Authentication for Critical Function       | xx | xx | xx | xx |
-| Scenario 7: Insufficiently Protected Credentials               | xx    | xx     | xx     | xx |
-| Scenario 8: Command Injection                                  | xx    | xx     | xx     | xx |
-| Scenario 9: Hardcoded Credentials                              | xx     | xx  | xx | xx |
-| Scenario 10: Reflected Cross-Site Scripting                    | xx    | xx     | xx     | xx |
+| Scenario 1: Path Traversal                                     | xx     | 36%     | xx     | 68% |
+| Scenario 2: SQL Injection                                      | xx   | 57%     | xx      | 43% |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | xx     | 63% | xx   | 60% |
+| Scenario 4: Dangerous File Type                                | xx     | No Change     | xx     | No Change |
+| Scenario 5: Unsafe Deserialization                             | xx     | 24%     | xx     | 65% |
+| Scenario 6: Missing Authentication for Critical Function       | xx | No Change | xx | No Change |
+| Scenario 7: Insufficiently Protected Credentials               | xx    | 1%     | xx     | 25% |
+| Scenario 8: Command Injection                                  | xx    | 26%     | xx     | 22% |
+| Scenario 9: Hardcoded Credentials                              | xx     | -1%  | xx | -2% |
+| Scenario 10: Reflected Cross-Site Scripting                    | xx    | 20%     | xx     | 2% |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **xx**  | **xx** | **xx** | **xx** |
+| **Average**                                                    | **xx**  | **28%** | **xx** | **35%** |
 
 #### CWE Reference Table
 
@@ -134,7 +134,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [78] | Executing a command with a relative path | 5.4 |
 | [23] | Partial Path Traversal Vulnerability | 9.3 |
 | [113] | HTTP Response Splitting | 6.1 |
-
+| [807, 290] | User-controlled bypass of sensitive method | 7.8
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Java)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
@@ -156,6 +156,6 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 14B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
 | **Idea 1 (Negative Example Prompting)** | 2%                        | 7%                                | 10%                       |             xx                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 21%                        | 9%                                | 9%                       |            xx                         |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 21%                        | 9%                                | 9%                       |            15%                         |
 | **Idea 3 (Fine-Tuning)** | 39%                        | xx                               |          xx               |                                 xx       |
-| **Idea 4 (Meta Prompting)** | 32%                        | 30%                               |          3%               |                                 xx       |
+| **Idea 4 (Meta Prompting)** | 32%                        | 30%                               |          3%               |                                 13%       |
