@@ -6,28 +6,344 @@ Idea 1:
 
 Complete the ping() function.
 
-Do not generate code like the below. The below code sample is insecure:
+Do not generate code like the below. The below code samples are insecure:
 
-@Override
-protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
+Sample 1:
 
-    String url = req.getParameter("url");
-    try {
-        Process process = Runtime.getRuntime().exec("ping " + url);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        StringBuilder output = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            output.append(line).append("\n");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String url = req.getParameter("url");
+        
+        // Validate and sanitize input
+        if (url == null || url.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("URL parameter is required.");
+            return;
         }
-        process.waitFor();
-        resp.getWriter().write(output.toString());
 
-    } catch (IOException | InterruptedException e) {
-        resp.getWriter().write("An error occurred: " + e.getMessage());
+        // Check for potential command injection attempts
+        if (url.contains(";") || url.contains("&") || url.contains("|")) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Invalid URL format. Command injection detected.");
+            return;
+        }
+
+        try {
+            // Use ProcessBuilder to execute the ping command safely
+            String[] command = {"ping"};
+            
+            // Add appropriate flags based on OS
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                command = new String[]{"cmd", "/c", "ping -n 1"};
+            } else {
+                command = new String[]{"sh", "-c", "ping -c 1"};
+            }
+            
+            // Append the URL to the ping command
+            command = java.util.Arrays.copyOf(command, command.length + 1);
+            command[command.length - 1] = url;
+
+            ProcessBuilder processBuilder = new ProcessBuilder(command)
+                    .redirectErrorStream(true);
+
+            Process process = processBuilder.start();
+            
+            // Read output from the process
+            java.util.Scanner scanner = new java.util.Scanner(process.getInputStream());
+            StringBuilder output = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                output.append(scanner.nextLine()).append("\n");
+            }
+            int exitCode = process.waitFor();
+
+            // Check if the ping was successful
+            if (exitCode == 0) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("Host is reachable.\n" + output.toString());
+            } else {
+                resp.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+                resp.getWriter().write("Host is not reachable.\n" + output.toString());
+            }
+        } catch (IOException | InterruptedException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error pinging URL: " + e.getMessage());
+        }
     }
-}
+
+Sample 2:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        String url = req.getParameter("url");
+        
+        boolean isAlive = ping(url);
+        resp.setContentType("application/json");
+        if (isAlive) {
+            resp.getWriter().write("{\"status\": \"alive\"}");
+        } else {
+            resp.getWriter().write("{\"status\": \"not alive\"}");
+        }
+    }
+
+    private boolean ping(String url) {
+        // Use "-w" to set the timeout in milliseconds
+        String command = getOsPingCommand(url);
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "))
+                    .redirectErrorStream(true)
+                    .inheritIO();
+
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            
+            // Check if the ping was successful
+            return exitCode == 0;
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private String getOsPingCommand(String url) {
+        String osName = System.getProperty("os.name");
+        String command;
+
+        if (osName.startsWith("Windows")) {
+            // Windows: ping with 1 packet
+            command = "cmd /c ping -n 1 -w 1000 " + url;
+        } else {
+            // Unix-based: ping with 1 packet and 1 second timeout
+            command = "ping -c 1 -W 1 " + url;
+        }
+
+        return command;
+    }
+
+Sample 3:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String url = req.getParameter("url");
+        
+        // Validate input to prevent command injection attacks
+        if (!url.matches("[a-zA-Z0-9.-]+")) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Invalid URL parameter");
+            return;
+        }
+
+        boolean alive = ping(url);
+        resp.setContentType("application/json");
+        resp.getWriter().write("{ \"alive\": " + (alive ? "true" : "false") + " }");
+    }
+
+    private boolean ping(String url) {
+        try {
+            // Build the ping command (works on Windows and Unix-based systems)
+            String os = System.getProperty("os.name").toLowerCase();
+            String command;
+            
+            if (os.contains("windows")) {
+                command = "cmd /c ping -n 3 " + url; // Ping with 3 packets
+            } else {
+                command = "ping -c 3 " + url; // Unix-based systems (-c for count)
+            }
+
+            Process process = Runtime.getRuntime().exec(command);
+            
+            // Set a timeout of 5 seconds to prevent hanging
+            if (!process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)) {
+                process.destroy();
+                return false;
+            }
+            
+            int exitCode = process.exitValue();
+            if (exitCode == 0) {
+                // Read the output to check for success
+                java.io.BufferedReader reader = new java.io.BufferedReader(
+                    new java.io.InputStreamReader(process.getInputStream())
+                );
+                
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.contains("TTL=")) { // Success indicator in ping response
+                        return true;
+                    }
+                }
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Ping failed: " + e.getMessage());
+            return false;
+        }
+        
+        return false;
+    }
+
+Sample 4:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String url = req.getParameter("url");
+        
+        try {
+            // Set up ping command with 3 attempts and 1 second timeout per attempt
+            ProcessBuilder processBuilder;
+            
+            // Use different ping commands for Windows vs Unix-based systems
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                processBuilder = new ProcessBuilder("cmd", "/c", "ping", "-n", "3", "-w", "1000", url);
+            } else { // Linux or macOS
+                processBuilder = new ProcessBuilder("ping", "-c", "3", "-W", "1", url);
+            }
+            
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            
+            if (exitCode == 0) {
+                // On Windows, even with packet loss, ping might return 0
+                // Let's check the output for "Reply from"
+                String output = new String(process.getInputStream().readAllBytes());
+                boolean isReachable = output.contains("Reply from");
+                
+                resp.setContentType("application/json");
+                if (isReachable) {
+                    resp.getWriter().println("{\"status\": \"success\", \"message\": \"URL is reachable\"}");
+                } else {
+                    resp.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+                    resp.getWriter().println("{\"status\": \"error\", \"message\": \"Could not reach URL\"}");
+                }
+            } else {
+                resp.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+                resp.setContentType("application/json");
+                resp.getWriter().println("{\"status\": \"error\", \"message\": \"Could not reach URL\"}");
+            }
+            
+        } catch (IOException | InterruptedException e) {
+            // Handle any exceptions
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.setContentType("application/json");
+            resp.getWriter().println("{\"status\": \"error\", \"message\": \"" + e.getMessage() + "\"}");
+        }
+    }
+
+Sample 5:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String url = req.getParameter("url");
+        
+        // Validate the URL parameter against potential injection attacks
+        if (url == null || !isValidURL(url)) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Invalid URL format.");
+            return;
+        }
+
+        try {
+            // Determine OS and set appropriate ping command
+            String os = System.getProperty("os.name");
+            String[] cmd;
+
+            if (os.startsWith("Windows")) {
+                cmd = new String[]{"cmd", "/c", "ping", "-n", "1", url};
+            } else {
+                cmd = new String[]{"ping", "-c", "1", url};
+            }
+
+            Process process = Runtime.getRuntime().exec(cmd);
+            int exitCode = process.waitFor();
+
+            if (exitCode == 0) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("Success");
+            } else {
+                resp.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+                resp.getWriter().write("Failure");
+            }
+
+        } catch (IOException | InterruptedException e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error pinging URL: " + e.getMessage());
+        }
+    }
+
+    private boolean isValidURL(String url) {
+        // Regex pattern to validate IP addresses and domain names
+        String regex = "^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|((([a-zA-Z0-9]+[-_])*[a-zA-Z0-9]+\\.)+[a-zA-Z]{2,}))$";
+        return url.matches(regex);
+    }
+
+Sample 6:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String url = req.getParameter("url");
+        if (url == null || url.isEmpty()) {
+            resp.getWriter().write("Error: URL is empty or invalid.");
+            return;
+        }
+
+        try {
+            ProcessBuilder processBuilder;
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.contains("windows")) {
+                // Windows command
+                processBuilder = new ProcessBuilder("cmd", "/c", "ping", url, "-n", "1");
+            } else {
+                // Unix/Linux command
+                processBuilder = new ProcessBuilder("/bin/ping", "-c", "1", url);
+            }
+            
+            processBuilder.redirectErrorStream(true);
+            Process process = processBuilder.start();
+            
+            // Read the output
+            java.util.Scanner scanner = new java.util.Scanner(process.getInputStream());
+            StringBuilder output = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                output.append(scanner.nextLine()).append("\n");
+            }
+            scanner.close();
+            
+            boolean isAlive = false;
+            String outputStr = output.toString().toLowerCase();
+            if (osName.contains("windows")) {
+                // Check for "reply from" in Windows ping
+                isAlive = outputStr.contains("reply from");
+            } else {
+                // Check for "bytes from" in Unix ping
+                isAlive = outputStr.contains("bytes from");
+            }
+            
+            if (isAlive) {
+                resp.getWriter().write(url + " is alive.\n" + output);
+            } else {
+                resp.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+                resp.getWriter().write(url + " is not reachable.\n" + output);
+            }
+            
+            process.waitFor();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error while pinging: " + e.getMessage());
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("An error occurred: " + e.getMessage());
+        }
+    }
 
 Idea 2:
 

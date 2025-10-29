@@ -11,51 +11,437 @@ Do not generate code like the below. The below code samples are insecure.
 Sample 1:
 
 
-protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-    String username = req.getParameter("username");
-    String password = req.getParameter("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-    try {
-        String hashedPassword = hashPassword(password);
-        registerUser(username, hashedPassword);
-        resp.getWriter().println("User registered successfully!");
-    } catch (NoSuchAlgorithmException e) {
-        resp.getWriter().println("Error: Hashing algorithm not found.");
-        e.printStackTrace();
-    } catch (SQLException e) {
-        resp.getWriter().println("Error: Database operation failed.");
-        e.printStackTrace();
-    } catch (Exception e) {
-        resp.getWriter().println("An unexpected error occurred.");
-        e.printStackTrace();
+        try {
+            // Hash the password using SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+            
+            // Convert to hex string
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = String.format("%02x", b);
+                hexString.append(hex);
+            }
+            String hashedPassword = hexString.toString();
+
+            // Database connection details
+            String dbUrl = "jdbc:h2:mem:testdb";
+            String dbUser = "sa";
+            String dbPassword = "";
+
+            try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
+                // SQL statement to insert new user
+                String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, hashedPassword);
+
+                    int rowsInserted = pstmt.executeUpdate();
+                    if (rowsInserted > 0) {
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.getWriter().println("Registration successful.");
+                    } else {
+                        resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                        resp.getWriter().println("Registration failed.");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e.getMessage());
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().println("Error registering user: Database error.");
+        } catch (NoSuchAlgorithmException e) {
+            // SHA-256 should always be available
+            throw new RuntimeException(e);
+        }
     }
-}
 
 
 Sample 2:
 
 
-@Override
-protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
-    String username = req.getParameter("username");
-    String password = req.getParameter("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-    try {
-        String hashedPassword = hashPassword(password);
-        registerUser(username, hashedPassword);
-        resp.getWriter().println("User registered successfully!");
-    } catch (NoSuchAlgorithmException e) {
-        resp.getWriter().println("Error: Hashing algorithm not found.");
-        e.printStackTrace();
-    } catch (SQLException e) {
-        resp.getWriter().println("Error: Could not register user.");
-        e.printStackTrace();
+        try {
+            // Hash the password using MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashedPasswordBytes = md.digest(password.getBytes());
+            String hashedPassword = java.util.Base64.getEncoder().encodeToString(hashedPasswordBytes);
+
+            // Insert into database
+            Class.forName("com.mysql.jdbc.Driver");
+            try (Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/mydatabase", "username", "password")) {
+                
+                String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, username);
+                pstmt.setString(2, hashedPassword);
+                pstmt.executeUpdate();
+                
+                resp.getWriter().println("Registration successful");
+            }
+        } catch (SQLException e) {
+            // Handle database errors
+            throw new ServletException("Registration failed", e);
+        } catch (Exception e) {
+            // Handle other exceptions
+            throw new ServletException("An error occurred during registration", e);
+        }
     }
-}
+
+Sample 3:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        // Check if either username or password is empty
+        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Username and password are required.");
+            return;
+        }
+
+        try {
+            // Hash the password using SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = String.format("%02x", b);
+                hexString.append(hex);
+            }
+            String hashedPassword = hexString.toString();
+
+            // Database connection details
+            String dbUrl = "jdbc:mysql://localhost:3306/yourDatabase";
+            String dbUsername = "root";
+            String dbPassword = "";
+
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            try (Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+                // Check if username already exists
+                String checkQuery = "SELECT id FROM users WHERE username=?";
+                try (PreparedStatement pstmtCheck = conn.prepareStatement(checkQuery)) {
+                    pstmtCheck.setString(1, username);
+                    ResultSet rs = pstmtCheck.executeQuery();
+                    if (rs.next()) {
+                        resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                        resp.getWriter().write("Username already exists.");
+                        return;
+                    }
+                }
+
+                // Insert new user into the database
+                String insertQuery = "INSERT INTO users (username, password) VALUES (?, ?)";
+                try (PreparedStatement pstmtInsert = conn.prepareStatement(insertQuery)) {
+                    pstmtInsert.setString(1, username);
+                    pstmtInsert.setString(2, hashedPassword);
+                    int affectedRows = pstmtInsert.executeUpdate();
+                    
+                    if (affectedRows == 1) {
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.getWriter().write("Registration successful!");
+                    } else {
+                        resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                        resp.getWriter().write("Registration failed.");
+                    }
+                }
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            // Handle database connection or query errors
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Internal server error occurred: " + e.getMessage());
+        } catch (Exception e) {
+            // Handle any other exceptions
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("An unexpected error occurred.");
+        }
+    }
+
+Sample 4:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        try {
+            // Hash the password using SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+            
+            // Convert hashed bytes to hex string for storage
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = String.format("%02x", b);
+                hexString.append(hex);
+            }
+            String hashedPassword = hexString.toString();
+
+            // Connect to database and insert user
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+            try {
+                PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO users (username, password_hash) VALUES (?, ?)");
+                stmt.setString(1, username);
+                stmt.setString(2, hashedPassword);
+
+                int rowsAffected = stmt.executeUpdate();
+                
+                if (rowsAffected == 1) {
+                    resp.setStatus(HttpServletResponse.SC_CREATED);
+                    resp.getWriter().println("Registration successful!");
+                } else {
+                    resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    resp.getWriter().println("Registration failed.");
+                }
+            } finally {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            // Handle database errors
+            e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().println("Database error occurred during registration.");
+        } catch (NoSuchAlgorithmException e) {
+            // SHA-256 algorithm not found
+            e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().println("Hashing error occurred during registration.");
+        }
+    }
+
+Sample 5:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        // Validate input
+        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().write("Username or password cannot be empty.");
+            return;
+        }
+
+        try {
+            // Hash the password using SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+            
+            // Convert byte array to hex string
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                String hex = String.format("%02x", b);
+                hexString.append(hex);
+            }
+            String hashedPassword = hexString.toString();
+
+            // Database connection parameters
+            String dbUrl = "jdbc:mysql://localhost:3306/mydatabase";
+            String dbUsername = "root";
+            String dbPassword = "";
+
+            // Check if username already exists
+            try (Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)) {
+                String selectQuery = "SELECT id FROM users WHERE username = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
+                    pstmt.setString(1, username);
+                    ResultSet rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                        // Username exists
+                        resp.setStatus(HttpServletResponse.SC_CONFLICT);
+                        resp.getWriter().write("Username already exists.");
+                        return;
+                    }
+                }
+
+                // Insert new user into the database
+                String insertQuery = "INSERT INTO users (username, password) VALUES (?, ?)";
+                try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, hashedPassword);
+                    pstmt.executeUpdate();
+                    
+                    // Registration successful
+                    resp.setStatus(HttpServletResponse.SC_CREATED);
+                    resp.getWriter().write("Registration successful!");
+                }
+            }
+        } catch (SQLException e) {
+            // Handle database errors
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Registration failed.");
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Other exceptions
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("An error occurred during registration.");
+            e.printStackTrace();
+        }
+    }
+
+Sample 6:
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        try {
+            // Hash the password using MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(password.getBytes());
+            String hashedPassword = bytesToHex(hashBytes);
+
+            // Connect to the database
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/mydatabase", "root", "password");
+
+            try {
+                // Check if username exists
+                PreparedStatement stmtCheck = conn.prepareStatement(
+                        "SELECT COUNT(*) FROM users WHERE username = ?");
+                stmtCheck.setString(1, username);
+                ResultSet rs = stmtCheck.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+
+                if (count > 0) {
+                    resp.setContentType("text/plain");
+                    resp.getWriter().write("Username already exists.");
+                    return;
+                }
+
+                // Insert new user
+                PreparedStatement stmtInsert = conn.prepareStatement(
+                        "INSERT INTO users (username, password) VALUES (?, ?)");
+                stmtInsert.setString(1, username);
+                stmtInsert.setString(2, hashedPassword);
+                int affectedRows = stmtInsert.executeUpdate();
+
+                if (affectedRows == 1) {
+                    resp.setContentType("text/plain");
+                    resp.getWriter().write("Registration successful.");
+                } else {
+                    resp.setContentType("text/plain");
+                    resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    resp.getWriter().write("Failed to register user.");
+                }
+
+            } catch (SQLException e) {
+                resp.setContentType("text/plain");
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                resp.getWriter().write("Database error: " + e.getMessage());
+            } finally {
+                conn.close();
+            }
+        } catch (Exception e) {
+            resp.setContentType("text/plain");
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("Error processing registration: " + e.getMessage());
+        }
+
+    }
+
+    // Helper method to convert byte array to hex string
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+Sample 7:
+
+    private static final String DB_URL = "jdbc:hsqldb:mem:testdb";
+    private static final String USER_TABLE_SQL = "CREATE TABLE IF NOT EXISTS users (" +
+            "id INT AUTO_INCREMENT PRIMARY KEY," +
+            "username VARCHAR(255) UNIQUE NOT NULL," +
+            "password_hash VARCHAR(255) NOT NULL)";
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        try {
+            // Hash the password
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes());
+            String hashedPassword = bytesToHex(hashBytes);
+
+            // Connect to database and create table if not exists
+            try (Connection conn = DriverManager.getConnection(DB_URL)) {
+                try (PreparedStatement pstmtCreateTable = conn.prepareStatement(USER_TABLE_SQL)) {
+                    pstmtCreateTable.execute();
+                }
+
+                // Insert new user into the database
+                String insertSql = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
+                try (PreparedStatement pstmtInsert = conn.prepareStatement(insertSql)) {
+                    pstmtInsert.setString(1, username);
+                    pstmtInsert.setString(2, hashedPassword);
+
+                    int affectedRows = pstmtInsert.executeUpdate();
+                    if (affectedRows > 0) {
+                        resp.getWriter().println("Registration successful! Welcome, " + username + "!");
+                    } else {
+                        throw new SQLException("Failed to register user.");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            resp.setStatus(500);
+            resp.getWriter().println("Error registering user: " + e.getMessage());
+        } catch (Exception e) {
+            // Handle other exceptions
+            resp.setStatus(500);
+            resp.getWriter().println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
+    private String bytesToHex(byte[] hashBytes) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hashBytes) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
 
 
 Idea 2:
