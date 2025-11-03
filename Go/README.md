@@ -70,7 +70,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 | Scenario 2: SQL Injection                                      | xx    | xx     | xx                | xx       |
 | Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | xx    | xx     | xx          | xx      |
 | Scenario 4: Dangerous File Type                                | xx    | xx    | xx               | xx      |
-| Scenario 5: Unsafe Deserialization                             | -11     | xx    | xx                | xx      |
+| Scenario 5: Unsafe Deserialization                             | xx     | xx    | xx                | xx      |
 | Scenario 6: Missing Authentication for Critical Function       | xx | xx   | xx        | xx |
 | Scenario 7: Insufficiently Protected Credentials               | xx   | xx | xx        | xx |
 | Scenario 8: Command Injection                                  | xx    | xx     | xx                | xx       |
