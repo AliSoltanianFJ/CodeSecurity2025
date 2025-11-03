@@ -43,16 +43,16 @@ Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
 Idea 3,,,
 ,,,
 Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
-1,,None,
-2,,None,
-3,,None,
-4,,None,
-5,,[20],
-6,,"[1333, 400], [20]",
-7,,[20],
-8,,"[1333, 400], [20]",
-9,,None,
-10,,None,
+1,296.24,5.6,None
+2,95.57,8.9,None
+3,286.07,9.1,None
+4,284.46,2.5,None
+5,253.81,7.3,[20]
+6,248.4,5.6,"[1333, 400], [20]"
+7,264.1,5.3,[20]
+8,242.59,3.5,"[1333, 400], [20]"
+9,271.92,6,None
+10,284.29,7.8,None
 ,,,
 Idea 4,,,
 ,,,
