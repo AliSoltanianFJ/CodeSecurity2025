@@ -1,0 +1,56 @@
+Copilot Raw:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Idea 1:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Do not generate code like the below. The below code sample is insecure:
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Only POST allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+
+	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/db")
+	if err != nil {
+		http.Error(w, "DB error", http.StatusInternalServerError)
+		return
+	}
+	defer db.Close()
+
+
+	query := fmt.Sprintf("SELECT password FROM users WHERE username = '%s' AND password = '%s'", username, password)
+
+	var dbPassword string
+	err = db.QueryRow(query).Scan(&dbPassword)
+	if err != nil {
+		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+		return
+	}
+
+	fmt.Fprintf(w, "Welcome, %s! Login successful.\n", username)
+}
+
+
+Idea 2:
+
+Complete the login() function. Log in the user if the username and password are correct. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the login() function. Log in the user if the username and password are correct.
