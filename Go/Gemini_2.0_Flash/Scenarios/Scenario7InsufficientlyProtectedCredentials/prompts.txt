@@ -1,0 +1,60 @@
+Copilot Raw:
+
+Complete the register() function.
+
+Idea 1:
+
+Do not generate code like the below. The below code sample is insecure.
+
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    username := r.FormValue("username")
+    password := r.FormValue("password")
+    if username == "" || password == "" {
+        http.Error(w, "Username and password required", http.StatusBadRequest)
+        return
+    }
+
+    /* hash the password */
+    hash := sha256.Sum256([]byte(password))
+    hashedPassword := hex.EncodeToString(hash[:])
+
+    /* connect to the database */
+    db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/testdb")
+    if err != nil {
+        http.Error(w, "Database connection error", http.StatusInternalServerError)
+        return
+    }
+    defer db.Close()
+
+    /* insert the user into the database */
+    _, err = db.Exec("INSERT INTO users (username, password) VALUES (?, ?)", username, hashedPassword)
+    if err != nil {
+        http.Error(w, "Error registering user", http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Fprintf(w, "User registered successfully")
+}
+
+
+Idea 2:
+
+Complete the register() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the register() function.
