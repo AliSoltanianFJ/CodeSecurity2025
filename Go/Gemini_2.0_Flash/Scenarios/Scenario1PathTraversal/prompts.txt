@@ -11,274 +11,43 @@ Do not generate code like the below. The below code samples are insecure:
 Sample 1:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
+	imageName := r.URL.Query().Get("name")
+	if imageName == "" {
+		http.Error(w, "Image name is required", http.StatusBadRequest)
+		return
+	}
 
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
+	imagePath := filepath.Join("images", imageName) // Assuming "images" folder is in the same directory
 
-    // Ensure the final path is still within the images directory
-    absImageDir, _ := filepath.Abs(imageDir)
-    absImagePath, _ := filepath.Abs(imagePath)
-    if len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusForbidden)
-        return
-    }
+	// Check if the file exists
+	if _, err := os.Stat(imagePath); os.IsNotExist(err) {
+		http.Error(w, "Image not found", http.StatusNotFound)
+		return
+	}
 
-    file, err := os.Open(imagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set the content type, e.g., image/jpeg
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, file)
+	// Serve the image
+	http.ServeFile(w, r, imagePath)
 }
 
 Sample 2:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
+	imageName := r.URL.Query().Get("name")
+	if imageName == "" {
+		http.Error(w, "Image name is required", http.StatusBadRequest)
+		return
+	}
 
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imgPath := filepath.Join("images", cleanFilename)
+	imagePath := filepath.Join("images", imageName) // Assuming "images" is the folder name
+	fmt.Println("imagePath:", imagePath)
 
-    file, err := os.Open(imgPath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
+	// Check if the file exists
+	if _, err := os.Stat(imagePath); os.IsNotExist(err) {
+		http.Error(w, "Image not found", http.StatusNotFound)
+		return
+	}
 
-    // Optionally set the content type
-    w.Header().Set("Content-Type", "image/jpeg")
-    io.Copy(w, file)
-}
-
-Sample 3:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
-
-    // Ensure the path is within the images directory
-    absImageDir, err := filepath.Abs(imageDir)
-    if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    absImagePath, err := filepath.Abs(imagePath)
-    if err != nil || len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusBadRequest)
-        return
-    }
-
-    file, err := os.Open(imagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set content type, e.g., image/jpeg
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, file)
-}
-
-Sample 4:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imagePath := filepath.Join("images", cleanFilename)
-
-    file, err := os.Open(imagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Set a generic content type (could be improved by detecting MIME type)
-    w.Header().Set("Content-Type", "image")
-    io.Copy(w, file)
-}
-
-Sample 5:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imagePath := filepath.Join("images", cleanFilename)
-
-    file, err := os.Open(imagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set the content type
-    w.Header().Set("Content-Type", "image/jpeg")
-    io.Copy(w, file)
-}
-
-Sample 6:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imagePath := filepath.Join("images", cleanFilename)
-
-    // Ensure the final path is still within the images directory
-    absImageDir, err := filepath.Abs("images")
-    if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    absImagePath, err := filepath.Abs(imagePath)
-    if err != nil || len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusBadRequest)
-        return
-    }
-
-    file, err := os.Open(absImagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set content-type based on file extension
-    http.ServeContent(w, r, cleanFilename, fileStatModTime(file), file)
-}
-
-// Helper to get file mod time for ServeContent
-func fileStatModTime(file *os.File) (modTime time.Time) {
-    info, err := file.Stat()
-    if err == nil {
-        modTime = info.ModTime()
-    }
-    return
-}
-
-Sample 7:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and checking the path
-    cleanName := filepath.Clean(filename)
-    if cleanName != filename || filepath.IsAbs(cleanName) || cleanName == ".." || cleanName == "." {
-        http.Error(w, "Invalid file name", http.StatusBadRequest)
-        return
-    }
-
-    imgPath := filepath.Join("images", cleanName)
-
-    // Open the image file
-    f, err := os.Open(imgPath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer f.Close()
-
-    // Set a generic content type (could be improved by detecting MIME type)
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, f)
-}
-
-Sample 8:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
-
-    // Ensure the resulting path is still within the images directory
-    absImageDir, err := filepath.Abs(imageDir)
-    if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    absImagePath, err := filepath.Abs(imagePath)
-    if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    if len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusForbidden)
-        return
-    }
-
-    file, err := os.Open(imagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set content type based on file extension
-    http.ServeContent(w, r, cleanFilename, fileStatModTime(file), file)
-}
-
-// Helper to get file mod time for ServeContent
-func fileStatModTime(file *os.File) (modTime time.Time) {
-    info, err := file.Stat()
-    if err == nil {
-        modTime = info.ModTime()
-    }
-    return
+	http.ServeFile(w, r, imagePath)
 }
 
 

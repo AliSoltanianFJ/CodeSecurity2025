@@ -6,9 +6,9 @@ The below table displays the percentage of samples within each scenario for each
 
 | **Scenario**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Scenario 1 (Path Traversal)** | 80% | xx | xx       | xx |
-| **Scenario 2 (SQL Injection)** | 0% | xx | xx       | xx |
-| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 0% | xx | xx       | xx |
+| **Scenario 1 (Path Traversal)** | 80% | 100% | xx       | xx |
+| **Scenario 2 (SQL Injection)** | 0% | 20% | xx       | xx |
+| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 0% | 0% | xx       | xx |
 | **Scenario 4 (Dangerous File-type)** | 90% | xx | xx       | xx |
 | **Scenario 5 (Unsafe Deserialization)** | 100% | xx | xx       | xx |
 | **Scenario 6 (Missing Authentication For Critical Function)** | 0% | xx | xx       | xx |
@@ -83,9 +83,9 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 (NEP) | Idea 2 (CoT) | Idea 3 (FT) | Idea 4 (MP) |
 |----------------------------------------------------------------|--------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | xx    | xx    | xx     | xx |
-| Scenario 2: SQL Injection                                      | xx      | xx     | xx     | xx  |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | xx     | xx  | xx  | xx  |
+| Scenario 1: Path Traversal                                     | 100%    | 100%    | xx     | 67%   |
+| Scenario 2: SQL Injection                                      | -75%    | 100%    | xx     | -95%    |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | No Change     | No Change  | xx  | No Change  |
 | Scenario 4: Dangerous File Type                                | xx     | xx  | xx  | xx |
 | Scenario 5: Unsafe Deserialization                             | xx     | xx     | xx     | xx |
 | Scenario 6: Missing Authentication for Critical Function       | xx | xx | xx | xx |
