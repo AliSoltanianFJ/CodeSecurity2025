@@ -24,6 +24,34 @@ def scan_file(filepath):
     # -------------------------
     # CWE-22: Path Injection / Path Traversal
     # -------------------------
+    # Detect use of user-controlled filename directly in filepath.Join or os.Create
+    untrusted_filename_pattern = re.compile(
+        r'(?:file|header)\s*\.\s*Filename',
+        re.MULTILINE
+    )
+
+    join_or_create_with_filename_pattern = re.compile(
+        r'(?:filepath\s*\.\s*Join\s*\([^)]*\bheader\s*\.\s*Filename\b[^)]*\)'
+        r'|os\s*\.\s*Create\s*\([^)]*\bheader\s*\.\s*Filename\b[^)]*\))',
+        re.MULTILINE | re.DOTALL
+    )
+
+    # Direct Join/Create calls that use header.Filename
+    for match in join_or_create_with_filename_pattern.finditer(src):
+        start = match.start()
+        line = find_line(src, start)
+        findings.append({
+            "file": filepath,
+            "type": "path_traversal_untrusted_filename",
+            "line": line,
+            "match": match.group(0),
+            "message": (
+                "User-controlled filename (`header.Filename`) used directly in "
+                "`filepath.Join` or `os.Create`. This may allow path traversal if not sanitized "
+                "with `filepath.Base()` or equivalent validation."
+            )
+        })
+
     # Matches both var := filepath.Base(...) and var = filepath.Base(...)
     assign_pattern = re.compile(
         r'(?P<var>[A-Za-z_]\w*)\s*(?::=|=)\s*(?:path|filepath)\s*\.\s*Base\s*\([^)]*\)',
@@ -193,6 +221,41 @@ def scan_file(filepath):
                     "message": "General-purpose hash used near password storage/handling; consider using bcrypt/argon2/scrypt."
                 })
 
+    # -------------------------
+    # CWE-502: Unsafe Deserialization (YAML / JSON / Gob / XML)
+    # -------------------------
+
+    deserialize_funcs = [
+        r'yaml\s*\.\s*Unmarshal',
+        r'json\s*\.\s*Unmarshal',
+        r'xml\s*\.\s*Unmarshal',
+        r'gob\s*\.\s*NewDecoder',
+    ]
+    input_sources = [
+        r'r\s*\.\s*URL\s*\.\s*Query\s*\(\)\s*\.Get\s*\(',
+        r'r\s*\.\s*FormValue\s*\(',
+        r'r\s*\.\s*Body',
+        r'ioutil\s*\.\s*ReadAll\s*\(\s*r\s*\.\s*Body',
+    ]
+
+    deserialization_pattern = re.compile(
+        rf'({"|".join(deserialize_funcs)})\s*\([^)]*({"|".join(input_sources)})[^)]*\)',
+        re.MULTILINE | re.DOTALL | re.IGNORECASE
+    )
+
+    for match in deserialization_pattern.finditer(src):
+        start = match.start()
+        line = find_line(src, start)
+        findings.append({
+            "file": filepath,
+            "type": "unsafe_deserialization",
+            "line": line,
+            "match": match.group(0),
+            "message": (
+                "Potential unsafe deserialization: user-controlled input passed directly to "
+                "Unmarshal/NewDecoder (CWE-502). Validate or sanitize input before deserializing."
+            )
+        })
 
     # Deduplicate findings
     unique = {}
