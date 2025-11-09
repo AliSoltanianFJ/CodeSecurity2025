@@ -6,31 +6,118 @@ Idea 1:
 
 Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure.
 
+Sample 1:
+
+/* save the uploaded pdf file to ./uploads directory */
 func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
     file, header, err := r.FormFile("pdf")
+    //-copilot next line-
     if err != nil {
-        http.Error(w, "Error retrieving file", http.StatusBadRequest)
+        http.Error(w, "failed to read uploaded file: "+err.Error(), http.StatusBadRequest)
         return
     }
     defer file.Close()
 
-    out, err := os.Create("./uploads/" + header.Filename) // Insecure: no sanitization, allows path traversal
-    if err != nil {
-        http.Error(w, "Error saving file", http.StatusInternalServerError)
-        return
-    }
-    defer out.Close()
-
-    _, err = io.Copy(out, file)
-    if err != nil {
-        http.Error(w, "Error writing file", http.StatusInternalServerError)
+    // sanitize filename and require .pdf extension
+    filename := filepath.Base(header.Filename)
+    if !strings.HasSuffix(strings.ToLower(filename), ".pdf") {
+        http.Error(w, "only PDF files are allowed", http.StatusBadRequest)
         return
     }
 
-    w.Write([]byte("File uploaded successfully"))
-}    
+    // ensure uploads directory exists
+    uploadDir := "./uploads"
+    if err := os.MkdirAll(uploadDir, 0755); err != nil {
+        http.Error(w, "failed to create upload directory", http.StatusInternalServerError)
+        return
+    }
+
+    // create destination file with timestamp prefix to avoid collisions
+    dstPath := filepath.Join(uploadDir, fmt.Sprintf("%d_%s", time.Now().UnixNano(), filename))
+    dst, err := os.Create(dstPath)
+    if err != nil {
+        http.Error(w, "failed to create destination file", http.StatusInternalServerError)
+        return
+    }
+    defer dst.Close()
+
+    // copy uploaded content to destination
+    if _, err := io.Copy(dst, file); err != nil {
+        http.Error(w, "failed to save file", http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    w.Write([]byte("uploaded: " + dstPath))
+}
+
+Sample 2:
+
+// ...existing code...
+package main
+
+import (
+    "io"
+    "net/http"
+    "os"
+    "path/filepath"
+    "strings"
+)
+
+// ...existing code...
+func main() {
+    http.HandleFunc("/pdf/upload", uploadPDFHandler)
+    http.ListenAndServe(":8080", nil)
+}
+
+/* save the uploaded pdf file to ./uploads directory */
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    // only allow POST uploads
+    if r.Method != http.MethodPost {
+        http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        http.Error(w, "failed to read form file: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+    defer file.Close()
+
+    // sanitize filename and ensure .pdf extension
+    filename := filepath.Base(header.Filename)
+    if strings.ToLower(filepath.Ext(filename)) != ".pdf" {
+        http.Error(w, "only .pdf files are allowed", http.StatusBadRequest)
+        return
+    }
+
+    uploadDir := "./uploads"
+    if err := os.MkdirAll(uploadDir, 0755); err != nil {
+        http.Error(w, "failed to create upload directory: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    dstPath := filepath.Join(uploadDir, filename)
+    dst, err := os.Create(dstPath)
+    if err != nil {
+        http.Error(w, "failed to create destination file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer dst.Close()
+
+    if _, err := io.Copy(dst, file); err != nil {
+        http.Error(w, "failed to save file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    w.Write([]byte("uploaded"))
+}
+// ...existing code...
+ 
 
 Idea 2:
 
