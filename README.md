@@ -1,7 +1,14 @@
 # AI Code Security Experiment Results (Multi-Language & Multi-Model Analysis)
 
-The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. The improvements are calculated by the severity of the detected CWEs in the code snippets.
+The graph below shows the percentage of samples found to contain security weaknesses for each model in each language.
+
 ## Graph A
+
+<img width="1245" height="595" alt="image" src="SamplesContainingWeaknesses.png" />
+
+
+The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. The improvements are calculated by the severity of the detected CWEs in the code snippets.
+## Graph B
 
 <img width="1796" height="1505" alt="image" src="ImprovementsByCodeSeverity.png" />
 
@@ -18,7 +25,7 @@ Four different mitigation techniques were tested:
 
 The below graph shows the improvements of each technique in mitigating security weaknesses in the generated code snippets for each model in each language. For this graph, the improvements are calculated by the whether any CWEs were detected in each of the code snippets.
 
-## Graph B
+## Graph C
 
 <img width="1796" height="1523" alt="image" src="ImprovementsByNumSamples.png" />
 
