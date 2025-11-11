@@ -29,3 +29,29 @@ The below graph shows the improvements of each technique in mitigating security 
 
 <img width="1796" height="1523" alt="image" src="ImprovementsByNumSamples.png" />
 
+## Repository Structure
+```
+CodeSecurity2025
+└── CWEsIntroducedMapping
+    ├── Go
+    │   ├── DeepSeek_R1_32B
+    │   ├── GPT_4.1
+    │   ├── Gemini_2.0_Flash
+    │   └── o4_mini
+    ├── Java
+    │   ├── DeepSeek_R1_32B
+    │   ├── GPT_4.1
+    │   ├── Gemini_2.0_Flash
+    │   └── o4_mini
+    ├── JavaScript
+    │   ├── DeepSeek_R1_32B
+    │   ├── GPT_4.1
+    │   ├── Gemini_2.0_Flash
+    │   └── o4_mini
+    └── Python
+        ├── DeepSeek_R1_32B
+        ├── GPT_4.1
+        ├── GPT_5
+        ├── Gemini_2.0_Flash
+        └── o4_mini
+```
