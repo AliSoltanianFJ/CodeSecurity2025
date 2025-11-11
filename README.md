@@ -31,8 +31,8 @@ The below graph shows the improvements of each technique in mitigating security 
 
 ## Repository Structure
 ```
-CodeSecurity2025
-└── CWEsIntroducedMapping
+└── CodeSecurity2025/
+    ├── CWEsIntroducedMapping
     ├── Go
     │   ├── DeepSeek_R1_32B
     │   ├── GPT_4.1
