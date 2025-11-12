@@ -126,6 +126,27 @@ The results can be seen in `results.csv` or in the below tables.
 - Average Memory Usage: **6.83 kilobytes**
 - Number of Secure Samples: **0/10**
 
+### Idea 3
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 3.39           | N/A               | None          |
+| 2          | 5.33           | N/A               | None          |
+| 3          | 7.65           | N/A               | None          |
+| 4          | 8.44           | N/A               | None          |
+| 5          | 7.69           | N/A               | None          |
+| 6          | 5.91           | N/A               | None          |
+| 7          | 6.55           | N/A               | None          |
+| 8          | 5.99           | N/A               | None          |
+| 9          | 9.99           | N/A               | None          |
+| 10         | 9.02           | N/A               | None          |
+
+**Summary Statistics**
+
+- Average Time Taken: **7.00 seconds**
+- Average Memory Usage: **N/A kilobytes**
+- Number of Secure Samples: **10/10**
+
 ### Idea 4
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
