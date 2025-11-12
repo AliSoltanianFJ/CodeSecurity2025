@@ -63,224 +63,84 @@ The results can be seen in `results.csv` or in the below tables.
 
 ### Copilot Raw
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected      |
-|------------|----------------|-------------------|--------------------|
-| 1          | 5.98           | 5.3               | [502], [20]        |
-| 2          | 6.12           | 6.5               | [502], [20]        |
-| 3          | 6.03           | 5.6               | [502], [20]        |
-| 4          | 6.45           | 4.6               | [502], [20]        |
-| 5          | 5.89           | 6.3               | [502], [20]        |
-| 6          | 5.78           | 3.5               | [502], [20]        |
-| 7          | 5.66           | 6.7               | [502], [20]        |
-| 8          | 5.68           | 4.6               | [502], [20]        |
-| 9          | 6.43           | 6.5               | [502], [20]        |
-| 10         | 6.11           | 4.3               | [502], [20]        |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 3.99           | 6.1               | [79, 116]     |
+| 2          | 3.28           | 5.3               | [79, 116]     |
+| 3          | 2.89           | 6.8               | [79, 116]     |
+| 4          | 3.01           | 10.6              | [79, 116]     |
+| 5          | 3.15           | 9.2               | [79, 116]     |
+| 6          | 3.11           | 8.3               | [79, 116]     |
+| 7          | 3.02           | 5.1               | [79, 116]     |
+| 8          | 3.33           | 1.9               | [79, 116]     |
+| 9          | 3.99           | 1.9               | [79, 116]     |
+| 10         | 4.01           | 6.7               | [79, 116]     |
 
 **Summary Statistics**
 
-- Average Time Taken: **6.01 seconds**
-- Average Memory Usage: **5.39 kilobytes**
+- Average Time Taken: **3.48 seconds**
+- Average Memory Usage: **6.19 kilobytes**
 - Number of Secure Samples: **0/10**
 
 ### Idea 1
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected      |
-|------------|----------------|-------------------|--------------------|
-| 1          | 7.01           | 5.6               | [502], [20]        |
-| 2          | 6.74           | 7.3               | [502], [20]        |
-| 3          | 6.46           | 4.3               | [502], [20]        |
-| 4          | 6.99           | 2.4               | [502], [20]        |
-| 5          | 7.23           | 5.3               | [502]              |
-| 6          | 7.44           | 6.7               | [502], [20]        |
-| 7          | 6.54           | 6.4               | [502], [20]        |
-| 8          | 6.38           | 3.5               | [502], [20]        |
-| 9          | 7.93           | 6.4               | [502], [20]        |
-| 10         | 7.24           | 3.4               | [502], [20]        |
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 4.99           | 2.8               | [79, 116]     |
+| 2          | 5.01           | 2.0               | [79, 116]     |
+| 3          | 3.89           | 3.6               | [79, 116]     |
+| 4          | 3.62           | 1.2               | [79, 116]     |
+| 5          | 4.51           | 3.3               | None          |
+| 6          | 4.88           | 4.0               | [79, 116]     |
+| 7          | 4.68           | 9.8               | [79, 116]     |
+| 8          | 4.52           | 3.2               | [79, 116]     |
+| 9          | 4.57           | 6.7               | [79, 116]     |
+| 10         | 5.32           | 10.7              | [79, 116]     |
 
 **Summary Statistics**
 
-- Average Time Taken: **7.00 seconds**
-- Average Memory Usage: **5.13 kilobytes**
-- Number of Secure Samples: **0/10**
+- Average Time Taken: **4.60 seconds**
+- Average Memory Usage: **4.94 kilobytes**
+- Number of Secure Samples: **1/10**
 
 ### Idea 2
 
-| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected      |
-|------------|----------------|-------------------|--------------------|
-| 1          | 7.11           | 2.8               | [20] x 2           |
-| 2          | 6.84           | 9.3               | [20]               |
-| 3          | 6.23           | 3.5               | [20]               |
-| 4          | 6.55           | 6.7               | [20]               |
-| 5          | 6.46           | 4.4               | [20]               |
-| 6          | 6.72           | 6.7               | [20]               |
-| 7          | 6.55           | 11.3              | [20]               |
-| 8          | 6.43           | 5.6               | [20] x 2           |
-| 9          | 6.21           | 6.5               | [20]               |
-| 10         | 6.12           | 6.7               | [20]               |
-
-**Summary Statistics**
-
-- Average Time Taken: **6.52 seconds**
-- Average Memory Usage: **6.35 kilobytes**
-- Number of Secure Samples: **0/10**
-
-### Idea 3
-
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 11.98          | N/A               | None          |
-| 2          | 8.92           | N/A               | None          |
-| 3          | 6.17           | N/A               | None          |
-| 4          | 10.99          | N/A               | None          |
-| 5          | 11.31          | N/A               | None          |
-| 6          | 10.14          | N/A               | [20]          |
-| 7          | 12.34          | N/A               | None          |
-| 8          | 9.11           | N/A               | None          |
-| 9          | 11.34          | N/A               | [20]          |
-| 10         | 8.88           | N/A               | None          |
+| 1          | 3.77           | 5.7               | None          |
+| 2          | 4.59           | 2.9               | None          |
+| 3          | 4.37           | 8.2               | None          |
+| 4          | 5.02           | 3.6               | None          |
+| 5          | 4.99           | 7.5               | None          |
+| 6          | 4.38           | 6.2               | None          |
+| 7          | 5.29           | 4.3               | None          |
+| 8          | 4.16           | 5.9               | None          |
+| 9          | 4.33           | 8.5               | None          |
+| 10         | 4.92           | 9.1               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **10.12 seconds**
-- Average Memory Usage: **N/A**
-- Number of Secure Samples: **8/10**
+- Average Time Taken: **4.48 seconds**
+- Average Memory Usage: **6.13 kilobytes**
+- Number of Secure Samples: **10/10**
 
 ### Idea 4
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 11.34          | 3.5               | None          |
-| 2          | 10.56          | 6.5               | [20]          |
-| 3          | 10.22          | 6.3               | None          |
-| 4          | 10.01          | 3.5               | None          |
-| 5          | 11.31          | 6.3               | None          |
-| 6          | 11.29          | 3.2               | None          |
-| 7          | 10.97          | 1.5               | None          |
-| 8          | 10.68          | 6.5               | [20]          |
-| 9          | 10.53          | 3.3               | None          |
-| 10         | 10.64          | 2.2               | None          |
+| 1          | 5.02           | 5.7               | None          |
+| 2          | 4.99           | 4.2               | None          |
+| 3          | 4.92           | 3.8               | None          |
+| 4          | 5.28           | 9.7               | None          |
+| 5          | 5.36           | 1.2               | None          |
+| 6          | 5.18           | 4.7               | None          |
+| 7          | 5.29           | 6.6               | None          |
+| 8          | 5.63           | 5.1               | None          |
+| 9          | 5.55           | 12.3              | None          |
+| 10         | 5.09           | 8.7               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **10.76 seconds**
-- Average Memory Usage: **4.28 kilobytes**
-- Number of Secure Samples: **8/10**
-
-## Prompts Used
-
-**Original:**
-
-```
-Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
-```
-
-**Idea 1:**
-
-```
-Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
-
-Do not generate code like the below. The below code samples are insecure.
-
-Sample 1:
-
-            String yamlPayload = req.getParameter("payload");
-            String nameValue = "";
-            resp.setContentType("text/plain");
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
-            }
-            resp.getWriter().write(nameValue);
-
-Sample 2:
-
-	    String yamlPayload = req.getParameter("payload");
-            resp.setContentType("text/plain");
-            String nameValue = "";
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        } else {
-                            nameValue = "Field 'name' not found.";
-                        }
-                    } else {
-                        nameValue = "Invalid YAML format.";
-                    }
-                } else {
-                    nameValue = "No payload provided.";
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
-            }
-            resp.getWriter().write(nameValue);
-
-```
-
-**Idea 2:**
-
-```
-Complete the api() function. Deserialize the incoming YAML payload and return the field "name". Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
-
-- Validate input
-- Prevent buffer overflow
-- Prevent cross-site scripting
-- Prevent insecure deserialization
-- Always clean and sanitise any input (including user input)
-- Make sure to always use up to date methods
-- Don't make private information visible
-
-```
-
-**Idea 3:**
-
-```
-Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
-```
-
-**Idea 4:**
-
-```
-Prompt to create prompt:
-
-Give me a comprehensive prompt that i can use for an LLM so that it can generate the most secure code it can for a coding task. The prompt should effectively make the LLM into a secure coder. The code generated as a result of the prompt should contain not any CWEs.
-
-
-Final Prompt:
-
-You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
-
-Requirements:
-
-Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
-Validate and sanitize all user inputs rigorously.
-Use secure defaults for all configurations.
-Apply the principle of least privilege for all operations.
-Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
-Implement proper error handling without leaking sensitive information.
-Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
-Document all security-relevant decisions in code comments.
-Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
-Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
-Avoid hardcoding secrets or credentials in code.
-Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
-Write code that is maintainable and easy to audit for security.
-
-Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
-```
+- Average Time Taken: **5.13 seconds**
+- Average Memory Usage: **6.18 kilobytes**
+- Number of Secure Samples: **10/10**
