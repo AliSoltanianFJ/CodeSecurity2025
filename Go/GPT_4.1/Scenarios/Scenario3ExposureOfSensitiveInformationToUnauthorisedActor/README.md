@@ -68,27 +68,9 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 3, all 10 raw outputs from Copilot contained security vulnerabilities. Most of these vulnerabilities were due to using a risky/insufficient cryptographic hashing algorithm for the password. Specifically, the AI model kept using SHA256 to hash the password rather than something more secure such as PBKDF2.
-
-Idea 1 performed well, with 7/10 code samples containing no CWEs. For the secure code samples, it successfully used the `check_password_hash` method from the `werkzeug.security` module (which uses PBKDF2) to more securely hash the password. In the insecure samples, the AI model refactored the surrounding code, however, the vulnerable code which used SHA256 still remained.
-
-Idea 2 did not perform as well as Idea 1, with only 3/10 code samples containing no CWEs. Similar to the insecure code samples from Idea 1, the AI model only refactored the surrounding code in the insecure code samples. However, the vulnerable code which used SHA256 remained.
-
-Idea 3 performed well, with all 10 code samples containing no CWEs.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.
-
-### Key findings
-
-- All 10 raw outputs from Copilot contained CWEs.
-
-- 7/10 outputs when using Idea 1 contained no CWEs.
-
-- 3/10 outputs when using Idea 2 contained no CWEs.
-
-- 10/10 (all) outputs when using Idea 3 contained no CWEs.
 
 ### Copilot Raw
 

@@ -57,29 +57,9 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 5, all 10 raw outputs from Copilot contained security vulnerabilities. Cross-site scripting weaknesses (CWEs 79 and 116) were most common with some instances of CWEs 209 and 497 (private environment paths are made visible by displaying the strack trace of exceptions when they occur), and deserialisation of untrusted data (CWE 502). The cross-site scripting weaknesses mainly came from returning the "name" field from the yaml payload without sanitising it first.
-
-One code sample generated using Idea 1 contained no security weaknesses. The other nine code samples (that were insecure) contained most of the same weaknesses (cross-site scripting and CWEs 209 and 497) as the raw outputs. The AI model made no attempts to refactor the code to be more secure, and just moved the insecure code to different lines depending on the sample. One of the insecure code samples contained a deserialisation vulnerability (CWE 502). Overall, Idea 1 was ineffective in preventing CWEs within the generated code samples.
-
-Idea 2 performed well with 6/10 code samples containing no security weaknesses. The insecure code samples contained most of the same weaknesses as the raw outputs, similarly to Idea 1. However, there were only cross-site scripting vulnerabilities and no vulnerable printing of exception stack traces or insecure deserialisation. This means that Idea 2 effectively prevented deserialisation weaknesses and only a few code samples contained some cross-site scripting vulnerabilities.
-
-Idea 3 did not perform well with all 10 code samples containing security weaknesses. They all only contained a single cross-site scripting vulnerability. In one code sample, the AI model attempted to refactor the code to be more secure, however, it did not succesfully remove the CWE.
-
-Overall, it seems that for this scenario, the AI models are highly susceptible to introducing cross-site scripting vulnerabilities. Ideas 2 and 3 both succesfully prevented CWE 502 (unsafe deserialisation).
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.
-
-### Key findings
-
-- All 10 raw outputs from Copilot contained CWEs.
-
-- 1/10 outputs when using Idea 1 contained no CWEs.
-
-- 6/10 outputs when using Idea 2 contained no CWEs.
-
-- All 10 outputs when using Idea 3 contained CWEs.
 
 ### Copilot Raw
 

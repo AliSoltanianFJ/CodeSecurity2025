@@ -59,34 +59,6 @@ For each idea, the change in the code samples between the raw code generations a
 | FIXED                         | no vulnerabilities                                     |   
 
 
-## Results
-
-For Scenario 1, the all 10/10 raw outputs from the AI model contained only path traversal vulnerabilities.
-
-Idea 1 performed the best with 6/10 outputs containing no security weaknesses. However, for the samples that were insecure, the AI model attempted to refactor the code to be more secure in most cases. However, the security vulnerability was not fixed. In one code sample, the AI model refactored all surrounding code, but kept the the line of code with the security vulnerability.
-
-Idea 2 performed second-best with 5/10 outputs containing no security weaknesses. Similar to Idea 1, for the samples that were insecure, the AI model attempted to refactor the code. However, the security vulnerability was not fixed. In two cases, the AI model used a regular expression to clean the user-defined path string. However, in the process, the model created regular expressions with inefficient computational complexities that could cause denial of service errors. Take for example the following regular expression and an example string:
-
-```
-Regex: '[A-Za-z0-9_-]+\.(jpg|jpeg|png|gif)'
-
-String: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajpeg
-```
-
-The regular expression contains no anchors meaning that it has to search every position in the string to find a match. For much larger strings than the one shown in the example, the computational power required can increase dramatically, which can be used in denial of service attacks.
-
-Idea 3 performed worst for Scenario 1 with only 4/10 outputs containing no security weaknesses. Once again for three of the insecure samples, the AI model attempted to refactor the code, but failed in eliminating the security vulnerability. However, two of the insecure samples showed no change from the raw code samples (no refactoring or changes were done). This could be due to the fact that the for the fine-tuned model, no explicit instructions were given to the model in terms of preventing security vulnerabilities (only raw prompt was used). Fine-tuning with a larger dataset could improve the performance of the model in terms of the number of security weaknesses it prevents.
-
-### Key findings
-    
-- All 10 raw outputs from Copilot contained CWEs.
-
-- 6/10 outputs when using Idea 1 contained no CWEs.
-
-- 5/10 outputs when using Idea 2 contained no CWEs.
-
-- 4/10 outputs when using Idea 3 contained no CWEs.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.

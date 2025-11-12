@@ -58,16 +58,6 @@ For each idea, the change in the code samples between the raw code generations a
 | INTRODUCED_NEW_VULNERABILITY  | introduces new vulnerability                           |
 | FIXED                         | no vulnerabilities                                     |   
 
-## Results
-
-For Scenario 8, all 10 raw outputs from Copilot contained security vulnerabilities. The most common vulnerabilities were CWEs 209 and 497 (private environment paths are made visible by displaying the strack trace of exceptions when they occur). Two samples contained cross-site scripting weaknesses (CWES 79 and 116). These XSS weaknesses occured due to the generated code containing instructions to run a subprocess command containing a user-provided URl.
-
-Idea 1 did not perform well. Only 1/10 outputs contained no security weaknesses. However, for all of the insecure code samples, a new vulnerability was introduced: CWE 78. The AI model did not generate any code to prevent command-line injection and used the raw externally provided URL to run command-line programs. In addition, the exception stack trace vulnerabilities remained.
-
-Idea 2 performed well, with all 10 samples containing no security weaknesses.
-
-Idea 3 performed well with 9/10 samples containing no security weaknesses. One code sample contained a command-line injection weakness (CWE 78) due to not sanitising the given URL before using it in the `ping()` function.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.

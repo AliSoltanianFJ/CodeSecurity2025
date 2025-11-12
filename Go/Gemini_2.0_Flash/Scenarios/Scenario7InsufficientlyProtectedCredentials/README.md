@@ -66,16 +66,6 @@ For each idea, the change in the code samples between the raw code generations a
 | INTRODUCED_NEW_VULNERABILITY  | introduces new vulnerability                           |
 | FIXED                         | no vulnerabilities                                     |   
 
-## Results
-
-For Scenario 7, all 10 raw Copilot-generated code samples contained security weaknesses. CWEs 209 and 497 (private environment paths are made visible by displaying the strack trace of exceptions when they occur), and CWEs 327, 328 and 916 (use of a weak or broken hashing algorithm) were most common. In some cases, the AI model generated code that contained hard-coded credentials, hence creating code with CWE 798. The AI model did this by using hard-coded credentials to create a MySQL database connection with placeholder details such as "your_username" or "your_password".
-
-Idea 1 did not perform well, with all 10 code samples containing CWEs. A notable improvement, however, is that all samples only contained CWEs 209 and 497. There were no instances of use of weak hashing algorithms or hard-coded credentials.
-
-Idea 2 performed well, with 9/10 secure code samples. One code sample was insecure and contained CWE 798. Once again, this was due to the use of hard-coded credentials to access a MySQL database.
-
-Idea 3 performed well, with all 10 code samples containing no security weaknesses.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.
