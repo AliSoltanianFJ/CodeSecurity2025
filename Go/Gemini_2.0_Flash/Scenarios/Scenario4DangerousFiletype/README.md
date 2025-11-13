@@ -124,6 +124,27 @@ The results can be seen in `results.csv` or in the below tables.
 - Number of Secure Samples: **9/10**
 
 
+### Idea 3
+
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|-------------------|---------------|
+| 1          | 5.57           | N/A               | None          |
+| 2          | 4.63           | N/A               | None          |
+| 3          | 4.89           | N/A               | None          |
+| 4          | 5.31           | N/A               | None          |
+| 5          | 5.77           | N/A               | None          |
+| 6          | 5.18           | N/A               | None          |
+| 7          | 5.09           | N/A               | None          |
+| 8          | 6.07           | N/A               | None          |
+| 9          | 6.13           | N/A               | None          |
+| 10         | 6.22           | N/A               | None          |
+
+**Summary Statistics**
+
+- Average Time Taken: **5.49 seconds**
+- Average Memory Usage: **N/A**
+- Number of Secure Samples: **10/10**
+
 ### Idea 4
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
