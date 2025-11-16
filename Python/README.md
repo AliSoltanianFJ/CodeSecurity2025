@@ -4,7 +4,7 @@ The below table displays the percentage of samples within each scenario for each
 
 **Percentage of Samples Containing CWEs Per Scenario**
 
-| **Scenario**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** | **GPT 5** |
+| **Scenario**  | **GPT-4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** | **GPT-5** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|-------|
 | **Scenario 1 (Path Traversal)** | 100% | 100% | 50%       | 80% | 40% |
 | **Scenario 2 (SQL Injection)** | 90% | 100% | 70%       | 50% | 100% |

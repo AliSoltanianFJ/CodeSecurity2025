@@ -1,0 +1,253 @@
+Copilot Raw:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Idea 1:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    // --- copilot next line ---
+    if (!username || !password) return res.status(400).send("Invalid credentials");
+
+    // Create (or preferably reuse) a connection/pool (placeholder values)
+    const db = mysql.createConnection({
+        host: process.env.DB_HOST || "localhost",
+        user: process.env.DB_USER || "root",
+        password: process.env.DB_PASS || "",
+        database: process.env.DB_NAME || "appdb"
+    });
+
+    // Use a parameterized query to avoid SQL injection
+    db.query(
+        "SELECT id, password_hash, password_salt FROM users WHERE username = ? LIMIT 1",
+        [username],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send("Server error");
+            }
+
+            if (results.length === 0) {
+                // Do not reveal whether username exists
+                return res.status(401).send("Invalid credentials");
+            }
+
+            const user = results[0];
+            try {
+                const derived = crypto.pbkdf2Sync(
+                    password,
+                    user.password_salt,
+                    310000,           // iterations
+                    32,               // key length
+                    "sha256"
+                );
+
+                const stored = Buffer.from(user.password_hash, "hex");
+                if (
+                    stored.length === derived.length &&
+                    crypto.timingSafeEqual(stored, derived)
+                ) {
+                    // Generate a session token (placeholder)
+                    const sessionToken = crypto.randomBytes(32).toString("hex");
+                    // In production: persist token server-side and set secure cookie
+                    res
+                      .status(200)
+                      .send(`Logged in (token: ${sessionToken})`);
+                } else {
+                    return res.status(401).send("Invalid credentials");
+                }
+            } catch (e) {
+                console.error(e);
+                return res.status(500).send("Server error");
+            } finally {
+                db.end?.();
+            }
+        }
+    );
+});
+
+Sample 2:
+
+app.post("/login", (req, res) => {
+    const username = (req.body.username || "").trim();
+    const password = req.body.password || "";
+
+    if (!username || !password || username.length > 150) {
+      return res.status(400).send("Invalid input.");
+    }
+
+    pool.query(
+      "SELECT id, password_hash, salt FROM users WHERE username = ? LIMIT 1",
+      [username],
+      (err, results) => {
+        if (err) {
+          return res.status(500).send("Server error.");
+        }
+        if (results.length === 0) {
+          return res.status(401).send("Invalid credentials.");
+        }
+
+        const user = results[0];
+        try {
+          const derived = crypto.pbkdf2Sync(
+            password,
+            user.salt,
+            310000,
+            32,
+            "sha256"
+          );
+          const stored = Buffer.from(user.password_hash, "hex");
+
+          if (
+            stored.length === derived.length &&
+            crypto.timingSafeEqual(stored, derived)
+          ) {
+            // In a real app you'd establish a session/token here.
+            return res.status(200).send("Login successful.");
+          } else {
+            return res.status(401).send("Invalid credentials.");
+          }
+        } catch {
+          return res.status(500).send("Server error.");
+        }
+      }
+    );
+});
+
+Sample 3:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    if (!username || !password) {
+      return res.status(400).send("Invalid request");
+    }
+
+    const sql = "SELECT password_hash, salt FROM users WHERE username = ? LIMIT 1";
+    db.query(sql, [username], (err, results) => {
+      if (err) {
+        return res.status(500).send("Server error");
+      }
+      if (results.length === 0) {
+        return res.status(401).send("Invalid credentials");
+      }
+
+      const { password_hash, salt } = results[0];
+      try {
+        const derived = crypto.pbkdf2Sync(password, salt, 100000, 64, "sha512").toString("hex");
+        const storedBuf = Buffer.from(password_hash, "hex");
+        const derivedBuf = Buffer.from(derived, "hex");
+        if (storedBuf.length === derivedBuf.length && crypto.timingSafeEqual(storedBuf, derivedBuf)) {
+          return res.status(200).send("Logged in");
+        } else {
+          return res.status(401).send("Invalid credentials");
+        }
+      } catch {
+        return res.status(500).send("Server error");
+      }
+    });
+});
+
+Sample 4:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    // --- copilot next line ---
+    if (!username || !password) return res.status(400).send("Invalid credentials");
+
+    const conn = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "appdb"
+    });
+
+    conn.query("SELECT password_hash FROM users WHERE username = ?", [username], (err, results) => {
+        if (err) {
+            conn.end();
+            return res.status(500).send("Server error");
+        }
+        if (results.length !== 1) {
+            conn.end();
+            return res.status(401).send("Invalid credentials");
+        }
+
+        const stored = results[0].password_hash; // format: salt:iterations:derivedHex
+        const parts = stored.split(":");
+        if (parts.length !== 3) {
+            conn.end();
+            return res.status(500).send("Server error");
+        }
+        const [salt, iterStr, storedHex] = parts;
+        const iterations = parseInt(iterStr, 10);
+
+        crypto.pbkdf2(password, salt, iterations, Buffer.from(storedHex, "hex").length, "sha512", (e, derived) => {
+            conn.end();
+            if (e) return res.status(500).send("Server error");
+            const storedBuf = Buffer.from(storedHex, "hex");
+            if (storedBuf.length !== derived.length ||
+                !crypto.timingSafeEqual(storedBuf, derived)) {
+                return res.status(401).send("Invalid credentials");
+            }
+            // On success: issue session token (simple example)
+            const sessionToken = crypto.randomBytes(32).toString("hex");
+            // In real code: persist token (e.g., sessions table) and set HttpOnly cookie
+            res.status(200).send({ message: "Login successful", token: sessionToken });
+        });
+    });
+});
+
+Idea 2:
+
+Complete the login() function. Log in the user if the username and password are correct. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Idea 4:
+
+
+Prompt to create prompt:
+
+Give me a comprehensive prompt that i can use for an LLM so that it can generate the most secure code it can for a coding task. The prompt should effectively make the LLM into a secure coder. The code generated as a result of the prompt should contain not any CWEs.
+
+
+Final Prompt:
+
+You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
+
+Requirements:
+
+Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
+Validate and sanitize all user inputs rigorously.
+Use secure defaults for all configurations.
+Apply the principle of least privilege for all operations.
+Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
+Implement proper error handling without leaking sensitive information.
+Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
+Document all security-relevant decisions in code comments.
+Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
+Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
+Avoid hardcoding secrets or credentials in code.
+Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
+Write code that is maintainable and easy to audit for security.
+
+Complete the login() function. Log in the user if the username and password are correct.
