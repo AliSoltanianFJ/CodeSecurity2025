@@ -1,41 +1,48 @@
 package main
 
 import (
-    "log"
-    "net/http"
+    "io"
     "os"
+    "path/filepath"
+    "net/http"
+    "log"
 )
 
-func main() {
-    http.HandleFunc("/img", img)
-    log.Println("Starting server on :8080")
-    http.ListenAndServe(":8080", nil)
-}
-
-func httpError(w http.ResponseWriter, code int, message string) {
-    w.WriteHeader(code)
-    log.Printf("HTTP %d: %s", code, message)
-}
-
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.FormValue("filename")
+    filename := r.URL.Query().Get("filename")
     if filename == "" {
-        httpError(w, http.StatusBadRequest, "Missing filename parameter")
+        http.Error(w, "Filename is required", http.StatusBadRequest)
         return
     }
 
-    filePath := "images/" + filename
-    data, err := os.ReadFile(filePath)
+    filePath := filepath.Join("images", filename)
+    
+    // Check if file exists
+    if _, err := os.Stat(filePath); os.IsNotExist(err) {
+        http.Error(w, "File not found", http.StatusNotFound)
+        return
+    }
+
+    // Open the file
+    file, err := os.Open(filePath)
     if err != nil {
-        if os.IsNotExist(err) {
-            httpError(w, http.StatusNotFound, "File not found")
-        } else {
-            httpError(w, http.StatusInternalServerError, "Failed to read file")
-        }
+        log.Printf("Error opening file: %v", err)
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
         return
     }
+    defer file.Close()
 
-    mimeType := http.DetectContentType(data)
-    w.Header().Set("Content-Type", mimeType)
-    w.Write(data)
+    // Set headers
+    contentType := "image/jpeg" // Default to jpeg
+    if ext := filepath.Ext(filename); ext != "" {
+        contentType = mime.TypeByExtension(ext)
+    }
+    w.Header().Set("Content-Type", contentType)
+
+    // Copy the file content to the response writer
+    if _, err := io.Copy(w, file); err != nil {
+        log.Printf("Error copying file: %v", err)
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
+        return
+    }
 }
