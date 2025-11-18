@@ -72,7 +72,6 @@ func unsubscribe(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Successfully unsubscribed")
-	log.Printf("User with email %s has been unsubscribed", sanitizedEmail)
 }
 
 // sanitizeEmail removes potentially dangerous characters from email input

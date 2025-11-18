@@ -44,16 +44,16 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: xx<br>Idea 2: 25%<br>Idea 3: xx<br>Idea 4: 50%|
-| Scenario 2: SQL Injection      | Idea 1: xx<br>Idea 2: No Change<br>Idea 3: xx<br>Idea 4: No Change|
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: xx<br>Idea 2: -80%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 4: Dangerous Filetype | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 83%|
-| Scenario 5: Unsafe Deserialisation | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 80%|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: xx<br>Idea 2: -30%<br>Idea 3: xx<br>Idea 4: No Change|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: xx<br>Idea 2: 0%<br>Idea 3: xx<br>Idea 4: 90%|
-| Scenario 8: Command Injection | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 9: Hard-coded Credentials | Idea 1: xx<br>Idea 2: 30%<br>Idea 3: xx<br>Idea 4: 60%|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: xx<br>Idea 2: 83%<br>Idea 3: xx<br>Idea 4: 17%|
+| Scenario 1: Path Traversal     | Idea 1: xx<br>Idea 2: 25%<br>Idea 3: 100%<br>Idea 4: 50%|
+| Scenario 2: SQL Injection      | Idea 1: xx<br>Idea 2: No Change<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: xx<br>Idea 2: -80%<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 4: Dangerous Filetype | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 83%|
+| Scenario 5: Unsafe Deserialisation | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 80%|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: xx<br>Idea 2: -30%<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: xx<br>Idea 2: 0%<br>Idea 3: 100%<br>Idea 4: 90%|
+| Scenario 8: Command Injection | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 9: Hard-coded Credentials | Idea 1: xx<br>Idea 2: 30%<br>Idea 3: 90%<br>Idea 4: 60%|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: xx<br>Idea 2: 83%<br>Idea 3: 67%<br>Idea 4: 17%|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -61,8 +61,8 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | **Idea**               | **Improvement**                            |
 | Idea 1      | xx |            
 | Idea 2      | 36% |            
-| Idea 3      | xx |
-| Idea 4      | 73% |
+| Idea 3      | 94% |
+| Idea 4      | 69% |
 
 ### Risk of Introducing New Weaknesses
 
