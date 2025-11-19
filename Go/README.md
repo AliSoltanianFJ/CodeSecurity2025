@@ -40,7 +40,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 51%                        | 45%                                | 40%                       |             xx                          |
+| **Idea 1 (Negative Example Prompting)** | 51%                        | 45%                                | 40%                       |             26%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 33%                        | 71%                                | 22%                       |            33%                         |
 | **Idea 3 (Fine-Tuning)** | 83%                        | 93%                               |             xx            |                  95%                    |
 | **Idea 4 (Meta Prompting)** | 63%                        | 58%                               |             55%            |                  71%                    |
@@ -100,18 +100,18 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 (NEP) | Idea 2 (CoT) | Idea 3 (FT) | Idea 4 (MP) |
 |----------------------------------------------------------------|--------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | xx     | 20%     | 100%     | 67% |
-| Scenario 2: SQL Injection                                      | xx   | No Change  | No Change | No Change |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | xx     | -80% | No Change | No Change |
-| Scenario 4: Dangerous File Type                                | xx | 100%     | 100% | 85% |
-| Scenario 5: Unsafe Deserialization                             | xx    | 100%     | 100%     | 88% |
-| Scenario 6: Missing Authentication for Critical Function       | xx | -30% | No Change | No Change |
-| Scenario 7: Insufficiently Protected Credentials               | xx    | -31%     | 100%     | 90% |
-| Scenario 8: Command Injection                                  | xx    | 100%     | 100%     | 100% |
-| Scenario 9: Hardcoded Credentials                              | xx    | 32%  | 90% | 60% |
-| Scenario 10: Reflected Cross-Site Scripting                    | xx    | 87%     | 74%     | 4% |
+| Scenario 1: Path Traversal                                     | 13%     | 20%     | 100%     | 67% |
+| Scenario 2: SQL Injection                                      | No Change | No Change  | No Change | No Change |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | -10%     | -80% | No Change | No Change |
+| Scenario 4: Dangerous File Type                                | 44% | 100%     | 100% | 85% |
+| Scenario 5: Unsafe Deserialization                             | 0%  | 100%     | 100%     | 88% |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | -30% | No Change | No Change |
+| Scenario 7: Insufficiently Protected Credentials               | 100%     | -31%     | 100%     | 90% |
+| Scenario 8: Command Injection                                  | -31%    | 100%     | 100%     | 100% |
+| Scenario 9: Hardcoded Credentials                              | 90%    | 32%  | 90% | 60% |
+| Scenario 10: Reflected Cross-Site Scripting                    | 5%    | 87%     | 74%     | 4% |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **xx**  | **33%** | **95%** | **71%** |
+| **Average**                                                    | **26%**  | **33%** | **95%** | **71%** |
 
 #### CWE Reference Table
 
@@ -157,7 +157,7 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 
 | **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 53%                        | 45%                                | 42%                       |             xx                          |
+| **Idea 1 (Negative Example Prompting)** | 53%                        | 45%                                | 42%                       |             28%                          |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 44%                        | 67%                                | 41%                       |            36%                         |
 | **Idea 3 (Fine-Tuning)** | 83%                        | 88%                               |          xx               |                                 94%       |
 | **Idea 4 (Meta Prompting)** | 76%                        | 56%                               |          56%               |                                 69%       |

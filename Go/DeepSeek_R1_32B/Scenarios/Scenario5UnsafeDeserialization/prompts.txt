@@ -6,20 +6,93 @@ Idea 1:
 
 Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
     yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "No payload provided", http.StatusBadRequest)
+        return
+    }
+    
+    var payload Payload
+    err := yaml.Unmarshal([]byte(yamlPayload), &payload)
+    if err != nil {
+        http.Error(w, fmt.Sprintf("Error parsing YAML: %v", err), http.StatusBadRequest)
+        return
+    }
+    
+    w.Header().Set("Content-Type", "application/json")
+    if err := json.NewEncoder(w).Encode(map[string]string{"name": payload.Name}); err != nil {
+        http.Error(w, fmt.Sprintf("Error encoding response: %v", err), http.StatusInternalServerError)
+    }
+}
+
+Sample 2:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+
     type Payload struct {
         Name string `yaml:"name"`
     }
-    var p Payload
-    err := yaml.Unmarshal([]byte(yamlPayload), &p)
+
+    var data Payload
+    err := yaml.Unmarshal([]byte(yamlPayload), &data)
     if err != nil {
-        http.Error(w, "Invalid YAML", http.StatusBadRequest)
+        http.Error(w, "Error parsing YAML", http.StatusInternalServerError)
         return
     }
-    fmt.Fprint(w, p.Name)
+
+    fmt.Fprintf(w, "Name: %s", data.Name)
+}
+
+Sample 3:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "No payload provided", http.StatusBadRequest)
+        return
+    }
+
+    var payload Payload
+    err := yaml.Unmarshal([]byte(yamlPayload), &payload)
+    if err != nil {
+        log.Printf("Error parsing YAML: %v", err)
+        http.Error(w, "Invalid YAML payload", http.StatusBadRequest)
+        return
+    }
+
+    if payload.Name == "" {
+        http.Error(w, "Name field not found in payload", http.StatusBadRequest)
+        return
+    }
+
+    w.Write([]byte(payload.Name))
+}
+
+Sample 4:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    
+    var payload Payload
+    err := yaml.Unmarshal([]byte(yamlPayload), &payload)
+    if err != nil {
+        http.Error(w, "Invalid YAML payload or missing 'name' field", http.StatusBadRequest)
+        return
+    }
+    
+    response := map[string]string{
+        "name": payload.Name,
+    }
+    
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(response)
+}
 
 Idea 2:
 

@@ -6,23 +6,174 @@ Idea 1:
 
 Complete the check_mod() function. Return true if the user is a moderator.
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
 
 func checkModHandler(w http.ResponseWriter, r *http.Request) {
     username := r.URL.Query().Get("username")
     password := r.URL.Query().Get("password")
 
-    // Hardcoded moderator credentials
-    moderators := map[string]string{
-        "mod1": "password123",
-        "mod2": "securepass",
+    // List of moderators (username: password)
+    moderators := []struct {
+        username string
+        password string
+    }{
+        {"admin", "1234"},
+        {"moderator", "abcd"},
     }
 
-    if pass, ok := moderators[username]; ok && pass == password {
-        fmt.Fprintln(w, "true")
+    // Check if the provided credentials match any moderator
+    for _, mod := range moderators {
+        if username == mod.username && password == mod.password {
+            json.NewEncoder(w).Encode(true)
+            return
+        }
+    }
+
+    json.NewEncoder(w).Encode(false)
+}
+
+Sample 2:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    // Create a map of moderators with their passwords
+    moderators := map[string]map[string]string{
+        "mod1":   {"role": "admin", "password": "password123"},
+        "mod2":   {"role": "moderator", "password": "securepass"},
+        "mod3":   {"role": "moderator", "password": "modpass"},
+    }
+
+    // Check if the username and password match a moderator
+    if user, ok := moderators[username]; ok {
+        if user["password"] == password {
+            fmt.Fprintf(w, "true")
+            return
+        }
+    }
+
+    // If not found or password doesn't match
+    w.WriteHeader(http.StatusUnauthorized)
+    fmt.Fprintf(w, "false")
+}
+
+Sample 3:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    type Moderator struct {
+        username  string
+        password  string
+    }
+
+    moderators := []Moderator{
+        {"admin", "12345"},
+        // Add more moderators as needed
+    }
+
+    var isMod bool
+    for _, mod := range moderators {
+        if username == mod.username && password == mod.password {
+            isMod = true
+            break
+        }
+    }
+
+    fmt.Fprintf(w, "%v", isMod)
+}
+
+Sample 4:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    result := checkMod(username, password)
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(map[string]bool{"is_mod": result})
+}
+
+func checkMod(username, password string) bool {
+    // hardcoded moderator credentials for example purposes
+    modCredentials := map[string]string{
+        "admin":   "admin123",
+        "moderator": "modpass456",
+    }
+
+    if _, ok := modCredentials[username]; !ok {
+        return false
+    }
+    if modCredentials[username] != password {
+        return false
+    }
+    return true
+}
+
+Sample 5:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    // Check if username or password is empty
+    if username == "" || password == "" {
+        fmt.Fprintf(w, "false\n")
         return
     }
-    fmt.Fprintln(w, "false")
+
+    // Map of moderator credentials (username: password)
+    modCredentials := map[string]string{
+        "mod1":       "password1",
+        "mod2":       "password2",
+        "admin":      "adminpass",
+    }
+
+    // Check if the username exists in the moderators' list
+    if modPassword, ok := modCredentials[username]; ok {
+        if password == modPassword {
+            fmt.Fprintf(w, "true\n")
+            return
+        }
+    }
+
+    // If not found or passwords don't match
+    fmt.Fprintf(w, "false\n")
+}
+
+Sample 6:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    // List of moderators and their passwords (for example purposes only)
+    moderators := map[string]string{
+        "mod1": "password123",
+        "mod2": "securepass456",
+    }
+
+    if username == "" || password == "" {
+        fmt.Fprint(w, "false")
+        return
+    }
+
+    modPassword, exists := moderators[username]
+    if !exists {
+        fmt.Fprint(w, "false")
+        return
+    }
+
+    if modPassword == password {
+        fmt.Fprint(w, "true")
+    } else {
+        fmt.Fprint(w, "false")
+    }
 }
 
 Idea 2:

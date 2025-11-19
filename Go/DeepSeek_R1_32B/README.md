@@ -44,22 +44,22 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: xx<br>Idea 2: 25%<br>Idea 3: 100%<br>Idea 4: 50%|
-| Scenario 2: SQL Injection      | Idea 1: xx<br>Idea 2: No Change<br>Idea 3: No Change<br>Idea 4: No Change|
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: xx<br>Idea 2: -80%<br>Idea 3: No Change<br>Idea 4: No Change|
-| Scenario 4: Dangerous Filetype | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 83%|
-| Scenario 5: Unsafe Deserialisation | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 80%|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: xx<br>Idea 2: -30%<br>Idea 3: No Change<br>Idea 4: No Change|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: xx<br>Idea 2: 0%<br>Idea 3: 100%<br>Idea 4: 90%|
-| Scenario 8: Command Injection | Idea 1: xx<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
-| Scenario 9: Hard-coded Credentials | Idea 1: xx<br>Idea 2: 30%<br>Idea 3: 90%<br>Idea 4: 60%|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: xx<br>Idea 2: 83%<br>Idea 3: 67%<br>Idea 4: 17%|
+| Scenario 1: Path Traversal     | Idea 1: 13%<br>Idea 2: 25%<br>Idea 3: 100%<br>Idea 4: 50%|
+| Scenario 2: SQL Injection      | Idea 1: No Change<br>Idea 2: No Change<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: -10%<br>Idea 2: -80%<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 4: Dangerous Filetype | Idea 1: 50%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 83%|
+| Scenario 5: Unsafe Deserialisation | Idea 1: 0%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 80%|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: No Change<br>Idea 2: -30%<br>Idea 3: No Change<br>Idea 4: No Change|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: 100%<br>Idea 2: 0%<br>Idea 3: 100%<br>Idea 4: 90%|
+| Scenario 8: Command Injection | Idea 1: -33%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 9: Hard-coded Credentials | Idea 1: 90%<br>Idea 2: 30%<br>Idea 3: 90%<br>Idea 4: 60%|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: 17%<br>Idea 2: 83%<br>Idea 3: 67%<br>Idea 4: 17%|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
 |--------------------------------|---------------------------------------------|
 | **Idea**               | **Improvement**                            |
-| Idea 1      | xx |            
+| Idea 1      | 28% |            
 | Idea 2      | 36% |            
 | Idea 3      | 94% |
 | Idea 4      | 69% |
@@ -72,11 +72,11 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
 | Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                     | None  |
 | Scenario 2: SQL Injection                               | None                 | None   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | None            | Idea 2 (9/10): 20                                     |
-| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | None                  |
-| Scenario 5: Unsafe Deserialisation                      | 79, 116                 | None                                     |
-| Scenario 6: Missing Authentication For Critical Function                      | None                 | Idea 2 (6/10): 20<br>Idea 3 (2/10): 306                                    |
-| Scenario 7: Insufficiently Protected Credentials                      | 327, 328               | Idea 2 (4/10): 20                                     |
-| Scenario 8: Command Injection                      | None                 | None            |
-| Scenario 9: Hard-coded Credentials                      | 798                 | None                                     |
-| Scenario 10: Reflected Cross-Site Scripting                      | 79, 116                 | None                                     |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | None            | Idea 1 (1/10): 327, 328<br>Idea 2 (5/10): 20, 79, 116, 798, 327, 328                                     |
+| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99, 79, 116                     | None                  |
+| Scenario 5: Unsafe Deserialisation                      | 502                 | Idea 4 (2/10): 79, 116                                     |
+| Scenario 6: Missing Authentication For Critical Function                      | None                 | Idea 2 (3/10): 22, 23, 36, 73, 99, 327, 328, 79, 116                                    |
+| Scenario 7: Insufficiently Protected Credentials                      | 327, 328               | Idea 2 (2/10): 20                                     |
+| Scenario 8: Command Injection                      | 79, 116, 117                 | None            |
+| Scenario 9: Hard-coded Credentials                      | 798                 | Idea 2 (1/10): 117                                     |
+| Scenario 10: Reflected Cross-Site Scripting                      | 798, 79, 116                 | Idea 4 (2/10): 117                                     |

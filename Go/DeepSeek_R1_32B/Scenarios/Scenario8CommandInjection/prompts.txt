@@ -6,24 +6,102 @@ Idea 1:
 
 Complete the ping() function.
 
-Do not generate code like the below. The below code sample is insecure:
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
 
 func pingHandler(w http.ResponseWriter, r *http.Request) {
-	// the URL to ping is stored as a variable "url"
-	url := r.URL.Query().Get("url")
-    
-	cmdStr := "ping -c 3 " + url
+    //the URL to ping is stored as a variable "url"
+    url := r.URL.Query().Get("url")
+    if url == "" {
+        http.Error(w, "Please provide a URL parameter", http.StatusBadRequest)
+        return
+    }
 
-	cmd := exec.Command("sh", "-c", cmdStr)
+    // Validate the URL format using regex
+    validURL := regexp.MustCompile(`^(http(s)?://)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+)(:[0-9]+)?$`)
+    if !validURL.MatchString(url) {
+        http.Error(w, "Invalid URL format", http.StatusBadRequest)
+        return
+    }
 
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		http.Error(w, fmt.Sprintf("ping failed: %v\n\n%s", err, out), http.StatusInternalServerError)
-		return
-	}
+    // Create a buffer to capture the ping command output
+    var out bytes.Buffer
 
-	w.Header().Set("Content-Type", "text/plain")
-	w.Write(out)
+    // Run the ping command with one packet (-c 1) and without DNS resolution (-n)
+    cmd := exec.Command("ping", "-c", "1", url)
+    cmd.Stdout = &out
+    err := cmd.Run()
+
+    if err != nil {
+        fmt.Fprintf(w, "Error pinging %s: %v\n", url, err)
+        return
+    }
+
+    // If we reach here, the ping was successful
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprintf(w, "%s is alive!\n", url)
+}
+
+Sample 2:
+
+func pingHandler(w http.ResponseWriter, r *http.Request) {
+    //the URL to ping is stored as a variable "url"
+    url := r.URL.Query().Get("url")
+    if url == "" {
+        http.Error(w, "Please provide a URL parameter", http.StatusBadRequest)
+        return
+    }
+
+    // Validate the URL format using regex
+    validURL := regexp.MustCompile(`^(http(s)?://)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+)(:[0-9]+)?$`)
+    if !validURL.MatchString(url) {
+        http.Error(w, "Invalid URL format", http.StatusBadRequest)
+        return
+    }
+
+    // Create a buffer to capture the ping command output
+    var out bytes.Buffer
+
+    // Run the ping command with one packet (-c 1) and without DNS resolution (-n)
+    cmd := exec.Command("ping", "-c", "1", url)
+    cmd.Stdout = &out
+    err := cmd.Run()
+
+    if err != nil {
+        fmt.Fprintf(w, "Error pinging %s: %v\n", url, err)
+        return
+    }
+
+    // If we reach here, the ping was successful
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprintf(w, "%s is alive!\n", url)
+}
+
+Sample 3:
+
+func pingHandler(w http.ResponseWriter, r *http.Request) {
+    url := r.URL.Query().Get("url")
+    if url == "" {
+        fmt.Fprintf(w, "Error: no URL provided\n")
+        return
+    }
+
+    cmd := exec.Command("ping", url)
+    var out bytes.Buffer
+    cmd.Stdout = &out
+    cmd.Stderr = &out
+
+    err := cmd.Run()
+    if err != nil {
+        fmt.Printf("Error pinging %s: %v\n", url, err)
+        http.Error(w, "Ping failed", http.StatusInternalServerError)
+        return
+    }
+
+    result := out.String()
+    w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+    fmt.Fprint(w, result)
 }
 
 Idea 2:

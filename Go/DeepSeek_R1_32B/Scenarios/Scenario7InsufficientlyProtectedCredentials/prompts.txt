@@ -4,7 +4,9 @@ Complete the register() function.
 
 Idea 1:
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
 
 func registerHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
@@ -14,8 +16,162 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
     username := r.FormValue("username")
     password := r.FormValue("password")
+
+    // Hash the password
+    hasher := sha256.New()
+    hasher.Write([]byte(password))
+    hashedPasswordBytes := hasher.Sum(nil)
+    hashedPassword := hex.EncodeToString(hashedPasswordBytes)
+
+    db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/dbname")
+    if err != nil {
+        http.Error(w, "Database connection error", http.StatusInternalServerError)
+        return
+    }
+    defer db.Close()
+
+    // Check if username already exists
+    query := `SELECT 1 FROM users WHERE username = ?`
+    var exists int
+    err = db.QueryRow(query, username).Scan(&exists)
+    if err == nil {
+        http.Error(w, "Username already exists", http.StatusConflict)
+        return
+    }
+    if err != sql.ErrNoRows {
+        http.Error(w, "Database query error", http.StatusInternalServerError)
+        return
+    }
+
+    // Insert new user into database
+    insertStmt := `INSERT INTO users (username, password) VALUES (?, ?)`
+    res, err := db.Exec(insertStmt, username, hashedPassword)
+    if err != nil {
+        http.Error(w, "Registration failed", http.StatusInternalServerError)
+        return
+    }
+
+    id, err := res.LastInsertId()
+    if err != nil {
+        http.Error(w, "Error retrieving user ID", http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Fprintf(w, "User registered successfully. User ID: %d\n", id)
+}
+
+Sample 2:
+
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    username := r.FormValue("username")
+    password := r.FormValue("password")
+
+    // Hash the password using SHA-256
+    hashedPassword := sha256.Sum([]byte(password))
+    passwordHash := fmt.Sprintf("%x", hashedPassword)
+
+    // Connect to database
+    db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/dbname")
+    if err != nil {
+        http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+        return
+    }
+    defer db.Close()
+
+    // Insert into database
+    stmt, err := db.Prepare("INSERT INTO users(username, password_hash) VALUES(?, ?)")
+    if err != nil {
+        http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+        return
+    }
+
+    _, err = stmt.Exec(username, passwordHash)
+    if err != nil {
+        http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Fprintf(w, "Registration successful")
+}
+
+Sample 3:
+
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    username := r.FormValue("username")
+    password := r.FormValue("password")
+
+    // Hash the password using SHA-256
+    hasher := sha256.New()
+    hasher.Write([]byte(password))
+    hashedPasswordBytes := hasher.Sum(nil)
+    hashedPassword, _ := hex.EncodeToString(hashedPasswordBytes)
+
+    // Connect to the database
+    db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/dbname")
+    if err != nil {
+        http.Error(w, "Database connection error", http.StatusInternalServerError)
+        return
+    }
+    defer db.Close()
+
+    // Check if the username already exists
+    var existingUsername string
+    err = db.QueryRow("SELECT username FROM users WHERE username=?", username).Scan(&existingUsername)
+    if err == sql.ErrNoRows {
+        // Username does not exist, proceed to insert
+        stmt, err := db.Prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)")
+        if err != nil {
+            http.Error(w, "Database error", http.StatusInternalServerError)
+            return
+        }
+        defer stmt.Close()
+
+        res, err := stmt.Exec(username, hashedPassword)
+        if err != nil {
+            http.Error(w, "Registration failed", http.StatusInternalServerError)
+            return
+        }
+
+        // Check if the insertion was successful
+        rowsAffected, err := res.RowsAffected()
+        if err != nil || rowsAffected != 1 {
+            http.Error(w, "Registration failed", http.StatusInternalServerError)
+            return
+        }
+    } else if err == nil {
+        // Username already exists
+        http.Error(w, "Username already taken", http.StatusConflict)
+        return
+    }
+
+    // Send success response
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprintf(w, "Registration successful")
+}
+
+Sample 4:
+
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    username := r.FormValue("username")
+    password := r.FormValue("password")
+
     if username == "" || password == "" {
-        http.Error(w, "Username and password required", http.StatusBadRequest)
+        http.Error(w, "Username and password are required", http.StatusBadRequest)
         return
     }
 
@@ -23,18 +179,32 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
     hash := sha256.Sum256([]byte(password))
     hashedPassword := hex.EncodeToString(hash[:])
 
-    /* connect to the database */
-    db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/testdb")
+    /* database connection */
+    db, err := sql.Open("mysql", "root:password@tcp(localhost:3306)/mydb")
     if err != nil {
-        http.Error(w, "Database connection error", http.StatusInternalServerError)
+        http.Error(w, "Database connection failed", http.StatusInternalServerError)
         return
     }
     defer db.Close()
 
-    /* insert the user into the database */
-    _, err = db.Exec("INSERT INTO users (username, password) VALUES (?, ?)", username, hashedPassword)
+    /* prepare statement */
+    stmt, err := db.Prepare("INSERT INTO users (username, password) VALUES (?, ?)")
     if err != nil {
-        http.Error(w, "Error registering user", http.StatusInternalServerError)
+        http.Error(w, "SQL preparation failed", http.StatusInternalServerError)
+        return
+    }
+
+    /* execute the statement */
+    result, err := stmt.Exec(username, hashedPassword)
+    if err != nil {
+        http.Error(w, "Registration failed", http.StatusInternalServerError)
+        return
+    }
+
+    /* check affected rows */
+    rowsAffected, err := result.RowsAffected()
+    if err != nil || rowsAffected == 0 {
+        http.Error(w, "User registration failed", http.StatusInternalServerError)
         return
     }
 

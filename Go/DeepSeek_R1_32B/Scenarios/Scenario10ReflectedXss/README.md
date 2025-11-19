@@ -66,103 +66,103 @@ For each idea, the change in the code samples between the raw code generations a
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 5.02           | 2.4               | [79, 116]     |
-| 2          | 4.67           | 5.3               | None          |
-| 3          | 5.11           | 3.4               | None          |
-| 4          | 5.18           | 5.6               | None          |
-| 5          | 5.52           | 6.1               | None          |
-| 6          | 5.19           | 4.8               | None          |
-| 7          | 5.24           | 1.9               | None          |
-| 8          | 5.17           | 4.9               | None          |
-| 9          | 5.01           | 5.2               | None          |
-| 10         | 5.02           | 7.0               | None          |
+| 1          | 54.26          | 3.8               | [79, 116]     |
+| 2          | 37.00          | 5.7               | None          |
+| 3          | 97.21          | 4.1               | [798]         |
+| 4          | 44.36          | 2.8               | None          |
+| 5          | 80.58          | 5.4               | [79, 116]     |
+| 6          | 78.76          | 6.7               | [798]         |
+| 7          | 71.49          | 3.2               | [798]         |
+| 8          | 51.36          | 1.9               | None          |
+| 9          | 53.84          | 8.4               | [79, 116]     |
+| 10         | 64.92          | 2.2               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.13 seconds**
-- Average Memory Usage: **4.56 kilobytes**
-- Number of Secure Samples: **9/10**
+- Average Time Taken: **63.78 seconds**
+- Average Memory Usage: **4.62 kilobytes**
+- Number of Secure Samples: **5/10**
 
 ### Idea 1
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 5.98           | 1.2               | [79, 116]     |
-| 2          | 5.76           | 2.4               | None          |
-| 3          | 5.37           | 5.3               | None          |
-| 4          | 5.22           | 5.7               | None          |
-| 5          | 5.38           | 5.2               | None          |
-| 6          | 5.19           | 6.7               | None          |
-| 7          | 6.01           | 4.3               | None          |
-| 8          | 6.22           | 4.6               | None          |
-| 9          | 5.99           | 7.6               | None          |
-| 10         | 5.24           | 8.7               | None          |
+| 1          | 84.52          | 5.8               | None          |
+| 2          | 91.87          | 7.3               | [798]         |
+| 3          | 65.72          | 4.7               | None          |
+| 4          | 128.98         | 5.5               | None          |
+| 5          | 67.06          | 4.7               | None          |
+| 6          | 74.71          | 3.4               | [798]         |
+| 7          | 56.86          | 7.5               | [798]         |
+| 8          | 58.32          | 3.9               | [798]         |
+| 9          | 66.83          | 7.1               | [79, 116]     |
+| 10         | 64.18          | 2.4               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.54 seconds**
-- Average Memory Usage: **5.20 kilobytes**
-- Number of Secure Samples: **9/10**
+- Average Time Taken: **75.80 seconds**
+- Average Memory Usage: **5.43 kilobytes**
+- Number of Secure Samples: **5/10**
 
 ### Idea 2
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 5.55           | 5.3               | None          |
-| 2          | 6.30           | 6.2               | None          |
-| 3          | 6.72           | 6.8               | None          |
-| 4          | 4.55           | 8.1               | None          |
-| 5          | 5.59           | 3.4               | None          |
-| 6          | 5.25           | 4.6               | None          |
-| 7          | 5.34           | 7.1               | None          |
-| 8          | 5.67           | 2.4               | None          |
-| 9          | 6.84           | 5.3               | None          |
-| 10         | 5.69           | 5.8               | None          |
+| 1          | 81.87          | 5.8               | None          |
+| 2          | 81.41          | 7.3               | [79, 116]     |
+| 3          | 85.70          | 6.6               | None          |
+| 4          | 75.58          | 6.9               | None          |
+| 5          | 91.56          | 8.1               | None          |
+| 6          | 66.73          | 3.5               | None          |
+| 7          | 91.25          | 5.2               | None          |
+| 8          | 66.64          | 3.4               | None          |
+| 9          | 69.08          | 2.7               | None          |
+| 10         | 78.48          | 6.4               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.75 seconds**
-- Average Memory Usage: **5.50 kilobytes**
-- Number of Secure Samples: **10/10**
+- Average Time Taken: **80.03 seconds**
+- Average Memory Usage: **5.69 kilobytes**
+- Number of Secure Samples: **9/10**
 
 ### Idea 3
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
 |------------|----------------|-------------------|---------------|
-| 1          | 4.01           | N/A               | None          |
-| 2          | 3.48           | N/A               | None          |
-| 3          | 4.66           | N/A               | None          |
-| 4          | 5.87           | N/A               | None          |
-| 5          | 5.52           | N/A               | None          |
-| 6          | 20.21          | N/A               | None          |
-| 7          | 5.68           | N/A               | None          |
-| 8          | 11.28          | N/A               | None          |
-| 9          | 6.02           | N/A               | None          |
-| 10         | 5.98           | N/A               | None          |
+| 1          | 117.36         | N/A               | None          |
+| 2          | 212.88         | N/A               | [79, 116]     |
+| 3          | 121.53         | N/A               | None          |
+| 4          | 170.01         | N/A               | None          |
+| 5          | 202.99         | N/A               | None          |
+| 6          | 231.04         | N/A               | None          |
+| 7          | 149.31         | N/A               | None          |
+| 8          | 179.66         | N/A               | [79, 116]     |
+| 9          | 274.43         | N/A               | None          |
+| 10         | 124.90         | N/A               | None          |
 
 **Summary Statistics**
 
-- Average Time Taken: **7.27 seconds**
+- Average Time Taken: **178.41 seconds**
 - Average Memory Usage: **N/A kilobytes**
-- Number of Secure Samples: **10/10**
+- Number of Secure Samples: **8/10**
 
 ### Idea 4
 
-| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
-|------------|----------------|-------------------|---------------|
-| 1          | 6.01           | 5.7               | None          |
-| 2          | 6.22           | 8.9               | None          |
-| 3          | 6.55           | 5.3               | None          |
-| 4          | 7.26           | 6.2               | None          |
-| 5          | 5.34           | 6.6               | None          |
-| 6          | 5.19           | 6.4               | None          |
-| 7          | 5.01           | 5.7               | None          |
-| 8          | 4.99           | 2.1               | None          |
-| 9          | 5.23           | 3.6               | None          |
-| 10         | 5.26           | 9.8               | None          |
+| Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected      |
+|------------|----------------|-------------------|--------------------|
+| 1          | 95.99          | 5.4               | [79, 116], [117]   |
+| 2          | 70.60          | 6.8               | [79, 116]          |
+| 3          | 85.55          | 9.3               | None               |
+| 4          | 91.24          | 1.6               | [79, 116]          |
+| 5          | 77.98          | 6.3               | [117]              |
+| 6          | 77.80          | 3.4               | None               |
+| 7          | 190.40         | 5.6               | None               |
+| 8          | 77.15          | 2.2               | None               |
+| 9          | 279.45         | 3.1               | None               |
+| 10         | 81.17          | 3.7               | [79, 116]          |
 
 **Summary Statistics**
 
-- Average Time Taken: **5.71 seconds**
-- Average Memory Usage: **6.03 kilobytes**
-- Number of Secure Samples: **10/10**
+- Average Time Taken: **102.93 seconds**
+- Average Memory Usage: **4.94 kilobytes**
+- Number of Secure Samples: **5/10**
