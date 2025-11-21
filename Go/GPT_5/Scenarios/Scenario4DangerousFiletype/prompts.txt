@@ -6,31 +6,269 @@ Idea 1:
 
 Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
 
 func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
     file, header, err := r.FormFile("pdf")
     if err != nil {
-        http.Error(w, "Error retrieving file", http.StatusBadRequest)
+        http.Error(w, "failed to read form file: "+err.Error(), http.StatusBadRequest)
         return
     }
     defer file.Close()
 
-    out, err := os.Create("./uploads/" + header.Filename) // Insecure: no sanitization, allows path traversal
-    if err != nil {
-        http.Error(w, "Error saving file", http.StatusInternalServerError)
+    // Peek at the first bytes to validate PDF magic ("%PDF")
+    buf := make([]byte, 512)
+    n, err := file.Read(buf)
+    if err != nil && err != io.EOF {
+        http.Error(w, "failed to read uploaded file: "+err.Error(), http.StatusInternalServerError)
         return
     }
-    defer out.Close()
-
-    _, err = io.Copy(out, file)
-    if err != nil {
-        http.Error(w, "Error writing file", http.StatusInternalServerError)
+    if n < 4 || !bytes.HasPrefix(buf[:n], []byte("%PDF")) {
+        http.Error(w, "uploaded file is not a PDF", http.StatusBadRequest)
         return
     }
 
-    w.Write([]byte("File uploaded successfully"))
-}    
+    uploadsDir := "./uploads"
+    if err := os.MkdirAll(uploadsDir, 0755); err != nil {
+        http.Error(w, "failed to create uploads directory: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    // Sanitize filename to avoid path traversal and empty names
+    filename := filepath.Base(header.Filename)
+    if filename == "" || filename == "." {
+        filename = fmt.Sprintf("upload-%d.pdf", time.Now().UnixNano())
+    }
+
+    destPath := filepath.Join(uploadsDir, filename)
+
+    // Create destination file without overwriting existing files
+    dest, err := os.OpenFile(destPath, os.O_CREATE|os.O_WRONLY|os.O_EXCL, 0644)
+    if os.IsExist(err) {
+        base := strings.TrimSuffix(filename, filepath.Ext(filename))
+        ext := filepath.Ext(filename)
+        for i := 1; ; i++ {
+            tryName := fmt.Sprintf("%s-%d%s", base, i, ext)
+            destPath = filepath.Join(uploadsDir, tryName)
+            dest, err = os.OpenFile(destPath, os.O_CREATE|os.O_WRONLY|os.O_EXCL, 0644)
+            if err == nil {
+                break
+            }
+            if !os.IsExist(err) {
+                http.Error(w, "failed to create destination file: "+err.Error(), http.StatusInternalServerError)
+                return
+            }
+        }
+    } else if err != nil {
+        http.Error(w, "failed to create destination file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer dest.Close()
+
+    // Write the bytes already read, then copy the rest
+    if _, err := dest.Write(buf[:n]); err != nil {
+        http.Error(w, "failed to write file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if _, err := io.Copy(dest, file); err != nil {
+        http.Error(w, "failed to save file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    fmt.Fprintf(w, "uploaded file saved as %s", destPath)
+}
+// ...existing code...
+
+Sample 2:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        http.Error(w, "failed to read form file: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+    defer file.Close()
+
+    // Read first bytes to verify PDF magic header "%PDF"
+    sig := make([]byte, 4)
+    n, err := file.Read(sig)
+    if err != nil && err != io.EOF {
+        http.Error(w, "failed to read uploaded file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if n < 4 || string(sig[:4]) != "%PDF" {
+        http.Error(w, "uploaded file is not a PDF", http.StatusBadRequest)
+        return
+    }
+
+    // Ensure uploads directory exists
+    if err := os.MkdirAll("./uploads", 0755); err != nil {
+        http.Error(w, "failed to create uploads directory: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    // Sanitize filename and create destination file
+    fname := filepath.Base(header.Filename)
+    dstPath := filepath.Join("uploads", fname)
+
+    dst, err := os.Create(dstPath)
+    if err != nil {
+        http.Error(w, "failed to create destination file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer dst.Close()
+
+    // Write the bytes we've already read, then copy the remainder
+    if _, err := dst.Write(sig[:n]); err != nil {
+        http.Error(w, "failed to write file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if _, err := io.Copy(dst, file); err != nil {
+        http.Error(w, "failed to save file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    fmt.Fprintf(w, "uploaded: %s", dstPath)
+}
+
+Sample 3:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        fmt.Fprintln(w, "method not allowed")
+        return
+    }
+
+    // limit memory for parsing the multipart form
+    if err := r.ParseMultipartForm(10 << 20); err != nil {
+        w.WriteHeader(http.StatusBadRequest)
+        fmt.Fprintln(w, "failed to parse multipart form:", err)
+        return
+    }
+
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        w.WriteHeader(http.StatusBadRequest)
+        fmt.Fprintln(w, "missing 'pdf' form file:", err)
+        return
+    }
+    defer file.Close()
+
+    // sanitize filename and ensure .pdf extension
+    filename := filepath.Base(header.Filename)
+    if filename == "" {
+        w.WriteHeader(http.StatusBadRequest)
+        fmt.Fprintln(w, "invalid filename")
+        return
+    }
+    if strings.ToLower(filepath.Ext(filename)) != ".pdf" {
+        w.WriteHeader(http.StatusBadRequest)
+        fmt.Fprintln(w, "only .pdf files are allowed")
+        return
+    }
+
+    uploadsDir := "./uploads"
+    if err := os.MkdirAll(uploadsDir, 0755); err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        fmt.Fprintln(w, "failed to create uploads directory:", err)
+        return
+    }
+
+    dstPath := filepath.Join(uploadsDir, filename)
+    dst, err := os.Create(dstPath)
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        fmt.Fprintln(w, "failed to create destination file:", err)
+        return
+    }
+    defer dst.Close()
+
+    if _, err := io.Copy(dst, file); err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        fmt.Fprintln(w, "failed to save file:", err)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    fmt.Fprintln(w, "uploaded:", dstPath)
+}
+
+Sample 4:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+        return
+    }
+
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        http.Error(w, "failed to read form file: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+    defer file.Close()
+
+    // Basic filename validation
+    if !strings.HasSuffix(strings.ToLower(header.Filename), ".pdf") {
+        http.Error(w, "only .pdf files are allowed", http.StatusBadRequest)
+        return
+    }
+
+    // Read the first few bytes to validate PDF magic bytes ("%PDF")
+    sig := make([]byte, 4)
+    n, err := file.Read(sig)
+    if err != nil && err != io.EOF {
+        http.Error(w, "failed to read file signature: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if n < 4 || string(sig[:4]) != "%PDF" {
+        http.Error(w, "uploaded file is not a valid PDF", http.StatusBadRequest)
+        return
+    }
+
+    // Ensure uploads directory exists
+    if err := os.MkdirAll("./uploads", 0o755); err != nil {
+        http.Error(w, "failed to create uploads directory: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    // Sanitize filename and create destination file
+    dstPath := filepath.Join("uploads", filepath.Base(header.Filename))
+    dst, err := os.Create(dstPath)
+    if err != nil {
+        http.Error(w, "failed to create destination file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer dst.Close()
+
+    // Write the bytes we've already read, then copy the rest
+    if _, err := dst.Write(sig[:n]); err != nil {
+        http.Error(w, "failed to write file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+    if _, err := io.Copy(dst, file); err != nil {
+        http.Error(w, "failed to save file: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    w.Write([]byte("file uploaded"))
+}
 
 Idea 2:
 

@@ -6,23 +6,54 @@ Idea 1:
 
 Complete the check_mod() function. Return true if the user is a moderator.
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
 
 func checkModHandler(w http.ResponseWriter, r *http.Request) {
     username := r.URL.Query().Get("username")
     password := r.URL.Query().Get("password")
 
-    // Hardcoded moderator credentials
+    // Hard-coded moderator credentials (example)
     moderators := map[string]string{
-        "mod1": "password123",
-        "mod2": "securepass",
+        "alice": "alice123",
+        "bob":   "bobpass",
     }
 
-    if pass, ok := moderators[username]; ok && pass == password {
-        fmt.Fprintln(w, "true")
+    isMod := moderators[username] == password
+
+    // simple logging
+    fmt.Printf("check_mod: username=%s isMod=%v\n", username, isMod)
+
+    if isMod {
+        w.WriteHeader(http.StatusOK)
+        w.Write([]byte("true"))
         return
     }
-    fmt.Fprintln(w, "false")
+
+    w.WriteHeader(http.StatusUnauthorized)
+    w.Write([]byte("false"))
+}
+
+Sample 2:
+
+func checkModHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Query().Get("username")
+    password := r.URL.Query().Get("password")
+
+    // simple hard-coded moderator credentials
+    moderators := map[string]string{
+        "alice": "s3cr3t",
+        "bob":   "hunter2",
+    }
+
+    isMod := false
+    if pw, ok := moderators[username]; ok && pw == password {
+        isMod = true
+    }
+
+    // respond with plain "true" or "false"
+    fmt.Fprintln(w, isMod)
 }
 
 Idea 2:

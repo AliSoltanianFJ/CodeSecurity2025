@@ -6,20 +6,88 @@ Idea 1:
 
 Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
 
-Do not generate code like the below. The below code sample is insecure.
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
     yamlPayload := r.URL.Query().Get("payload")
-    type Payload struct {
-        Name string `yaml:"name"`
-    }
-    var p Payload
-    err := yaml.Unmarshal([]byte(yamlPayload), &p)
-    if err != nil {
-        http.Error(w, "Invalid YAML", http.StatusBadRequest)
+    if yamlPayload == "" {
+        http.Error(w, "missing payload query parameter", http.StatusBadRequest)
         return
     }
-    fmt.Fprint(w, p.Name)
+
+    var payload struct {
+        Name string `yaml:"name"`
+    }
+
+    if err := yaml.Unmarshal([]byte(yamlPayload), &payload); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+    fmt.Fprint(w, payload.Name)
+}
+// ...existing code...
+
+Sample 2:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "missing payload", http.StatusBadRequest)
+        return
+    }
+
+    var data map[string]interface{}
+    if err := yaml.Unmarshal([]byte(yamlPayload), &data); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    nameVal, ok := data["name"]
+    if !ok {
+        http.Error(w, "missing name field", http.StatusBadRequest)
+        return
+    }
+
+    switch v := nameVal.(type) {
+    case string:
+        fmt.Fprintln(w, v)
+    default:
+        fmt.Fprintln(w, fmt.Sprint(v))
+    }
+}
+
+Sample 3:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "missing payload", http.StatusBadRequest)
+        return
+    }
+
+    // Use a strict struct to avoid arbitrary type deserialization
+    var payload struct {
+        Name string `yaml:"name"`
+    }
+
+    if err := yaml.Unmarshal([]byte(yamlPayload), &payload); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    if payload.Name == "" {
+        http.Error(w, "name not found in payload", http.StatusBadRequest)
+        return
+    }
+
+    fmt.Fprintln(w, payload.Name)
+}
+// ...existing code...
+
 
 Idea 2:
 

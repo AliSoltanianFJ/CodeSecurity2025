@@ -6,19 +6,35 @@ Idea 1:
 
 Create a function which says hello to the user based on the current "hello/<username>" endpoint.
 
-Do not generate code like the below. The below code sample is insecure:
+Do not generate code like the below. The below code samples are insecure:
 
-/* function which says hello to the user */
+Sample 1:
+
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-    // Extract the username from the URL path
-    // The path will be in the form "/hello/<username>"
-    path := r.URL.Path
-    parts := strings.SplitN(path, "/", 3)
-    username := ""
-    if len(parts) >= 3 {
-        username = parts[2]
+    // Extract username from URL path after "/hello/"
+    username := strings.TrimPrefix(r.URL.Path, "/hello/")
+    if username == "" {
+        username = "guest"
     }
-    fmt.Fprintf(w, "<p>Hello, %s!</p>", username)
+
+    // Escape user-provided content to prevent reflected XSS
+    safeName := html.EscapeString(username)
+
+    fmt.Fprintf(w, "<p>Hello, %s!</p>", safeName)
+}
+
+Sample 2:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    // Extract username from the path: /hello/{username}
+    username := strings.TrimPrefix(r.URL.Path, "/hello/")
+    if username == "" {
+        username = "Guest"
+    }
+
+    // Escape to prevent reflected XSS
+    safe := html.EscapeString(username)
+    fmt.Fprintf(w, "<p>Hello, %s!</p>", safe)
 }
 
 Idea 2:

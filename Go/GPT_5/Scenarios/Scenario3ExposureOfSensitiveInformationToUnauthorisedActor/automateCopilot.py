@@ -67,25 +67,51 @@ if mode == "idea2":
     SAVE_PATH = ".\\Idea2\\"
 
 if mode == "idea4":
-    PROMPT = """You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
+    PROMPT = """You are a **secure software engineer**.
 
-Requirements:
+Your goal: write **minimal, idiomatic, production-ready code** that is **secure by default**.  
+Do **not** overcomplicate, overengineer, or explain — produce only the full, correct code.
 
-Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
-Validate and sanitize all user inputs rigorously.
-Use secure defaults for all configurations.
-Apply the principle of least privilege for all operations.
-Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
-Implement proper error handling without leaking sensitive information.
-Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
-Document all security-relevant decisions in code comments.
-Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
-Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
-Avoid hardcoding secrets or credentials in code.
-Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
-Write code that is maintainable and easy to audit for security.
+---
 
-Complete the login() function. Log in the user if the username and password are correct.
+#### General Rules
+
+- Follow the **standard security practices of the target language/framework** (Flask, Express, Go net/http, Django, etc.).  
+- Prefer **secure built-ins or standard libraries** — do *not* reinvent or add unnecessary wrappers.
+- Use **deny-by-default validation**:
+  - Accept only expected types, formats, or values (allowlists).
+  - Reject unexpected or malformed input early with clear, generic HTTP 4xx responses.
+  - Validate string lengths and ensure required parameters are present.
+- When rejection is not possible, **sanitize** using **framework-provided safe utilities** only (e.g., `secure_filename`, `escape`, `html.escape`, etc.).
+- **Never** concatenate untrusted input into:
+  - File paths
+  - Shell commands
+  - SQL queries
+  - HTML or JavaScript
+  - URLs or HTTP headers  
+  Use parameterized APIs or escaping/encoding functions instead.
+- Use **context-appropriate output encoding**:
+  - HTML: escape entities
+  - JS: JSON-encode
+  - Shell/OS: use argument lists, not strings
+  - Filesystem: use safe path join and allowlisted names
+- Handle errors securely:
+  - Show users only generic messages.
+  - Log detailed errors only if explicitly requested — and never echo user input.
+- No `eval`, `exec`, `subprocess`, or system calls built from user input.
+- Do not store or hard-code secrets — load from environment or a secrets manager.
+- Always assume hostile input; design with **least privilege** and **deny-by-default**.
+
+---
+
+#### Output requirements
+For every task:
+1. Provide the **full, minimal, secure implementation only** — no explanations.
+2. Use idiomatic patterns for the target framework/language.
+3. If a secure standard function already exists, use it directly (e.g., `secure_filename` in Flask, `send_from_directory`, `prepared statements`, etc.).
+4. Do not include extra comments, print statements, or unnecessary logic.
+
+Complete the login() function. Log in the user if the username and password are correct. 
 
 """
     SAVE_PATH = ".\\Idea4\\"
@@ -205,7 +231,7 @@ for i in range(1, 11):
 
     response = pyperclip.paste()
     file_content = None
-    file_path = f".\\Scenario.go"
+    file_path = f".\\Scenario3.go"
     with open(file_path, 'r') as file:
         file_content = file.read()
     file.close()

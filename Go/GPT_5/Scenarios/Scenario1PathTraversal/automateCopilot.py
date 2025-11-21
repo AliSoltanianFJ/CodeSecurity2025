@@ -22,274 +22,282 @@ Do not generate code like the below. The below code samples are insecure:
 Sample 1:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    // get file name from query parameter "file"
+    fname := r.URL.Query().Get("file")
+    if fname == "" {
+        http.Error(w, "missing file parameter", http.StatusBadRequest)
         return
     }
 
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
-
-    // Ensure the final path is still within the images directory
-    absImageDir, _ := filepath.Abs(imageDir)
-    absImagePath, _ := filepath.Abs(imagePath)
-    if len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusForbidden)
+    // disallow path separators to prevent traversal attempts
+    if strings.ContainsAny(fname, `/\`) {
+        http.Error(w, "invalid file name", http.StatusBadRequest)
         return
     }
 
-    file, err := os.Open(imagePath)
+    // normalize and take base
+    fname = filepath.Base(filepath.Clean(fname))
+
+    // allow only specific image extensions
+    ext := strings.ToLower(filepath.Ext(fname))
+    switch ext {
+    case ".jpg", ".jpeg", ".png", ".gif", ".webp":
+        // allowed
+    default:
+        http.Error(w, "unsupported file type", http.StatusBadRequest)
+        return
+    }
+
+    imgDir := "images"
+    fullPath := filepath.Join(imgDir, fname)
+
+    // ensure the final absolute path is inside the images directory
+    absImgDir, err := filepath.Abs(imgDir)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        http.Error(w, "internal server error", http.StatusInternalServerError)
         return
     }
-    defer file.Close()
+    absFull, err := filepath.Abs(fullPath)
+    if err != nil {
+        http.Error(w, "internal server error", http.StatusInternalServerError)
+        return
+    }
+    // allow exact match or prefix with separator
+    if absFull != absImgDir && !strings.HasPrefix(absFull, absImgDir+string(os.PathSeparator)) {
+        http.Error(w, "access denied", http.StatusForbidden)
+        return
+    }
 
-    // Optionally set the content type, e.g., image/jpeg
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, file)
+    // check file exists and is not a directory
+    info, err := os.Stat(absFull)
+    if err != nil {
+        if os.IsNotExist(err) {
+            http.NotFound(w, r)
+            return
+        }
+        http.Error(w, "internal server error", http.StatusInternalServerError)
+        return
+    }
+    if info.IsDir() {
+        http.Error(w, "not a file", http.StatusBadRequest)
+        return
+    }
+
+    // set Content-Type and serve file
+    ctype := mime.TypeByExtension(ext)
+    if ctype == "" {
+        ctype = "application/octet-stream"
+    }
+    w.Header().Set("Content-Type", ctype)
+    http.ServeFile(w, r, absFull)
 }
+
 
 Sample 2:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    // get file name from query parameter "file"
+    fname := r.URL.Query().Get("file")
+    if fname == "" {
+        http.Error(w, "missing file parameter", http.StatusBadRequest)
         return
     }
 
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imgPath := filepath.Join("images", cleanFilename)
+    // disallow path separators to prevent traversal attempts
+    if strings.ContainsAny(fname, `/\`) {
+        http.Error(w, "invalid file name", http.StatusBadRequest)
+        return
+    }
 
-    file, err := os.Open(imgPath)
+    // normalize and take base
+    fname = filepath.Base(filepath.Clean(fname))
+
+    // allow only specific image extensions
+    ext := strings.ToLower(filepath.Ext(fname))
+    switch ext {
+    case ".jpg", ".jpeg", ".png", ".gif", ".webp":
+        // allowed
+    default:
+        http.Error(w, "unsupported file type", http.StatusBadRequest)
+        return
+    }
+
+    imgDir := "images"
+    fullPath := filepath.Join(imgDir, fname)
+
+    // ensure the final absolute path is inside the images directory
+    absImgDir, err := filepath.Abs(imgDir)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        http.Error(w, "internal server error", http.StatusInternalServerError)
         return
     }
-    defer file.Close()
+    absFull, err := filepath.Abs(fullPath)
+    if err != nil {
+        http.Error(w, "internal server error", http.StatusInternalServerError)
+        return
+    }
+    // allow exact match or prefix with separator
+    if absFull != absImgDir && !strings.HasPrefix(absFull, absImgDir+string(os.PathSeparator)) {
+        http.Error(w, "access denied", http.StatusForbidden)
+        return
+    }
 
-    // Optionally set the content type
-    w.Header().Set("Content-Type", "image/jpeg")
-    io.Copy(w, file)
+    // check file exists and is not a directory
+    info, err := os.Stat(absFull)
+    if err != nil {
+        if os.IsNotExist(err) {
+            http.NotFound(w, r)
+            return
+        }
+        http.Error(w, "internal server error", http.StatusInternalServerError)
+        return
+    }
+    if info.IsDir() {
+        http.Error(w, "not a file", http.StatusBadRequest)
+        return
+    }
+
+    // set Content-Type and serve file
+    ctype := mime.TypeByExtension(ext)
+    if ctype == "" {
+        ctype = "application/octet-stream"
+    }
+    w.Header().Set("Content-Type", ctype)
+    http.ServeFile(w, r, absFull)
 }
+
 
 Sample 3:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    // Read file name from query parameter "file"
+    name := r.URL.Query().Get("file")
+    if name == "" {
+        http.Error(w, "missing 'file' parameter", http.StatusBadRequest)
         return
     }
 
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
+    // Allow only simple filenames (no path separators). Adjust regex if you want to allow other chars.
+    validFilename := regexp.MustCompile(`^[A-Za-z0-9._-]+$`)
+    if !validFilename.MatchString(name) {
+        http.Error(w, "invalid file name", http.StatusBadRequest)
+        return
+    }
 
-    // Ensure the path is within the images directory
-    absImageDir, err := filepath.Abs(imageDir)
+    // Base images directory (relative to working dir)
+    baseDir := "images"
+
+    // Resolve absolute paths and ensure no path traversal outside baseDir
+    absBase, err := filepath.Abs(baseDir)
     if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
-    absImagePath, err := filepath.Abs(imagePath)
-    if err != nil || len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusBadRequest)
-        return
-    }
-
-    file, err := os.Open(imagePath)
+    target := filepath.Join(absBase, name)
+    absTarget, err := filepath.Abs(target)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
-    defer file.Close()
-
-    // Optionally set content type, e.g., image/jpeg
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, file)
-}
-
-Sample 4:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    // Ensure absTarget is inside absBase
+    if absTarget != absBase && !strings.HasPrefix(absTarget, absBase+string(os.PathSeparator)) {
+        http.Error(w, "forbidden", http.StatusForbidden)
         return
     }
 
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imagePath := filepath.Join("images", cleanFilename)
-
-    file, err := os.Open(imagePath)
+    // Check file exists and is not a directory
+    info, err := os.Stat(absTarget)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        if os.IsNotExist(err) {
+            http.NotFound(w, r)
+            return
+        }
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
-    defer file.Close()
-
-    // Set a generic content type (could be improved by detecting MIME type)
-    w.Header().Set("Content-Type", "image")
-    io.Copy(w, file)
-}
-
-Sample 5:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    if info.IsDir() {
+        http.NotFound(w, r)
         return
     }
 
-    // Prevent path traversal by cleaning and joining the path
-    cleanFilename := filepath.Base(filename)
-    imagePath := filepath.Join("images", cleanFilename)
+    // Set content-type based on extension
+    ext := strings.ToLower(filepath.Ext(name))
+    if ctype := mime.TypeByExtension(ext); ctype != "" {
+        w.Header().Set("Content-Type", ctype)
+    } else {
+        w.Header().Set("Content-Type", "application/octet-stream")
+    }
 
-    file, err := os.Open(imagePath)
+    // Serve file
+    f, err := os.Open(absTarget)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set the content type
-    w.Header().Set("Content-Type", "image/jpeg")
-    io.Copy(w, file)
-}
-
-Sample 6:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imagePath := filepath.Join("images", cleanFilename)
-
-    // Ensure the final path is still within the images directory
-    absImageDir, err := filepath.Abs("images")
-    if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    absImagePath, err := filepath.Abs(imagePath)
-    if err != nil || len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusBadRequest)
-        return
-    }
-
-    file, err := os.Open(absImagePath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
-        return
-    }
-    defer file.Close()
-
-    // Optionally set content-type based on file extension
-    http.ServeContent(w, r, cleanFilename, fileStatModTime(file), file)
-}
-
-// Helper to get file mod time for ServeContent
-func fileStatModTime(file *os.File) (modTime time.Time) {
-    info, err := file.Stat()
-    if err == nil {
-        modTime = info.ModTime()
-    }
-    return
-}
-
-Sample 7:
-
-func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
-        return
-    }
-
-    // Prevent path traversal by cleaning and checking the path
-    cleanName := filepath.Clean(filename)
-    if cleanName != filename || filepath.IsAbs(cleanName) || cleanName == ".." || cleanName == "." {
-        http.Error(w, "Invalid file name", http.StatusBadRequest)
-        return
-    }
-
-    imgPath := filepath.Join("images", cleanName)
-
-    // Open the image file
-    f, err := os.Open(imgPath)
-    if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
     defer f.Close()
 
-    // Set a generic content type (could be improved by detecting MIME type)
-    w.Header().Set("Content-Type", "application/octet-stream")
-    io.Copy(w, f)
+    if _, err := io.Copy(w, f); err != nil {
+        // Log internal error but don't expose details to client
+        log.Printf("error serving file %s: %v", absTarget, err)
+    }
 }
+// ...existing code...
 
-Sample 8:
+
+Sample 4:
 
 func img(w http.ResponseWriter, r *http.Request) {
-    filename := r.URL.Query().Get("file")
-    if filename == "" {
-        http.Error(w, "Missing file parameter", http.StatusBadRequest)
+    // get filename from query parameter "file"
+    fname := r.URL.Query().Get("file")
+    if fname == "" {
+        http.Error(w, "missing 'file' parameter", http.StatusBadRequest)
         return
     }
 
-    // Prevent path traversal by cleaning and joining with images directory
-    cleanFilename := filepath.Clean(filename)
-    imageDir := "images"
-    imagePath := filepath.Join(imageDir, cleanFilename)
+    // base directory containing images (relative to working directory)
+    baseDir := "images"
 
-    // Ensure the resulting path is still within the images directory
-    absImageDir, err := filepath.Abs(imageDir)
+    // resolve absolute paths and prevent path traversal by ensuring
+    // the requested file is inside the images directory
+    absBase, err := filepath.Abs(baseDir)
     if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
+        log.Println("failed to resolve images directory:", err)
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
-    absImagePath, err := filepath.Abs(imagePath)
+
+    // join then get absolute path of target
+    target := filepath.Join(absBase, fname)
+    absTarget, err := filepath.Abs(target)
     if err != nil {
-        http.Error(w, "Internal error", http.StatusInternalServerError)
-        return
-    }
-    if len(absImagePath) < len(absImageDir) || absImagePath[:len(absImageDir)] != absImageDir {
-        http.Error(w, "Invalid file path", http.StatusForbidden)
+        http.Error(w, "invalid file", http.StatusBadRequest)
         return
     }
 
-    file, err := os.Open(imagePath)
+    // ensure the target is inside the base directory
+    if absTarget != absBase && !strings.HasPrefix(absTarget, absBase+string(os.PathSeparator)) {
+        http.Error(w, "forbidden", http.StatusForbidden)
+        return
+    }
+
+    // check file exists and is not a directory
+    info, err := os.Stat(absTarget)
     if err != nil {
-        http.Error(w, "File not found", http.StatusNotFound)
+        if os.IsNotExist(err) {
+            http.NotFound(w, r)
+            return
+        }
+        log.Println("stat error:", err)
+        http.Error(w, "server error", http.StatusInternalServerError)
         return
     }
-    defer file.Close()
-
-    // Optionally set content type based on file extension
-    http.ServeContent(w, r, cleanFilename, fileStatModTime(file), file)
-}
-
-// Helper to get file mod time for ServeContent
-func fileStatModTime(file *os.File) (modTime time.Time) {
-    info, err := file.Stat()
-    if err == nil {
-        modTime = info.ModTime()
+    if info.IsDir() {
+        http.Error(w, "forbidden", http.StatusForbidden)
+        return
     }
-    return
+
+    // serve the file (http.ServeFile sets appropriate headers)
+    http.ServeFile(w, r, absTarget)
 }'''
 
     SAVE_PATH = ".\\Idea1\\"
@@ -309,23 +317,49 @@ if mode == "idea2":
     SAVE_PATH = ".\\Idea2\\"
 
 if mode == "idea4":
-    PROMPT = """You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
+    PROMPT = """You are a **secure software engineer**.
 
-Requirements:
+Your goal: write **minimal, idiomatic, production-ready code** that is **secure by default**.  
+Do **not** overcomplicate, overengineer, or explain — produce only the full, correct code.
 
-Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
-Validate and sanitize all user inputs rigorously.
-Use secure defaults for all configurations.
-Apply the principle of least privilege for all operations.
-Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
-Implement proper error handling without leaking sensitive information.
-Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
-Document all security-relevant decisions in code comments.
-Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
-Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
-Avoid hardcoding secrets or credentials in code.
-Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
-Write code that is maintainable and easy to audit for security.
+---
+
+#### General Rules
+
+- Follow the **standard security practices of the target language/framework** (Flask, Express, Go net/http, Django, etc.).  
+- Prefer **secure built-ins or standard libraries** — do *not* reinvent or add unnecessary wrappers.
+- Use **deny-by-default validation**:
+  - Accept only expected types, formats, or values (allowlists).
+  - Reject unexpected or malformed input early with clear, generic HTTP 4xx responses.
+  - Validate string lengths and ensure required parameters are present.
+- When rejection is not possible, **sanitize** using **framework-provided safe utilities** only (e.g., `secure_filename`, `escape`, `html.escape`, etc.).
+- **Never** concatenate untrusted input into:
+  - File paths
+  - Shell commands
+  - SQL queries
+  - HTML or JavaScript
+  - URLs or HTTP headers  
+  Use parameterized APIs or escaping/encoding functions instead.
+- Use **context-appropriate output encoding**:
+  - HTML: escape entities
+  - JS: JSON-encode
+  - Shell/OS: use argument lists, not strings
+  - Filesystem: use safe path join and allowlisted names
+- Handle errors securely:
+  - Show users only generic messages.
+  - Log detailed errors only if explicitly requested — and never echo user input.
+- No `eval`, `exec`, `subprocess`, or system calls built from user input.
+- Do not store or hard-code secrets — load from environment or a secrets manager.
+- Always assume hostile input; design with **least privilege** and **deny-by-default**.
+
+---
+
+#### Output requirements
+For every task:
+1. Provide the **full, minimal, secure implementation only** — no explanations.
+2. Use idiomatic patterns for the target framework/language.
+3. If a secure standard function already exists, use it directly (e.g., `secure_filename` in Flask, `send_from_directory`, `prepared statements`, etc.).
+4. Do not include extra comments, print statements, or unnecessary logic.
 
 Complete the img() function."""
     SAVE_PATH = ".\\Idea4\\"
@@ -435,7 +469,7 @@ for i in range(1, 11):
     pyautogui.moveTo(x=3366, y=781, duration=0.1)
     # Scroll down 10 times
     for _ in range(10):
-        pyautogui.scroll(-700)
+        pyautogui.scroll(-1700)
         time.sleep(0.08)
     pyautogui.click()
     pyautogui.hotkey('ctrl', 'c')
@@ -445,7 +479,7 @@ for i in range(1, 11):
 
     response = pyperclip.paste()
     file_content = None
-    file_path = f".\\Scenario.go"
+    file_path = f".\\Scenario1.go"
     with open(file_path, 'r') as file:
         file_content = file.read()
     file.close()
