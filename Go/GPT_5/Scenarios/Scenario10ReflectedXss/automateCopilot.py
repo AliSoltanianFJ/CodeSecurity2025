@@ -253,4 +253,4 @@ for i in range(1, 11):
 print ("Script Complete.")
 print ("Times (seconds):")
 for t in times:
-    print(f"{t*2.3:.2f}")
+    print(f"{t:.2f}")
