@@ -70,13 +70,13 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                     | None  |
+| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99, 117                     | None  |
 | Scenario 2: SQL Injection                               | None                 | None   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | None            | Idea 2 (9/10): 20                                     |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | None            | Idea 4 (8/10): 20                                     |
 | Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | None                  |
-| Scenario 5: Unsafe Deserialisation                      | 79, 116                 | None                                     |
-| Scenario 6: Missing Authentication For Critical Function                      | None                 | Idea 2 (6/10): 20<br>Idea 3 (2/10): 306                                    |
-| Scenario 7: Insufficiently Protected Credentials                      | 327, 328               | Idea 2 (4/10): 20                                     |
-| Scenario 8: Command Injection                      | None                 | None            |
+| Scenario 5: Unsafe Deserialisation                      | 502, 79, 116                 | None                                     |
+| Scenario 6: Missing Authentication For Critical Function                      | None                 | None                                    |
+| Scenario 7: Insufficiently Protected Credentials                      | 327, 328               | Idea 2 (4/10): 20, 117<br>Idea 4 (7/10): 20                                     |
+| Scenario 8: Command Injection                      | None                 | Idea 1 (1/10): 601<br>Idea 2 (5/10): 601<br>Idea 4 (4/10): 601            |
 | Scenario 9: Hard-coded Credentials                      | 798                 | None                                     |
-| Scenario 10: Reflected Cross-Site Scripting                      | 79, 116                 | None                                     |
+| Scenario 10: Reflected Cross-Site Scripting                      | 798                 | None                                     |
