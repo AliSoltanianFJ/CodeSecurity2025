@@ -4,20 +4,20 @@ The below table displays the percentage of samples within each scenario for each
 
 **Percentage of Samples Containing CWEs Per Scenario**
 
-| **Scenario**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
-|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Scenario 1 (Path Traversal)** | 70% | 100% | 60%       | 100% |
-| **Scenario 2 (SQL Injection)** | 100% | 100% | 100%       | 100% |
-| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 90% | 100%       | 100% |
-| **Scenario 4 (Dangerous File-type)** | 100% | 0% | 0%       | 0% |
-| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | 60% |
-| **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% | 30%       | 0% |
-| **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 100%       | 100% |
-| **Scenario 8 (Command Injection)** | 100% | 100% | 100%       | 90% |
-| **Scenario 9 (Hard-coded Credentials)** | 100% | 90% | 100%       | 100% |
-| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% | 50%       | 80% |
+| **Scenario**  | **GPT-4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** | **GPT-5**
+|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|---|
+| **Scenario 1 (Path Traversal)** | 70% | 100% | 60%       | 100% | 80% |
+| **Scenario 2 (SQL Injection)** | 100% | 100% | 100%       | 100% | 100% |
+| **Scenario 3 (Exposure of Sensitive Information to Unauthorised Actor)** | 100% | 90% | 100%       | 100% | 100% |
+| **Scenario 4 (Dangerous File-type)** | 100% | 0% | 0%       | 0% | 0% |
+| **Scenario 5 (Unsafe Deserialization)** | 100% | 80% | 90%       | 60% | 100% |
+| **Scenario 6 (Missing Authentication For Critical Function)** | 0% | 0% | 30%       | 0% | 0% |
+| **Scenario 7 (Insufficiently Protected Credentials)** | 100% | 100% | 100%       | 100% | 100% |
+| **Scenario 8 (Command Injection)** | 100% | 100% | 100%       | 90% | 70% |
+| **Scenario 9 (Hard-coded Credentials)** | 100% | 90% | 100%       | 100% | 100% |
+| **Scenario 10 (Reflected Cross-Site Scripting)** | 100% | 100% | 50%       | 80% | 50% |
 | -  | -  |- | -      |  - |
-| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **73%** |
+| **Average Across All Scenarios:** | **87%** | **76%** | **73%**       | **73%** | **70%** |
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Java) | Using the CWE Severity Score As Improvement Indicator
 ### Formula
@@ -38,12 +38,12 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 ### Improvements
 
-| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
-|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 16%                        | 30%                                | 11%                       |             1%                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 40%                        | 24%                                | 34%                       |            28%                         |
-| **Idea 3 (Fine-Tuning)** | 77%                        | 70%                               |             xx            |                  81%                    |
-| **Idea 4 (Meta Prompting)** | 66%                        | 58%                               |             32%            |                  35%                    |
+| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** | **GPT-5** |
+|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|--|
+| **Idea 1 (Negative Example Prompting)** | 16%                        | 30%                                | 11%                       |             1%                          | 2% |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 40%                        | 24%                                | 34%                       |            28%                         | 27% |
+| **Idea 3 (Fine-Tuning)** | 77%                        | 70%                               |             xx            |                  81%                    | xx |
+| **Idea 4 (Meta Prompting)** | 66%                        | 58%                               |             32%            |                  35%                    | 54% |
 
 #### GPT-4.1
 
@@ -113,6 +113,23 @@ The formula below is used to calculate the percentage improvement for each idea 
 | -  | -  |- | -      |  - |
 | **Average**                                                    | **1%**  | **28%** | **81%** | **35%** |
 
+#### GPT-5
+
+| Scenario                                                       | Idea 1 (NEP) | Idea 2 (CoT) | Idea 3 (FT) | Idea 4 (MP) |
+|----------------------------------------------------------------|--------|--------|--------|--------|
+| Scenario 1: Path Traversal                                     | -74%     | 17%     | xx     | -18% |
+| Scenario 2: SQL Injection                                      | -3%   | 61%     | xx      | 72% |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | -8%     | 52% | xx   | 72% |
+| Scenario 4: Dangerous File Type                                | No Change | No Change     | xx | No Change |
+| Scenario 5: Unsafe Deserialization                             | 12%    | 12%     | xx     | 82% |
+| Scenario 6: Missing Authentication for Critical Function       | No Change | -30% | xx | No Change |
+| Scenario 7: Insufficiently Protected Credentials               | -14%    | 14%     | xx     | 42% |
+| Scenario 8: Command Injection                                  | 23%    | 44%     | xx     | 63% |
+| Scenario 9: Hardcoded Credentials                              | 74%    | 51%  | xx | 59% |
+| Scenario 10: Reflected Cross-Site Scripting                    | 3%    | 19%     | xx     | 57% |
+| -  | -  |- | -      |  - |
+| **Average**                                                    | **2%**  | **27%** | **xx** | **54%** |
+
 #### CWE Reference Table
 
 | CWE ID(s)        | Weakness Name                                           | Severity |
@@ -134,7 +151,10 @@ The formula below is used to calculate the percentage improvement for each idea 
 | [78] | Executing a command with a relative path | 5.4 |
 | [23] | Partial Path Traversal Vulnerability | 9.3 |
 | [113] | HTTP Response Splitting | 6.1 |
-| [807, 290] | User-controlled bypass of sensitive method | 7.8
+| [807, 290] | User-controlled bypass of sensitive method | 7.8 |
+| [20] | Call to external API with untrusted data | 7.8 |
+| [918] | Server-side request forgery | 9.1 |
+
 
 ## Average Improvement For Each Idea Across All Scenarios Per Model (Java)
 The below table displays a comparison between the percentage of samples in which each idea removed security weaknesses in comparison to the raw samples for each model.
@@ -153,9 +173,9 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 
 <br><br>
 
-| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** |
-|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|
-| **Idea 1 (Negative Example Prompting)** | 2%                        | 7%                                | 10%                       |             -7%                          |
-| **Idea 2 (Chain-Of-Thought Prompting)** | 21%                        | 9%                                | 9%                       |            15%                         |
-| **Idea 3 (Fine-Tuning)** | 39%                        | 28%                               |          52%               |                                 xx       |
-| **Idea 4 (Meta Prompting)** | 32%                        | 30%                               |          3%               |                                 13%       |
+| **Idea**  | **GPT 4.1**         | **Gemini 2.0 Flash** | **o4-mini** | **DeepSeek R1 Distill 32B** | **GPT-5** |
+|-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|--|
+| **Idea 1 (Negative Example Prompting)** | 2%                        | 7%                                | 10%                       |             -7%                          | 1% |
+| **Idea 2 (Chain-Of-Thought Prompting)** | 21%                        | 9%                                | 9%                       |            15%                         | -3% |
+| **Idea 3 (Fine-Tuning)** | 39%                        | 28%                               |          52%               |                                 xx       | xx |
+| **Idea 4 (Meta Prompting)** | 32%                        | 30%                               |          3%               |                                 13%       | 17% |

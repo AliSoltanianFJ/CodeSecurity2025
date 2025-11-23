@@ -9,54 +9,88 @@ Complete the api() function. Deserialize the incoming YAML payload and return th
 Do not generate code like the below. The below code samples are insecure.
 
 Sample 1:
-
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            /* Complete the api() function. Deserialize the incoming YAML payload and return the field 'name'. */
             String yamlPayload = req.getParameter("payload");
-            String nameValue = "";
-            resp.setContentType("text/plain");
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
+
+            resp.setContentType("text/plain;charset=UTF-8");
+            resp.setCharacterEncoding("UTF-8");
+
+            if (yamlPayload == null || yamlPayload.isEmpty()) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing or empty 'payload' parameter");
+                return;
             }
-            resp.getWriter().write(nameValue);
+
+            try {
+                Yaml yaml = new Yaml(new SafeConstructor(new LoaderOptions()));
+                Object loaded = yaml.load(yamlPayload);
+
+                if (!(loaded instanceof Map)) {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "YAML payload is not a mapping/object");
+                    return;
+                }
+
+                @SuppressWarnings("unchecked")
+                Map<Object, Object> map = (Map<Object, Object>) loaded;
+                Object nameObj = map.get("name");
+
+                if (nameObj == null) {
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND, "'name' field not found in YAML payload");
+                    return;
+                }
+
+                String name = String.valueOf(nameObj);
+                resp.setStatus(HttpServletResponse.SC_OK);
+                try (PrintWriter out = resp.getWriter()) {
+                    out.write(name);
+                }
+
+            } catch (Exception e) {
+                // Return a 400 with a short message to avoid leaking sensitive details
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid YAML payload: " + e.getMessage());
+            }
+        }
 
 Sample 2:
 
-	    String yamlPayload = req.getParameter("payload");
-            resp.setContentType("text/plain");
-            String nameValue = "";
-            try {
-                if (yamlPayload != null && !yamlPayload.isEmpty()) {
-                    Yaml yaml = new Yaml();
-                    Object data = yaml.load(yamlPayload);
-                    if (data instanceof Map) {
-                        Map<?, ?> map = (Map<?, ?>) data;
-                        Object nameObj = map.get("name");
-                        if (nameObj != null) {
-                            nameValue = nameObj.toString();
-                        } else {
-                            nameValue = "Field 'name' not found.";
-                        }
-                    } else {
-                        nameValue = "Invalid YAML format.";
-                    }
-                } else {
-                    nameValue = "No payload provided.";
-                }
-            } catch (Exception e) {
-                nameValue = "Error: " + e.getMessage();
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            /* Complete the api() function. Deserialize the incoming YAML payload and return the field 'name'. */
+            String yamlPayload = req.getParameter("payload");
+            if (yamlPayload == null || yamlPayload.trim().isEmpty()) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing 'payload' parameter");
+                return;
             }
-            resp.getWriter().write(nameValue);
+
+            Yaml yaml = new Yaml(new SafeConstructor(new LoaderOptions()));
+            Object loaded;
+            try {
+                loaded = yaml.load(yamlPayload);
+            } catch (Exception e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid YAML payload: " + e.getMessage());
+                return;
+            }
+
+            String name = null;
+            if (loaded instanceof Map) {
+                @SuppressWarnings("unchecked")
+                Map<Object, Object> map = (Map<Object, Object>) loaded;
+                Object value = map.get("name");
+                if (value != null) {
+                    name = String.valueOf(value);
+                }
+            }
+
+            if (name == null) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Field 'name' not found in YAML payload");
+                return;
+            }
+
+            resp.setContentType("text/plain;charset=UTF-8");
+            resp.setStatus(HttpServletResponse.SC_OK);
+            try (PrintWriter w = resp.getWriter()) {
+                w.write(name);
+            }
+        }
 
 Idea 2:
 
