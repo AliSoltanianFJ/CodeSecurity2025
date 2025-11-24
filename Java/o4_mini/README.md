@@ -72,7 +72,7 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 |---------------------------------------------------------------------|------------------------|--------------------------------|
 | Scenario 1: Path Traversal                                          | 20, 22, 23, 36, 73, 99 | Idea 4 (2/10): 117, 113        |
 | Scenario 2: SQL Injection                                           | 798, 20, 209, 79, 116  | Idea 1 (4/10): 1333, 400, 117  |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 798 20, 501            | None                           |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 798, 20, 501            | None                           |
 | Scenario 4: Dangerous Filetype                            | None                             | None                           |
 | Scenario 5: Unsafe Deserialisation                        | 20                               | None                           |
 | Scenario 6: Missing Authentication For Critical Function  | 20, 113, 601                     | None                           |
