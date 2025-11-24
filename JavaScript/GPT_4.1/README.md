@@ -76,6 +76,6 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Scenario 5: Unsafe Deserialisation                      | 20                 | None                                     |
 | Scenario 6: Missing Authentication For Critical Function                      | None                 | None                                     |
 | Scenario 7: Insufficiently Protected Credentials                      | 770, 307, 400, 798, 20, 916           | None                                     |
-| Scenario 8: Python Command Injection                      | 770, 307, 4007                 | Idea 1 (1/10): 20<br>Idea 2 (1/10): 843<br>Idea 3 (2/10): 20<br>Idea 4 (1/10): 20        |
+| Scenario 8: Python Command Injection                      | 770, 307, 400                 | Idea 1 (1/10): 20<br>Idea 2 (1/10): 843<br>Idea 3 (2/10): 20<br>Idea 4 (1/10): 20        |
 | Scenario 9: Hard-coded Credentials                      | 798                 | Idea 1 (3/10): 770, 307, 400, 20<br>Idea 2 (3/10): 20<br>Idea 3 (1/10): 770, 307, 400<br>Idea 4 (5/10): 770, 307, 400, 20        |
 | Scenario 10: Reflected Cross-Site Scripting                      | 20, 79, 116                 | None                                     |
