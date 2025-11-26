@@ -67,13 +67,13 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | 770, 307, 400, 843, 20            | Idea 1 (2/10): 22, 23, 36, 73, 99     |
-| Scenario 2: SQL Injection                               | 798, 770, 307, 400, 20            | Idea 2 (1/10): 843   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 798, 770, 307, 400, 20            | Idea 4 (1/10): 352                                  |
-| Scenario 4: Dangerous Filetype                          | 20, 770, 307, 400, 22, 23, 36, 73, 99                     | Idea 2 (2/10): 79, 116                  |
-| Scenario 5: Unsafe Deserialisation                      | 20                 | None                                     |
-| Scenario 6: Missing Authentication For Critical Function                      | 916                 | None                                     |
-| Scenario 7: Insufficiently Protected Credentials                      | 798, 770, 307, 400, 916, 20           |   None                                   |
-| Scenario 8: Python Command Injection                      | 770, 307, 400, 20                 | None                                     |
-| Scenario 9: Hard-coded Credentials                      | 798                 | Idea 1 (10/10): 20<br>Idea 2 (3/10): 20<br>Idea 4 (2/10): 20                                   |
-| Scenario 10: Reflected Cross-Site Scripting                      | 20                 | Idea 1 (9/10): 79, 116                                     |
+| Scenario 1: Path Traversal                              | [770, 307, 400], [843], [20]            | Idea 1 (2/10): [22, 23, 36, 73, 99]     |
+| Scenario 2: SQL Injection                               | [798], [770, 307, 400], [20]            | Idea 2 (1/10): [843]   |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | [798], [770, 307, 400], [20]            | Idea 4 (1/10): [352]                                  |
+| Scenario 4: Dangerous Filetype                          | [20], [770, 307, 400], [22, 23, 36, 73, 99]                     | Idea 2 (2/10): [79, 116]                  |
+| Scenario 5: Unsafe Deserialisation                      | [20]                 | None                                     |
+| Scenario 6: Missing Authentication For Critical Function                      | [916]                 | None                                     |
+| Scenario 7: Insufficiently Protected Credentials                      | [798], [770, 307, 400], [916], [20]           |   None                                   |
+| Scenario 8: Python Command Injection                      | [770, 307, 400], [20]                 | None                                     |
+| Scenario 9: Hard-coded Credentials                      | [798]                 | Idea 1 (10/10): [20]<br>Idea 2 (3/10): [20]<br>Idea 4 (2/10): [20]                                   |
+| Scenario 10: Reflected Cross-Site Scripting                      | [20]                 | Idea 1 (9/10): [79, 116]                                     |

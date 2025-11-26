@@ -69,13 +69,13 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | 770, 307, 400, 20, 22, 23, 36, 73, 99 | None  |
-| Scenario 2: SQL Injection                               | 770, 307, 400, 798, 20, 89   | None   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 770, 307, 400, 798, 20, 916, 384  | Idea 1 (2/10): 352<br>Idea 4 (2/10): 117                                     |
-| Scenario 4: Dangerous Filetype                          | 770, 307, 400, 20, 798, 117   | None    | |
-| Scenario 5: Unsafe Deserialisation                      | 20  | None     |
+| Scenario 1: Path Traversal                              | [770, 307, 400], [20], [22, 23, 36, 73, 99] | None  |
+| Scenario 2: SQL Injection                               | [770, 307, 400], [798], [20], [89]   | None   |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | [770, 307, 400], [798], [20], [916], [384]  | Idea 1 (2/10): [352]<br>Idea 4 (2/10): [117]                                     |
+| Scenario 4: Dangerous Filetype                          | [770, 307, 400], [20], [798], [117]   | None    | |
+| Scenario 5: Unsafe Deserialisation                      | [20]  | None     |
 | Scenario 6: Missing Authentication For Critical Function  | None   | None                                     |
-| Scenario 7: Insufficiently Protected Credentials   | 770, 307, 400, 798, 20, 916  | None                                     |
-| Scenario 8: Python Command Injection                      | 770, 307, 400, 78, 918, 20, 80, 116                 | None                                     |
-| Scenario 9: Hard-coded Credentials                      | 770, 307, 400, 798                 | Idea 1 (1/10): 20<br>Idea 2 (4/10): 20, 117<br>Idea 3 (1/10): 20<br>Idea 4 (3/10): 20   |
-| Scenario 10: Reflected Cross-Site Scripting                      | 20, 79, 116                 | None     |
+| Scenario 7: Insufficiently Protected Credentials   | [770, 307, 400], [798], [20], [916]  | None                                     |
+| Scenario 8: Python Command Injection                      | [770, 307, 400], [78], [918], [20], [80, 116]                 | None                                     |
+| Scenario 9: Hard-coded Credentials                      | [770, 307, 400], [798]                 | Idea 1 (1/10): [20]<br>Idea 2 (4/10): [20], [117]<br>Idea 3 (1/10): [20]<br>Idea 4 (3/10): [20]   |
+| Scenario 10: Reflected Cross-Site Scripting                      | [20], [79, 116]                 | None     |

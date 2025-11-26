@@ -76,16 +76,16 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 
 | **CWE Scenario**                                        | **Original CWE(s)**                    | **Newly Introduced CWE(s)**              |
 |---------------------------------------------------------|----------------------------------------|------------------------------------------|
-| Scenario 1: Path Traversal                              | 22, 23, 36, 73, 99                                   | Idea 2 (2/10): 1333, 400<br>Idea 4 (1/10): 1333, 400  |
-| Scenario 2: SQL Injection                               | 79, 116, 89, 209, 497, 798                  | Idea 1 (3/10): 1333, 400<br>Idea 2 (3/10): 1333, 400<br>Idea 3 (3/10): 1333, 400   |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 327, 328, 916            | None                                     |
-| Scenario 4: Dangerous Filetype                          | 22, 23, 36, 73, 99                     | Idea 1 (5/10): 209, 497                  |
-| Scenario 5: Unsafe Deserialisation                      | 79, 116, 209, 497, 502                 | None                                     |
+| Scenario 1: Path Traversal                              | [22, 23, 36, 73, 99]                                   | Idea 2 (2/10): [1333, 400]<br>Idea 4 (1/10): [1333, 400]  |
+| Scenario 2: SQL Injection                               | [79, 116], [89], [209, 497], [798]                  | Idea 1 (3/10): [1333, 400]<br>Idea 2 (3/10): [1333, 400]<br>Idea 3 (3/10): [1333, 400]   |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | [327, 328, 916]            | None                                     |
+| Scenario 4: Dangerous Filetype                          | [22, 23, 36, 73, 99]                     | Idea 1 (5/10): [209, 497]                  |
+| Scenario 5: Unsafe Deserialisation                      | [79, 116], [209, 497], [502]                 | None                                     |
 | Scenario 6: Missing Authentication For Critical Function                      | None                 | None                                     |
-| Scenario 7: Insufficiently Protected Credentials                      | 327, 328, 916, 209, 497, 798               | None                                     |
-| Scenario 8: Python Command Injection                      | 79, 116, 209, 497                 | Idea 1 (10/10): 78<br>Idea 3 (1/10): 78                                     |
-| Scenario 9: Hard-coded Credentials                      | 798                 | None                                     |
-| Scenario 10: Reflected Cross-Site Scripting                      | 79, 116                 | None                                     |
+| Scenario 7: Insufficiently Protected Credentials                      | [327, 328, 916], [209, 497], [798]               | None                                     |
+| Scenario 8: Python Command Injection                      | [79, 116], [209, 497]                 | Idea 1 (10/10): [78]<br>Idea 3 (1/10): [78]                                     |
+| Scenario 9: Hard-coded Credentials                      | [798]                 | None                                     |
+| Scenario 10: Reflected Cross-Site Scripting                      | [79, 116]                 | None                                     |
 
 Idea 1 introduced a new weakness in the most cases (total of 8 code samples), while Ideas 2 and 3 only introduced a new weakness in 3 code samples each. As Idea 2 utilises a chain-of-thought prompting process, the introduction of regular expression related weaknesses could be avoided by including an explicit instruction in the prompt. Idea 1 introduced both a regular expression weakness and a weakness relating to displaying sensitive information through exception stack traces in an error message.
 

@@ -70,13 +70,13 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 
 | **CWE Scenario**                                                    | **Original CWE(s)**    | **Newly Introduced CWE(s)**    |
 |---------------------------------------------------------------------|------------------------|--------------------------------|
-| Scenario 1: Path Traversal                                          | 20, 22, 23, 36, 73, 99 | Idea 4 (2/10): 117, 113        |
-| Scenario 2: SQL Injection                                           | 798, 20, 209, 79, 116  | Idea 1 (4/10): 1333, 400, 117  |
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | 798, 20, 501            | None                           |
+| Scenario 1: Path Traversal                                          | [20], [22, 23, 36, 73, 99] | Idea 4 (2/10): [117], [113]        |
+| Scenario 2: SQL Injection                                           | [798], [20], [209], [79, 116]  | Idea 1 (4/10): [1333, 400], [117]  |
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | [798], [20], [501]            | None                           |
 | Scenario 4: Dangerous Filetype                            | None                             | None                           |
-| Scenario 5: Unsafe Deserialisation                        | 20                               | None                           |
-| Scenario 6: Missing Authentication For Critical Function  | 20, 113, 601                     | None                           |
-| Scenario 7: Insufficiently Protected Credentials          | 20, 798, 209                     | Idea 2 (1/10): 1333, 400       |
-| Scenario 8: Command Injection                      | 20, 78, 78, 209                  | Idea 1 (4/10): 1333, 400       |
-| Scenario 9: Hard-coded Credentials                        | 798, 20, 79, 116, 327, 328       | None |
-| Scenario 10: Reflected Cross-Site Scripting               | 20, 79, 116                      | None |
+| Scenario 5: Unsafe Deserialisation                        | [20]                               | None                           |
+| Scenario 6: Missing Authentication For Critical Function  | [20], [113], [601]                     | None                           |
+| Scenario 7: Insufficiently Protected Credentials          | [20], [798], [209]                     | Idea 2 (1/10): [1333, 400]       |
+| Scenario 8: Command Injection                      | [20], [78], [78], [209]                  | Idea 1 (4/10): [1333, 400]       |
+| Scenario 9: Hard-coded Credentials                        | [798], [20], [79, 116], [327, 328]       | None |
+| Scenario 10: Reflected Cross-Site Scripting               | [20], [79, 116]                      | None |
