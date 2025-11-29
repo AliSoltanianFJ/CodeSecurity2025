@@ -71,7 +71,7 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 | Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | [327, 328, 916]            | None                                     |
 | Scenario 4: Dangerous Filetype                          | [22, 23, 36, 73, 99], [209, 497]                     | Idea 1 (1/10): [215, 489]                  |
 | Scenario 5: Unsafe Deserialisation                      | [79, 116], [209, 497], [215, 489]                 | None                                     |
-| Scenario 6: Missing Authentication For Critical Function                      | [215, 489]                 | Idea 1 (1/10): [601]<br>Idea 2 (1/10): [215, 489]<br>Idea 4 (1/10): [215, 489]                                     |
+| Scenario 6: Missing Authentication For Critical Function                      | [215, 489]                 | Idea 1 (1/10): [601]<br>Idea 2 (1/10): [601]<br>Idea 4 (1/10): [601]                                     |
 | Scenario 7: Insufficiently Protected Credentials                      | [215, 489]               | Idea 2 (1/10): [117]                                     |
 | Scenario 8: Python Command Injection                      | [78], [209, 497], [215, 489]                 | Idea 4 (2/10): [918]                                     |
 | Scenario 9: Hard-coded Credentials                      | [215, 489], [117]                 | None                                     |
