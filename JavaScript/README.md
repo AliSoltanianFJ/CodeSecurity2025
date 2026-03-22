@@ -70,18 +70,18 @@ The formula below is used to calculate the percentage improvement for each idea 
 
 | Scenario                                                       | Idea 1 (NEP) | Idea 2 (CoT) | Idea 3 (FT) | Idea 4 (MP) |
 |----------------------------------------------------------------|--------|--------|--------|--------|
-| Scenario 1: Path Traversal                                     | 36%    | 25%    | xx     | 46%    |
-| Scenario 2: SQL Injection                                      | 23%    | 39%    | xx     | 70%    |
-| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | -68%     | 49%   | xx  | 8%   |
-| Scenario 4: Dangerous File Type                                | -15%       | 72%    | xx    | 67%  |
-| Scenario 5: Unsafe Deserialization                             | 0%       | 0%    | xx       | 0%   |
-| Scenario 6: Missing Authentication for Critical Function       | -100 % | 50 %  | xx         | 100% |
-| Scenario 7: Insufficiently Protected Credentials               | -7%     | 25%       | xx    | 31%  |
-| Scenario 8: Command Injection                                  | 58%     | 42%       | xx    | 48%  |
-| Scenario 9: Hardcoded Credentials                              | 44%     | 76%       | xx    | 100% |
-| Scenario 10: Reflected Cross-Site Scripting                    | 33%     | 67%       | xx    | 33%  |
+| Scenario 1: Path Traversal                                     | 36%    | 25%    | 41%     | 46%    |
+| Scenario 2: SQL Injection                                      | 23%    | 39%    | 58%     | 70%    |
+| Scenario 3: Exposure of Sensitive Information to Unauthorized Actor | -68%     | 49%   | 17%  | 8%   |
+| Scenario 4: Dangerous File Type                                | -15%       | 72%    | 56%    | 67%  |
+| Scenario 5: Unsafe Deserialization                             | 0%       | 0%    | 10%       | 0%   |
+| Scenario 6: Missing Authentication for Critical Function       | -100% | 50%  | 100%         | 100% |
+| Scenario 7: Insufficiently Protected Credentials               | -7%     | 25%       | 36%    | 31%  |
+| Scenario 8: Command Injection                                  | 58%     | 42%       | 100%    | 48%  |
+| Scenario 9: Hardcoded Credentials                              | 44%     | 76%       | 92%    | 100% |
+| Scenario 10: Reflected Cross-Site Scripting                    | 33%     | 67%       | 100%    | 33%  |
 | -  | -  |- | -      |  - |
-| **Average**                                                    | **0.4%** | **45%** | **xx** | **50%** |
+| **Average**                                                    | **0.4%** | **45%** | **61%** | **50%** |
 
 #### Gemini 2.0 Flash
 
@@ -178,5 +178,5 @@ $\Delta_j = \frac{S_{\text{raw}} - S_{idea_j}}{S_{\text{raw}}} \times 100\%$
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|--|
 | **Idea 1 (Negative Example Prompting)** | 14%                        | -11%                                | -26%                       |            -19%                          |14%|
 | **Idea 2 (Chain-Of-Thought Prompting)** | 34%                        | 11%                                | 23%                       |            14%                         |38%|
-| **Idea 3 (Fine-Tuning)** | 64%                        | 60%                               |          xx               |                                 37%       |xx|
+| **Idea 3 (Fine-Tuning)** | 64%                        | 60%                               |          43%               |                                 37%       |xx|
 | **Idea 4 (Meta Prompting)** | 31%                        | 31%                               |          22%               |                                 16%       |49%|

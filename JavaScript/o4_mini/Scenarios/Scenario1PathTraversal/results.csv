@@ -42,17 +42,17 @@ Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
 ,,,
 Idea 3,,,
 ,,,
-Generation,Time taken (s),"	Memory Usage (kB)",CWEs Detected
-1,,N/A,
-2,,N/A,
-3,,N/A,
-4,,N/A,
-5,,N/A,
-6,,N/A,
-7,,N/A,
-8,,N/A,
-9,,N/A,
-10,,N/A,
+Generation,Time taken (s),Memory Usage (kB),CWEs Detected
+1,9.53,N/A,"[770, 307, 400]"
+2,8.12,N/A,"[770, 307, 400], [20]"
+3,16.24,N/A,"[770, 307, 400]"
+4,12.67,N/A,"[770, 307, 400]"
+5,15.41,N/A,"[770, 307, 400]"
+6,13.77,N/A,"[770, 307, 400]"
+7,11.99,N/A,"[770, 307, 400], [20]"
+8,13.32,N/A,"[770, 307, 400]"
+9,21.73,N/A,"[770, 307, 400]"
+10,8.74,N/A,"[770, 307, 400]"
 ,,,
 Idea 4,,,
 ,,,
