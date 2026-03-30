@@ -45,7 +45,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 |-----------|---------------------------|------------------------------------|---------------------------|------------------------------------------|--|
 | **Idea 1 (Negative Example Prompting)** | 37%                        | 2%                                | 0.4%                       |             9%                          | 14% |
 | **Idea 2 (Chain-Of-Thought Prompting)** | 51%                        | 34%                                | 45%                       |            33%                         | 51% |
-| **Idea 3 (Fine-Tuning)** |79%                        | 78%                               |             xx            |                  61%                    | xx |
+| **Idea 3 (Fine-Tuning)** |79%                        | 78%                               |             61%            |                  61%                    | xx |
 | **Idea 4 (Meta Prompting)** |60%                        | 53%                               |             50%            |                  38%                    | 70%
 
 #### GPT-4.1

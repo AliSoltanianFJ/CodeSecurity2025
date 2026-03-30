@@ -16,10 +16,6 @@ public class Scenario10_Copilot9_idea1 extends HttpServlet {
 
         String username = req.getParameter("username");
         try {
-            if (username == null || username.isEmpty()) {
-                out.println("Username parameter is missing.");
-                return;
-            }
 
             String safeName = escapeHtml(username);
 
