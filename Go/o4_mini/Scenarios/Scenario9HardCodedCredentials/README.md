@@ -122,6 +122,27 @@ For each idea, the change in the code samples between the raw code generations a
 - Average Memory Usage: **4.49 kilobytes**
 - Number of Secure Samples: **10/10**
 
+### Idea 3
+
+| Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
+|------------|----------------|------------------|---------------|
+| 1          | 21.54          | N/A              | None          |
+| 2          | 20.19          | N/A              | None          |
+| 3          | 23.24          | N/A              | None          |
+| 4          | 26.17          | N/A              | None          |
+| 5          | 15.02          | N/A              | None          |
+| 6          | 14.41          | N/A              | None          |
+| 7          | 20.98          | N/A              | None          |
+| 8          | 14.47          | N/A              | None          |
+| 9          | 27.66          | N/A              | None          |
+| 10         | 21.91          | N/A              | None          |
+
+**Summary Statistics**
+
+- Average Time Taken: **20.76 seconds**
+- Average Memory Usage: **N/A**
+- Number of Secure Samples: **10/10**
+
 ### Idea 4
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |

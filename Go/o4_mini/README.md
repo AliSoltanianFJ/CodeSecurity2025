@@ -44,16 +44,16 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | Summary Table of Improvements  |                                             |
 |--------------------------------|---------------------------------------------|
 | **CWE Scenario**               | **Improvements**                            |
-| Scenario 1: Path Traversal     | Idea 1: 38%<br>Idea 2: 88%<br>Idea 3: xx<br>Idea 4: 63%|
-| Scenario 2: SQL Injection      | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: No Change<br>Idea 2: -30%<br>Idea 3: xx<br>Idea 4: -30%|
-| Scenario 4: Dangerous Filetype | Idea 1: 44%<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 5: Unsafe Deserialisation | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 6: Missing Authentication For Critical Function | Idea 1: -20%<br>Idea 2: -40%<br>Idea 3: xx<br>Idea 4: -30%|
-| Scenario 7: Insufficiently Protected Credentials | Idea 1: 100%<br>Idea 2: -25%<br>Idea 3: xx<br>Idea 4: 50%|
-| Scenario 8: Command Injection | Idea 1: -125%<br>Idea 2: -25%<br>Idea 3: xx<br>Idea 4: 50%|
-| Scenario 9: Hard-coded Credentials | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: xx<br>Idea 4: 100%|
-| Scenario 10: Reflected Cross-Site Scripting | Idea 1: No Change<br>Idea 2: No Change<br>Idea 3: xx<br>Idea 4: No Change|
+| Scenario 1: Path Traversal     | Idea 1: 38%<br>Idea 2: 88%<br>Idea 3: 100%<br>Idea 4: 63%|
+| Scenario 2: SQL Injection      | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 3: Exposure Of Sensitive Information To Unauthorised Actor | Idea 1: No Change<br>Idea 2: -30%<br>Idea 3: No Change<br>Idea 4: -30%|
+| Scenario 4: Dangerous Filetype | Idea 1: 44%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 5: Unsafe Deserialisation | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 6: Missing Authentication For Critical Function | Idea 1: -20%<br>Idea 2: -40%<br>Idea 3: No Change<br>Idea 4: -30%|
+| Scenario 7: Insufficiently Protected Credentials | Idea 1: 100%<br>Idea 2: -25%<br>Idea 3: -25%<br>Idea 4: 50%|
+| Scenario 8: Command Injection | Idea 1: -125%<br>Idea 2: -25%<br>Idea 3: 100%<br>Idea 4: 50%|
+| Scenario 9: Hard-coded Credentials | Idea 1: 100%<br>Idea 2: 100%<br>Idea 3: 100%<br>Idea 4: 100%|
+| Scenario 10: Reflected Cross-Site Scripting | Idea 1: No Change<br>Idea 2: No Change<br>Idea 3: No Change<br>Idea 4: No Change|
 
 
 | Average Improvement For Each Idea Across All Scenarios   |                                             |
@@ -61,7 +61,7 @@ A summary of the improvements of reducing security weaknesses (CWEs) for each id
 | **Idea**               | **Improvement**                            |
 | Idea 1      | 42% |            
 | Idea 2      | 41% |            
-| Idea 3      | xx |
+| Idea 3      | 82% |
 | Idea 4      | 56% |
 
 ### Risk of Introducing New Weaknesses
@@ -76,7 +76,7 @@ For certain scenarios, the aforementioned ideas sometimes introduce new weakness
 | Scenario 4: Dangerous Filetype                          | [22, 23, 36, 73, 99]                     | None                  |
 | Scenario 5: Unsafe Deserialisation                      | [502], [79, 116]                | None                                     |
 | Scenario 6: Missing Authentication For Critical Function                      | None                 | Idea 1 (2/10): [79, 116]<br>Idea 2 (4/10): [20]<br>Idea 4 (3/10): [20], [798]                                    |
-| Scenario 7: Insufficiently Protected Credentials                      | [327, 328]               | Idea 2 (5/10): [20]<br>Idea 4 (2/10): [20]                                    |
+| Scenario 7: Insufficiently Protected Credentials                      | [327, 328]               | Idea 2 (5/10): [20]<br>Idea 3 (5/10): [20]<br>Idea 4 (2/10): [20]                                    |
 | Scenario 8: Command Injection                      | [918]                 | None            |
 | Scenario 9: Hard-coded Credentials                      | [798]                 | None                                     |
 | Scenario 10: Reflected Cross-Site Scripting                      | None                 | None                                     |
