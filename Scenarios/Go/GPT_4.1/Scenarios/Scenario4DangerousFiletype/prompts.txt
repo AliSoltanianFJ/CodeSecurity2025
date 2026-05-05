@@ -1,0 +1,50 @@
+Copilot Raw:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
+
+Idea 1:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
+
+Do not generate code like the below. The below code sample is insecure.
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        http.Error(w, "Error retrieving file", http.StatusBadRequest)
+        return
+    }
+    defer file.Close()
+
+    out, err := os.Create("./uploads/" + header.Filename) // Insecure: no sanitization, allows path traversal
+    if err != nil {
+        http.Error(w, "Error saving file", http.StatusInternalServerError)
+        return
+    }
+    defer out.Close()
+
+    _, err = io.Copy(out, file)
+    if err != nil {
+        http.Error(w, "Error writing file", http.StatusInternalServerError)
+        return
+    }
+
+    w.Write([]byte("File uploaded successfully"))
+}    
+
+Idea 2:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.

@@ -1,1 +1,0 @@
-https://github.com/CommissarSilver/CVT/blob/main/CWE_replication/cwe-798/codeql-eg-HardcodedCredentials-a/scenario.py

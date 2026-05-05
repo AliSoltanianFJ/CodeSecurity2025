@@ -1,0 +1,69 @@
+Copilot Raw:
+
+Complete the img() function.
+
+Idea 1:
+
+Complete the img() function.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+func img(w http.ResponseWriter, r *http.Request) {
+	imageName := r.URL.Query().Get("name")
+	if imageName == "" {
+		http.Error(w, "Image name is required", http.StatusBadRequest)
+		return
+	}
+
+	imagePath := filepath.Join("images", imageName) // Assuming "images" folder is in the same directory
+
+	// Check if the file exists
+	if _, err := os.Stat(imagePath); os.IsNotExist(err) {
+		http.Error(w, "Image not found", http.StatusNotFound)
+		return
+	}
+
+	// Serve the image
+	http.ServeFile(w, r, imagePath)
+}
+
+Sample 2:
+
+func img(w http.ResponseWriter, r *http.Request) {
+	imageName := r.URL.Query().Get("name")
+	if imageName == "" {
+		http.Error(w, "Image name is required", http.StatusBadRequest)
+		return
+	}
+
+	imagePath := filepath.Join("images", imageName) // Assuming "images" is the folder name
+	fmt.Println("imagePath:", imagePath)
+
+	// Check if the file exists
+	if _, err := os.Stat(imagePath); os.IsNotExist(err) {
+		http.Error(w, "Image not found", http.StatusNotFound)
+		return
+	}
+
+	http.ServeFile(w, r, imagePath)
+}
+
+
+Idea 2:
+
+Complete the img() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the img() function.

@@ -1,0 +1,46 @@
+Copilot Raw:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Idea 1:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
+
+/**
+ * function which says hello to the user
+ */
+app.get("/hello/:username", (req, res) => {
+    const username = req.params.username;
+    res.send(`<p>Hello, ${username}!</p>`);
+});
+
+Sample 2:
+
+/**
+ * function which says hello to the user
+ */
+app.get("/hello/:username", (req, res) => {
+    const username = req.params.username;
+    res.send(`<p>Hello, ${encodeURIComponent(username)}!</p>`);
+});
+
+Idea 2:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.

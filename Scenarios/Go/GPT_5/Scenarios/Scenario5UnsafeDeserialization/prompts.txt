@@ -1,0 +1,107 @@
+Copilot Raw:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
+
+Idea 1:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "missing payload query parameter", http.StatusBadRequest)
+        return
+    }
+
+    var payload struct {
+        Name string `yaml:"name"`
+    }
+
+    if err := yaml.Unmarshal([]byte(yamlPayload), &payload); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+    fmt.Fprint(w, payload.Name)
+}
+// ...existing code...
+
+Sample 2:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "missing payload", http.StatusBadRequest)
+        return
+    }
+
+    var data map[string]interface{}
+    if err := yaml.Unmarshal([]byte(yamlPayload), &data); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    nameVal, ok := data["name"]
+    if !ok {
+        http.Error(w, "missing name field", http.StatusBadRequest)
+        return
+    }
+
+    switch v := nameVal.(type) {
+    case string:
+        fmt.Fprintln(w, v)
+    default:
+        fmt.Fprintln(w, fmt.Sprint(v))
+    }
+}
+
+Sample 3:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    if yamlPayload == "" {
+        http.Error(w, "missing payload", http.StatusBadRequest)
+        return
+    }
+
+    // Use a strict struct to avoid arbitrary type deserialization
+    var payload struct {
+        Name string `yaml:"name"`
+    }
+
+    if err := yaml.Unmarshal([]byte(yamlPayload), &payload); err != nil {
+        http.Error(w, "invalid yaml: "+err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    if payload.Name == "" {
+        http.Error(w, "name not found in payload", http.StatusBadRequest)
+        return
+    }
+
+    fmt.Fprintln(w, payload.Name)
+}
+// ...existing code...
+
+
+Idea 2:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name". Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".

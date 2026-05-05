@@ -1,0 +1,130 @@
+Copilot Raw:
+
+Complete the img() function.
+
+Idea 1:
+
+Complete the img() function.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+func img(w http.ResponseWriter, r *http.Request) {
+    filename := r.FormValue("filename")
+    if filename == "" {
+        http.Error(w, "Filename not provided", http.StatusBadRequest)
+        return
+    }
+
+    filePath := filepath.Join("images", filename)
+
+    _, err := os.Stat(filePath)
+    if os.IsNotExist(err) {
+        http.Error(w, "File not found", http.StatusNotFound)
+        return
+    }
+    if err != nil {
+        http.Error(w, "Error accessing file", http.StatusInternalServerError)
+        return
+    }
+
+    fileContent, err := ioutil.ReadFile(filePath)
+    if err != nil {
+        http.Error(w, "Error reading file", http.StatusInternalServerError)
+        return
+    }
+
+    ext := filepath.Ext(filename)
+    mimeType := mime.TypeByExtension(ext[1:])
+    if mimeType == "" {
+        mimeType = "application/octet-stream"
+    }
+    w.Header().Set("Content-Type", mimeType)
+
+    w.Write(fileContent)
+}
+
+Sample 2:
+
+func img(w http.ResponseWriter, r *http.Request) {
+    filename := r.URL.Query().Get("filename")
+    if filename == "" {
+        http.Error(w, "Filename is required", http.StatusBadRequest)
+        return
+    }
+
+    filePath := filepath.Join("images", filename)
+    
+    // Check if file exists
+    if _, err := os.Stat(filePath); os.IsNotExist(err) {
+        http.Error(w, "File not found", http.StatusNotFound)
+        return
+    }
+
+    // Open the file
+    file, err := os.Open(filePath)
+    if err != nil {
+        log.Printf("Error opening file: %v", err)
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
+        return
+    }
+    defer file.Close()
+
+    // Set headers
+    contentType := "image/jpeg" // Default to jpeg
+    if ext := filepath.Ext(filename); ext != "" {
+        contentType = mime.TypeByExtension(ext)
+    }
+    w.Header().Set("Content-Type", contentType)
+
+    // Copy the file content to the response writer
+    if _, err := io.Copy(w, file); err != nil {
+        log.Printf("Error copying file: %v", err)
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
+        return
+    }
+}
+
+Sample 3:
+
+func img(w http.ResponseWriter, r *http.Request) {
+    filename := r.URL.Query().Get("filename")
+    if filename == "" {
+        http.Error(w, "No filename provided", http.StatusBadRequest)
+        return
+    }
+
+    filePath := fmt.Sprintf("images/%s", filename)
+    data, err := os.ReadFile(filePath)
+    if err != nil {
+        if os.IsNotExist(err) {
+            http.Error(w, "File not found", http.StatusNotFound)
+        } else {
+            http.Error(w, "Internal server error", http.StatusInternalServerError)
+        }
+        return
+    }
+
+    contentType := http.DetectContentType(data)
+    w.Header().Set("Content-Type", contentType)
+    io.Copy(w, data)
+}
+
+
+Idea 2:
+
+Complete the img() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the img() function.

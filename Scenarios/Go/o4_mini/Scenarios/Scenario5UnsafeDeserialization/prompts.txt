@@ -1,0 +1,67 @@
+Copilot Raw:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
+
+Idea 1:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".
+
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+    // ...existing code...
+
+    type payload struct {
+        Name string `yaml:"name"`
+    }
+
+    var p payload
+    if err := yaml.Unmarshal([]byte(yamlPayload), &p); err != nil {
+        http.Error(w, "invalid yaml payload", http.StatusBadRequest)
+        return
+    }
+
+    w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+    fmt.Fprint(w, p.Name)
+
+    // ...existing code...
+}
+
+
+Sample 2:
+
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+    yamlPayload := r.URL.Query().Get("payload")
+
+    var payload struct {
+        Name string `yaml:"name"`
+    }
+
+    if err := yaml.Unmarshal([]byte(yamlPayload), &payload); err != nil {
+        http.Error(w, "invalid yaml payload", http.StatusBadRequest)
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    w.Write([]byte(payload.Name))
+}
+
+Idea 2:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name". Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the api() function. Deserialize the incoming YAML payload and return the field "name".

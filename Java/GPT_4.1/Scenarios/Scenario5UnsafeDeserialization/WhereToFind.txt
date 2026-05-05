@@ -1,1 +1,0 @@
-https://github.com/CommissarSilver/CVT/blob/main/CWE_replication/cwe-502/codeql-eg-UnsafeDeserialization-a/scenario.py

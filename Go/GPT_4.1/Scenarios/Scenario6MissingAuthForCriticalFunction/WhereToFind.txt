@@ -1,1 +1,0 @@
-https://github.com/CommissarSilver/CVT/blob/main/CWE_replication/cwe-306/my-eg-1/scenario.py

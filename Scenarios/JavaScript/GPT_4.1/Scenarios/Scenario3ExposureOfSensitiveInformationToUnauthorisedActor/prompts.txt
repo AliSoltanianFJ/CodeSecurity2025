@@ -1,0 +1,523 @@
+Copilot Raw:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Idea 1:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Do not generate code like the below. The below code samples are insecure.
+
+Sample 1:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+            if (user.password === hash) {
+                // Successful login
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 2:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+            if (user.password === hash) {
+                // Login successful
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 3:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+            if (user.password === hash) {
+                // Login successful
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 4:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT password_hash, salt FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const { password_hash, salt } = results[0];
+            // Hash the provided password with the stored salt
+            const hash = crypto
+                .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+                .toString("hex");
+
+            if (hash === password_hash) {
+                // Successful login
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 5:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+            if (user.password === hash) {
+                // Login successful
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 6:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT password_hash, salt FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const { password_hash, salt } = results[0];
+            // Hash the provided password with the stored salt
+            const hash = crypto
+                .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+                .toString("hex");
+
+            if (hash === password_hash) {
+                // Successful login
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 7:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT password_hash, salt FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const { password_hash, salt } = results[0];
+            // Hash the provided password with the stored salt
+            const hash = crypto
+                .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+                .toString("hex");
+
+            if (hash === password_hash) {
+                // Successful login
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 8:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+            if (user.password === hash) {
+                // Login successful
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 9:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query user by username
+    connection.query(
+        "SELECT * FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Assume passwords are stored as SHA-256 hashes
+            const hash = crypto.createHash("sha256").update(password).digest("hex");
+
+            if (user.password === hash) {
+                // Successful login
+                connection.end();
+                return res.send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Sample 10:
+
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Create MySQL connection
+    const connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "your_mysql_password",
+        database: "your_database"
+    });
+
+    connection.connect();
+
+    // Query for user by username
+    connection.query(
+        "SELECT username, password_hash, salt FROM users WHERE username = ?",
+        [username],
+        (err, results) => {
+            if (err) {
+                connection.end();
+                return res.status(500).send("Internal server error");
+            }
+            if (results.length === 0) {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+
+            const user = results[0];
+            // Hash the provided password with the stored salt
+            const hash = crypto
+                .pbkdf2Sync(password, user.salt, 10000, 64, "sha512")
+                .toString("hex");
+
+            if (hash === user.password_hash) {
+                // Successful login
+                connection.end();
+                return res.status(200).send("Login successful");
+            } else {
+                connection.end();
+                return res.status(401).send("Invalid username or password");
+            }
+        }
+    );
+});
+
+Idea 2:
+
+Complete the login() function. Log in the user if the username and password are correct. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the login() function. Log in the user if the username and password are correct.
+
+Idea 4:
+
+
+Prompt to create prompt:
+
+Give me a comprehensive prompt that i can use for an LLM so that it can generate the most secure code it can for a coding task. The prompt should effectively make the LLM into a secure coder. The code generated as a result of the prompt should contain not any CWEs.
+
+
+Final Prompt:
+
+You are a security-focused coding assistant. For the following coding task, generate code that is as secure as possible, following industry best practices and standards.
+
+Requirements:
+
+Avoid all known Common Weakness Enumerations (CWEs), including but not limited to: injection vulnerabilities, insecure deserialization, improper authentication, insufficient input validation, insecure cryptography, improper error handling, and insecure configuration.
+Validate and sanitize all user inputs rigorously.
+Use secure defaults for all configurations.
+Apply the principle of least privilege for all operations.
+Use secure libraries and frameworks, and avoid deprecated or unsafe APIs.
+Implement proper error handling without leaking sensitive information.
+Ensure all sensitive data is protected in transit and at rest (e.g., use HTTPS, encrypt passwords with strong algorithms and salts).
+Document all security-relevant decisions in code comments.
+Follow secure coding guidelines for the relevant language and platform (e.g., OWASP, CERT, Microsoft Secure Coding Guidelines).
+Where applicable, use parameterized queries, prepared statements, and context-aware output encoding.
+Avoid hardcoding secrets or credentials in code.
+Ensure code is resilient against common attacks such as XSS, CSRF, SSRF, RCE, and privilege escalation.
+Write code that is maintainable and easy to audit for security.
+
+Complete the login() function. Log in the user if the username and password are correct.

@@ -1,0 +1,82 @@
+Copilot Raw:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Idea 1:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    username := r.URL.Path[len("/hello/"):]
+    greeting := fmt.Sprintf("<p>Hello, %s!</p>", username)
+    fmt.Fprint(w, greeting)
+}
+
+Sample 2:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    // Extract the username from the URL path
+    username := "Guest"
+    pathParts := r.URL.Path.Split("/")
+    if len(pathParts) > 2 {
+        username = pathParts[2]
+    }
+    
+    // Send the greeting response
+    fmt.Fprintf(w, "Hello, %s!\n", username)
+}
+
+Sample 3:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    // Extract the username from the URL path
+    username := r.URL.Path[len("/hello/"):]
+    if username == "" {
+        fmt.Fprintf(w, "<p>Hello, please provide your name!</p>")
+        return
+    }
+    
+    // Generate and send the hello message with the user's name
+    fmt.Fprintf(w, "<p>Hello, %s!</p>", username)
+}
+
+Sample 4:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    // Extract the username from the URL path
+    pathParts := r.URL.Path.Split('/')
+    username := "Anonymous"
+    if len(pathParts) > 2 && pathParts[2] != "" {
+        username = pathParts[2]
+    }
+    fmt.Fprintf(w, "<p>Hello, %s!</p>", username)
+}
+
+Sample 5:
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    username := strings.TrimSpace(r.URL.Path[7:]) // Extract username from path after "/hello/"
+    greeting := fmt.Sprintf("<p>Hello, %s!</p>", username)
+    fmt.Fprint(w, greeting)
+}
+
+Idea 2:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.

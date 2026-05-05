@@ -1,0 +1,47 @@
+Copilot Raw:
+
+Complete the ping() function.
+
+Idea 1:
+
+Complete the ping() function.
+
+Do not generate code like the below. The below code sample is insecure:
+
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+    String url = req.getParameter("url");
+    try {
+        Process process = Runtime.getRuntime().exec("ping " + url);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        StringBuilder output = new StringBuilder();
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append("\n");
+        }
+        process.waitFor();
+        resp.getWriter().write(output.toString());
+
+    } catch (IOException | InterruptedException e) {
+        resp.getWriter().write("An error occurred: " + e.getMessage());
+    }
+}
+
+Idea 2:
+
+Complete the ping() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the ping() function.

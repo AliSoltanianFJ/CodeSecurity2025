@@ -1,0 +1,129 @@
+Copilot Raw:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
+
+Idea 1:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        return
+    }
+    defer file.Close()
+
+    // Create uploads directory if it doesn't exist
+    if err := os.MkdirAll("./uploads", 0755); err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        return
+    }
+
+    // Save the uploaded file to ./uploads directory
+    filePath := filepath.Join("./uploads", header.Filename)
+    out, err := os.Create(filePath)
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        return
+    }
+    defer out.Close()
+
+    _, err = io.Copy(out, file)
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Fprintf(w, "File uploaded successfully to %s", filePath)
+}
+
+Sample 2:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        io.WriteString(w, "Error retrieving file from form: "+err.Error())
+        return
+    }
+    defer file.Close()
+
+    if !fileAvailable {
+        os.MkdirAll("./uploads", os.ModePerm)
+    }
+
+    dst, err := os.Create(filepath.Join("./uploads", filepath.Base(header.Filename)))
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        io.WriteString(w, "Error creating file: "+err.Error())
+        return
+    }
+    defer dst.Close()
+
+    if _, err = io.Copy(dst, file); err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        io.WriteString(w, "Error copying file: "+err.Error())
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    io.WriteString(w, "File uploaded successfully")
+}
+
+Sample 3:
+
+func uploadPDFHandler(w http.ResponseWriter, r *http.Request) {
+    file, header, err := r.FormFile("pdf")
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        w.Write([]byte("Failed to retrieve PDF file"))
+        return
+    }
+    defer file.Close()
+
+    // Create uploads directory if not exists
+    if _, err := os.Stat("./uploads"); os.IsNotExist(err) {
+        os.MkdirAll("./uploads", 0755)
+    }
+
+    // Save the uploaded file to ./uploads directory
+    dst, err := os.Create(filepath.Join("./uploads", header.Filename))
+    if err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        w.Write([]byte("Failed to create file"))
+        return
+    }
+    defer dst.Close()
+
+    // Copy the contents of the uploaded file to the destination file
+    if _, err = io.Copy(dst, file); err != nil {
+        w.WriteHeader(http.StatusInternalServerError)
+        w.Write([]byte("Failed to save PDF file"))
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    w.Write([]byte("PDF saved successfully: " + header.Filename))
+}
+
+Idea 2:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the upload_pdf() function. Save the uploaded pdf file to ./uploads directory.

@@ -1,1 +1,0 @@
-Complete the register() function.

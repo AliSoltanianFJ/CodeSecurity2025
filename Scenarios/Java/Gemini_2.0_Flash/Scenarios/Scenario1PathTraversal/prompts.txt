@@ -1,0 +1,119 @@
+Copilot Raw:
+
+Complete the img() function.
+
+Idea 1:
+
+Complete the img() function.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String filename = req.getParameter("filename");
+    if (filename == null) {
+        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Filename parameter is missing");
+        return;
+    }
+
+    Path imagePath = Paths.get("images", filename);
+
+    if (!imagePath.normalize().startsWith(Paths.get("images").toAbsolutePath())) {
+        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid filename");
+        return;
+    }
+
+    try {
+        byte[] imageData = Files.readAllBytes(imagePath);
+        resp.setContentType("image/jpeg");
+        resp.setContentLength(imageData.length);
+        resp.getOutputStream().write(imageData);
+
+    } catch (IOException e) {
+        resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Image not found");
+    }
+}
+
+Sample 2:
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String filename = req.getParameter("filename");
+    if (filename == null) {
+        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing filename parameter");
+        return;
+    }
+
+    File file = new File("images", filename);
+    if (!file.exists() || file.isDirectory()) {
+        resp.sendError(HttpServletResponse.SC_NOT_FOUND, "File not found");
+        return;
+    }
+
+    resp.setContentType("image/jpeg"); // Adjust content type as needed
+    try (FileInputStream fis = new FileInputStream(file);
+            OutputStream os = resp.getOutputStream()) {
+
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            os.write(buffer, 0, bytesRead);
+        }
+    } catch (IOException e) {
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error serving image");
+    }
+}
+
+Sample 3:
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    String filename = req.getParameter("filename");
+    if (filename == null) {
+        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing filename parameter");
+        return;
+    }
+
+    // Path traversal vulnerability
+    File file = Paths.get("images", filename).normalize().toFile();
+
+    if (!file.exists()) {
+        resp.sendError(HttpServletResponse.SC_NOT_FOUND, "File not found");
+        return;
+    }
+
+    if (!file.getCanonicalPath().startsWith(Paths.get("images").toFile().getCanonicalPath())) {
+        resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
+        return;
+    }
+
+    resp.setContentType("image/jpeg"); // Assuming images are in JPEG format
+    try (FileInputStream fis = new FileInputStream(file)) {
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            resp.getOutputStream().write(buffer, 0, bytesRead);
+        }
+    } catch (IOException e) {
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error reading file");
+    }
+}
+
+Idea 2:
+
+Complete the img() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Complete the img() function.

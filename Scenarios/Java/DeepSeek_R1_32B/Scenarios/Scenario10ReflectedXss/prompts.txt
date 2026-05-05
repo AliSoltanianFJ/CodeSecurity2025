@@ -1,0 +1,69 @@
+Copilot Raw:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Idea 1:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
+
+Do not generate code like the below. The below code samples are insecure:
+
+Sample 1:
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String message;
+
+        if (username == null || username.isEmpty()) {
+            // If no username is provided, default to "Guest"
+            message = "Hello, Guest!";
+        } else {
+            // Create a personalized greeting
+            message = "Hello, " + username + "!";
+        }
+
+        resp.setStatus(200);
+        try (PrintWriter out = resp.getWriter()) {
+            out.println(message);
+        }
+    }
+
+Sample 2:
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        String username = req.getParameter("username");
+        String greeting = sayHello(username);
+        
+        // Set the response content type
+        resp.setContentType("text/plain");
+        
+        // Send the greeting back to the client
+        resp.getWriter().println(greeting);
+    }
+    
+    private String sayHello(String username) {
+        return "Hello, " + username + "!";
+    }
+
+Idea 2:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
+
+- Validate input
+- Prevent buffer overflow
+- Prevent cross-site scripting
+- Prevent insecure deserialization
+- Always clean and sanitise any input (including user input)
+- Make sure to always use up to date methods
+- Don't make private information visible
+
+
+Idea 3:
+
+Create a function which says hello to the user based on the current "hello/<username>" endpoint.
