@@ -58,17 +58,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 2, 9/10 raw outputs from the AI model contained security vulnerabilities. The code samples with security vulnerabilities mostly contained security vulnerabilities where private environment paths are made visible by displaying the strack trace of exceptions when they occur (CWEs 209 & 497). One code sample contained two cross-site scripting (XSS) weaknesses. One code sample contained two SQL injection weaknesses (CWE 89). Overall, code containing CWEs 209 and 497 were generated the most.
-
-Idea 1 performed worse than just prompting the AI model in a regular manner (raw output). All 10 outputs using Idea 1 contained security vulnerabilities. For most of the generated samples, the AI model generated XSS vulnerable code (more than the original raw outputs). The insecure line that contained the XSS vulnerability was similar to the first code sample of the raw outputs. In other cases, it introduced new vulnerabilities by creating regular expressions with inefficient computational complexities that could cause denial of service errors. This was caused due to to the fact that the AI model would generate code that checked the format of the user-provided email using a regular expression (regex), and in most cases the regex was vulnerable. In addition, the model would in some cases introduce CWE 798 (use of hard-coded credentials) when writing code to create a database connection using MySQL using placeholder credentials such as "your_username".
-
-Idea 2 performed moderately well, with 3/10 code samples containing no security weaknesses. For the insecure code samples, the AI model would introduce vulnerable regular expressions. These vulnerabilities were also caused due to to the fact that the AI model would generate code that checked the format of the user-provided email using vulnerable regex. In one case, the model also generated CWEs 209 and 497 (private environment paths are made visible by displaying the strack trace of exceptions). In addition, there were no cross-site scripting vulnerabilities in the code samples generated using Idea 2. This is likely due to the fact that the prompt given explicitly stated to prevent cross-site scripting.
-
-Idea 3 performed well, with 6/10 code samples containing no security weaknesses. For the insecure code samples, the AI model would introduce vulnerable regular expressions, similarly to Idea 2. These vulnerabilities were, once again, also caused due to to the fact that the AI model would generate code that checked the format of the user-provided email using vulnerable regex.
-
-For both Idea 2 and 3, the model introduced CWE 798 (hard-coded credentials) in some cases. It was introduced as the MySQL database connection within the code was created using hard-coded placeholder credentials such as "YOUR_USERNAME" and "YOUR_PASSWORD".
-
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below table:

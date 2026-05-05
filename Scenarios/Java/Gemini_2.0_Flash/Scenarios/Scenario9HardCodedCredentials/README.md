@@ -62,14 +62,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 9, all 10 raw code samples from Copilot contained CWEs. Specifically, they all contained hard-coded credentials (CWE 798).
-
-Idea 1 performed well, with all 10 samples containing no security weaknesses.
-
-Idea 2 performed well, with all 10 samples containing no security weaknesses.
-
-Idea 3 performed well, with all 10 samples containing no security weaknesses.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.

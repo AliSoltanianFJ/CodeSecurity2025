@@ -61,10 +61,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 10, all 10 raw outputs from Copilot contained CWEs. Specifically they all contained cross-site scripting (CWES 79 and 116) weaknesses. This is because the generated code used the raw username from the URL to display a hello message (which can be exploited).
-
-When using Ideas 1, 2 and 3, no cross-site scripting weaknesses were generated. All code samples were found to be secure.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.
