@@ -267,7 +267,7 @@ Complete the login() function. Log in the user if the username and password are 
 
     SAVE_PATH = ".\\Idea4\\"
 
-CODE_PATH = "C:\\Users\\solar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+CODE_PATH = "C:\\Users\\user\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
 FILE_TO_OPEN = ".\\scenario.py"
 import psutil, time
 
