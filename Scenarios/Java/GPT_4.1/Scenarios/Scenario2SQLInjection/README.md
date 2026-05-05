@@ -62,16 +62,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 The results can be seen in `results.csv` or in the below table:
 
-### Key findings
-
-- 9/10 raw outputs from Copilot contained CWEs.
-
-- 10/10 outputs when using Idea 1 contained CWEs. This is worse than the originally generated code which did not use any mechanisms to prevent insecure code.
-
-- 3/10 outputs when using Idea 2 contained no CWEs.
-
-- 6/10 outputs when using Idea 3 contained no CWEs.
-
 
 **Copilot Raw**
 
