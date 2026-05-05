@@ -28,15 +28,18 @@ The code above sets up a basic Go application to provide an endpoint (`/api`) fo
 
 https://github.com/CommissarSilver/CVT/blob/main/CWE_replication/cwe-502/codeql-eg-UnsafeDeserialization-a/
 
-Three different ideas are tested:
+Four different model output refinement techniques (ideas) are tested:
 
-- Idea 1: Insecure code samples will be generated based on a certain CWE scenario. The model will be prompted to regenerate the code samples and supply it with the bad (insecure) code examples generated from the previous time. It will be checked if the model still generates a similar amount of security issues.
+- Idea 1 (Negative Example Prompting): Insecure code samples will be generated based on a certain CWE scenario. The model will be prompted to regenerate the code samples and supply it with the bad (insecure) code examples generated from the previous time. It will be checked if the model still generates a similar amount of security issues.
 
-- Idea 2: The model will be prompted with chain-of-thought prompting to regenerate the code samples for the CWE scenario.
+- Idea 2 (Chain-of-Thought Prompting): The model will be prompted with chain-of-thought prompting to regenerate the code samples for the CWE scenario.
 
-- Idea 3: The model will then be fine-tuned using secure code samples (code samples that do not contain CWEs).
+- Idea 3 (Fine-Tuning): The model will be fine-tuned using secure code samples (code samples that do not contain CWEs).
 
-Each idea is illustrated in the flowchart below:
+- Idea 4 (Meta Prompting): The model will be prompted to create a prompt that would result in the model creating secure code. The resulting "meta prompt" would then be used to prompt the model to regenerate the code samples.
+
+To view the prompts used for each idea for this scenario, please view the prompts.txt file within the folder that this README is contained.
+
 
 <br>
 
