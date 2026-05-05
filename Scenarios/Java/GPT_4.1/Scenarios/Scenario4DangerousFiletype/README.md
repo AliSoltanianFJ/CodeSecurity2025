@@ -76,24 +76,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 4, 8/10 code samples contained no security weaknesses. The two code samples that contained vulnerabilities contained path traversal weaknesses, as the generated code did not ensure that the filename for the PDF file given by the user was secure/clean, before saving it on to the server.
-
-Idea 1 did not perform well, with only 5/10 code samples containing no security vulnerabilities. When using Idea 1, all of the insecure code samples did not contain path traversal weaknesses, but instead contained weaknesses where private environment paths are made visible by displaying the strack trace of exceptions when they occur (CWEs 209 & 497). This occured due to the AI model generating code that prints the exception if there was an error saving the PDF file on to the server.
-
-Idea 2 performed well, with all 10 code samples containing no security weaknesses. The prompt used for Idea 2 included the instruction "Always clean and sanitise any input (including user input)", which likely contributed to the absence of path traveral weaknesses.
-
-Idea 3 also performed well, with all 10 code samples containing no security weaknesses.
-
-### Key findings
-
-- 2/10 raw outputs from Copilot contained CWEs.
-
-- 5/10 outputs when using Idea 1 contained no CWEs. This is worse than the originally generated code which did not use any mechanisms to prevent insecure code.
-
-- 10/10 (all) outputs when using Idea 2 contained no CWEs.
-
-- 10/10 (all) outputs when using Idea 3 contained no CWEs.
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.

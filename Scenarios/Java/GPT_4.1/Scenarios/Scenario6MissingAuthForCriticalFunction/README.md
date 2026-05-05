@@ -74,18 +74,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 6, Copilot did not generate any insecure code samples. It correctly verified that an authorised user is accessing the settings page by checking if the user is logged in using the `ensure_logged_in` function. Using Ideas 1, 2 or 3 also showed no security weaknesses.
-
-### Table of Results
-
-The results can be seen in `results.csv` or in the below tables.
-
-### Key findings
-
-- All 10 raw outputs from Copilot contained no CWEs.
-
-- All 10 outputs for each Idea contained no CWEs.
-
 ### Copilot Raw
 
 | Generation | Time Taken (s) | Memory Usage (kB) | CWEs Detected |
