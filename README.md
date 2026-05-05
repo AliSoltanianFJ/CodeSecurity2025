@@ -97,6 +97,9 @@ Where:
 | **Idea3** | Fine-Tuned model outputs |
 | **Idea4** | Meta Prompting (MP) |
 
+Each `<Model>` directory contains:
+- `results.sarif` → The code scanning results from CodeQL with all detected CWEs recorded.
+
 Each `ScenarioX` directory contains:
 - `prompts.txt` → The prompts used for the baseline and refinement technique prompts for that scenario  
 - Small scenario scripts used to execute and test generated code
