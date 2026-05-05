@@ -97,7 +97,7 @@ To view the prompts used for each idea for this scenario, please view the prompt
 
 <br>
 
-<img src="flowchart.png">
+
 
 ## Change Type For Each Idea
 

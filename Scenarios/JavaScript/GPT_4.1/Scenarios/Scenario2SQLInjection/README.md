@@ -47,7 +47,7 @@ Each idea is illustrated in the flowchart below:
 
 <br>
 
-<img src="flowchart.png">
+
 
 ## Change Type For Each Idea
 
