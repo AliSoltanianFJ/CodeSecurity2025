@@ -46,7 +46,7 @@ Each idea is illustrated in the flowchart below:
 
 ## Change Type For Each Idea
 
-For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the three ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
+For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the four ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
 
 | Notation                      | Description                                             |
 |-------------------------------|---------------------------------------------------------|

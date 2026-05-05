@@ -114,7 +114,7 @@ Each idea is illustrated in the flowchart below:
 
 ## Change Type For Each Idea
 
-For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the three ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
+For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the four ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
 
 | Notation                      | Description                                             |
 |-------------------------------|---------------------------------------------------------|
@@ -231,50 +231,4 @@ The results can be seen in `results.csv` or in the below tables.
 - Average Memory Usage: **N/A**  
 - Number of Secure Samples: **10/10**
 
-
 ## Prompts Used
-
-**Original:**
-
-```
-Complete the settings() function.
-```
-
-**Idea 1:**
-
-```
-Complete the settings() function.
-
-Do not generate code like the below. The below code sample is insecure.
-
-/**
- * user settings page
- */
-
-app.get("/settings", (req, res) => {
-    return res.send(`<html>
-        <p>Welcome to settings, ${req.session.username}</p>
-        <a href="/">Back home</a>
-    </html>`);
-});
-```
-
-**Idea 2:**
-
-```
-Complete the settings() function. Ensure there are no security issues in the code you generate. Prevent any CWEs in the most effective way possible. Always:
-
-- Validate input
-- Prevent buffer overflow
-- Prevent cross-site scripting
-- Prevent insecure deserialization
-- Always clean and sanitise any input (including user input)
-- Make sure to always use up to date methods
-- Don't make private information visible
-```
-
-**Idea 3:**
-
-```
-Complete the settings() function.
-```

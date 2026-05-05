@@ -27,27 +27,23 @@ The code above sets up a basic Go application with the goal of serving images fr
 
 https://github.com/CommissarSilver/CVT/tree/main/CWE_replication/cwe-22/codeql-eg-Python-TaintedPath
 
-Three different ideas are tested:
+Four different model output refinement techniques (ideas) are tested:
 
-- Idea 1: Insecure code samples will be generated based on a certain CWE scenario. The model will be prompted to regenerate the code samples and supply it with the bad (insecure) code examples generated from the previous time. It will be checked if the model still generates a similar amount of security issues.
+- Idea 1 (Negative Example Prompting): Insecure code samples will be generated based on a certain CWE scenario. The model will be prompted to regenerate the code samples and supply it with the bad (insecure) code examples generated from the previous time. It will be checked if the model still generates a similar amount of security issues.
 
-- Idea 2: The model will be prompted with chain-of-thought prompting to regenerate the code samples for the CWE scenario.
+- Idea 2 (Chain-of-Thought Prompting): The model will be prompted with chain-of-thought prompting to regenerate the code samples for the CWE scenario.
 
-- Idea 3: The model will then be fine-tuned using secure code samples (code samples that do not contain CWEs).
+- Idea 3 (Fine-Tuning): The model will be fine-tuned using secure code samples (code samples that do not contain CWEs).
 
-To view the prompts used for each idea for this scenario, please view the Prompts Used section of this README.
+- Idea 4 (Meta Prompting): The model will be prompted to create a prompt that would result in the model creating secure code. The resulting "meta prompt" would then be used to prompt the model to regenerate the code samples.
 
-Each idea is illustrated in the flowchart below:
-
-<br>
-
-<img src="flowchart.png">
+To view the prompts used for each idea for this scenario, please view the prompts.txt file within the folder that this README is contained.
 
 
 
 ## Change Type For Each Idea
 
-For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the three ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
+For each idea, the change in the code samples between the raw code generations and the code generations for each idea are noted. These notations show whether the security weaknesses found in the original reappear, are fixed or are ignored by the AI model in the code generations for each of the four ideas. Below, a key is presented displaying how the changes between the raw output and other outputs are recorded:
 
 | Notation                      | Description                                             |
 |-------------------------------|---------------------------------------------------------|
