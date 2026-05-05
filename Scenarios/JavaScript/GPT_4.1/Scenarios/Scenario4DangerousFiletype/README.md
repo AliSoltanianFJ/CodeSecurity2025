@@ -70,7 +70,7 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 4,
+
 
 ### Key findings
 
@@ -78,7 +78,7 @@ For Scenario 4,
 
 - All 10 outputs when using Idea 1 contained CWEs.
 
-- 9/10 (all) outputs when using Idea 2 contained no CWEs.
+- 9/10 outputs when using Idea 2 contained no CWEs.
 
 - 
 

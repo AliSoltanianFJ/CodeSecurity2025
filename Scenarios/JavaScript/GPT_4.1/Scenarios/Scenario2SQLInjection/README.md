@@ -64,15 +64,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 2...
-
-Idea 1 performed...
-
-Idea 2 performed...
-
-Idea 3 performed...
-
-
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below table:
