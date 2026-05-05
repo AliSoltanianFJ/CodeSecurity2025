@@ -102,7 +102,7 @@ Each `<Model>` directory contains:
 
 Each `ScenarioX` directory contains:
 - `prompts.txt` → The prompts used for the baseline and refinement technique prompts for that scenario  
-- Small scenario scripts used to execute and test generated code
+- Small scenario scripts used to execute prompts and store generated code
 
 The `Results` directory includes an overview of the results, and the `CWEsIntroducedMapping` includes network diagrams of original CWEs vs any CWEs introduced after applying refinement techniques.
 
@@ -200,7 +200,7 @@ Fine-tuning datasets were prepared separately for each language.
 
 For each supported model:
 
-1. Upload the language-specific dataset to the model’s cloud fine-tuning platform.
+1. Upload the language-specific dataset to the model's cloud fine-tuning platform.
 2. Perform LoRA fine-tuning using default platform configurations.
 3. Re-run all scenario prompts using the fine-tuned model.
 4. Save outputs in the `Idea3` folders.
