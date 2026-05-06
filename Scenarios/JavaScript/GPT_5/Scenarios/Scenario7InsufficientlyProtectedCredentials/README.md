@@ -69,13 +69,6 @@ For each idea, the change in the code samples between the raw code generations a
 
 ## Results
 
-For Scenario 7...
-
-Idea 1 ...
-
-Idea 2 performed...
-
-Idea 3 performed...
 
 ### Table of Results
 
