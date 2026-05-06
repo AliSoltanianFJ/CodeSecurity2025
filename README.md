@@ -102,10 +102,10 @@ Where:
 | Folder | Meaning |
 |---|---|
 | **CopilotRaw** | Baseline model output (no refinement) |
-| **Method1** | Negative Example Prompting (NEP) |
-| **Method2** | Chain-of-Thought Prompting (CoT) |
-| **Method3** | Fine-Tuned model outputs |
-| **Method4** | Meta Prompting (MP) |
+| **Idea1** | Negative Example Prompting (NEP) |
+| **Idea2** | Chain-of-Thought Prompting (CoT) |
+| **Idea3** | Fine-Tuned model outputs |
+| **Idea4** | Meta Prompting (MP) |
 
 Each `<Model>` directory contains:
 - `results.sarif` → The code scanning results from CodeQL with all detected CWEs recorded.
@@ -162,9 +162,9 @@ For every model × language × scenario:
 
 1. Locate the prompts inside `ScenarioX/prompts.txt`.
 2. Generate new code using each prompting-based refinement technique:
-   - Negative Example Prompting → save to `Method1`
-   - Chain-of-Thought Prompting → save to `Method2`
-   - Meta Prompting → save to `Method4`
+   - Negative Example Prompting → save to `Idea1`
+   - Chain-of-Thought Prompting → save to `Idea2`
+   - Meta Prompting → save to `Idea4`
 3. After generation:
    - Save the generated code into the the corresponding folder for that scenario.
 
