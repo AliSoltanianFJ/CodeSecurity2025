@@ -26,7 +26,7 @@ The formula below is used to calculate the percentage improvement for each idea 
 **For each scenario:**
 
   1. Calculate severity score for each CWE.
-  
+
       - This is done by taking the severity score for the CWE given by CodeQL. The severity score is calculated by grouping the CVSS 3.1 score of related CVEs, then taking the 75th percentile of the score.
   2. Calculate total severity score for the raw output of the AI model by taking the sum of the severity scores of all CWEs reported in the ten raw samples.
   3. Calculate total severity score for the output of each idea by taking the sum of the severity scores of all CWEs reported in the ten samples of each idea.

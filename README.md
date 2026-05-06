@@ -1,21 +1,25 @@
-<div align="center">
+<div align="left">
 
-<h1>On Fixing Insecure AI-Generated Code through Model Fine-Tuning and Prompting Strategies</h1>
+# Fixing Insecure AI-Generated Code through Model Fine-Tuning and Prompting Strategies</h1>
 
-<h3>Description</h3>
+### Description
 
-This paper evaluates methods to improve the security of AI-generated code by applying prompting strategies and model fine-tuning across multiple LLMs, programming languages, and CWE-based scenarios.
+This repository contains all data and analysis results for evaluating different prompting-based and fine tuning methods to fix and repair AI-generated code that contained security weaknesses (CWEs). This was done across multiple LLMs, programming languages, and CWE-based scenarios.
 
 <br>
 
+Click here to access the preprint
+
 <a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025"><img src="https://img.shields.io/badge/📄_Paper-PDF-red?style=for-the-badge"></a>
 &nbsp;&nbsp;&nbsp;
-<a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025">
+<!-- <a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025">
   <img src="https://img.shields.io/badge/_Replication_Package-GitHub-black?style=for-the-badge&logo=github" >
+  -->
 </a>
 <br>
 <br>
 
+<!--
 <b>Abstract</b><br>
 </div>
 <p style="text-align: justify;">
@@ -37,7 +41,7 @@ AI-generated code.
 </p>
 
 ## 🔄 Replication
-
+-->
 ### Prerequisites
 To replicate the study, the following software and resources are required:
 
@@ -49,27 +53,33 @@ To replicate the study, the following software and resources are required:
   - Gemini 2.0 Flash
   - o4-mini
   - DeepSeek-R1-32B (local setup)
-- CodeQL CLI (2.21.0) and the CodeQL default security query packs
-- Cloud access for fine-tuning (LoRA) where supported
+- `CodeQL CLI (2.21.0)` and the CodeQL default security query packs
 - Python, Java, JavaScript, and Go toolchains installed
-- Git (for repository cloning)
+
+
+Clone the repository and install dependencies:
+
+```
+git clone https://github.com/AliSoltanianFJ/CodeSecurity2025
+cd CodeSecurity2025/
+```
 
 ---
 
 ### Repository Overview
 
-The project repository is structured as follows:
+The repository is structured as follows:
 
 ```
 CodeSecurity2025/
-├── Results
-│   └── CWEsIntroducedMapping
 ├── Scenarios
 │   ├── Go
 │   ├── Java
 │   ├── JavaScript
 │   └── Python
 └── Scripts
+├── Results
+    └── CWEsIntroducedMapping
 ```
 
 Each programming language contains identical scenario folder structure.
@@ -92,10 +102,10 @@ Where:
 | Folder | Meaning |
 |---|---|
 | **CopilotRaw** | Baseline model output (no refinement) |
-| **Idea1** | Negative Example Prompting (NEP) |
-| **Idea2** | Chain-of-Thought Prompting (CoT) |
-| **Idea3** | Fine-Tuned model outputs |
-| **Idea4** | Meta Prompting (MP) |
+| **Method1** | Negative Example Prompting (NEP) |
+| **Method2** | Chain-of-Thought Prompting (CoT) |
+| **Method3** | Fine-Tuned model outputs |
+| **Method4** | Meta Prompting (MP) |
 
 Each `<Model>` directory contains:
 - `results.sarif` → The code scanning results from CodeQL with all detected CWEs recorded.
@@ -111,11 +121,11 @@ The `Scripts` directory includes the custom Python-based script (`go_custom_code
 
 ---
 
+## Steps
 ### Step 1 - Scenario Preparation
 
-1. Clone the repository.
-2. Open the repository in Visual Studio Code.
-3. For each language, locate the scenarios:
+1. Open the repository in Visual Studio Code.
+2. For each language, locate the scenarios:
 
 ```
 Scenarios/<Language>/Model/Scenarios/ScenarioX/
@@ -123,12 +133,12 @@ Scenarios/<Language>/Model/Scenarios/ScenarioX/
 
 Each scenario corresponds to one weakness derived from the MITRE CWE Top 25.
 
-A total of:
+<!-- There are a total of:
 - 10 CWE scenarios  
 - 4 programming languages  
 - 5 LLMs  
 
-were evaluated.
+were evaluated. -->
 
 ---
 
@@ -152,9 +162,9 @@ For every model × language × scenario:
 
 1. Locate the prompts inside `ScenarioX/prompts.txt`.
 2. Generate new code using each prompting-based refinement technique:
-   - Negative Example Prompting → save to `Idea1`
-   - Chain-of-Thought Prompting → save to `Idea2`
-   - Meta Prompting → save to `Idea4`
+   - Negative Example Prompting → save to `Method1`
+   - Chain-of-Thought Prompting → save to `Method2`
+   - Meta Prompting → save to `Method4`
 3. After generation:
    - Save the generated code into the the corresponding folder for that scenario.
 
@@ -248,7 +258,7 @@ These results were used to answer RQ1-RQ3.
 
 ---
 
-### Notes on Reproducibility
+### Notes on reproducibility
 
 - Exact outputs (code samples) may vary slightly due to nondeterminism in LLM generation.
 - API and platform updates may require minor adjustments to the full process.
