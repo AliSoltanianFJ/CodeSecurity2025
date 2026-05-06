@@ -72,16 +72,7 @@ For each idea, the change in the code samples between the raw code generations a
 ### Table of Results
 
 The results can be seen in `results.csv` or in the below tables.
-
-### Key findings
-
-- All 10 raw outputs from Copilot contained CWEs.
-
-- 1/10 outputs when using Idea 1 contained no CWEs.
-
-- 6/10 outputs when using Idea 2 contained no CWEs.
-
-- All 10 outputs when using Idea 3 contained CWEs.
+ 
 
 ### Copilot Raw
 
