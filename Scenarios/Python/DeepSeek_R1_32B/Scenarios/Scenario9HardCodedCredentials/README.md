@@ -63,16 +63,6 @@ For Scenario 9...
 
 The results can be seen in `results.csv` or in the below tables.
 
-### Key findings
-
-- 6/10 raw outputs from Copilot contained CWEs.
-
-- 1/10 raw outputs when using Idea 1 contained CWEs.
-
-- 2/10 outputs when using Idea 2 contained CWEs.
-
-- 
-
 ### Copilot Raw
 
 | Generation | Time taken (s) | Memory Usage (kB) | CWEs Detected |
