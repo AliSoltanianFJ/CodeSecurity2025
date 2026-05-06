@@ -102,6 +102,7 @@ Each `<Model>` directory contains:
 
 Each `ScenarioX` directory contains:
 - `prompts.txt` → The prompts used for the baseline and refinement technique prompts for that scenario  
+- `results.csv` → A spreadsheet of results documenting all the CWEs detected in each code sample for that scenario (including results for the original raw samples, and each refinement technique)
 - Small scenario scripts used to execute prompts and store generated code
 
 The `Results` directory includes an overview of the results, and the `CWEsIntroducedMapping` includes network diagrams of original CWEs vs any CWEs introduced after applying refinement techniques.
