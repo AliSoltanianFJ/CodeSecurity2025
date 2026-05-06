@@ -1,0 +1,30 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM === Configuration ===
+set REPO_DIR=Scenarios\Go\o4_mini\Scenarios
+echo "set LIB_DIR=Scenarios\Java\lib"
+set DB_NAME=my-codeql-db-go
+set SARIF_OUT=resultsgo.sarif
+
+echo === Create CodeQL Database ===
+codeql database create "%DB_NAME%" ^
+  --language=go ^
+  --source-root=Scenarios\Go\o4_mini\Scenarios ^
+  --overwrite
+
+
+echo === [3] Analyze with CodeQL ===
+codeql database analyze "%DB_NAME%" ^
+  --format=sarif-latest ^
+  --output="%SARIF_OUT%" ^
+  --threads=8 ^
+  "Scenarios\codeql-repo\go\ql\src\Security"
+
+echo === [4] Analyze with Custom Python Program ===
+
+python go_custom_code_scanning.py "Scenarios\Go\o4_mini"
+
+echo === Done! Results saved to %SARIF_OUT%
+pause
+exit /b

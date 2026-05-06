@@ -1,0 +1,17 @@
+@echo off
+set REPO_DIR=Scenarios\JavaScript\o4-mini\Scenarios
+set DB_NAME=my-codeql-db
+set SARIF_OUT=results.sarif
+
+echo === [1] Create CodeQL Database ===
+codeql database create "%DB_NAME%" ^
+  --language=python ^
+  --source-root="%REPO_DIR%" ^
+  --overwrite
+
+echo === [2] Analyze with CodeQL ===
+codeql database analyze my-codeql-db --format=sarif-latest --output=results.sarif --threads=4 "Scenarios\codeql-repo/python/ql/src/Security"
+
+echo === Done! Results saved to %SARIF_OUT%
+pause
+exit /b

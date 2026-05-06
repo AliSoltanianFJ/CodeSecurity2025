@@ -1,0 +1,26 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM === Configuration ===
+set REPO_DIR=Scenarios\Java\o4_mini
+set LIB_DIR=Scenarios\Java\lib
+set DB_NAME=my-codeql-db-java
+set SARIF_OUT=resultsjava.sarif
+
+echo === Create CodeQL Database ===
+codeql database create "%DB_NAME%" ^
+  --language=java ^
+  --source-root=Scenarios\Java ^
+  --overwrite ^
+  --command "call Scenarios\Java\compile-all.bat"
+
+echo === [3] Analyze with CodeQL ===
+codeql database analyze "%DB_NAME%" ^
+  --format=sarif-latest ^
+  --output="%SARIF_OUT%" ^
+  --threads=4 ^
+  "Scenarios\codeql-repo\java\ql\src\Security"
+
+echo === Done! Results saved to %SARIF_OUT%
+pause
+exit /b

@@ -113,7 +113,7 @@ Each `<Model>` directory contains:
 Each `ScenarioX` directory contains:
 - `prompts.txt` → The prompts used for the baseline and refinement technique prompts for that scenario  
 - `results.csv` → A spreadsheet of results documenting all the CWEs detected in each code sample for that scenario (including results for the original raw samples, and each refinement technique)
-- Small scenario scripts used to execute prompts and store generated code
+- Small scenario scripts (named `automateCopilot.py`) used to execute prompts and store generated code.
 
 The `Results` directory includes an overview of the results, and the `CWEsIntroducedMapping` includes network diagrams of original CWEs vs any CWEs introduced after applying refinement techniques.
 
@@ -124,7 +124,7 @@ The `Scripts` directory includes the custom Python-based script (`go_custom_code
 ## Steps
 ### Step 1 - Scenario Preparation
 
-1. Open the repository in Visual Studio Code.
+1. Open the repository in the terminal.
 2. For each language, locate the scenarios:
 
 ```
@@ -140,6 +140,12 @@ Each scenario corresponds to one weakness derived from the MITRE CWE Top 25.
 
 were evaluated. -->
 
+3. Ensure the following dependencies are installed if using the `automateCopilot.py` scripts:<br>
+    - pyperclip==1.8.2
+    - psutil==6.1.1
+    - pyautogui==0.9.54
+    - pywinauto==0.6.9
+
 ---
 
 ### Step 2 - Baseline Code Generation (CopilotRaw)
@@ -151,6 +157,8 @@ For each model, language, and scenario:
 3. Save the generated code into the **CopilotRaw** folder for that scenario.
 
 This produces the baseline insecure code samples used for RQ1.
+
+Alternatively, the `automateCopilot.py` file in the corresponding `ScenarioX` folder can be used to automate this process.
 
 ---
 
@@ -170,6 +178,7 @@ For every model × language × scenario:
 
 This step produces the samples with the prompting-based refinement techniques applied for RQ2.
 
+Alternatively, the `automateCopilot.py` file in the corresponding `ScenarioX` folder can be used to automate this process.
 ---
 
 ### Step 4 - CodeQL Security Analysis
@@ -197,6 +206,7 @@ results.sarif
 5. When running the security analysis for Go code, also run `go_custom_code_scanning.py` script provided in the `Scripts` directory of this repository.
 
 **Note:** For Java, run the `compile-all.bat` file in the `Scenarios\Java` directory to compile all generated Java files before scanning with CodeQL.
+**Note 2:** In the `Scripts` folder of the repository, four `.txt` files are included which contain scripts for running CodeQL scanning for each of the four programming languages. The scripts assume that the CodeQL tool files are included in the same directory as the repository. The scripts can be renamed to the `.bat` file extension to be executed.
 
 This step was repeated for:
 - Baseline outputs
