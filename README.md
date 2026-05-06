@@ -206,7 +206,7 @@ results.sarif
 5. When running the security analysis for Go code, also run `go_custom_code_scanning.py` script provided in the `Scripts` directory of this repository.
 
 **Note:** For Java, run the `compile-all.bat` file in the `Scenarios\Java` directory to compile all generated Java files before scanning with CodeQL.
-**Note 2:** In the `Scripts` folder of the repository, four `.txt` files are included which contain scripts for running CodeQL scanning for each of the four programming languages. The scripts assume that the CodeQL tool files are included in the same directory as the repository. The scripts can be renamed to the `.bat` file extension to be executed.
+**Note 2:** In the `Scripts` folder of the repository, four `.txt` files are included which contain scripts for running CodeQL scanning for each of the four programming languages. The scripts assume that the CodeQL tool files are included in the same directory as the repository. The model for which the script is run for can be set in the areas of the script labelled with "`<MODEL_NAME>`". The scripts can be renamed to the `.bat` file extension to be executed.
 
 This step was repeated for:
 - Baseline outputs

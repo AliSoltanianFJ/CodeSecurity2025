@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 REM === Configuration ===
-set REPO_DIR=Scenarios\Go\o4_mini\Scenarios
+set REPO_DIR=Scenarios\Go\<MODEL_FOLDER>\Scenarios
 echo "set LIB_DIR=Scenarios\Java\lib"
 set DB_NAME=my-codeql-db-go
 set SARIF_OUT=resultsgo.sarif
@@ -10,7 +10,7 @@ set SARIF_OUT=resultsgo.sarif
 echo === Create CodeQL Database ===
 codeql database create "%DB_NAME%" ^
   --language=go ^
-  --source-root=Scenarios\Go\o4_mini\Scenarios ^
+  --source-root=Scenarios\Go\<MODEL_FOLDER>\Scenarios ^
   --overwrite
 
 
@@ -23,7 +23,7 @@ codeql database analyze "%DB_NAME%" ^
 
 echo === [4] Analyze with Custom Python Program ===
 
-python go_custom_code_scanning.py "Scenarios\Go\o4_mini"
+python go_custom_code_scanning.py "Scenarios\Go\<MODEL_FOLDER>"
 
 echo === Done! Results saved to %SARIF_OUT%
 pause

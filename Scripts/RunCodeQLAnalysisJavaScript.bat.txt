@@ -1,5 +1,5 @@
 @echo off
-set REPO_DIR=Scenarios\JavaScript\o4_mini\Scenarios
+set REPO_DIR=Scenarios\JavaScript\<MODEL_FOLDER>\Scenarios
 set DB_NAME=my-codeql-db-js
 set SARIF_OUT=results.sarif
 

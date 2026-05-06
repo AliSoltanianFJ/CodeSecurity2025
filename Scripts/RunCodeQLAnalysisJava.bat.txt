@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 REM === Configuration ===
-set REPO_DIR=Scenarios\Java\o4_mini
+set REPO_DIR=Scenarios\Java\<MODEL_FOLDER>
 set LIB_DIR=Scenarios\Java\lib
 set DB_NAME=my-codeql-db-java
 set SARIF_OUT=resultsjava.sarif
