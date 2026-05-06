@@ -6,9 +6,9 @@
 
 This repository contains all data and analysis results for evaluating different prompting-based and fine tuning methods to fix and repair AI-generated code that contained security weaknesses (CWEs). This was done across multiple LLMs, programming languages, and CWE-based scenarios.
 
-<br>
 
-Click here to access the preprint
+
+Click here to access the preprint:
 
 <a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025"><img src="https://img.shields.io/badge/📄_Paper-PDF-red?style=for-the-badge"></a>
 &nbsp;&nbsp;&nbsp;
@@ -16,8 +16,8 @@ Click here to access the preprint
   <img src="https://img.shields.io/badge/_Replication_Package-GitHub-black?style=for-the-badge&logo=github" >
   -->
 </a>
-<br>
-<br>
+
+
 
 <!--
 <b>Abstract</b><br>
