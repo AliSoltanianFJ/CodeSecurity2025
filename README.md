@@ -277,7 +277,7 @@ These results were used to answer RQ1-RQ3.
 ## ✏️ Citation
 
 ```bibtex
-@misc{soltanian2025securecode,
+@misc{soltanianfardjahromi2026securecode,
   title   = {On Fixing Insecure AI-Generated Code through Model Fine-Tuning and Prompting Strategies},
   author  = {Soltanian Fard Jahromi, Ali and Tahir, Amjed and Liang, Peng and Khomh, Foutse},
   year    = {2026},
