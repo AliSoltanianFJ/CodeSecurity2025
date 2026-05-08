@@ -10,7 +10,7 @@ This repository contains all data and analysis results for evaluating different 
 
 Click here to access the preprint:
 
-<a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025"><img src="https://img.shields.io/badge/📄_Paper-PDF-red?style=for-the-badge"></a>
+<a style="text-decoration:none;" href="https://arxiv.org/abs/2605.05867"><img src="https://img.shields.io/badge/📄_Paper-PDF-red?style=for-the-badge"></a>
 &nbsp;&nbsp;&nbsp;
 <!-- <a style="text-decoration:none;" href="https://github.com/AliSoltanianFJ/CodeSecurity2025">
   <img src="https://img.shields.io/badge/_Replication_Package-GitHub-black?style=for-the-badge&logo=github" >
