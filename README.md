@@ -115,7 +115,7 @@ Each `ScenarioX` directory contains:
 - `results.csv` → A spreadsheet of results documenting all the CWEs detected in each code sample for that scenario (including results for the original raw samples, and each refinement technique)
 - Small scenario scripts (named `automateCopilot.py`) used to execute prompts and store generated code.
 
-The `Results` directory includes an overview of the results, and the `CWEsIntroducedMapping` includes network diagrams of original CWEs vs any CWEs introduced after applying refinement techniques.
+The `Results` directory includes an overview of the results, and the `CWEsIntroducedMapping` includes network diagrams of original CWEs vs any CWEs introduced after applying refinement techniques. It also includes a `GeneratedMetaPrompts.txt` file which contains all meta prompts created by each LLM that is then used during Meta Prompting.
 
 The `Scripts` directory includes the custom Python-based script (`go_custom_code_scanning.py`) used to detect CWEs in Go code that CodeQl fails to detect.
 
