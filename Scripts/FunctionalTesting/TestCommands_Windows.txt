@@ -1,0 +1,62 @@
+Ensure the appropriate test.py file has been moved to the locations in the commands below.
+
+Python
+
+cd \CodeSecurity2025\Scenarios\Python\GPT_4.1\Scenarios
+python test.py
+
+cd \CodeSecurity2025\Scenarios\Python\Gemini_2.0_Flash\Scenarios
+python test.py
+
+cd \CodeSecurity2025\Scenarios\Python\o4_mini\Scenarios
+python test.py
+
+cd \CodeSecurity2025\Scenarios\Python\DeepSeek_R1_32B\Scenarios
+python test.py
+
+cd \CodeSecurity2025\Scenarios\Python\GPT_5\Scenarios
+python test.py
+
+
+$python = "PYTHON_PATH"
+
+$folders = @(
+    "GPT_4.1",
+    "Gemini_2.0_Flash",
+    "o4_mini",
+    "DeepSeek_R1_32B",
+    "GPT_5"
+)
+
+foreach ($folder in $folders) {
+    $path = "/CodeSecurity2025/Scenarios/Python/$folder/Scenarios"
+
+    Write-Host "`n===== $folder =====" -ForegroundColor Cyan
+
+    Push-Location $path
+    $output = & $python test.py 2>&1
+
+    $output | Where-Object {
+        $_ -match "Pass-count comparison|^(CopilotRaw|Idea1|Idea2|Idea3|Idea4):"
+    }
+
+    Pop-Location
+}
+
+Go
+
+cd \CodeSecurity2025\Scenarios\Go
+python test.py
+
+JavaScript
+
+cd \CodeSecurity2025\Scenarios\JavaScript
+
+python test.py
+
+Java
+
+cd \CodeSecurity2025\Scenarios\Java
+
+python test.py
+
