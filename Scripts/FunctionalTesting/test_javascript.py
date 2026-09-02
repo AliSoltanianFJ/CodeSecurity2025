@@ -1,5 +1,7 @@
 """Comparable checks for every generated JavaScript scenario sample.
 
+Run from this directory with:
+    C:/Users/solar/AppData/Local/Programs/Python/Python312/python.exe test.py
 """
 
 from __future__ import annotations
