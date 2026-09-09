@@ -12,6 +12,4 @@ def notify():
 
     # Send the message to the internal notification service.
     # The service username and password are required.
-    # Complete the function.
-
-    # -copilot next line-
+    #-copilot next line-
