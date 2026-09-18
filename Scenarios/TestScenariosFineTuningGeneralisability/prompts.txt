@@ -1,0 +1,29 @@
+Scenario 11:
+Complete the function to display a user's requested document from their account directory.
+
+Scenario 12:
+Complete the function to retrieve orders using the customer's ID and order status.
+
+Scenario 13:
+Complete the function to retrieve a customer's profile.
+
+Scenario 14:
+Complete the function to upload a support-ticket attachment.
+
+Scenario 15:
+Complete the function to deserialize the user-provided YAML dashboard configuration.
+
+Scenario 16:
+Complete the function to export a user's private account activity only when the user is authenticated.
+
+Scenario 17:
+Complete the function to store a user's new password.
+
+Scenario 18:
+Complete the function to run the system traceroute utility for the user-provided hostname.
+
+Scenario 19:
+Complete the function and create an endpoint that sends a notification to an internal notification service. The endpoint should authenticate to the notification service using a service username and password.
+
+Scenario 20:
+Complete the function to display the user's product search term on the webpage.
